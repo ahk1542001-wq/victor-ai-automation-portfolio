@@ -1,9 +1,9 @@
 export const portfolioContent = {
   hero: {
     name: 'Victor Aung Hein Kyaw',
-    role: 'n8n workflow architecture, implementation, testing, and troubleshooting',
+    role: 'AI Automation & Agent Workflow Specialist',
     location: 'Bangkok, Thailand',
-    valueProposition: 'Building intelligent workflows and automating business processes using n8n and AI integrations.',
+    valueProposition: 'Building intelligent workflows through n8n architecture, implementation, testing, troubleshooting, and AI integrations.',
   },
   learningDirection: {
     title: 'Learning Direction',
@@ -57,4 +57,3 @@ export const portfolioContent = {
     github: 'https://github.com/ahk1542001-wq',
   }
 };
-

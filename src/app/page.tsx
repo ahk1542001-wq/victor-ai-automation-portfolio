@@ -13,7 +13,7 @@ export default function Home() {
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-zinc-200">
         <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
-          <span className="font-semibold text-lg tracking-tight text-center md:text-left whitespace-nowrap">{portfolioContent.hero.name}</span>
+          <span className="hidden font-semibold text-lg tracking-tight whitespace-nowrap md:block">{portfolioContent.hero.name}</span>
           <div className="flex flex-wrap justify-center gap-4 md:gap-6 text-sm font-medium">
             <a href="#projects" className="text-zinc-600 hover:text-blue-600 transition-colors">Projects</a>
             <a href="#learning" className="text-zinc-600 hover:text-blue-600 transition-colors">Learning</a>
@@ -58,7 +58,7 @@ export default function Home() {
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-zinc-700">
             <li className="flex items-start gap-3">
               <ChevronRight className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-              <span>Production-ready n8n workflow architecture and implementation</span>
+              <span>n8n workflow architecture, implementation, testing, and troubleshooting</span>
             </li>
             <li className="flex items-start gap-3">
               <ChevronRight className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
