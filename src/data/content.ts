@@ -1,37 +1,60 @@
 export const portfolioContent = {
   hero: {
     name: 'Victor Aung Hein Kyaw',
-    role: 'AI Automation & Agent Workflow Specialist',
+    role: 'n8n workflow architecture, implementation, testing, and troubleshooting',
+    location: 'Bangkok, Thailand',
     valueProposition: 'Building intelligent workflows and automating business processes using n8n and AI integrations.',
   },
   learningDirection: {
     title: 'Learning Direction',
-    description: 'I am actively exploring and expanding my skills in the following areas (these represent current learning paths rather than established professional expertise):',
+    description: 'I am actively exploring and expanding my skills in the following areas as my current learning paths:',
     items: [
-      'AI SDKs and Frameworks',
-      'Agentic Software Building',
-      'Google Cloud Ecosystem'
+      'Agentic Software Building with AI coding agents',
+      'Harness Engineering',
+      'AI SDKs',
+      'Google ADK',
+      'Multi-agent orchestration',
+      'Google Cloud deployment'
     ]
   },
   professionalExperience: [
     {
-      role: 'AI Automation Builder',
-      company: 'Independent / Personal Projects',
-      period: '2023 - Present',
-      description: 'Designing and implementing n8n workflows, integrating LLMs, and building human-in-the-loop automation systems.'
+      role: 'Waiter',
+      company: 'Gala Bangkok',
+      period: 'June 2025 to December 2025',
+      description: ''
+    },
+    {
+      role: 'Waiter',
+      company: 'Mercure Yangon Kaba Aye',
+      period: 'June 2023 to January 2024',
+      description: ''
+    },
+    {
+      role: 'Client Services & Project Coordinator',
+      company: 'Technity',
+      period: 'June 2020 to December 2022',
+      description: ''
     }
   ],
   education: [
     {
-      degree: 'Relevant Learning & Self-Study',
-      institution: 'Continuous Education',
-      period: 'Ongoing',
-      description: 'Focusing on AI automation, workflow architecture, and modern agentic development.'
+      degree: 'Diploma of Food and Beverage Management',
+      institution: 'M.H.T.I',
+      period: 'August 2022 to November 2023',
+      description: ''
+    },
+    {
+      degree: 'Bachelor of Applied Science, Industrial Chemistry',
+      institution: 'East Yangon University',
+      period: 'February 2017 to March 2019',
+      description: ''
     }
   ],
   contact: {
-    email: 'ahk1542001@gmail.com',
-    linkedin: 'https://linkedin.com/in/victor-aung-hein-kyaw',
+    email: 'victor.job154@gmail.com',
+    linkedin: 'https://www.linkedin.com/in/aung-hein-kyaw',
     github: 'https://github.com/ahk1542001-wq',
   }
 };
+

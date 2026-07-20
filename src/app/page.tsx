@@ -13,7 +13,7 @@ export default function Home() {
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-zinc-200">
         <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
-          <span className="font-semibold text-lg tracking-tight text-center md:text-left">{portfolioContent.hero.name}</span>
+          <span className="font-semibold text-lg tracking-tight text-center md:text-left whitespace-nowrap">{portfolioContent.hero.name}</span>
           <div className="flex flex-wrap justify-center gap-4 md:gap-6 text-sm font-medium">
             <a href="#projects" className="text-zinc-600 hover:text-blue-600 transition-colors">Projects</a>
             <a href="#learning" className="text-zinc-600 hover:text-blue-600 transition-colors">Learning</a>
@@ -31,7 +31,7 @@ export default function Home() {
             {portfolioContent.hero.name}
           </h1>
           <p className="text-xl md:text-2xl font-medium text-zinc-600 max-w-3xl">
-            {portfolioContent.hero.role}
+            {portfolioContent.hero.role} <span className="text-zinc-400 font-normal">| {portfolioContent.hero.location}</span>
           </p>
           <p className="text-lg text-zinc-500 max-w-2xl leading-relaxed">
             {portfolioContent.hero.valueProposition}
@@ -120,8 +120,8 @@ export default function Home() {
                 {portfolioContent.professionalExperience.map((exp, idx) => (
                   <div key={idx} className="border-l-2 border-zinc-200 pl-4 py-1">
                     <h3 className="font-semibold text-zinc-900">{exp.role}</h3>
-                    <p className="text-sm text-zinc-500 mb-2">{exp.company} • {exp.period}</p>
-                    <p className="text-zinc-700 text-sm">{exp.description}</p>
+                    <p className="text-base text-zinc-500 mb-2">{exp.company} • {exp.period}</p>
+                    {exp.description && <p className="text-zinc-700 text-base">{exp.description}</p>}
                   </div>
                 ))}
               </div>
@@ -133,8 +133,8 @@ export default function Home() {
                 {portfolioContent.education.map((edu, idx) => (
                   <div key={idx} className="border-l-2 border-zinc-200 pl-4 py-1">
                     <h3 className="font-semibold text-zinc-900">{edu.degree}</h3>
-                    <p className="text-sm text-zinc-500 mb-2">{edu.institution} • {edu.period}</p>
-                    <p className="text-zinc-700 text-sm">{edu.description}</p>
+                    <p className="text-base text-zinc-500 mb-2">{edu.institution} • {edu.period}</p>
+                    {edu.description && <p className="text-zinc-700 text-base">{edu.description}</p>}
                   </div>
                 ))}
               </div>
@@ -188,7 +188,7 @@ function ProjectCard({ project }: { project: Project }) {
           <h3 className="text-xl font-bold text-zinc-900 mb-2">{project.title}</h3>
           <p className="text-sm font-medium text-blue-600 mb-4">{project.role}</p>
           
-          <div className="space-y-3 text-sm">
+          <div className="space-y-4 text-base">
             <div>
               <strong className="text-zinc-900 block mb-1">Problem:</strong>
               <p className="text-zinc-600">{project.problem}</p>
@@ -197,25 +197,17 @@ function ProjectCard({ project }: { project: Project }) {
               <strong className="text-zinc-900 block mb-1">Solution:</strong>
               <p className="text-zinc-600">{project.solution}</p>
             </div>
-            <div>
-              <strong className="text-zinc-900 block mb-1">My Contribution:</strong>
-              <p className="text-zinc-600">{project.directed}</p>
-            </div>
-            <div>
-              <strong className="text-zinc-900 block mb-1">Verified Capabilities:</strong>
-              <p className="text-zinc-600">{project.capabilities.join(', ')}</p>
-            </div>
           </div>
         </div>
 
         <div className="pt-4 border-t border-zinc-100">
-          <p className="text-sm font-semibold text-emerald-700 mb-4 bg-emerald-50 inline-block px-3 py-1 rounded-md">
+          <p className="text-base font-semibold text-emerald-700 mb-4 bg-emerald-50/50 inline-block px-3 py-1.5 rounded-md border border-emerald-100">
             Outcome: {project.outcome}
           </p>
           
           <div className="flex flex-wrap gap-2 mb-6">
             {project.tools.map((tool: string, idx: number) => (
-              <span key={idx} className="bg-zinc-100 text-zinc-700 text-xs px-2.5 py-1 rounded border border-zinc-200">
+              <span key={idx} className="bg-zinc-50 text-zinc-700 text-sm px-3 py-1 rounded-md border border-zinc-200">
                 {tool}
               </span>
             ))}
