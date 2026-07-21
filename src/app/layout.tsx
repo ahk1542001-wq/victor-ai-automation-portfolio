@@ -1,14 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Geist_Mono, Outfit } from "next/font/google";
+import { Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
-  subsets: ["latin"],
-});
-
-const outfit = Outfit({
-  variable: "--font-outfit",
   subsets: ["latin"],
 });
 
@@ -39,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${inter.variable} ${outfit.variable} ${geistMono.variable} antialiased text-slate-100 selection:bg-viridian-500/30`}
+        className={`${inter.variable} ${geistMono.variable} antialiased text-[#111] bg-white`}
       >
         {children}
       </body>
