@@ -10,8 +10,10 @@ export interface Project {
   capabilities: string[];
   outcome: string;
   github: string;
-  youtubeUrl: string;
-  youtubeId: string;
+  youtubeUrl?: string;
+  youtubeId?: string;
+  imageUrl?: string;
+  liveUrl?: string;
 }
 
 export const projects: Project[] = [
@@ -44,6 +46,21 @@ export const projects: Project[] = [
     github: 'https://github.com/ahk1542001-wq/n8n-automation-portfolio/tree/main/AI%20Content%20Creation%20(n8n%20%2B%20Telegram%20%2B%20Supabase%20%2B%20Airtable)',
     youtubeUrl: 'https://youtu.be/z7fhq1tr39Y',
     youtubeId: 'z7fhq1tr39Y'
+  },
+  {
+    id: 'swoosh-shortener',
+    title: 'Swoosh — URL Shortener & Link-in-Bio Builder',
+    category: 'Feature',
+    problem: 'People need a controlled way to create trackable short links and manage multiple public link-in-bio pages.',
+    role: 'AI-Agent-Directed Product Builder',
+    directed: 'Product scope, specification decisions, visual direction, testing acceptance, and release approval.',
+    solution: 'A FastAPI application combining authenticated URL shortening, click analytics, QR sharing, admin-managed accounts, and public Link Tree profiles.',
+    tools: ['AI Coding Agents', 'FastAPI', 'Python', 'PostgreSQL', 'Render'],
+    capabilities: ['Spec-driven AI-agent orchestration', 'product and system decision-making', 'reviewing automated tests', 'release approval'],
+    outcome: 'Publicly deployed; release evidence records 80 passing tests and 33 desktop/mobile screenshots.',
+    github: 'https://github.com/ahk1542001-wq/url-shortener-api',
+    imageUrl: '/projects/swoosh-shortener.png',
+    liveUrl: 'https://swoo-sh.onrender.com'
   },
   {
     id: 'job-matching',

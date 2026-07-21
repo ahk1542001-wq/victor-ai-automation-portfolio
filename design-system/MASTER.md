@@ -17,6 +17,6 @@
 - **Components:** Cards and containers must use a maximum of 8px border radius (`rounded` or `rounded-lg`).
 
 ## Component Specifics
-- **Hero Section:** Must contain the strict H1 (Victor Aung Hein Kyaw), Role (AI Automation & Agent Workflow Specialist), concise value proposition, and contact CTA.
-- **Projects List:** Must render exactly the verified claims and tools from `PROJECT_EVIDENCE.md` using a data-driven TS structure.
-- **Exclusions:** Project 7 (AI Lead Nurturing CRM) and Ye Man are explicitly excluded from the public UI. No unsupported metrics or production claims. No resume link (unless sanitized public resume exists).
+- **Hero Section:** Must contain the approved H1 (Victor), role (AI Automation & Agent Workflow Specialist), concise value proposition, and contact CTA.
+- **Projects List:** Must render only approved claims and tools using the data-driven TypeScript structure.
+- **Exclusions:** Confidential client work and unverified projects are excluded from the public UI. Do not publish unsupported metrics or production claims. Do not add a resume link unless a sanitized public resume exists.

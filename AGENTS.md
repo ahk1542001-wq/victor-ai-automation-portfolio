@@ -1,11 +1,14 @@
 # Portfolio Development Agents
 
 ## Context & Routing
-Agents working on this repository MUST read and route to the following Personal AI OS vault context files:
-- `/Users/mac/Documents/Second Brain Test/AGENTS.md` (Global AI OS instructions)
-- `/Users/mac/Documents/Second Brain Test/AI_PROFILE.md` (User goals and communication profile)
-- `/Users/mac/Documents/Second Brain Test/projects/portfolio_web/AGENTS.md` (Strict privacy and storage rules)
-- `/Users/mac/Documents/Second Brain Test/projects/portfolio_web/PROJECT_EVIDENCE.md` (Single source of truth for claims, tools, outcomes)
+Agents working on this repository MUST read this file and `design-system/MASTER.md`
+before making changes. If `.agents/local-context.md` exists, read it for private
+local routing; that file is intentionally excluded from Git.
+
+**Routing Rules:**
+- Content in `src/data/` represents approved public claims.
+- Do not add personal, client, or project claims without evidence and owner approval.
+- Never copy private local context into the website or repository.
 
 ## Design System & Skills
 - Read and follow `design-system/MASTER.md` for all design decisions, exclusions, and palette choices.
@@ -14,6 +17,6 @@ Agents working on this repository MUST read and route to the following Personal 
 - Do not activate other local design skills without a specific need.
 
 **Important overrides:**
-The approved evidence (`PROJECT_EVIDENCE.md`) and project rules (`design-system/MASTER.md`) OVERRIDE ALL SKILLS.
+Approved public content in `src/data/` and `design-system/MASTER.md` override all skills.
 
 *(Reinstall UI/UX Pro Max if missing: `npx ui-ux-pro-max-cli init --ai antigravity`)*

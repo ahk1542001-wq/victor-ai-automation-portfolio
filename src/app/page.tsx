@@ -2,6 +2,7 @@ import { type Project, projects } from '@/data/projects';
 import { portfolioContent } from '@/data/content';
 import { YouTubeThumbnail } from '@/components/YouTubeThumbnail';
 import { Code, Mail, Link as LinkIcon, ChevronRight, PlayCircle } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Home() {
   const featuredProjects = projects.filter((p) => p.category === 'Feature');
@@ -33,9 +34,14 @@ export default function Home() {
           <p className="text-xl md:text-2xl font-medium text-zinc-600 max-w-3xl">
             {portfolioContent.hero.role} <span className="text-zinc-400 font-normal">| {portfolioContent.hero.location}</span>
           </p>
-          <p className="text-lg text-zinc-500 max-w-2xl leading-relaxed">
-            {portfolioContent.hero.valueProposition}
-          </p>
+          <div className="space-y-2">
+            <p className="text-lg text-zinc-500 max-w-2xl leading-relaxed">
+              {portfolioContent.hero.valueProposition}
+            </p>
+            <p className="text-lg text-blue-600 max-w-2xl leading-relaxed font-medium">
+              {portfolioContent.hero.availability}
+            </p>
+          </div>
           <div className="pt-4 flex flex-col sm:flex-row gap-4">
             <a 
               href="#projects" 
@@ -52,28 +58,27 @@ export default function Home() {
           </div>
         </section>
 
-        {/* What I Can Deliver Now */}
-        <section className="bg-zinc-100 rounded-lg p-8 border border-zinc-200">
-          <h2 className="text-2xl font-bold text-zinc-900 mb-4">What I Can Deliver Now</h2>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-zinc-700">
-            <li className="flex items-start gap-3">
-              <ChevronRight className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-              <span>n8n workflow architecture, implementation, testing, and troubleshooting</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <ChevronRight className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-              <span>API and LLM integrations (OpenAI, Anthropic, Groq, Ollama)</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <ChevronRight className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-              <span>Custom Telegram and communication bot automation</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <ChevronRight className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-              <span>Automated data sync between Notion, Airtable, and Google Sheets</span>
-            </li>
-          </ul>
-        </section>
+        {/* About & Capabilities */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <section className="lg:col-span-1 space-y-4">
+            <h2 className="text-2xl font-bold text-zinc-900">{portfolioContent.about.title}</h2>
+            <p className="text-zinc-600 leading-relaxed">
+              {portfolioContent.about.description}
+            </p>
+          </section>
+
+          <section className="lg:col-span-2 bg-zinc-100 rounded-lg p-8 border border-zinc-200">
+            <h2 className="text-2xl font-bold text-zinc-900 mb-4">Established Capabilities</h2>
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-zinc-700">
+              {portfolioContent.establishedCapabilities.map((cap, idx) => (
+                <li key={idx} className="flex items-start gap-3">
+                  <ChevronRight className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                  <span>{cap}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
 
         {/* Projects Section */}
         <section id="projects" className="space-y-16">
@@ -81,17 +86,17 @@ export default function Home() {
           <div className="space-y-12">
             <h2 className="text-3xl font-bold text-zinc-900">Featured Projects</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {featuredProjects.map((project) => (
-                <ProjectCard key={project.id} project={project} />
+              {featuredProjects.map((project, index) => (
+                <ProjectCard key={project.id} project={project} eager={index === 0} />
               ))}
             </div>
           </div>
 
-          <div className="space-y-12">
-            <h2 className="text-3xl font-bold text-zinc-900">Secondary Projects</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="space-y-8">
+            <h2 className="text-2xl font-bold text-zinc-900">More Projects</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {secondaryProjects.map((project) => (
-                <ProjectCard key={project.id} project={project} />
+                <CompactProjectCard key={project.id} project={project} />
               ))}
             </div>
           </div>
@@ -100,17 +105,31 @@ export default function Home() {
 
         {/* Learning Direction & Experience */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-          <section id="learning" className="space-y-6">
-            <h2 className="text-2xl font-bold text-zinc-900">{portfolioContent.learningDirection.title}</h2>
-            <p className="text-zinc-600">{portfolioContent.learningDirection.description}</p>
-            <ul className="space-y-3">
-              {portfolioContent.learningDirection.items.map((item, idx) => (
-                <li key={idx} className="flex items-center gap-3 text-zinc-700">
-                  <div className="w-1.5 h-1.5 rounded-full bg-blue-600"></div>
-                  {item}
-                </li>
-              ))}
-            </ul>
+          <section id="learning" className="space-y-12">
+            <div className="space-y-6">
+              <h2 className="text-2xl font-bold text-zinc-900">{portfolioContent.currentlyLearning.title}</h2>
+              <p className="text-zinc-600">{portfolioContent.currentlyLearning.description}</p>
+              <ul className="space-y-3">
+                {portfolioContent.currentlyLearning.items.map((item, idx) => (
+                  <li key={idx} className="flex items-center gap-3 text-zinc-700">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-600"></div>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="space-y-6">
+              <h2 className="text-2xl font-bold text-zinc-900">Languages</h2>
+              <ul className="space-y-3">
+                {portfolioContent.languages.map((lang, idx) => (
+                  <li key={idx} className="flex items-center justify-between text-zinc-700 border-b border-zinc-200 pb-2">
+                    <span className="font-medium text-zinc-900">{lang.name}</span>
+                    <span className="text-zinc-500 text-sm text-right">{lang.proficiency}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </section>
 
           <section id="experience" className="space-y-8">
@@ -128,7 +147,7 @@ export default function Home() {
             </div>
 
             <div>
-              <h2 className="text-2xl font-bold text-zinc-900 mb-6">Education & Learning</h2>
+              <h2 className="text-2xl font-bold text-zinc-900 mb-6">Education</h2>
               <div className="space-y-6">
                 {portfolioContent.education.map((edu, idx) => (
                   <div key={idx} className="border-l-2 border-zinc-200 pl-4 py-1">
@@ -176,11 +195,23 @@ export default function Home() {
   );
 }
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({ project, eager }: { project: Project, eager?: boolean }) {
   return (
     <article className="group bg-white border border-zinc-200 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 focus-within:ring-2 focus-within:ring-blue-600 focus-within:ring-offset-2">
       <div className="block">
-        <YouTubeThumbnail youtubeId={project.youtubeId} alt={`${project.title} video thumbnail`} />
+        {project.youtubeId ? (
+          <YouTubeThumbnail youtubeId={project.youtubeId} alt={`${project.title} video thumbnail`} eager={eager} />
+        ) : project.imageUrl ? (
+          <Image
+            src={project.imageUrl}
+            alt={`${project.title} screenshot`}
+            width={1440}
+            height={900}
+            loading={eager ? 'eager' : 'lazy'}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="w-full aspect-video object-cover border-b border-zinc-200"
+          />
+        ) : null}
       </div>
       
       <div className="p-6 space-y-6">
@@ -206,7 +237,7 @@ function ProjectCard({ project }: { project: Project }) {
           </p>
           
           <div className="flex flex-wrap gap-2 mb-6">
-            {project.tools.map((tool: string, idx: number) => (
+            {project.tools.slice(0, 5).map((tool: string, idx: number) => (
               <span key={idx} className="bg-zinc-50 text-zinc-700 text-sm px-3 py-1 rounded-md border border-zinc-200">
                 {tool}
               </span>
@@ -214,16 +245,18 @@ function ProjectCard({ project }: { project: Project }) {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3">
-            <a 
-              href={project.youtubeUrl} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 text-sm font-medium text-white bg-blue-600 px-4 py-2.5 rounded-md hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 w-full sm:w-auto"
-              aria-label={`Watch ${project.title} demo on YouTube`}
-            >
-              <PlayCircle className="w-4 h-4" />
-              Watch Demo
-            </a>
+            {(project.youtubeUrl || project.liveUrl) && (
+              <a
+                href={project.youtubeUrl || project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 text-sm font-medium text-white bg-blue-600 px-4 py-2.5 rounded-md hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 w-full sm:w-auto"
+                aria-label={project.liveUrl ? `Open ${project.title} live app` : `Watch ${project.title} demo on YouTube`}
+              >
+                <PlayCircle className="w-4 h-4" />
+                {project.liveUrl ? 'Open Live App' : 'Watch Demo'}
+              </a>
+            )}
             <a 
               href={project.github} 
               target="_blank" 
@@ -235,6 +268,54 @@ function ProjectCard({ project }: { project: Project }) {
               Source Code
             </a>
           </div>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function CompactProjectCard({ project }: { project: Project }) {
+  return (
+    <article className="bg-white border border-zinc-200 rounded-lg p-6 hover:shadow-md transition-all duration-300">
+      <div className="flex flex-col h-full justify-between gap-4">
+        <div>
+          <h3 className="text-lg font-bold text-zinc-900 mb-1">{project.title}</h3>
+          <p className="text-sm font-medium text-blue-600 mb-3">{project.role}</p>
+
+          <div className="space-y-2 mb-4">
+            <p className="text-zinc-600 text-sm"><strong className="text-zinc-900">Problem:</strong> {project.problem}</p>
+            <p className="text-zinc-600 text-sm"><strong className="text-zinc-900">Solution:</strong> {project.solution}</p>
+          </div>
+
+          <p className="text-sm font-semibold text-emerald-700 bg-emerald-50/50 inline-block px-2 py-1 rounded border border-emerald-100">
+            Outcome: {project.outcome}
+          </p>
+        </div>
+
+        <div className="flex flex-wrap gap-3 pt-4 border-t border-zinc-100">
+          {(project.youtubeUrl || project.liveUrl) && (
+            <>
+              <a
+                href={project.youtubeUrl || project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
+              >
+                <PlayCircle className="w-4 h-4" />
+                {project.liveUrl ? 'Open Live App' : 'Watch Demo'}
+              </a>
+              <span className="text-zinc-300">•</span>
+            </>
+          )}
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors"
+          >
+            <Code className="w-4 h-4" />
+            Source Code
+          </a>
         </div>
       </div>
     </article>

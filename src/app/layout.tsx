@@ -13,11 +13,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Victor Aung Hein Kyaw | AI Automation & Agent Workflow Specialist",
-  description: "Portfolio of Victor Aung Hein Kyaw, specializing in n8n workflows, API integrations, and AI agent automation.",
+  title: "Victor | AI Automation & Agent Workflow Specialist",
+  description: "Portfolio of Victor, specializing in n8n workflows, API integrations, and AI agent automation.",
   openGraph: {
-    title: "Victor Aung Hein Kyaw | AI Automation & Agent Workflow Specialist",
-    description: "Portfolio of Victor Aung Hein Kyaw, specializing in n8n workflows, API integrations, and AI agent automation.",
+    title: "Victor | AI Automation & Agent Workflow Specialist",
+    description: "Portfolio of Victor, specializing in n8n workflows, API integrations, and AI agent automation.",
     type: "website",
     locale: "en_US",
   },

@@ -1,22 +1,35 @@
 export const portfolioContent = {
   hero: {
-    name: 'Victor Aung Hein Kyaw',
+    name: 'Victor',
     role: 'AI Automation & Agent Workflow Specialist',
     location: 'Bangkok, Thailand',
-    valueProposition: 'Building intelligent workflows through n8n architecture, implementation, testing, troubleshooting, and AI integrations.',
+    valueProposition: 'Designing and building reliable AI-assisted business workflows.',
+    availability: 'Open to full-time AI Automation and Agent Workflow opportunities in Thailand.'
   },
-  learningDirection: {
-    title: 'Learning Direction',
-    description: 'I am actively exploring and expanding my skills in the following areas as my current learning paths:',
+  about: {
+    title: 'About',
+    description: 'I moved from Client Services and Project Coordination into AI Automation. I design, implement, test, and troubleshoot n8n workflows that connect AI models, APIs, business tools, and human approval steps. I am currently expanding into agentic software building and Google Cloud deployment.'
+  },
+  establishedCapabilities: [
+    'n8n workflow architecture and troubleshooting',
+    'APIs, webhooks, LLMs, and business-tool integrations',
+    'Human-in-the-loop, RAG, and data workflows',
+    'Docker, self-hosted n8n, JSON, and basic Python scripting'
+  ],
+  currentlyLearning: {
+    title: 'Currently Learning',
+    description: 'I am currently developing practical skills in:',
     items: [
-      'Agentic Software Building with AI coding agents',
-      'Harness Engineering',
-      'AI SDKs',
-      'Google ADK',
-      'Multi-agent orchestration',
+      'Agentic software building and Harness Engineering',
+      'AI SDKs, Google ADK, and multi-agent orchestration',
       'Google Cloud deployment'
     ]
   },
+  languages: [
+    { name: 'English', proficiency: 'Professional Working' },
+    { name: 'Thai', proficiency: 'Elementary' },
+    { name: 'Burmese', proficiency: 'Native' }
+  ],
   professionalExperience: [
     {
       role: 'Waiter',

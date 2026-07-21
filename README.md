@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Victor's AI Automation Portfolio
 
-## Getting Started
+A recruiter-focused portfolio presenting verified AI automation and agent-workflow projects. It separates established capabilities from current learning areas and uses evidence-based project descriptions without unsupported metrics.
 
-First, run the development server:
+## Highlights
+
+- AI automation case studies with public demos and source links
+- Swoosh URL shortener and Link-in-Bio application
+- Responsive, accessible, recruiter-focused layout
+- Data-driven project and profile content
+- Privacy-conscious presentation of client and personal information
+
+## Stack
+
+- Next.js App Router
+- TypeScript
+- Tailwind CSS
+- Lucide icons
+
+## Local Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Verification
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run build
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+- `src/app/` - page structure, metadata, and global styles
+- `src/components/` - reusable interface components
+- `src/data/` - approved public profile and project content
+- `design-system/MASTER.md` - visual and content constraints
+- `test_ui.mjs` - desktop and mobile visual QA helper
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Privacy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This repository intentionally excludes private client data, credentials, raw workflow exports, local AI context, and unsupported claims.
 
-## Deploy on Vercel
+## Contact
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [LinkedIn](https://www.linkedin.com/in/aung-hein-kyaw)
+- [GitHub](https://github.com/ahk1542001-wq)
+- [Email](mailto:victor.job154@gmail.com)
