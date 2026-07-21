@@ -7,22 +7,22 @@
 - **Typography:** Inter (Primary), Geist Mono (Code)
 
 ## Approved Decisions
-- **Animations:** CSS transitions only. Small staggered text entrance, initial heading mask/reveal, subtle fade/rise for cards. Respect `prefers-reduced-motion`. Framer Motion, magnetic buttons, heavy parallax, and decorative animations are strictly prohibited.
+- **Animations:** CSS transitions only. Respect `prefers-reduced-motion`. Framer Motion and heavy animations are strictly prohibited.
 - **Media:** Use YouTube thumbnails for project images with safe fallbacks.
-- **Layout:** Responsive grid system, mobile-first approach. Clean editorial portfolio structure with generous whitespace and thin dividers.
+- **Layout:** Responsive grid system, mobile-first approach. Crisp editorial layout structure with generous spacing and thin viridian dividers.
 - **Color Scheme & Aesthetics:**
-  - **Signature Brand Color:** Viridian Green (`#0D5C46` / `#094232`).
-  - **Accent Tints:** Soft Viridian Light (`#F0F7F4` / `#E2F0EC`).
-  - **Base Neutrals:** Pure White (`#FFFFFF`), Soft Gray (`#F9FAF9`), Deep Charcoal (`#1A1A1A`), Rich Black (`#111111`).
-  - **Dark Accent Section:** One intentionally dark Viridian-Charcoal Experience section.
-  - **STRICTLY AVOID:** Site-wide pure dark themes, heavy gradients, glassmorphism, glowing neon logos/text, and decorative color blobs.
+  - **Main Background Color:** Deep Rich Viridian Dark Green (`#082c22` / `#0a3327`).
+  - **Primary Text:** Crisp White (`#FFFFFF`) & Soft Mint Tint (`#D1E7DD`).
+  - **Card Containers:** Viridian Shade (`#061f18` / `#0d4032`) with clean borders (`#165242`).
+  - **Contrasting Section:** Intentionally styled Viridian Light/Cream or Charcoal band for visual rhythm.
+  - **Accent Colors:** Emerald Green (`#10B981`) & Gold/Amber for status badges.
 - **Components:** Cards and containers must use square corners or a maximum of 8px border radius (`rounded` or `rounded-lg`).
 
 ## Component Specifics
-- **Navigation:** Small, restrained. Availability status on the left. Simple wordmark "Victor". Viridian green hover states.
-- **Hero Section:** Typography-led, very large editorial heading (oversized VICTOR). Styled with Viridian green text highlights and clean layout.
-- **Selected Work:** Two-column editorial grid with Viridian accent badges, project role, outcome, and links.
-- **Capabilities:** Large horizontal rows with Viridian green indicators and hover interactions.
-- **Experience:** Full-width dark Viridian-Charcoal section with clean horizontal rows.
-- **Contact CTA:** Large recruiter-focused heading ("Building an AI automation team? Let’s talk.") with Viridian CTA button.
+- **Navigation:** Fixed header, Viridian dark background (`#082c22`), crisp white wordmark, emerald status badge.
+- **Hero Section:** Large editorial heading ("VICTOR / AI AUTOMATION") in white & soft viridian mint.
+- **Selected Work:** Editorial grid with dark viridian cards, crisp white titles, emerald badges, and case study links.
+- **Capabilities:** Numbered horizontal rows on viridian dark background with hover highlights.
+- **Experience:** Clean horizontal rows on contrasting deep viridian band.
+- **Contact CTA:** High-contrast recruiter heading ("BUILDING AN AI AUTOMATION TEAM? LET'S TALK.") with crisp CTA button.
 - **Exclusions:** Confidential client work and unverified projects are excluded.

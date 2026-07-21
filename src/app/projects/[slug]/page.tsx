@@ -45,17 +45,17 @@ export default async function ProjectPage({ params }: Props) {
   const nextProject = projects[(projectIndex + 1) % projects.length];
 
   return (
-    <div className="min-h-screen bg-white text-[#111] font-sans">
+    <div className="min-h-screen bg-[#082c22] text-white font-sans selection:bg-emerald-500 selection:text-black">
       {/* Top Header / Nav */}
-      <header className="border-b border-gray-200 py-6 px-6 sticky top-0 bg-white/95 backdrop-blur-sm z-50">
+      <header className="border-b border-[#124d3c] py-6 px-6 sticky top-0 bg-[#082c22]/95 backdrop-blur-md z-50">
         <div className="max-w-[1200px] mx-auto flex justify-between items-center">
           <Link 
             href="/#work" 
-            className="inline-flex items-center text-sm font-medium text-gray-600 hover:text-black transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black rounded px-2 py-1"
+            className="inline-flex items-center text-sm font-semibold text-emerald-300 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded px-2 py-1"
           >
             <ArrowLeft className="w-4 h-4 mr-2" /> Back to Selected Work
           </Link>
-          <span className="text-xs font-mono text-gray-400 uppercase tracking-widest hidden sm:inline">
+          <span className="text-xs font-mono text-emerald-400/80 uppercase tracking-widest hidden sm:inline">
             Case Study /{project.id}
           </span>
         </div>
@@ -66,19 +66,19 @@ export default async function ProjectPage({ params }: Props) {
         <article className="space-y-12">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <span className="px-3 py-1 bg-gray-100 text-xs font-semibold uppercase tracking-wider rounded-sm text-gray-700">
+              <span className="px-3 py-1 bg-emerald-400 text-[#041812] text-xs font-extrabold uppercase tracking-wider rounded-sm">
                 {project.category}
               </span>
-              <span className="text-sm text-gray-400">Verified Evidence</span>
+              <span className="text-sm text-emerald-300/70">Verified Evidence</span>
             </div>
             
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-black">
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white">
               {project.title}
             </h1>
           </div>
 
           {/* Media Section */}
-          <div className="w-full bg-gray-100 rounded-lg overflow-hidden border border-gray-200 aspect-[16/9] relative">
+          <div className="w-full bg-[#051e17] rounded-lg overflow-hidden border border-[#144d3d] aspect-[16/9] relative">
             {project.youtubeId ? (
               <div className="w-full h-full flex flex-col justify-between p-6 bg-gray-900 text-white relative">
                 <YouTubeThumbnail youtubeId={project.youtubeId} alt={`${project.title} thumbnail`} eager />
@@ -87,7 +87,7 @@ export default async function ProjectPage({ params }: Props) {
                     href={project.youtubeUrl} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-white text-black px-4 py-2.5 rounded-full font-semibold text-xs shadow-lg hover:bg-gray-200 transition-colors"
+                    className="inline-flex items-center gap-2 bg-emerald-400 text-[#041812] px-4 py-2.5 rounded-full font-bold text-xs shadow-lg hover:bg-emerald-300 transition-colors"
                   >
                     Watch Full Demo on YouTube <ExternalLink className="w-3.5 h-3.5" />
                   </a>
@@ -102,35 +102,35 @@ export default async function ProjectPage({ params }: Props) {
                 className="object-cover object-top"
               />
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-gray-400 font-mono text-sm">
+              <div className="w-full h-full flex items-center justify-center text-emerald-400/70 font-mono text-sm">
                 Demonstrated Prototype
               </div>
             )}
           </div>
 
           {/* Quick Facts Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 p-6 bg-gray-50 rounded-lg border border-gray-200 text-sm">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 p-6 bg-[#093529] rounded-lg border border-[#165846] text-sm">
             <div>
-              <p className="text-gray-400 text-xs uppercase tracking-wider font-semibold mb-1">My Verified Role</p>
-              <p className="font-medium text-black">{project.role}</p>
+              <p className="text-emerald-400 text-xs uppercase tracking-wider font-semibold mb-1">My Verified Role</p>
+              <p className="font-semibold text-white">{project.role}</p>
             </div>
             <div>
-              <p className="text-gray-400 text-xs uppercase tracking-wider font-semibold mb-1">Classification</p>
-              <p className="font-medium text-black">{project.category}</p>
+              <p className="text-emerald-400 text-xs uppercase tracking-wider font-semibold mb-1">Classification</p>
+              <p className="font-semibold text-white">{project.category}</p>
             </div>
             <div>
-              <p className="text-gray-400 text-xs uppercase tracking-wider font-semibold mb-1">Primary Tools</p>
-              <p className="font-medium text-black">{project.tools.slice(0, 3).join(', ')}</p>
+              <p className="text-emerald-400 text-xs uppercase tracking-wider font-semibold mb-1">Primary Tools</p>
+              <p className="font-semibold text-white">{project.tools.slice(0, 3).join(', ')}</p>
             </div>
             <div>
-              <p className="text-gray-400 text-xs uppercase tracking-wider font-semibold mb-1">Links</p>
+              <p className="text-emerald-400 text-xs uppercase tracking-wider font-semibold mb-1">Links</p>
               <div className="flex gap-3">
                 {project.liveUrl && (
-                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-black underline font-medium hover:text-blue-600 flex items-center gap-1">
+                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-emerald-300 underline font-semibold hover:text-white flex items-center gap-1">
                     Live App <ArrowUpRight className="w-3 h-3" />
                   </a>
                 )}
-                <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-black underline font-medium hover:text-blue-600 flex items-center gap-1">
+                <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-emerald-300 underline font-semibold hover:text-white flex items-center gap-1">
                   GitHub <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                 </a>
               </div>
@@ -141,31 +141,31 @@ export default async function ProjectPage({ params }: Props) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 pt-8">
             <div className="md:col-span-2 space-y-10">
               <section className="space-y-3">
-                <h2 className="text-xl font-bold tracking-tight text-black border-b border-gray-200 pb-2">
+                <h2 className="text-xl font-bold tracking-tight text-white border-b border-[#124d3c] pb-2">
                   The Problem
                 </h2>
-                <p className="text-gray-700 leading-relaxed">{project.problem}</p>
+                <p className="text-emerald-100/90 leading-relaxed">{project.problem}</p>
               </section>
 
               <section className="space-y-3">
-                <h2 className="text-xl font-bold tracking-tight text-black border-b border-gray-200 pb-2">
+                <h2 className="text-xl font-bold tracking-tight text-white border-b border-[#124d3c] pb-2">
                   What I Personally Directed
                 </h2>
-                <p className="text-gray-700 leading-relaxed">{project.directed}</p>
+                <p className="text-emerald-100/90 leading-relaxed">{project.directed}</p>
               </section>
 
               <section className="space-y-3">
-                <h2 className="text-xl font-bold tracking-tight text-black border-b border-gray-200 pb-2">
+                <h2 className="text-xl font-bold tracking-tight text-white border-b border-[#124d3c] pb-2">
                   The Solution
                 </h2>
-                <p className="text-gray-700 leading-relaxed">{project.solution}</p>
+                <p className="text-emerald-100/90 leading-relaxed">{project.solution}</p>
               </section>
 
               <section className="space-y-3">
-                <h2 className="text-xl font-bold tracking-tight text-black border-b border-gray-200 pb-2">
+                <h2 className="text-xl font-bold tracking-tight text-white border-b border-[#124d3c] pb-2">
                   Verified Outcome
                 </h2>
-                <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-md text-emerald-900 font-medium">
+                <div className="p-4 bg-[#052119] border border-[#145c47] rounded-md text-emerald-200 font-semibold">
                   {project.outcome}
                 </div>
               </section>
@@ -173,12 +173,12 @@ export default async function ProjectPage({ params }: Props) {
 
             {/* Sidebar */}
             <div className="space-y-8">
-              <div className="p-6 bg-gray-50 border border-gray-200 rounded-lg space-y-6">
+              <div className="p-6 bg-[#093529] border border-[#165846] rounded-lg space-y-6">
                 <div>
-                  <h3 className="text-xs uppercase tracking-wider font-semibold text-gray-400 mb-3">Approved Tools</h3>
+                  <h3 className="text-xs uppercase tracking-wider font-semibold text-emerald-400 mb-3">Approved Tools</h3>
                   <div className="flex flex-wrap gap-2">
                     {project.tools.map((tool, i) => (
-                      <span key={i} className="px-2.5 py-1 bg-white border border-gray-200 text-xs font-medium text-gray-800 rounded">
+                      <span key={i} className="px-2.5 py-1 bg-[#051e17] border border-[#145744] text-xs font-medium text-emerald-200 rounded">
                         {tool}
                       </span>
                     ))}
@@ -186,11 +186,11 @@ export default async function ProjectPage({ params }: Props) {
                 </div>
 
                 <div>
-                  <h3 className="text-xs uppercase tracking-wider font-semibold text-gray-400 mb-3">Demonstrated Capabilities</h3>
-                  <ul className="space-y-2 text-sm text-gray-700">
+                  <h3 className="text-xs uppercase tracking-wider font-semibold text-emerald-400 mb-3">Demonstrated Capabilities</h3>
+                  <ul className="space-y-2 text-sm text-emerald-100/90">
                     {project.capabilities.map((cap, i) => (
                       <li key={i} className="flex items-start gap-2">
-                        <span className="text-emerald-600 font-bold">•</span>
+                        <span className="text-emerald-400 font-bold">•</span>
                         <span>{cap}</span>
                       </li>
                     ))}
@@ -202,10 +202,10 @@ export default async function ProjectPage({ params }: Props) {
         </article>
 
         {/* Prev / Next Pagination */}
-        <nav className="mt-24 pt-12 border-t border-gray-200 flex justify-between items-center text-sm font-medium">
+        <nav className="mt-24 pt-12 border-t border-[#124d3c] flex justify-between items-center text-sm font-medium">
           <Link 
             href={`/projects/${prevProject.id}`}
-            className="flex items-center gap-2 text-gray-600 hover:text-black transition-colors"
+            className="flex items-center gap-2 text-emerald-300 hover:text-white transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span className="hidden sm:inline">Previous: {prevProject.title}</span>
@@ -214,7 +214,7 @@ export default async function ProjectPage({ params }: Props) {
 
           <Link 
             href={`/projects/${nextProject.id}`}
-            className="flex items-center gap-2 text-gray-600 hover:text-black transition-colors"
+            className="flex items-center gap-2 text-emerald-300 hover:text-white transition-colors"
           >
             <span className="hidden sm:inline">Next: {nextProject.title}</span>
             <span className="sm:hidden">Next</span>

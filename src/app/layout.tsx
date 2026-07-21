@@ -69,11 +69,11 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${geistMono.variable} antialiased text-[#111] bg-white`}
+        className={`${inter.variable} ${geistMono.variable} antialiased text-white bg-[#082c22] selection:bg-emerald-500 selection:text-black`}
       >
         <a 
           href="#main-content" 
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-black focus:text-white focus:rounded focus:outline-none"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-emerald-500 focus:text-black focus:font-bold focus:rounded focus:outline-none"
         >
           Skip to main content
         </a>

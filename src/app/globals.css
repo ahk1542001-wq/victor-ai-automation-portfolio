@@ -4,22 +4,21 @@
   --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
 
-  --color-viridian-950: #042119;
-  --color-viridian-900: #093c2e;
-  --color-viridian-800: #0d5c46;
-  --color-viridian-700: #127a5d;
-  --color-viridian-600: #189874;
-  --color-viridian-100: #e2f0ec;
-  --color-viridian-50: #f0f7f4;
-
-  --color-charcoal-900: #161b19;
-  --color-charcoal-800: #222926;
+  --color-viridian-950: #041812;
+  --color-viridian-900: #082c22;
+  --color-viridian-850: #0b382b;
+  --color-viridian-800: #0f4c3a;
+  --color-viridian-700: #14664e;
+  --color-viridian-600: #198062;
+  --color-viridian-200: #b8e0d4;
+  --color-viridian-100: #d8f0e8;
+  --color-viridian-50: #eff8f4;
 }
 
 @layer base {
   :root {
-    --background: #ffffff;
-    --foreground: #111111;
+    --background: #082c22;
+    --foreground: #ffffff;
   }
 }
 
@@ -36,10 +35,10 @@ body {
 
   /* Thin dividers */
   .divider-b {
-    border-bottom: 1px solid #e2f0ec;
+    border-bottom: 1px solid #144d3d;
   }
   .divider-t {
-    border-top: 1px solid #e2f0ec;
+    border-top: 1px solid #144d3d;
   }
 
   /* Animations */
