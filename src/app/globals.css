@@ -4,8 +4,16 @@
   --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
 
-  --color-charcoal-900: #1a1a1a;
-  --color-charcoal-800: #2a2a2a;
+  --color-viridian-950: #042119;
+  --color-viridian-900: #093c2e;
+  --color-viridian-800: #0d5c46;
+  --color-viridian-700: #127a5d;
+  --color-viridian-600: #189874;
+  --color-viridian-100: #e2f0ec;
+  --color-viridian-50: #f0f7f4;
+
+  --color-charcoal-900: #161b19;
+  --color-charcoal-800: #222926;
 }
 
 @layer base {
@@ -28,10 +36,10 @@ body {
 
   /* Thin dividers */
   .divider-b {
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e2f0ec;
   }
   .divider-t {
-    border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #e2f0ec;
   }
 
   /* Animations */
@@ -41,12 +49,12 @@ body {
       opacity: 0;
       transform: translateY(20px);
     }
-
+    
     .animate-fade-in {
       animation: fadeIn 0.8s ease-out forwards;
       opacity: 0;
     }
-
+    
     .stagger-1 { animation-delay: 100ms; }
     .stagger-2 { animation-delay: 200ms; }
     .stagger-3 { animation-delay: 300ms; }
