@@ -9,7 +9,7 @@ interface YouTubeThumbnailProps {
   eager?: boolean;
 }
 
-export function YouTubeThumbnail({ youtubeId, alt, eager }: YouTubeThumbnailProps) {
+export function YouTubeThumbnail({ youtubeId, alt, eager = false }: YouTubeThumbnailProps) {
   const maxResUrl = `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`;
   const hqUrl = `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`;
   const [src, setSrc] = useState(maxResUrl);
@@ -23,7 +23,7 @@ export function YouTubeThumbnail({ youtubeId, alt, eager }: YouTubeThumbnailProp
         priority={eager}
         className="object-cover"
         onError={() => setSrc(hqUrl)}
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        sizes="(max-width: 1024px) 100vw, 58vw"
       />
     </div>
   );
