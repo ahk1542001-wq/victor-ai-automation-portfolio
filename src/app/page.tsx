@@ -238,75 +238,62 @@ export default function Home() {
 // ----------------------------------------------------
 
 function CapabilitiesSection() {
-  // A highly scattered, parallax heavy layout for capabilities, using flex to prevent mobile clipping.
+  // Premium editorial motion layout for capabilities that safely wraps text on all viewports.
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
   });
 
-  // Create staggered parallax values
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [50, -100]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [-50, -250]);
-  const y4 = useTransform(scrollYProgress, [0, 1], [100, -50]);
-
   const caps = portfolioContent.establishedCapabilities;
 
   return (
-    <section ref={containerRef} id="capabilities" className="py-40 relative border-t border-onyx-800 overflow-hidden">
-      <div className="absolute top-10 left-4 sm:left-6">
+    <section ref={containerRef} id="capabilities" className="py-24 md:py-40 relative border-t border-onyx-800">
+      <div className="absolute top-8 left-4 sm:left-6">
         <span className="text-xs font-mono text-parchment-300 uppercase tracking-widest block font-semibold">Technical Scope</span>
       </div>
       
-      {/* Safe Responsive Scattered Container */}
-      <div className="max-w-[1400px] mx-auto w-full px-4 sm:px-6 relative mt-24">
-        <div className="flex flex-col gap-16 md:gap-32 items-center">
-          {caps[0] && (
-            <motion.div style={{ y: y1 }} className="self-start md:ml-[10%]">
-               <Pill text={caps[0]} size="lg" />
-            </motion.div>
-          )}
-
-          {caps[1] && (
-            <motion.div style={{ y: y3 }} className="self-end md:mr-[15%]">
-               <Pill text={caps[1]} size="md" />
-            </motion.div>
-          )}
-
-          {caps[2] && (
-            <motion.div style={{ y: y2 }} className="self-center z-10">
-               <Pill text={caps[2]} size="xl" />
-            </motion.div>
-          )}
-
-          {caps[3] && (
-            <motion.div style={{ y: y4 }} className="self-end md:mr-[25%]">
-               <Pill text={caps[3]} size="lg" />
-            </motion.div>
-          )}
-
-          {caps[4] && (
-            <motion.div style={{ y: y1 }} className="self-start md:ml-[20%]">
-               <Pill text={caps[4]} size="md" />
-            </motion.div>
-          )}
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 mt-16 md:mt-32">
+        <div className="flex flex-col gap-16 md:gap-32 w-full">
+          {caps.map((cap, i) => (
+            <CapabilityRow key={i} text={cap} index={i} scrollYProgress={scrollYProgress} />
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-function Pill({ text, size }: { text: string; size: 'md' | 'lg' | 'xl' }) {
-  const sizes = {
-    md: "text-lg md:text-2xl px-6 py-3",
-    lg: "text-2xl md:text-5xl px-6 md:px-8 py-4",
-    xl: "text-3xl md:text-7xl px-8 md:px-10 py-5"
-  };
+function CapabilityRow({ text, index, scrollYProgress }: { text: string; index: number; scrollYProgress: any }) {
+  // Staggered parallax for asymmetric editorial movement
+  const yOffsets = [
+    [0, -100],
+    [50, -50],
+    [-20, -120],
+    [80, 0]
+  ];
+  
+  // Safe default fallback if index exceeds array
+  const safeOffset = yOffsets[index % yOffsets.length];
+  const y = useTransform(scrollYProgress, [0, 1], safeOffset);
+  
+  // Alternate left/right alignment on desktop
+  const isEven = index % 2 === 0;
+
   return (
-    <div className={`font-serif text-parchment-50 border border-onyx-800 bg-onyx-950/80 backdrop-blur-sm rounded-[3rem] md:rounded-full ${sizes[size]} shadow-2xl hover:border-parchment-300 transition-colors cursor-default max-w-[90vw] text-center`}>
-      {text}
-    </div>
+    <motion.div 
+      style={{ y }} 
+      className={`w-full max-w-4xl flex flex-col ${isEven ? 'self-start md:ml-[5%]' : 'self-end md:mr-[5%]'} text-left`}
+    >
+       <div className="flex items-start gap-4 md:gap-8">
+         <span className="text-parchment-300/50 font-mono text-sm md:text-lg mt-2 md:mt-4 shrink-0">
+           (0{index + 1})
+         </span>
+         <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-serif text-parchment-50 leading-[1.1] md:leading-[1.1] tracking-tight break-words">
+           {text}
+         </h3>
+       </div>
+    </motion.div>
   );
 }
 
