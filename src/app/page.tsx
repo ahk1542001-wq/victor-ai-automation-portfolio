@@ -369,14 +369,25 @@ function ProjectSection({ project, isEven, isFirst }: { project: Project; isEven
   );
 }
 
+type Tool = {
+  name: string;
+  icon?: string;
+  emphasize?: boolean;
+};
+
+type ToolGroup = {
+  name: string;
+  tools: Tool[];
+};
+
 function SkillsToolsSection() {
-  const groups = [
+  const groups: ToolGroup[] = [
     {
       name: "Core",
       tools: [
-        { name: "n8n", emphasize: true },
-        { name: "Docker" },
-        { name: "GitHub" },
+        { name: "n8n", icon: "/brands/n8n.svg", emphasize: true },
+        { name: "Docker", icon: "/brands/docker.svg" },
+        { name: "GitHub", icon: "/brands/github.svg" },
       ]
     },
     {
@@ -390,23 +401,23 @@ function SkillsToolsSection() {
     {
       name: "Workspace",
       tools: [
-        { name: "Notion" },
-        { name: "Obsidian" },
+        { name: "Notion", icon: "/brands/notion.svg" },
+        { name: "Obsidian", icon: "/brands/obsidian.svg" },
       ]
     },
     {
       name: "AI / Data",
       tools: [
-        { name: "Qdrant" },
-        { name: "Ollama" },
+        { name: "Qdrant", icon: "/brands/qdrant.svg" },
+        { name: "Ollama", icon: "/brands/ollama.svg" },
         { name: "Groq" },
       ]
     },
     {
       name: "Integrations",
       tools: [
-        { name: "Telegram" },
-        { name: "Google Sheets" },
+        { name: "Telegram", icon: "/brands/telegram.svg" },
+        { name: "Google Sheets", icon: "/brands/googlesheets.svg" },
       ]
     },
   ];
@@ -459,14 +470,24 @@ function SkillsToolsSection() {
                     {group.tools.map((tool) => (
                       <div 
                         key={tool.name} 
-                        className={`font-sans font-bold transition-colors ${
+                        className={`font-sans font-bold transition-colors flex items-center space-x-3 group ${
                           tool.emphasize 
                             ? "text-4xl tracking-tight text-parchment-50" 
                             : "text-lg text-parchment-200 hover:text-parchment-50 cursor-default"
                         }`}
                         aria-label={tool.name}
                       >
-                        {tool.name}
+                        {tool.icon && (
+                          <div 
+                            className={`shrink-0 bg-current transition-colors ${tool.emphasize ? "w-10 h-10" : "w-6 h-6"}`}
+                            style={{ 
+                              WebkitMask: `url(${tool.icon}) center/contain no-repeat`, 
+                              mask: `url(${tool.icon}) center/contain no-repeat` 
+                            }}
+                            aria-hidden="true"
+                          />
+                        )}
+                        <span>{tool.name}</span>
                       </div>
                     ))}
                   </div>
