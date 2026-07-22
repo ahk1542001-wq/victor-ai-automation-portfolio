@@ -3,19 +3,17 @@
 import { useRef } from 'react';
 import { type Project, projects } from '@/data/projects';
 import { portfolioContent } from '@/data/content';
-import { credentials } from '@/data/credentials';
 import { YouTubeThumbnail } from '@/components/YouTubeThumbnail';
 import { Header } from '@/components/Header';
 import { TopologyDiagram } from '@/components/TopologyDiagram';
 import { ArrowUpRight, Globe, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useScroll, useTransform, MotionConfig } from 'framer-motion';
+import { motion, MotionConfig } from 'framer-motion';
 
 export default function Home() {
   const n8nProjects = projects.filter((project) => project.projectType === 'n8n Automation');
-  const featuredN8nProjects = n8nProjects.slice(0, 2);
-  const additionalN8nProjects = n8nProjects.slice(2);
+  const featuredN8nProjects = n8nProjects.slice(0, 1);
   const softwareProjects = projects.filter((project) => project.projectType === 'AI-Assisted Software');
   
   // Parallax configuration for the main page wrapper
@@ -83,32 +81,22 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="space-y-40">
+            <div className="max-w-4xl border border-onyx-800">
               {featuredN8nProjects.map((project, index) => (
-                <ProjectSection 
-                  key={project.id} 
-                  project={project} 
-                  isEven={index % 2 === 1}
-                  isFirst={index === 0} 
-                />
+                <HomeProjectCard key={project.id} project={project} eager={index === 0} />
               ))}
             </div>
 
-            <div className="mt-28">
-              <div className="mb-10 flex items-end justify-between gap-6 border-b border-onyx-800 pb-5">
-                <h3 className="font-serif text-3xl md:text-4xl text-parchment-50">More n8n Systems</h3>
-                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-parchment-300">
-                  {additionalN8nProjects.length} projects
-                </span>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-onyx-800 border border-onyx-800">
-                {additionalN8nProjects.map((project) => (
-                  <CompactProjectCard key={project.id} project={project} />
-                ))}
-              </div>
+            <div className="mt-20 flex justify-center">
+              <Link
+                href="/work"
+                className="inline-flex min-h-[48px] items-center border border-parchment-300 px-7 py-3 text-sm font-bold text-parchment-50 transition-colors hover:bg-parchment-50 hover:text-onyx-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]"
+              >
+                View all n8n projects <ArrowUpRight className="ml-2 h-4 w-4" />
+              </Link>
             </div>
 
-            <div className="mt-36 border-t border-onyx-800 pt-24">
+            <div className="mt-28 border-t border-onyx-800 pt-20">
               <div className="mb-20 border-b border-onyx-800 pb-8">
                 <span className="text-xs font-mono text-[#58f28f] uppercase tracking-widest block mb-4 font-semibold">
                   Expanding Direction
@@ -121,144 +109,26 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="space-y-40">
-                {softwareProjects.map((project, index) => (
-                  <ProjectSection
-                    key={project.id}
-                    project={project}
-                    isEven={index % 2 === 1}
-                    isFirst={false}
-                  />
+              <div className="max-w-4xl">
+                {softwareProjects.map((project) => (
+                  <HomeProjectCard key={project.id} project={project} eager={false} />
                 ))}
               </div>
+
+              <div className="mt-20 flex justify-center">
+                <Link
+                  href="/work"
+                  className="inline-flex min-h-[48px] items-center text-sm font-bold text-parchment-200 transition-colors hover:text-parchment-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]"
+                >
+                  Explore the complete work archive <ArrowUpRight className="ml-2 h-4 w-4" />
+                </Link>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Capabilities Section - Scattered / Floating Layout */}
+        {/* Capabilities Section */}
         <CapabilitiesSection />
-
-        {/* About Section - Editorial Magazine (Rotated text, columns) */}
-        <section id="about" aria-labelledby="about-heading" className="py-32 relative overflow-hidden border-t border-onyx-800 mt-20">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 relative">
-            
-            {/* Rotated Typography Anchor */}
-            <div className="absolute left-0 top-32 hidden xl:block opacity-10 pointer-events-none select-none">
-              <span className="font-serif text-[15rem] leading-none transform -rotate-90 origin-top-left block text-parchment-300">
-                ABOUT
-              </span>
-            </div>
-
-            <div className="xl:ml-48">
-              <div className="mb-16 border-b border-onyx-800 pb-8 xl:hidden">
-                 <h2 id="about-heading" className="font-serif text-5xl md:text-7xl font-normal tracking-tight text-parchment-50">ABOUT</h2>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24">
-                <div className="md:col-span-8">
-                  <span className="text-xs font-mono text-parchment-300 uppercase tracking-widest block mb-8 font-semibold">Background</span>
-                  {/* Narrow columns for editorial reading */}
-                  <div className="columns-1 md:columns-2 gap-12 font-serif text-xl lg:text-2xl text-parchment-100 leading-relaxed font-normal">
-                    <p className="break-inside-avoid mb-6">
-                      {portfolioContent.about.description.split('. ')[0]}.
-                    </p>
-                    <p className="break-inside-avoid mb-6">
-                      Leveraging project coordination expertise to structure bulletproof automation logic, API data handling, and human-in-the-loop validation checkpoints.
-                    </p>
-                    <p className="break-inside-avoid mb-6">
-                      {portfolioContent.about.description.split('. ').slice(1).join('. ')}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Marginalia / Currently Learning */}
-                <div className="md:col-span-4 space-y-8">
-                   <div className="border-t border-onyx-800 pt-8">
-                     <span className="text-xs font-mono text-parchment-300 uppercase tracking-widest block mb-4 font-semibold">Currently Exploring</span>
-                     <h3 className="font-serif text-2xl font-normal tracking-tight text-parchment-50 mb-6">
-                       {portfolioContent.currentlyLearning.title}
-                     </h3>
-                     <p className="text-sm text-parchment-200 leading-relaxed mb-6">
-                       {portfolioContent.currentlyLearning.description}
-                     </p>
-                     <ul className="space-y-2">
-                       {portfolioContent.currentlyLearning.items.map((item, idx) => (
-                         <li key={idx} className="text-xs font-mono text-parchment-100 flex items-start gap-2">
-                           <span className="w-1.5 h-1.5 bg-parchment-300 flex-shrink-0 mt-1"></span>
-                           <span>{item}</span>
-                         </li>
-                       ))}
-                     </ul>
-                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Experience and professional credentials */}
-        <section id="experience" aria-labelledby="experience-heading" className="py-32 border-t border-onyx-800">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
-            <div className="mb-24 flex justify-between items-end border-b border-onyx-800 pb-8">
-              <h2 id="experience-heading" className="font-serif text-5xl md:text-7xl font-normal tracking-normal text-parchment-50">EXPERIENCE &amp; CREDENTIALS</h2>
-              <span className="text-xs font-mono text-[#58f28f] uppercase tracking-widest hidden sm:block">Professional Profile</span>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
-              {/* Experience Table */}
-              <div className="lg:col-span-7">
-                <span className="text-xs font-mono text-parchment-300 uppercase tracking-widest block mb-8 font-semibold">Experience</span>
-                <div className="flex flex-col border-t border-onyx-800">
-                  {portfolioContent.professionalExperience.map((exp, idx) => (
-                    <div key={idx} className="flex justify-between items-baseline py-4 border-b border-onyx-800 group hover:bg-onyx-900 transition-colors">
-                      <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4 w-full">
-                        <span className="font-mono text-xs text-parchment-300 w-32 shrink-0">{exp.period}</span>
-                        <span className="font-sans text-sm font-bold text-parchment-50">{exp.company}</span>
-                        <span className="hidden md:block flex-grow border-b border-dotted border-onyx-700 opacity-30 mx-4"></span>
-                        <span className="font-serif text-lg text-parchment-200">{exp.role}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="lg:col-span-5 space-y-14">
-                <div>
-                  <span className="text-xs font-mono text-[#58f28f] uppercase tracking-widest block mb-8 font-semibold">AI Certifications</span>
-                  <ol className="border-t border-onyx-800">
-                    {credentials.filter((credential) => credential.priority === 'featured').map((credential, idx) => (
-                      <li key={credential.id} className="flex gap-5 py-5 border-b border-onyx-800">
-                        <span className="font-mono text-xs text-[#58f28f]">{String(idx + 1).padStart(2, '0')}</span>
-                        <span className="font-serif text-xl text-parchment-50 leading-snug">{credential.title}</span>
-                      </li>
-                    ))}
-                  </ol>
-                  <Link
-                    href="/credentials"
-                    className="mt-6 inline-flex min-h-[44px] items-center text-sm font-bold text-parchment-200 transition-colors hover:text-parchment-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]"
-                  >
-                    View all credentials <ArrowUpRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </div>
-
-                <div>
-                  <span className="text-xs font-mono text-parchment-300 uppercase tracking-widest block mb-8 font-semibold">Formal Education</span>
-                  <div className="flex flex-col border-t border-onyx-800">
-                  {portfolioContent.education.map((edu, idx) => (
-                    <div key={idx} className="py-4 border-b border-onyx-800 group hover:bg-onyx-900 transition-colors">
-                      <div className="flex flex-col gap-2">
-                        <span className="font-sans text-sm font-bold text-parchment-50">{edu.institution}</span>
-                        <span className="font-serif text-base text-parchment-200">{edu.degree}</span>
-                        <span className="font-mono text-[11px] text-parchment-300">{edu.period}</span>
-                      </div>
-                    </div>
-                  ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
       </main>
 
@@ -306,7 +176,7 @@ function CapabilitiesSection() {
       </div>
       
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 mt-16 md:mt-32">
-        <div className="flex flex-col gap-16 md:gap-32 w-full">
+        <div className="grid w-full grid-cols-1 gap-px border border-onyx-800 bg-onyx-800 md:grid-cols-2">
           {caps.map((cap, i) => (
             <CapabilityRow key={i} text={cap} index={i} />
           ))}
@@ -317,22 +187,19 @@ function CapabilitiesSection() {
 }
 
 function CapabilityRow({ text, index }: { text: string; index: number }) {
-  // Alternate left/right alignment on desktop
-  const isEven = index % 2 === 0;
-
   return (
     <motion.div 
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className={`w-full max-w-4xl flex flex-col ${isEven ? 'self-start md:ml-[5%]' : 'self-end md:mr-[5%]'} text-left`}
+      className="min-h-[160px] bg-onyx-950 p-6 sm:min-h-[190px] sm:p-8 md:min-h-[240px] md:p-10"
     >
-       <div className="flex items-start gap-4 md:gap-8">
-         <span className="w-10 sm:w-12 md:w-16 shrink-0 text-parchment-300/50 font-mono text-sm md:text-lg mt-2 md:mt-4">
+       <div className="flex h-full items-start gap-4 md:gap-6">
+         <span className="w-10 shrink-0 text-parchment-300/60 font-mono text-xs md:text-sm mt-2">
            (0{index + 1})
          </span>
-         <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-serif text-parchment-50 leading-[1.1] md:leading-[1.1] tracking-tight break-words">
+         <h3 className="text-2xl sm:text-3xl lg:text-4xl font-serif text-parchment-50 leading-[1.15] tracking-tight break-words">
            {text}
          </h3>
        </div>
@@ -341,136 +208,64 @@ function CapabilityRow({ text, index }: { text: string; index: number }) {
 }
 
 
-function ProjectSection({ project, isEven, isFirst }: { project: Project; isEven: boolean; isFirst: boolean }) {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  });
-
-  const imgY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
-
+function HomeProjectCard({ project, eager }: { project: Project; eager: boolean }) {
   return (
-    <motion.article 
-      ref={ref}
-      initial={{ opacity: 0, y: 100 }}
+    <motion.article
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="group"
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+      className="group flex h-full flex-col bg-onyx-950"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
-        
-        {/* Media Block (Parallax Image) */}
-        <div className={`lg:col-span-7 ${isEven ? 'lg:order-last' : 'lg:order-first'}`}>
-          <div className="relative overflow-hidden aspect-[4/3] bg-onyx-900 border border-onyx-800">
-            {project.youtubeId ? (
-               <div className="w-full h-full relative">
-                 <YouTubeThumbnail youtubeId={project.youtubeId} alt={`${project.title} video thumbnail`} eager={isFirst} />
-                 <a href={project.youtubeUrl} target="_blank" rel="noopener noreferrer" className="absolute bottom-6 right-6 bg-parchment-50 text-onyx-950 px-6 py-3 text-xs font-bold hover:bg-parchment-200 transition-colors inline-flex items-center gap-2">
-                   Watch Demo <ExternalLink className="w-4 h-4" />
-                 </a>
-               </div>
-            ) : project.imageUrl ? (
-              <motion.div style={{ y: imgY, height: "120%" }} className="w-full absolute inset-0 -top-[10%]">
-                <Image src={project.imageUrl} alt={`${project.title} screenshot`} fill sizes="(max-width: 1024px) 100vw, 60vw" className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700 ease-out" />
-              </motion.div>
-            ) : (
-              <div className="w-full h-full p-4">
-                 <TopologyDiagram />
-              </div>
-            )}
-          </div>
+      <div className="relative aspect-[16/10] overflow-hidden bg-onyx-900">
+        {project.youtubeId ? (
+          <YouTubeThumbnail youtubeId={project.youtubeId} alt={`${project.title} video thumbnail`} eager={eager} />
+        ) : project.imageUrl ? (
+          <Image
+            src={project.imageUrl}
+            alt={`${project.title} screenshot`}
+            fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.025]"
+          />
+        ) : (
+          <div className="h-full w-full p-4"><TopologyDiagram /></div>
+        )}
+      </div>
+
+      <div className="flex flex-1 flex-col p-6 sm:p-8">
+        <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-[#58f28f]">{project.role}</span>
+        <h3 className="mt-4 font-serif text-3xl leading-tight text-parchment-50 sm:text-4xl">{project.title}</h3>
+        <p className="mt-5 text-sm leading-relaxed text-parchment-200 sm:text-base">{project.problem}</p>
+
+        <div className="mt-6 flex flex-wrap gap-2">
+          {project.tools.slice(0, 4).map((tool) => (
+            <span key={tool} className="border border-onyx-700 px-2.5 py-1 font-mono text-[9px] uppercase text-parchment-300">{tool}</span>
+          ))}
         </div>
 
-        {/* Content Block */}
-        <div className={`lg:col-span-5 flex flex-col space-y-8 ${isEven ? 'lg:order-first' : 'lg:order-last'}`}>
-          <div className="flex flex-col space-y-4">
-            <span className="text-xs font-mono text-parchment-300 uppercase tracking-widest">{project.role}</span>
-            <h3 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal text-parchment-50 leading-tight">
-              {project.title}
-            </h3>
-          </div>
-
-          <p className="text-base text-parchment-200 leading-relaxed font-medium">
-            {project.problem}
-          </p>
-
-          <div className="flex flex-wrap gap-2 pt-4">
-            {project.tools.slice(0, 5).map((tool, i) => (
-              <span key={i} className="text-[10px] font-mono uppercase bg-onyx-900 text-parchment-300 border border-onyx-800 px-3 py-1.5">
-                {tool}
-              </span>
-            ))}
-          </div>
-
-          {/* Links */}
-          <div className="pt-8 border-t border-onyx-800 flex items-center justify-between">
-            <Link href={`/projects/${project.id}`} className="text-sm font-bold text-parchment-300 hover:text-parchment-50 transition-colors inline-flex items-center">
-              Read Case Study <ArrowUpRight className="w-4 h-4 ml-2" />
-            </Link>
-
-            <div className="flex gap-6">
-              {project.liveUrl && (
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-parchment-300 hover:text-parchment-50 transition-colors" title="Live Application">
-                  <Globe className="w-5 h-5" />
-                </a>
-              )}
-              <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-parchment-300 hover:text-parchment-50 transition-colors" title="GitHub Repository">
-                <Image src="/brands/github.svg" alt="" width={20} height={20} className="invert" aria-hidden="true" />
+        <div className="mt-auto flex items-center justify-between border-t border-onyx-800 pt-6 mt-8">
+          <Link href={`/projects/${project.id}`} className="inline-flex min-h-[44px] items-center text-sm font-bold text-parchment-50 hover:text-[#58f28f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]">
+            Read case study <ArrowUpRight className="ml-2 h-4 w-4" />
+          </Link>
+          <div className="flex items-center gap-2">
+            {project.youtubeUrl && (
+              <a href={project.youtubeUrl} target="_blank" rel="noopener noreferrer" aria-label={`Watch ${project.title} demo`} className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center text-parchment-300 hover:text-parchment-50">
+                <ExternalLink className="h-5 w-5" />
               </a>
-            </div>
+            )}
+            {project.liveUrl && (
+              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.title} live application`} className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center text-parchment-300 hover:text-parchment-50">
+                <Globe className="h-5 w-5" />
+              </a>
+            )}
+            <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`${project.title} GitHub repository`} className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center text-parchment-300 hover:text-parchment-50">
+              <Image src="/brands/github.svg" alt="" width={20} height={20} className="invert" aria-hidden="true" />
+            </a>
           </div>
         </div>
       </div>
     </motion.article>
-  );
-}
-
-function CompactProjectCard({ project }: { project: Project }) {
-  return (
-    <article className="flex min-h-[320px] flex-col justify-between bg-onyx-950 p-7 sm:p-9 transition-colors hover:bg-onyx-900">
-      <div>
-        <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-[#58f28f]">
-          {project.role}
-        </span>
-        <h4 className="mt-5 font-serif text-3xl leading-tight text-parchment-50">
-          {project.title}
-        </h4>
-        <p className="mt-5 text-sm leading-relaxed text-parchment-200">
-          {project.problem}
-        </p>
-        <div className="mt-6 flex flex-wrap gap-2">
-          {project.tools.slice(0, 4).map((tool) => (
-            <span key={tool} className="border border-onyx-700 px-2.5 py-1 font-mono text-[9px] uppercase text-parchment-300">
-              {tool}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      <div className="mt-10 flex items-center justify-between border-t border-onyx-800 pt-5">
-        <Link
-          href={`/projects/${project.id}`}
-          className="inline-flex min-h-[44px] items-center text-sm font-bold text-parchment-200 transition-colors hover:text-parchment-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]"
-        >
-          Case Study <ArrowUpRight className="ml-2 h-4 w-4" />
-        </Link>
-        <a
-          href={project.youtubeUrl ?? project.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center text-parchment-300 transition-colors hover:text-parchment-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]"
-          title={project.youtubeUrl ? 'Watch project demo' : 'GitHub repository'}
-        >
-          {project.youtubeUrl ? (
-            <ExternalLink className="h-5 w-5" />
-          ) : (
-            <Image src="/brands/github.svg" alt="" width={20} height={20} className="invert" aria-hidden="true" />
-          )}
-        </a>
-      </div>
-    </article>
   );
 }
 
@@ -569,7 +364,7 @@ function ToolsRail() {
                       alt=""
                       width={32}
                       height={32}
-                      className="tools-logo-image"
+                      className={`tools-logo-image ${tool.name === "Codex" ? "tools-logo-image-codex" : ""}`}
                       aria-hidden="true"
                     />
                   ) : (

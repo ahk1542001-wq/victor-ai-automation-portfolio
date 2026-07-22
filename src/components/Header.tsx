@@ -14,10 +14,10 @@ export function Header() {
   const closeMenu = () => setIsOpen(false);
 
   const navLinks = [
-    { href: '/#work', label: 'Work' },
+    { href: '/work', label: 'Work' },
     { href: '/#capabilities', label: 'Capabilities' },
-    { href: '/#about', label: 'About' },
-    { href: '/#experience', label: 'Experience' },
+    { href: '/about', label: 'About' },
+    { href: '/about#experience', label: 'Experience' },
     { href: '/credentials', label: 'Credentials' },
   ];
 
