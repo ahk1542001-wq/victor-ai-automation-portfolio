@@ -29,58 +29,38 @@ export default function Home() {
       <main id="main-content" className="w-full focus:outline-none relative z-10" tabIndex={-1}>
 
         {/* Hero Section */}
-        <section aria-labelledby="hero-heading" className="pt-32 pb-20 md:pt-40 md:pb-32 relative">
+        <section aria-labelledby="hero-heading" className="hero-stage pt-28 pb-20 md:pt-36 md:pb-32 relative">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
-              
+            <div className="hero-name-watermark" aria-hidden="true">VICTOR</div>
+            <div className="hero-canvas-scene">
               <motion.div 
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="md:col-span-7 flex flex-col space-y-12"
+                className="hero-canvas"
               >
-                <div className="space-y-5">
-                  <span className="block font-mono text-xs font-semibold uppercase tracking-[0.18em] text-parchment-200">
-                    AI Automation &amp; Agent Workflows
-                  </span>
-                  <h1 id="hero-heading" className="w-full font-sans text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black uppercase tracking-normal leading-[0.88] text-[#58f28f]">
-                    Victor
-                  </h1>
+                <div className="hero-canvas-surface">
+                  <div className="hero-screen-copy">
+                    <span className="hero-eyebrow">AI Automation &amp; Agent Workflows</span>
+                    <h1 id="hero-heading" className="hero-title-motion">VICTOR</h1>
+                    <p className="hero-role">AI Automation &amp; Agent Workflow Specialist</p>
+                    <p className="hero-value">Designing reliable n8n workflows, API integrations, and AI-assisted systems.</p>
+                    <a href={`mailto:${portfolioContent.contact.email}`} className="hero-contact-link">
+                      Let&apos;s talk <ArrowUpRight className="h-4 w-4" />
+                    </a>
+                  </div>
+                  <div className="hero-portrait-wrap">
+                    <Image
+                      src="/victor-portrait-retouched.jpg"
+                      alt="Portrait of Victor"
+                      fill
+                      priority
+                      sizes="(max-width: 767px) 92vw, 54vw"
+                      className="object-cover object-[50%_26%]"
+                    />
+                  </div>
+                  <span className="hero-location">Bangkok, Thailand</span>
                 </div>
-
-                <p className="max-w-md font-serif text-2xl md:text-3xl text-parchment-50 leading-tight">
-                  AI Automation &amp; Agent Workflow Specialist
-                </p>
-
-                <p className="text-lg md:text-xl text-parchment-200 leading-relaxed font-medium max-w-md">
-                  Building intelligent n8n workflows, API integrations, and robust agentic systems.
-                </p>
-
-                <div>
-                  <a
-                    href={`mailto:${portfolioContent.contact.email}`}
-                    className="inline-flex items-center justify-center bg-parchment-50 text-onyx-950 px-10 py-5 text-sm font-extrabold hover:bg-parchment-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-parchment-200"
-                  >
-                    Contact Me <ArrowUpRight className="w-5 h-5 ml-2" />
-                  </a>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="md:col-span-5 relative min-h-[380px] md:min-h-[520px] overflow-hidden bg-black"
-              >
-                <Image
-                  src="/victor-portrait-viridian.jpg"
-                  alt="Portrait of Victor"
-                  fill
-                  priority
-                  sizes="(max-width: 767px) 100vw, 42vw"
-                  className="object-cover object-[50%_30%] md:scale-x-[-1]"
-                />
-                <div className="absolute inset-y-0 left-0 w-px bg-[#58f28f]/45" aria-hidden="true" />
               </motion.div>
             </div>
 
@@ -216,17 +196,17 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Experience - Raw Data Ledger / Terminal Table */}
+        {/* Experience and professional credentials */}
         <section id="experience" aria-labelledby="experience-heading" className="py-32 border-t border-onyx-800">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
             <div className="mb-24 flex justify-between items-end border-b border-onyx-800 pb-8">
-              <h2 id="experience-heading" className="font-serif text-5xl md:text-7xl font-normal tracking-tight text-parchment-50">LOG</h2>
-              <span className="text-xs font-mono text-parchment-300 uppercase tracking-widest hidden sm:block">Data Ledger</span>
+              <h2 id="experience-heading" className="font-serif text-5xl md:text-7xl font-normal tracking-normal text-parchment-50">EXPERIENCE &amp; CREDENTIALS</h2>
+              <span className="text-xs font-mono text-[#58f28f] uppercase tracking-widest hidden sm:block">Professional Profile</span>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
               {/* Experience Table */}
-              <div>
+              <div className="lg:col-span-7">
                 <span className="text-xs font-mono text-parchment-300 uppercase tracking-widest block mb-8 font-semibold">Experience</span>
                 <div className="flex flex-col border-t border-onyx-800">
                   {portfolioContent.professionalExperience.map((exp, idx) => (
@@ -242,20 +222,32 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Education Table */}
-              <div>
-                <span className="text-xs font-mono text-parchment-300 uppercase tracking-widest block mb-8 font-semibold">Education</span>
-                <div className="flex flex-col border-t border-onyx-800">
+              <div className="lg:col-span-5 space-y-14">
+                <div>
+                  <span className="text-xs font-mono text-[#58f28f] uppercase tracking-widest block mb-8 font-semibold">AI Certifications</span>
+                  <ol className="border-t border-onyx-800">
+                    {portfolioContent.certifications.map((certification, idx) => (
+                      <li key={certification} className="flex gap-5 py-5 border-b border-onyx-800">
+                        <span className="font-mono text-xs text-[#58f28f]">{String(idx + 1).padStart(2, '0')}</span>
+                        <span className="font-serif text-xl text-parchment-50 leading-snug">{certification}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+
+                <div>
+                  <span className="text-xs font-mono text-parchment-300 uppercase tracking-widest block mb-8 font-semibold">Formal Education</span>
+                  <div className="flex flex-col border-t border-onyx-800">
                   {portfolioContent.education.map((edu, idx) => (
-                    <div key={idx} className="flex justify-between items-baseline py-4 border-b border-onyx-800 group hover:bg-onyx-900 transition-colors">
-                      <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4 w-full">
-                        <span className="font-mono text-xs text-parchment-300 w-32 shrink-0">{edu.period}</span>
+                    <div key={idx} className="py-4 border-b border-onyx-800 group hover:bg-onyx-900 transition-colors">
+                      <div className="flex flex-col gap-2">
                         <span className="font-sans text-sm font-bold text-parchment-50">{edu.institution}</span>
-                        <span className="hidden md:block flex-grow border-b border-dotted border-onyx-700 opacity-30 mx-4"></span>
-                        <span className="font-serif text-lg text-parchment-200">{edu.degree}</span>
+                        <span className="font-serif text-base text-parchment-200">{edu.degree}</span>
+                        <span className="font-mono text-[11px] text-parchment-300">{edu.period}</span>
                       </div>
                     </div>
                   ))}
+                  </div>
                 </div>
               </div>
             </div>
