@@ -429,6 +429,8 @@ function SkillsToolsSection() {
       ]
     },
   ];
+  const tools = groups.flatMap((group) => group.tools);
+  const categorySummary = groups.map((group) => group.name).join(" · ");
 
   return (
     <section id="skills" className="py-24 md:py-32 relative border-t border-onyx-800">
@@ -448,8 +450,14 @@ function SkillsToolsSection() {
             </p>
           </div>
 
-          {/* Logo Constellation Right */}
-          <div className="xl:col-span-7 relative border border-onyx-800 bg-onyx-950 p-8 sm:p-12 md:p-16 overflow-hidden">
+          {/* Animated logo rail */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="xl:col-span-7 relative border border-onyx-800 bg-onyx-950 py-12 sm:py-16 overflow-hidden"
+          >
             
             {/* Lightweight pixel background */}
             <svg className="absolute inset-0 w-full h-full opacity-[0.03] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
@@ -461,47 +469,33 @@ function SkillsToolsSection() {
               <rect width="100%" height="100%" fill="url(#dotGrid)" />
             </svg>
             
-            <div className="grid grid-cols-1 min-[380px]:grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-12 relative z-10">
-              {groups.map((group, groupIdx) => (
-                <motion.div
-                  key={group.name}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.6, delay: groupIdx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex flex-col space-y-4"
-                >
-                  <span className="text-[10px] font-mono uppercase text-parchment-300/50 border-b border-onyx-800 pb-2">
-                    {group.name}
-                  </span>
-                  <div className="flex flex-col space-y-3">
-                    {group.tools.map((tool) => (
-                      <div 
-                        key={tool.name} 
-                        className={`font-sans font-bold transition-colors flex items-center space-x-3 group ${
-                          tool.emphasize 
-                            ? "text-4xl tracking-tight text-parchment-50" 
-                            : "text-base sm:text-lg text-parchment-200 hover:text-parchment-50 cursor-default"
-                        }`}
-                        aria-label={tool.name}
+            <div className="tools-marquee-shell relative z-10 overflow-hidden">
+              <div className="tools-marquee-track">
+                {[0, 1].map((setIndex) => (
+                  <div
+                    key={setIndex}
+                    className="tools-marquee-set"
+                    aria-hidden={setIndex === 1 ? "true" : undefined}
+                  >
+                    {tools.map((tool) => (
+                      <div
+                        key={`${setIndex}-${tool.name}`}
+                        className={`tools-logo-item ${tool.emphasize ? "tools-logo-item-emphasized" : ""}`}
+                        aria-label={setIndex === 0 ? tool.name : undefined}
+                        title={setIndex === 0 ? tool.name : undefined}
                       >
                         {tool.icon && (
-                          <div 
-                            className={`shrink-0 bg-current transition-colors ${tool.emphasize ? "w-10 h-10" : "w-6 h-6"}`}
-                            style={{ 
-                              WebkitMask: `url(${tool.icon}) center/contain no-repeat`, 
-                              mask: `url(${tool.icon}) center/contain no-repeat` 
+                          <span
+                            className="tools-logo-icon"
+                            style={{
+                              WebkitMask: `url(${tool.icon}) center/contain no-repeat`,
+                              mask: `url(${tool.icon}) center/contain no-repeat`,
                             }}
                             aria-hidden="true"
                           />
                         )}
                         {tool.mark && (
-                          <span
-                            className={`shrink-0 grid place-items-center border border-current/40 font-mono leading-none ${
-                              tool.emphasize ? "w-10 h-10 text-sm" : "w-6 h-6 text-[9px]"
-                            }`}
-                            aria-hidden="true"
-                          >
+                          <span className="tools-logo-mark" aria-hidden="true">
                             {tool.mark}
                           </span>
                         )}
@@ -509,11 +503,14 @@ function SkillsToolsSection() {
                       </div>
                     ))}
                   </div>
-                </motion.div>
-              ))}
+                ))}
+              </div>
             </div>
 
-          </div>
+            <p className="relative z-10 mt-10 px-8 sm:px-12 text-[10px] font-mono uppercase tracking-wider leading-relaxed text-parchment-300/55">
+              {categorySummary}
+            </p>
+          </motion.div>
 
         </div>
       </div>

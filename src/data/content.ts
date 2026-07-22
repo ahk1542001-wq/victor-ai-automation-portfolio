@@ -25,7 +25,7 @@ export const portfolioContent = {
     ]
   },
   skillsAndTools: {
-    title: 'Skills & Tools',
+    title: 'Tools I Work With',
     description: 'Automation, AI-assisted development, integrations, and knowledge systems used across my projects.',
   },
   languages: [
