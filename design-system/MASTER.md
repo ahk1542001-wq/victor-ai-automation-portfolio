@@ -7,7 +7,7 @@
 - **Typography:** Inter (Primary), Geist Mono (Code)
 
 ## Approved Decisions
-- **Animations:** Framer Motion is explicitly approved by Victor for parallax scroll reveals and dynamic layout movement. Use it tastefully to break grids.
+- **Animations:** Restrained Framer Motion is explicitly approved. It must be used tastefully for parallax and asymmetric movement without causing horizontal overflow. Responsive readability across all viewports (1440px to 320px) is strictly required. You must respect accessibility preferences by using `MotionConfig reducedMotion="user"` or `useReducedMotion`.
 - **Media:** Use YouTube thumbnails for project images with safe fallbacks. Abstract TopologyDiagram component is preferred over fake UI templates.
 - **Layout:** Swiss Editorial aesthetics. Break the grid intentionally with asymmetry, overlapping elements, and extreme typographic scale.
 - **Color Scheme & Aesthetics:**
