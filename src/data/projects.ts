@@ -2,6 +2,7 @@ export interface Project {
   id: string;
   title: string;
   category: 'Feature' | 'Secondary Project';
+  projectType: 'n8n Automation' | 'AI-Assisted Software';
   problem: string;
   role: string;
   directed: string;
@@ -21,6 +22,7 @@ export const projects: Project[] = [
     id: 'voice-receptionist',
     title: 'AI Voice Receptionist',
     category: 'Feature',
+    projectType: 'n8n Automation',
     problem: 'Automating inbound clinic calls to handle patient inquiries and book calendar appointments.',
     role: 'AI Voice Automation Builder',
     directed: 'Vapi.ai configuration, n8n webhook routing, Google Calendar syncing, ElevenLabs voice setup.',
@@ -36,6 +38,7 @@ export const projects: Project[] = [
     id: 'content-research',
     title: 'AI Content Research & Approval Workflow',
     category: 'Feature',
+    projectType: 'n8n Automation',
     problem: 'Automating industry news research and drafting persona-matched LinkedIn posts safely.',
     role: 'Workflow Architect',
     directed: 'Dual-agent orchestration, Firecrawl integration, AI-assisted JavaScript workflow logic, multi-database syncing (Supabase/Airtable).',
@@ -51,6 +54,7 @@ export const projects: Project[] = [
     id: 'swoosh-shortener',
     title: 'Swoosh — URL Shortener & Link-in-Bio Builder',
     category: 'Feature',
+    projectType: 'AI-Assisted Software',
     problem: 'People need a controlled way to create trackable short links and manage multiple public link-in-bio pages.',
     role: 'AI-Agent-Directed Product Builder',
     directed: 'Product scope, specification decisions, visual direction, testing acceptance, and release approval.',
@@ -66,6 +70,7 @@ export const projects: Project[] = [
     id: 'job-matching',
     title: 'AI Job Matching & Cover Letter Workflow',
     category: 'Secondary Project',
+    projectType: 'n8n Automation',
     problem: 'Automating the searching of job boards, checking CV matches, and drafting cover letters.',
     role: 'AI Automation Builder',
     directed: 'SerpAPI Google Jobs Search integration, human-in-the-loop Telegram bot creation, LLM integration, Google Drive CV parsing.',
@@ -81,6 +86,7 @@ export const projects: Project[] = [
     id: 'lead-qualification',
     title: 'AI Lead Qualification & Response Workflow',
     category: 'Secondary Project',
+    projectType: 'n8n Automation',
     problem: 'Handling incoming client requests efficiently by filtering out low-budget leads.',
     role: 'Solution Designer & Workflow Architect',
     directed: 'RAG architecture setup (Qdrant), Telegram notification routing, Gmail drafting logic, logic branching based on lead scores.',
@@ -96,6 +102,7 @@ export const projects: Project[] = [
     id: 'personal-finance',
     title: 'Personal Finance Capture Workflow',
     category: 'Secondary Project',
+    projectType: 'n8n Automation',
     problem: 'Eliminating manual spreadsheet logging using a natural language interface.',
     role: 'AI Automation Builder',
     directed: 'n8n workflow architecture, Telegram API integration, Google Sheets/Notion database syncing.',
@@ -111,6 +118,7 @@ export const projects: Project[] = [
     id: 'daily-news',
     title: 'Daily AI News Briefing',
     category: 'Secondary Project',
+    projectType: 'n8n Automation',
     problem: 'Monitoring multiple AI news sources manually is time-consuming.',
     role: 'Workflow Architect',
     directed: 'Main + Sub workflow design, Cron scheduling, Groq LLM summarization prompting (English to Burmese), global error handling.',

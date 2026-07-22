@@ -12,7 +12,10 @@ import Link from 'next/link';
 import { motion, useScroll, useTransform, MotionConfig } from 'framer-motion';
 
 export default function Home() {
-  const featuredProjects = projects.filter((p) => p.category === 'Feature').slice(0, 3);
+  const n8nProjects = projects.filter((project) => project.projectType === 'n8n Automation');
+  const featuredN8nProjects = n8nProjects.slice(0, 2);
+  const additionalN8nProjects = n8nProjects.slice(2);
+  const softwareProjects = projects.filter((project) => project.projectType === 'AI-Assisted Software');
   
   // Parallax configuration for the main page wrapper
   const containerRef = useRef(null);
@@ -85,20 +88,23 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Selected Work Section (Flows naturally, no box backgrounds) */}
+        {/* Selected Work, separated by verified delivery track */}
         <section id="work" aria-labelledby="work-heading" className="py-24 relative">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-24 border-b border-onyx-800 pb-8">
               <div>
-                <span className="text-xs font-mono text-parchment-300 uppercase tracking-widest block mb-4 font-semibold">
-                  Case Studies
+                <span className="text-xs font-mono text-[#58f28f] uppercase tracking-widest block mb-4 font-semibold">
+                  Core Delivery Track
                 </span>
-                <h2 id="work-heading" className="font-serif text-5xl md:text-7xl font-normal tracking-tight text-parchment-50">SELECTED WORK</h2>
+                <h2 id="work-heading" className="font-serif text-5xl md:text-7xl font-normal tracking-normal text-parchment-50">N8N AUTOMATION</h2>
+                <p className="mt-5 max-w-2xl text-lg text-parchment-200 leading-relaxed">
+                  Production-minded workflow systems combining APIs, AI models, data stores, and human approval steps.
+                </p>
               </div>
             </div>
 
             <div className="space-y-40">
-              {featuredProjects.map((project, index) => (
+              {featuredN8nProjects.map((project, index) => (
                 <ProjectSection 
                   key={project.id} 
                   project={project} 
@@ -106,6 +112,45 @@ export default function Home() {
                   isFirst={index === 0} 
                 />
               ))}
+            </div>
+
+            <div className="mt-28">
+              <div className="mb-10 flex items-end justify-between gap-6 border-b border-onyx-800 pb-5">
+                <h3 className="font-serif text-3xl md:text-4xl text-parchment-50">More n8n Systems</h3>
+                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-parchment-300">
+                  {additionalN8nProjects.length} projects
+                </span>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-onyx-800 border border-onyx-800">
+                {additionalN8nProjects.map((project) => (
+                  <CompactProjectCard key={project.id} project={project} />
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-36 border-t border-onyx-800 pt-24">
+              <div className="mb-20 border-b border-onyx-800 pb-8">
+                <span className="text-xs font-mono text-[#58f28f] uppercase tracking-widest block mb-4 font-semibold">
+                  Expanding Direction
+                </span>
+                <h2 className="font-serif text-5xl md:text-7xl font-normal tracking-normal text-parchment-50">
+                  AI-ASSISTED SOFTWARE
+                </h2>
+                <p className="mt-5 max-w-2xl text-lg text-parchment-200 leading-relaxed">
+                  Software products I direct and build with AI coding agents through specifications, testing, and release review.
+                </p>
+              </div>
+
+              <div className="space-y-40">
+                {softwareProjects.map((project, index) => (
+                  <ProjectSection
+                    key={project.id}
+                    project={project}
+                    isEven={index % 2 === 1}
+                    isFirst={false}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -381,6 +426,49 @@ function ProjectSection({ project, isEven, isFirst }: { project: Project; isEven
         </div>
       </div>
     </motion.article>
+  );
+}
+
+function CompactProjectCard({ project }: { project: Project }) {
+  return (
+    <article className="flex min-h-[320px] flex-col justify-between bg-onyx-950 p-7 sm:p-9 transition-colors hover:bg-onyx-900">
+      <div>
+        <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-[#58f28f]">
+          {project.role}
+        </span>
+        <h4 className="mt-5 font-serif text-3xl leading-tight text-parchment-50">
+          {project.title}
+        </h4>
+        <p className="mt-5 text-sm leading-relaxed text-parchment-200">
+          {project.problem}
+        </p>
+        <div className="mt-6 flex flex-wrap gap-2">
+          {project.tools.slice(0, 4).map((tool) => (
+            <span key={tool} className="border border-onyx-700 px-2.5 py-1 font-mono text-[9px] uppercase text-parchment-300">
+              {tool}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-10 flex items-center justify-between border-t border-onyx-800 pt-5">
+        <Link
+          href={`/projects/${project.id}`}
+          className="inline-flex min-h-[44px] items-center text-sm font-bold text-parchment-200 transition-colors hover:text-parchment-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]"
+        >
+          Case Study <ArrowUpRight className="ml-2 h-4 w-4" />
+        </Link>
+        <a
+          href={project.youtubeUrl ?? project.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center text-parchment-300 transition-colors hover:text-parchment-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]"
+          title={project.youtubeUrl ? 'Watch project demo' : 'GitHub repository'}
+        >
+          {project.youtubeUrl ? <ExternalLink className="h-5 w-5" /> : <Code2 className="h-5 w-5" />}
+        </a>
+      </div>
+    </article>
   );
 }
 
