@@ -9,24 +9,17 @@ import { TopologyDiagram } from '@/components/TopologyDiagram';
 import { ArrowUpRight, Globe, ExternalLink, Code2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, MotionConfig } from 'framer-motion';
 
 export default function Home() {
   const featuredProjects = projects.filter((p) => p.category === 'Feature').slice(0, 3);
   
   // Parallax configuration for the main page wrapper
   const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-
-  // Background slow shift for depth
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "5%"]);
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-onyx-950 text-parchment-50 font-sans selection:bg-parchment-200 selection:text-onyx-950 max-w-full overflow-x-hidden relative">
-      <motion.div style={{ y: bgY }} className="absolute inset-0 pointer-events-none opacity-20 bg-[url('/noise.png')] mix-blend-overlay z-0" />
+    <MotionConfig reducedMotion="user">
+      <div ref={containerRef} className="min-h-screen bg-onyx-950 text-parchment-50 font-sans selection:bg-parchment-200 selection:text-onyx-950 max-w-full overflow-x-hidden relative">
       
       <Header />
 
@@ -234,6 +227,7 @@ export default function Home() {
         </div>
       </footer>
     </div>
+    </MotionConfig>
   );
 }
 
@@ -242,74 +236,46 @@ export default function Home() {
 // ----------------------------------------------------
 
 function CapabilitiesSection() {
-  // A highly scattered, parallax heavy layout for capabilities.
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  // Create staggered parallax values
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -300]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [100, -150]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [-50, -400]);
-  const y4 = useTransform(scrollYProgress, [0, 1], [200, -50]);
-
   const caps = portfolioContent.establishedCapabilities;
 
   return (
-    <section ref={containerRef} id="capabilities" className="py-40 relative border-t border-onyx-800 overflow-hidden min-h-[100vh]">
-      <div className="absolute top-10 left-4 sm:left-6">
+    <section id="capabilities" className="py-24 md:py-40 relative border-t border-onyx-800">
+      <div className="absolute top-8 left-4 sm:left-6">
         <span className="text-xs font-mono text-parchment-300 uppercase tracking-widest block font-semibold">Technical Scope</span>
       </div>
       
-      {/* Scattered Pills Container */}
-      <div className="max-w-[1400px] mx-auto w-full h-full relative min-h-[600px] mt-24">
-        
-        {caps[0] && (
-          <motion.div style={{ y: y1 }} className="absolute top-[10%] left-[5%] md:left-[10%]">
-             <Pill text={caps[0]} size="lg" />
-          </motion.div>
-        )}
-
-        {caps[1] && (
-          <motion.div style={{ y: y3 }} className="absolute top-[30%] right-[10%] md:right-[20%]">
-             <Pill text={caps[1]} size="md" />
-          </motion.div>
-        )}
-
-        {caps[2] && (
-          <motion.div style={{ y: y2 }} className="absolute top-[50%] left-[20%] md:left-[35%] z-10">
-             <Pill text={caps[2]} size="xl" />
-          </motion.div>
-        )}
-
-        {caps[3] && (
-          <motion.div style={{ y: y4 }} className="absolute top-[70%] right-[5%] md:right-[30%]">
-             <Pill text={caps[3]} size="lg" />
-          </motion.div>
-        )}
-
-        {caps[4] && (
-          <motion.div style={{ y: y1 }} className="absolute top-[85%] left-[10%] md:left-[25%]">
-             <Pill text={caps[4]} size="md" />
-          </motion.div>
-        )}
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 mt-16 md:mt-32">
+        <div className="flex flex-col gap-16 md:gap-32 w-full">
+          {caps.map((cap, i) => (
+            <CapabilityRow key={i} text={cap} index={i} />
+          ))}
+        </div>
       </div>
     </section>
   );
 }
 
-function Pill({ text, size }: { text: string; size: 'md' | 'lg' | 'xl' }) {
-  const sizes = {
-    md: "text-xl md:text-2xl px-6 py-3",
-    lg: "text-3xl md:text-5xl px-8 py-4",
-    xl: "text-4xl md:text-7xl px-10 py-5"
-  };
+function CapabilityRow({ text, index }: { text: string; index: number }) {
+  // Alternate left/right alignment on desktop
+  const isEven = index % 2 === 0;
+
   return (
-    <div className={`font-serif text-parchment-50 border border-onyx-800 bg-onyx-950/80 backdrop-blur-sm rounded-full ${sizes[size]} shadow-2xl hover:border-parchment-300 transition-colors cursor-default whitespace-nowrap`}>
-      {text}
-    </div>
+    <motion.div 
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className={`w-full max-w-4xl flex flex-col ${isEven ? 'self-start md:ml-[5%]' : 'self-end md:mr-[5%]'} text-left`}
+    >
+       <div className="flex items-start gap-4 md:gap-8">
+         <span className="w-10 sm:w-12 md:w-16 shrink-0 text-parchment-300/50 font-mono text-sm md:text-lg mt-2 md:mt-4">
+           (0{index + 1})
+         </span>
+         <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-serif text-parchment-50 leading-[1.1] md:leading-[1.1] tracking-tight break-words">
+           {text}
+         </h3>
+       </div>
+    </motion.div>
   );
 }
 
@@ -346,7 +312,7 @@ function ProjectSection({ project, isEven, isFirst }: { project: Project; isEven
                </div>
             ) : project.imageUrl ? (
               <motion.div style={{ y: imgY, height: "120%" }} className="w-full absolute inset-0 -top-[10%]">
-                <Image src={project.imageUrl} alt={`${project.title} screenshot`} fill className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700 ease-out" />
+                <Image src={project.imageUrl} alt={`${project.title} screenshot`} fill sizes="(max-width: 1024px) 100vw, 60vw" className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700 ease-out" />
               </motion.div>
             ) : (
               <div className="w-full h-full p-4">
