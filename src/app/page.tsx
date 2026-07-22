@@ -9,7 +9,7 @@ import { TopologyDiagram } from '@/components/TopologyDiagram';
 import { ArrowUpRight, Globe, ExternalLink, Code2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useScroll, useTransform, MotionConfig, MotionValue } from 'framer-motion';
+import { motion, useScroll, useTransform, MotionConfig } from 'framer-motion';
 
 export default function Home() {
   const featuredProjects = projects.filter((p) => p.category === 'Feature').slice(0, 3);
@@ -236,17 +236,10 @@ export default function Home() {
 // ----------------------------------------------------
 
 function CapabilitiesSection() {
-  // Premium editorial motion layout for capabilities that safely wraps text on all viewports.
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
   const caps = portfolioContent.establishedCapabilities;
 
   return (
-    <section ref={containerRef} id="capabilities" className="py-24 md:py-40 relative border-t border-onyx-800">
+    <section id="capabilities" className="py-24 md:py-40 relative border-t border-onyx-800">
       <div className="absolute top-8 left-4 sm:left-6">
         <span className="text-xs font-mono text-parchment-300 uppercase tracking-widest block font-semibold">Technical Scope</span>
       </div>
@@ -254,7 +247,7 @@ function CapabilitiesSection() {
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 mt-16 md:mt-32">
         <div className="flex flex-col gap-16 md:gap-32 w-full">
           {caps.map((cap, i) => (
-            <CapabilityRow key={i} text={cap} index={i} scrollYProgress={scrollYProgress} />
+            <CapabilityRow key={i} text={cap} index={i} />
           ))}
         </div>
       </div>
@@ -262,29 +255,20 @@ function CapabilitiesSection() {
   );
 }
 
-function CapabilityRow({ text, index, scrollYProgress }: { text: string; index: number; scrollYProgress: MotionValue<number> }) {
-  // Staggered parallax for asymmetric editorial movement
-  const yOffsets = [
-    [0, -100],
-    [50, -50],
-    [-20, -120],
-    [80, 0]
-  ];
-  
-  // Safe default fallback if index exceeds array
-  const safeOffset = yOffsets[index % yOffsets.length];
-  const y = useTransform(scrollYProgress, [0, 1], safeOffset);
-  
+function CapabilityRow({ text, index }: { text: string; index: number }) {
   // Alternate left/right alignment on desktop
   const isEven = index % 2 === 0;
 
   return (
     <motion.div 
-      style={{ y }} 
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className={`w-full max-w-4xl flex flex-col ${isEven ? 'self-start md:ml-[5%]' : 'self-end md:mr-[5%]'} text-left`}
     >
        <div className="flex items-start gap-4 md:gap-8">
-         <span className="text-parchment-300/50 font-mono text-sm md:text-lg mt-2 md:mt-4 shrink-0">
+         <span className="w-10 sm:w-12 md:w-16 shrink-0 text-parchment-300/50 font-mono text-sm md:text-lg mt-2 md:mt-4">
            (0{index + 1})
          </span>
          <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-serif text-parchment-50 leading-[1.1] md:leading-[1.1] tracking-tight break-words">
