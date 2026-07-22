@@ -102,23 +102,35 @@ export function Globe() {
     if (mounted) {
       reqRef.current = requestAnimationFrame(animate);
     }
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        if (reqRef.current) cancelAnimationFrame(reqRef.current);
+      } else {
+        reqRef.current = requestAnimationFrame(animate);
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
     return () => {
       if (reqRef.current) cancelAnimationFrame(reqRef.current);
       if (idleTimer.current) clearTimeout(idleTimer.current);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, [mounted, animate]);
 
   // Pointer Interactions
-  const handlePointerDown = (e: React.PointerEvent) => {
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (isReducedMotion) return;
+    const target = e.target as HTMLElement;
+    target.setPointerCapture(e.pointerId);
     isDragging.current = true;
     lastMouse.current = { x: e.clientX, y: e.clientY };
     resetIdleTimer();
-    // Stop default to prevent text selection / scrolling issues where supported
-    // But we don't preventDefault here to allow mobile scroll if they just tap
   };
 
-  const handlePointerMove = (e: React.PointerEvent) => {
-    if (!isDragging.current) return;
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging.current || isReducedMotion) return;
     const dx = e.clientX - lastMouse.current.x;
     const dy = e.clientY - lastMouse.current.y;
     lastMouse.current = { x: e.clientX, y: e.clientY };
@@ -126,7 +138,7 @@ export function Globe() {
     // Update rotation directly
     rY.current += dx * 0.5;
     rX.current += dy * 0.5;
-    
+
     // Clamp rotX to avoid flipping the poles weirdly
     rX.current = Math.max(-90, Math.min(90, rX.current));
 
@@ -135,12 +147,18 @@ export function Globe() {
     resetIdleTimer();
   };
 
-  const handlePointerUp = () => {
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+    if (target.hasPointerCapture(e.pointerId)) {
+      target.releasePointerCapture(e.pointerId);
+    }
+    isDragging.current = false;
     resetIdleTimer();
   };
 
   // Keyboard Interactions
   const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (isReducedMotion) return;
     const step = 5;
     let handled = true;
     switch (e.key) {
@@ -180,7 +198,7 @@ export function Globe() {
       default:
         handled = false;
     }
-    
+
     if (handled) {
       e.preventDefault();
       rX.current = Math.max(-90, Math.min(90, rX.current));
@@ -214,7 +232,7 @@ export function Globe() {
 
   const projMM = project(MYANMAR_COORDS.lat, MYANMAR_COORDS.lon, rotX, rotY, zoom);
   const projBKK = project(BANGKOK_COORDS.lat, BANGKOK_COORDS.lon, rotX, rotY, zoom);
-  
+
   // Show markers if we are in phase 1 (or reduced motion) or late in phase 0
   const showMarkers = isReducedMotion || introComplete || (Math.abs(SEA_ROT_X - rotX) < 10 && Math.abs(SEA_ROT_Y - rotY) < 20);
 
@@ -225,13 +243,15 @@ export function Globe() {
 
       {/* The Globe Sphere */}
       <div 
-        className="relative w-full h-full rounded-full border border-onyx-700 bg-onyx-950 overflow-hidden shadow-[inset_-40px_-20px_60px_rgba(0,0,0,0.8)] isolate touch-none cursor-grab active:cursor-grabbing focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]/50 transition-shadow"
+        className="relative w-full h-full rounded-full border border-onyx-700 bg-onyx-950 overflow-hidden shadow-[inset_-40px_-20px_60px_rgba(0,0,0,0.8)] isolate touch-pan-y cursor-grab active:cursor-grabbing focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]/50 transition-shadow"
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
+        onLostPointerCapture={handlePointerUp}
         onPointerLeave={handlePointerUp}
         onKeyDown={handleKeyDown}
-        tabIndex={0}
+        tabIndex={isReducedMotion ? -1 : 0}
         role="application"
         aria-label="Interactive globe showing Myanmar to Bangkok route. Use arrow keys to rotate, plus/minus to zoom, R to reset, Space to pause."
       >
@@ -320,7 +340,8 @@ export function Globe() {
       <div className="mt-6 flex items-center justify-center gap-2 sm:gap-4 text-onyx-400">
         <button
           onClick={() => setUserPaused(p => !p)}
-          className="p-2 hover:text-[#58f28f] hover:bg-onyx-900 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]/50"
+          disabled={isReducedMotion}
+          className="min-w-[44px] min-h-[44px] flex items-center justify-center hover:text-[#58f28f] hover:bg-onyx-900 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]/50 disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label={userPaused ? "Resume rotation" : "Pause rotation"}
           title={userPaused ? "Resume rotation (Space)" : "Pause rotation (Space)"}
         >
@@ -336,7 +357,8 @@ export function Globe() {
             setIntroComplete(true);
             resetIdleTimer();
           }}
-          className="p-2 hover:text-[#58f28f] hover:bg-onyx-900 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]/50"
+          disabled={isReducedMotion}
+          className="min-w-[44px] min-h-[44px] flex items-center justify-center hover:text-[#58f28f] hover:bg-onyx-900 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]/50 disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label="Reset view to Southeast Asia"
           title="Reset view (R)"
         >
@@ -347,7 +369,8 @@ export function Globe() {
             rZoom.current = Math.max(rZoom.current - 0.1, 0.5);
             setZoom(rZoom.current);
           }}
-          className="p-2 hover:text-[#58f28f] hover:bg-onyx-900 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]/50"
+          disabled={isReducedMotion}
+          className="min-w-[44px] min-h-[44px] flex items-center justify-center hover:text-[#58f28f] hover:bg-onyx-900 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]/50 disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label="Zoom out"
           title="Zoom out (-)"
         >
@@ -358,7 +381,8 @@ export function Globe() {
             rZoom.current = Math.min(rZoom.current + 0.1, 2);
             setZoom(rZoom.current);
           }}
-          className="p-2 hover:text-[#58f28f] hover:bg-onyx-900 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]/50"
+          disabled={isReducedMotion}
+          className="min-w-[44px] min-h-[44px] flex items-center justify-center hover:text-[#58f28f] hover:bg-onyx-900 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]/50 disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label="Zoom in"
           title="Zoom in (+)"
         >
