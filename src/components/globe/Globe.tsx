@@ -20,12 +20,13 @@ export function Globe() {
   const [userPaused, setUserPaused] = useState(false);
   const [isReducedMotion, setIsReducedMotion] = useState(false);
   const [introComplete, setIntroComplete] = useState(false);
-  
+
   // Animation refs
   const rX = useRef(0);
   const rY = useRef(-20);
   const rZoom = useRef(1);
   const isDragging = useRef(false);
+  const isIdlePaused = useRef(false);
   const lastMouse = useRef({ x: 0, y: 0 });
   const introCompleteRef = useRef(false);
   const idleTimer = useRef<NodeJS.Timeout | null>(null);
@@ -61,19 +62,20 @@ export function Globe() {
   }, []);
 
   const resetIdleTimer = useCallback(() => {
+    isIdlePaused.current = true;
     if (idleTimer.current) clearTimeout(idleTimer.current);
     idleTimer.current = setTimeout(() => {
-      isDragging.current = false;
+      isIdlePaused.current = false;
     }, 3000);
   }, []);
 
   const animate = useCallback(function animationLoop() {
-    if (!isDragging.current && !userPaused && !isReducedMotion) {
+    if (!isDragging.current && !isIdlePaused.current && !userPaused && !isReducedMotion) {
       if (!introCompleteRef.current) {
         // Move towards SEA
         const dx = SEA_ROT_X - rX.current;
         const dy = SEA_ROT_Y - rY.current;
-        
+
         // Ensure we take the shortest path for Y if it wraps, though here it's simple
         rX.current += dx * 0.02;
         rY.current += dy * 0.02;
@@ -86,7 +88,7 @@ export function Globe() {
         // Idle rotation
         rY.current -= 0.1; // Rotate west-to-east
       }
-      
+
       // Keep Y in -180 to 180 bounds to avoid huge numbers
       if (rY.current <= -180) rY.current += 360;
       if (rY.current > 180) rY.current -= 360;
@@ -122,7 +124,7 @@ export function Globe() {
   // Pointer Interactions
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     if (isReducedMotion) return;
-    const target = e.target as HTMLElement;
+    const target = e.currentTarget;
     target.setPointerCapture(e.pointerId);
     isDragging.current = true;
     lastMouse.current = { x: e.clientX, y: e.clientY };
@@ -148,7 +150,7 @@ export function Globe() {
   };
 
   const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
-    const target = e.target as HTMLElement;
+    const target = e.currentTarget;
     if (target.hasPointerCapture(e.pointerId)) {
       target.releasePointerCapture(e.pointerId);
     }
@@ -242,7 +244,7 @@ export function Globe() {
       <div className="absolute inset-0 bg-[#58f28f]/5 rounded-full blur-3xl mix-blend-screen pointer-events-none" />
 
       {/* The Globe Sphere */}
-      <div 
+      <div
         className="relative w-full h-full rounded-full border border-onyx-700 bg-onyx-950 overflow-hidden shadow-[inset_-40px_-20px_60px_rgba(0,0,0,0.8)] isolate touch-pan-y cursor-grab active:cursor-grabbing focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]/50 transition-shadow"
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
@@ -307,7 +309,7 @@ export function Globe() {
         {/* Labels Overlay (HTML for crisp text) */}
         <div className="absolute inset-0 pointer-events-none">
           {showMarkers && projMM.visible && (
-            <div 
+            <div
               className="absolute transition-all duration-300 animate-in fade-in slide-in-from-bottom-2"
               style={{ left: `${projMM.x}%`, top: `${projMM.y}%`, transform: 'translate(-50%, -150%)' }}
             >
@@ -319,7 +321,7 @@ export function Globe() {
             </div>
           )}
           {showMarkers && projBKK.visible && (
-            <div 
+            <div
               className="absolute transition-all duration-300 delay-300 animate-in fade-in slide-in-from-top-2"
               style={{ left: `${projBKK.x}%`, top: `${projBKK.y}%`, transform: 'translate(-50%, 50%)' }}
             >
