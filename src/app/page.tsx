@@ -67,25 +67,17 @@ export default function Home() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="md:col-span-5 relative min-h-[380px] md:min-h-[520px] overflow-hidden border border-onyx-800 bg-onyx-900"
+                className="md:col-span-5 relative min-h-[380px] md:min-h-[520px] overflow-hidden bg-black"
               >
                 <Image
-                  src="/victor-portrait.jpg"
+                  src="/victor-portrait-viridian.jpg"
                   alt="Portrait of Victor"
                   fill
                   priority
                   sizes="(max-width: 767px) 100vw, 42vw"
                   className="object-cover object-[50%_30%] md:scale-x-[-1]"
                 />
-                <div className="absolute inset-0 ring-1 ring-inset ring-[#58f28f]/25" aria-hidden="true" />
-                <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 border-t border-parchment-50/20 bg-onyx-950/85 px-5 py-4 backdrop-blur-sm">
-                  <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-parchment-100">
-                    Victor / AI Automation
-                  </span>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-parchment-300">
-                    Bangkok
-                  </span>
-                </div>
+                <div className="absolute inset-y-0 left-0 w-px bg-[#58f28f]/45" aria-hidden="true" />
               </motion.div>
             </div>
 
