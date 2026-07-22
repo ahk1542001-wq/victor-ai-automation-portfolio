@@ -3,7 +3,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { portfolioContent } from '@/data/content';
 import { credentials } from '@/data/credentials';
-import { Globe } from '@/components/Globe';
+import { Globe } from '@/components/globe';
 
 export const metadata = {
   title: 'About | Victor',
