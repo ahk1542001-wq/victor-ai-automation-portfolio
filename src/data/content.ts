@@ -29,12 +29,6 @@ export const portfolioContent = {
     { name: 'Thai', proficiency: 'Elementary' },
     { name: 'Burmese', proficiency: 'Native' }
   ],
-  certifications: [
-    'Trustworthy Generative AI',
-    'AI For Everyone',
-    'Generative AI Assistants',
-    'Generative AI Assistants Specialization'
-  ],
   professionalExperience: [
     {
       role: 'Waiter',

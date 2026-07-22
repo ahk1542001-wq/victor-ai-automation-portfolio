@@ -3,10 +3,11 @@
 import { useRef } from 'react';
 import { type Project, projects } from '@/data/projects';
 import { portfolioContent } from '@/data/content';
+import { credentials } from '@/data/credentials';
 import { YouTubeThumbnail } from '@/components/YouTubeThumbnail';
 import { Header } from '@/components/Header';
 import { TopologyDiagram } from '@/components/TopologyDiagram';
-import { ArrowUpRight, Globe, ExternalLink, Code2 } from 'lucide-react';
+import { ArrowUpRight, Globe, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useScroll, useTransform, MotionConfig } from 'framer-motion';
@@ -31,7 +32,6 @@ export default function Home() {
         {/* Hero Section */}
         <section aria-labelledby="hero-heading" className="hero-stage pt-28 pb-20 md:pt-36 md:pb-32 relative">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
-            <div className="hero-name-watermark" aria-hidden="true">VICTOR</div>
             <div className="hero-canvas-scene">
               <motion.div 
                 initial={{ opacity: 0, y: 50 }}
@@ -226,13 +226,19 @@ export default function Home() {
                 <div>
                   <span className="text-xs font-mono text-[#58f28f] uppercase tracking-widest block mb-8 font-semibold">AI Certifications</span>
                   <ol className="border-t border-onyx-800">
-                    {portfolioContent.certifications.map((certification, idx) => (
-                      <li key={certification} className="flex gap-5 py-5 border-b border-onyx-800">
+                    {credentials.filter((credential) => credential.priority === 'featured').map((credential, idx) => (
+                      <li key={credential.id} className="flex gap-5 py-5 border-b border-onyx-800">
                         <span className="font-mono text-xs text-[#58f28f]">{String(idx + 1).padStart(2, '0')}</span>
-                        <span className="font-serif text-xl text-parchment-50 leading-snug">{certification}</span>
+                        <span className="font-serif text-xl text-parchment-50 leading-snug">{credential.title}</span>
                       </li>
                     ))}
                   </ol>
+                  <Link
+                    href="/credentials"
+                    className="mt-6 inline-flex min-h-[44px] items-center text-sm font-bold text-parchment-200 transition-colors hover:text-parchment-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]"
+                  >
+                    View all credentials <ArrowUpRight className="ml-2 h-4 w-4" />
+                  </Link>
                 </div>
 
                 <div>
@@ -411,7 +417,7 @@ function ProjectSection({ project, isEven, isFirst }: { project: Project; isEven
                 </a>
               )}
               <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-parchment-300 hover:text-parchment-50 transition-colors" title="GitHub Repository">
-                <Code2 className="w-5 h-5" />
+                <Image src="/brands/github.svg" alt="" width={20} height={20} className="invert" aria-hidden="true" />
               </a>
             </div>
           </div>
@@ -457,7 +463,11 @@ function CompactProjectCard({ project }: { project: Project }) {
           className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center text-parchment-300 transition-colors hover:text-parchment-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]"
           title={project.youtubeUrl ? 'Watch project demo' : 'GitHub repository'}
         >
-          {project.youtubeUrl ? <ExternalLink className="h-5 w-5" /> : <Code2 className="h-5 w-5" />}
+          {project.youtubeUrl ? (
+            <ExternalLink className="h-5 w-5" />
+          ) : (
+            <Image src="/brands/github.svg" alt="" width={20} height={20} className="invert" aria-hidden="true" />
+          )}
         </a>
       </div>
     </article>
@@ -466,8 +476,8 @@ function CompactProjectCard({ project }: { project: Project }) {
 
 type Tool = {
   name: string;
-  icon?: string;
-  mark?: string;
+  icon: string;
+  renderAsImage?: boolean;
   emphasize?: boolean;
 };
 
@@ -489,7 +499,8 @@ function ToolsRail() {
     {
       name: "AI-Assisted Development",
       tools: [
-        { name: "Codex", mark: "</>" },
+        { name: "Codex", icon: "/brands/codex.png", renderAsImage: true },
+        { name: "ChatGPT", icon: "/brands/openai.svg" },
         { name: "Claude Code", icon: "/brands/anthropic.svg" },
         { name: "Antigravity", icon: "/brands/antigravity.png" },
       ]
@@ -506,7 +517,6 @@ function ToolsRail() {
       name: "AI Models & Local",
       tools: [
         { name: "Ollama", icon: "/brands/ollama.svg" },
-        { name: "Groq", mark: "G" },
       ]
     },
     {
@@ -553,7 +563,16 @@ function ToolsRail() {
                   aria-label={setIndex === 0 ? tool.name : undefined}
                   title={setIndex === 0 ? tool.name : undefined}
                 >
-                  {tool.icon && (
+                  {tool.renderAsImage ? (
+                    <Image
+                      src={tool.icon}
+                      alt=""
+                      width={32}
+                      height={32}
+                      className="tools-logo-image"
+                      aria-hidden="true"
+                    />
+                  ) : (
                     <span
                       className="tools-logo-icon"
                       style={{
@@ -562,11 +581,6 @@ function ToolsRail() {
                       }}
                       aria-hidden="true"
                     />
-                  )}
-                  {tool.mark && (
-                    <span className="tools-logo-mark" aria-hidden="true">
-                      {tool.mark}
-                    </span>
                   )}
                   <span>{tool.name}</span>
                 </div>

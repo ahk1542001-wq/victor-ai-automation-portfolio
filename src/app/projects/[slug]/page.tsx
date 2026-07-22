@@ -1,7 +1,7 @@
 import { projects } from '@/data/projects';
 import { YouTubeThumbnail } from '@/components/YouTubeThumbnail';
 import { Header } from '@/components/Header';
-import { ArrowLeft, ArrowRight, ArrowUpRight, ExternalLink, Code2, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight, ExternalLink, CheckCircle2 } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -149,7 +149,7 @@ export default async function ProjectPage({ params }: Props) {
                   rel="noopener noreferrer"
                   className="min-h-[44px] px-2 inline-flex items-center text-emerald-300 font-semibold hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded-md"
                 >
-                  GitHub <Code2 className="w-3.5 h-3.5 ml-1" />
+                  GitHub <Image src="/brands/github.svg" alt="" width={14} height={14} className="ml-1 invert" aria-hidden="true" />
                 </a>
               </div>
             </div>

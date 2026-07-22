@@ -18,7 +18,7 @@ export function Header() {
     { href: '/#capabilities', label: 'Capabilities' },
     { href: '/#about', label: 'About' },
     { href: '/#experience', label: 'Experience' },
-    { href: '/#contact', label: 'Contact' },
+    { href: '/credentials', label: 'Credentials' },
   ];
 
   useEffect(() => {
