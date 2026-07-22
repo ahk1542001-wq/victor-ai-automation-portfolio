@@ -93,7 +93,7 @@ body {
 .tools-marquee-track {
   display: flex;
   width: max-content;
-  animation: toolsMarquee 38s linear infinite;
+  animation: toolsMarquee 42s linear infinite;
   will-change: transform;
 }
 
@@ -106,8 +106,8 @@ body {
   display: flex;
   flex: 0 0 auto;
   align-items: center;
-  gap: 3rem;
-  padding-right: 3rem;
+  gap: clamp(2rem, 4vw, 4rem);
+  padding-right: clamp(2rem, 4vw, 4rem);
 }
 
 .tools-logo-item {
@@ -129,7 +129,7 @@ body {
 
 .tools-logo-item-emphasized {
   color: var(--color-parchment-50);
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 .tools-logo-icon,
@@ -154,8 +154,8 @@ body {
 
 .tools-logo-item-emphasized .tools-logo-icon,
 .tools-logo-item-emphasized .tools-logo-mark {
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 2rem;
+  height: 2rem;
 }
 
 @keyframes toolsMarquee {
@@ -164,48 +164,27 @@ body {
 }
 
 @media (max-width: 639px) {
-  .tools-marquee-shell {
-    padding-inline: 2rem;
-    overflow: visible;
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
-
-  .tools-marquee-track {
-    display: block;
-    width: 100%;
-    animation: none;
-    will-change: auto;
-  }
-
-  .tools-marquee-set:first-child {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1.5rem;
-    width: 100%;
-    padding: 0;
-  }
-
-  .tools-marquee-set[aria-hidden="true"] {
-    display: none;
+  .hero-tools-rail {
+    margin-inline: -1rem;
   }
 
   .tools-logo-item,
   .tools-logo-item-emphasized {
-    min-width: 0;
-    font-size: 1rem;
+    font-size: 0.9375rem;
   }
-}
 
-@media (min-width: 380px) and (max-width: 639px) {
-  .tools-marquee-set:first-child {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .tools-logo-icon,
+  .tools-logo-mark,
+  .tools-logo-item-emphasized .tools-logo-icon,
+  .tools-logo-item-emphasized .tools-logo-mark {
+    width: 1.5rem;
+    height: 1.5rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .tools-marquee-shell {
-    padding-inline: 2rem;
+    overflow-x: auto;
     -webkit-mask-image: none;
     mask-image: none;
   }
@@ -214,13 +193,6 @@ body {
     width: 100%;
     animation: none;
     will-change: auto;
-  }
-
-  .tools-marquee-set:first-child {
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-    padding: 0;
   }
 
   .tools-marquee-set[aria-hidden="true"] {
