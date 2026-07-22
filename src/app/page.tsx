@@ -372,6 +372,7 @@ function ProjectSection({ project, isEven, isFirst }: { project: Project; isEven
 type Tool = {
   name: string;
   icon?: string;
+  mark?: string;
   emphasize?: boolean;
 };
 
@@ -383,7 +384,7 @@ type ToolGroup = {
 function SkillsToolsSection() {
   const groups: ToolGroup[] = [
     {
-      name: "Core",
+      name: "Core Automation",
       tools: [
         { name: "n8n", icon: "/brands/n8n.svg", emphasize: true },
         { name: "Docker", icon: "/brands/docker.svg" },
@@ -393,9 +394,24 @@ function SkillsToolsSection() {
     {
       name: "AI-Assisted Development",
       tools: [
-        { name: "Codex" },
-        { name: "Claude Code" },
-        { name: "Antigravity" },
+        { name: "Codex", mark: "</>" },
+        { name: "Claude Code", icon: "/brands/anthropic.svg" },
+        { name: "Antigravity", icon: "/brands/antigravity.png" },
+      ]
+    },
+    {
+      name: "Infrastructure & Data",
+      tools: [
+        { name: "Cloudflare", icon: "/brands/cloudflare.svg" },
+        { name: "PostgreSQL", icon: "/brands/postgresql.svg" },
+        { name: "Qdrant", icon: "/brands/qdrant.svg" },
+      ]
+    },
+    {
+      name: "AI Models & Local",
+      tools: [
+        { name: "Ollama", icon: "/brands/ollama.svg" },
+        { name: "Groq", mark: "G" },
       ]
     },
     {
@@ -403,14 +419,6 @@ function SkillsToolsSection() {
       tools: [
         { name: "Notion", icon: "/brands/notion.svg" },
         { name: "Obsidian", icon: "/brands/obsidian.svg" },
-      ]
-    },
-    {
-      name: "AI / Data",
-      tools: [
-        { name: "Qdrant", icon: "/brands/qdrant.svg" },
-        { name: "Ollama", icon: "/brands/ollama.svg" },
-        { name: "Groq" },
       ]
     },
     {
@@ -453,7 +461,7 @@ function SkillsToolsSection() {
               <rect width="100%" height="100%" fill="url(#dotGrid)" />
             </svg>
             
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-12 relative z-10">
+            <div className="grid grid-cols-1 min-[380px]:grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-12 relative z-10">
               {groups.map((group, groupIdx) => (
                 <motion.div
                   key={group.name}
@@ -473,7 +481,7 @@ function SkillsToolsSection() {
                         className={`font-sans font-bold transition-colors flex items-center space-x-3 group ${
                           tool.emphasize 
                             ? "text-4xl tracking-tight text-parchment-50" 
-                            : "text-lg text-parchment-200 hover:text-parchment-50 cursor-default"
+                            : "text-base sm:text-lg text-parchment-200 hover:text-parchment-50 cursor-default"
                         }`}
                         aria-label={tool.name}
                       >
@@ -486,6 +494,16 @@ function SkillsToolsSection() {
                             }}
                             aria-hidden="true"
                           />
+                        )}
+                        {tool.mark && (
+                          <span
+                            className={`shrink-0 grid place-items-center border border-current/40 font-mono leading-none ${
+                              tool.emphasize ? "w-10 h-10 text-sm" : "w-6 h-6 text-[9px]"
+                            }`}
+                            aria-hidden="true"
+                          >
+                            {tool.mark}
+                          </span>
                         )}
                         <span>{tool.name}</span>
                       </div>
