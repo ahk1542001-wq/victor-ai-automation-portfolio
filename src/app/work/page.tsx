@@ -11,7 +11,7 @@ export const metadata = {
 
 function WorkRow({ project, index }: { project: Project; index: number }) {
   return (
-    <article className="grid gap-8 border-t border-onyx-800 py-10 md:grid-cols-12 md:gap-12 md:py-14">
+    <article className="grid gap-8 border-t border-onyx-800 py-10 md:grid-cols-12 md:gap-12 md:py-14 animate-hero-reveal">
       <div className="font-mono text-xs text-[#58f28f] md:col-span-1">
         {String(index + 1).padStart(2, '0')}
       </div>
@@ -66,7 +66,7 @@ export default function WorkPage() {
     <div className="min-h-screen bg-onyx-950 text-parchment-50">
       <Header />
       <main id="main-content" className="pt-32" tabIndex={-1}>
-        <header className="mx-auto max-w-[1400px] px-4 pb-20 sm:px-6 md:pb-28">
+        <header className="mx-auto max-w-[1400px] px-4 pb-20 sm:px-6 md:pb-28 animate-hero-reveal">
           <span className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[#58f28f]">Selected and verified work</span>
           <h1 className="mt-6 max-w-5xl font-serif text-6xl leading-[0.95] tracking-tight sm:text-7xl md:text-9xl">WORK ARCHIVE</h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-parchment-200">
