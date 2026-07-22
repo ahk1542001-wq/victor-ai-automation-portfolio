@@ -44,7 +44,9 @@ body {
   position: relative;
   min-height: 38rem;
   overflow: hidden;
-  background: #0b0d0c;
+  background:
+    radial-gradient(circle at 53% 47%, rgb(8 82 64 / 24%), transparent 43%),
+    #02060a;
   box-shadow: 0 2.25rem 5rem rgb(0 0 0 / 28%);
 }
 
@@ -118,6 +120,11 @@ body {
   z-index: 5;
 }
 
+.hero-portrait-wrap img {
+  -webkit-mask-image: radial-gradient(ellipse 78% 94% at 50% 55%, #000 50%, rgb(0 0 0 / 88%) 66%, transparent 100%);
+  mask-image: radial-gradient(ellipse 78% 94% at 50% 55%, #000 50%, rgb(0 0 0 / 88%) 66%, transparent 100%);
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .hero-title-motion {
     animation: heroTitleReveal 900ms 180ms cubic-bezier(0.16, 1, 0.3, 1) both;
@@ -172,6 +179,11 @@ body {
 
   .hero-portrait-wrap {
     inset: 10rem 0 0;
+  }
+
+  .hero-portrait-wrap img {
+    -webkit-mask-image: radial-gradient(ellipse 92% 94% at 50% 52%, #000 58%, rgb(0 0 0 / 88%) 76%, transparent 100%);
+    mask-image: radial-gradient(ellipse 92% 94% at 50% 52%, #000 58%, rgb(0 0 0 / 88%) 76%, transparent 100%);
   }
 
   .hero-role {
