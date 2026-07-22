@@ -3,8 +3,7 @@ export const portfolioContent = {
     name: 'Victor',
     role: 'AI Automation & Agent Workflow Specialist',
     location: 'Bangkok, Thailand',
-    valueProposition: 'Designing and building reliable AI-assisted business workflows.',
-    availability: 'Open to full-time AI Automation and Agent Workflow opportunities in Thailand.'
+    valueProposition: 'Designing and building reliable AI-assisted business workflows.'
   },
   about: {
     title: 'About',
@@ -24,6 +23,10 @@ export const portfolioContent = {
       'AI SDKs, Google ADK, and multi-agent orchestration',
       'Google Cloud deployment'
     ]
+  },
+  skillsAndTools: {
+    title: 'Tools I Work With',
+    description: 'Automation, AI-assisted development, integrations, and knowledge systems used across my projects.',
   },
   languages: [
     { name: 'English', proficiency: 'Professional Working' },

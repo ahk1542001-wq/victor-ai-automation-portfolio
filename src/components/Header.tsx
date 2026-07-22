@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { portfolioContent } from '@/data/content';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 
@@ -64,10 +63,7 @@ export function Header() {
             VICTOR.
           </Link>
 
-          <div className="hidden xl:flex items-center gap-2 text-xs text-parchment-300 border-l border-onyx-800 pl-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-parchment-300 inline-block"></span>
-            <span className="uppercase tracking-widest font-mono text-[10px] text-parchment-300 font-semibold">{portfolioContent.hero.availability}</span>
-          </div>
+
         </div>
 
         {/* Desktop Navigation Links */}
@@ -136,10 +132,7 @@ export function Header() {
               Let&apos;s Talk <ArrowUpRight className="w-4 h-4 ml-1.5" />
             </Link>
 
-            <div className="flex items-center gap-2 text-xs text-parchment-300 px-2 pt-1 font-mono">
-              <span className="w-1.5 h-1.5 rounded-full bg-parchment-300 inline-block"></span>
-              <span>{portfolioContent.hero.availability}</span>
-            </div>
+
           </div>
         </div>
       )}
