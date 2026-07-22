@@ -36,12 +36,20 @@ export default function Home() {
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 className="md:col-span-7 flex flex-col space-y-12"
               >
-                <h1 id="hero-heading" className="font-serif text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-normal tracking-tighter w-full leading-[0.9]">
-                  <span className="block text-parchment-50">Victor</span>
-                  <span className="block text-parchment-300">Automation</span>
-                </h1>
-                
-                <p className="text-xl md:text-2xl text-parchment-200 leading-relaxed font-medium max-w-md">
+                <div className="space-y-5">
+                  <span className="block font-mono text-xs font-semibold uppercase tracking-[0.18em] text-parchment-200">
+                    AI Automation &amp; Agent Workflows
+                  </span>
+                  <h1 id="hero-heading" className="w-full font-sans text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black uppercase tracking-normal leading-[0.88] text-[#58f28f]">
+                    Victor
+                  </h1>
+                </div>
+
+                <p className="max-w-md font-serif text-2xl md:text-3xl text-parchment-50 leading-tight">
+                  AI Automation &amp; Agent Workflow Specialist
+                </p>
+
+                <p className="text-lg md:text-xl text-parchment-200 leading-relaxed font-medium max-w-md">
                   Building intelligent n8n workflows, API integrations, and robust agentic systems.
                 </p>
 
@@ -55,13 +63,29 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="md:col-span-5 relative hidden md:block"
+                className="md:col-span-5 relative min-h-[380px] md:min-h-[520px] overflow-hidden border border-onyx-800 bg-onyx-900"
               >
-                <TopologyDiagram />
+                <Image
+                  src="/victor-portrait.jpg"
+                  alt="Portrait of Victor"
+                  fill
+                  priority
+                  sizes="(max-width: 767px) 100vw, 42vw"
+                  className="object-cover object-[50%_30%] md:scale-x-[-1]"
+                />
+                <div className="absolute inset-0 ring-1 ring-inset ring-[#58f28f]/25" aria-hidden="true" />
+                <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 border-t border-parchment-50/20 bg-onyx-950/85 px-5 py-4 backdrop-blur-sm">
+                  <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-parchment-100">
+                    Victor / AI Automation
+                  </span>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-parchment-300">
+                    Bangkok
+                  </span>
+                </div>
               </motion.div>
             </div>
 
