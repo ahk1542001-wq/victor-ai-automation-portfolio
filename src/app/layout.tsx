@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import { Inter, Geist_Mono } from "next/font/google";
+import { Geist, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const geist = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
   display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  weight: "400",
   subsets: ["latin"],
   display: "swap",
 });
@@ -71,11 +72,11 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${geistMono.variable} antialiased text-white bg-[#082c22] selection:bg-emerald-500 selection:text-black`}
+        className={`${geist.variable} ${instrumentSerif.variable} antialiased text-[#FBF9F5] bg-[#1A1915] selection:bg-[#FBF9F5] selection:text-[#1A1915] font-sans`}
       >
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-5 focus:py-3 focus:bg-emerald-400 focus:text-[#041812] focus:font-extrabold focus:rounded-md focus:outline-none focus:ring-4 focus:ring-white shadow-xl"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-5 focus:py-3 focus:bg-[#FBF9F5] focus:text-[#1A1915] focus:font-extrabold focus:rounded-md focus:outline-none focus:ring-4 focus:ring-white shadow-xl"
         >
           Skip to main content
         </a>

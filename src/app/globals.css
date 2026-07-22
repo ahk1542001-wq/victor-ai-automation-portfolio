@@ -1,24 +1,23 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-inter);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-geist-sans);
+  --font-serif: var(--font-instrument-serif);
 
-  --color-viridian-950: #041812;
-  --color-viridian-900: #082c22;
-  --color-viridian-850: #0b382b;
-  --color-viridian-800: #0f4c3a;
-  --color-viridian-700: #14664e;
-  --color-viridian-600: #198062;
-  --color-viridian-200: #b8e0d4;
-  --color-viridian-100: #d8f0e8;
-  --color-viridian-50: #eff8f4;
+  --color-onyx-950: #0a0a09;
+  --color-onyx-900: #1A1915;
+  --color-onyx-800: #2a2924;
+  --color-onyx-700: #3a3832;
+  --color-parchment-50: #FBF9F5;
+  --color-parchment-100: #f2efe6;
+  --color-parchment-200: #e5e0d1;
+  --color-parchment-300: #d6cfbc;
 }
 
 @layer base {
   :root {
-    --background: #082c22;
-    --foreground: #ffffff;
+    --background: #1A1915;
+    --foreground: #FBF9F5;
   }
 }
 
