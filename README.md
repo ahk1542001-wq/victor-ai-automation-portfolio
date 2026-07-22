@@ -44,6 +44,9 @@ Role: AI-Agent-Directed Product Builder. A FastAPI and PostgreSQL application sh
 
 - Cinematic Viridian portrait hero with restrained, reduced-motion-safe movement
 - Separate n8n Automation and AI-Assisted Software tracks
+- Streamlined recruiter homepage with two featured project previews
+- Dedicated work archive separating n8n Automation from AI-Assisted Software
+- Dedicated professional profile page for background, experience, learning direction, and featured credentials
 - Seven statically generated project case-study routes
 - Dedicated credentials route with five public verification links
 - Responsive navigation and layouts for desktop, tablet, and small mobile screens
@@ -65,7 +68,9 @@ Approved public content is separated from presentation code:
 ```text
 src/
 ├── app/                  # Routes, metadata, global styling
+│   ├── about/            # Background, experience, learning, and education
 │   ├── credentials/      # Evidence-backed credentials page
+│   ├── work/             # Complete categorized project archive
 │   └── projects/[slug]/  # Generated project case studies
 ├── components/           # Shared interface components
 └── data/                 # Approved profile, project, and credential claims

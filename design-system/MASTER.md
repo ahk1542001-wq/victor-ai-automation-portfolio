@@ -20,6 +20,17 @@
   - **Accent Colors:** Viridian green (`#58f28f`) used selectively for identity, active proof, and primary emphasis. Onyx/Parchment remain dominant.
 - **Components:** Avoid standard boxy borders. Use typography and spacing to divide sections.
 
+## Taste Review Constraints
+- Use audit-first redesign mode: preserve approved content, URLs, navigation meaning, and evidence hierarchy before changing presentation.
+- Keep one accent color across the experience: Viridian `#58f28f`. Do not introduce unrelated CTA colors.
+- Keep one sharp editorial shape language. Rounded pills and mixed radius systems are not part of this portfolio.
+- Keep the page theme consistently Onyx/Parchment; section hierarchy comes from spacing and restrained surface shifts, not unrelated theme changes.
+- Keep the Hero disciplined: a single visible name, concise role/value copy, and a visible contact action without decorative status strips or scroll cues.
+- Use real project screenshots and demos. Do not build fake terminals, fake dashboards, fake simulators, fake metrics, or decorative product UI.
+- Avoid numbered decorative eyebrows, three-equal-card feature rows, atmospheric city/time strips, and excessive border rows.
+- Prefer Motion transforms/opacity with reduced-motion support. Do not add hand-rolled window scroll listeners.
+- Treat these as project-local design constraints derived from the owner-approved Taste Skill documentation. The external skill is not installed or trusted as executable code.
+
 ## Component Specifics
 - **Navigation:** Fixed header, Onyx background, crisp Parchment wordmark, homepage anchors plus dedicated Credentials route.
 - **Hero Section:** Unframed cinematic portrait canvas with disciplined Viridian typography and reduced-motion-safe depth movement.
