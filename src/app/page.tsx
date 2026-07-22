@@ -26,7 +26,6 @@ export default function Home() {
 
   return (
     <div ref={containerRef} className="min-h-screen bg-onyx-950 text-parchment-50 font-sans selection:bg-parchment-200 selection:text-onyx-950 max-w-full overflow-x-hidden relative">
-      <motion.div style={{ y: bgY }} className="absolute inset-0 pointer-events-none opacity-20 bg-[url('/noise.png')] mix-blend-overlay z-0" />
       
       <Header />
 
@@ -346,7 +345,7 @@ function ProjectSection({ project, isEven, isFirst }: { project: Project; isEven
                </div>
             ) : project.imageUrl ? (
               <motion.div style={{ y: imgY, height: "120%" }} className="w-full absolute inset-0 -top-[10%]">
-                <Image src={project.imageUrl} alt={`${project.title} screenshot`} fill className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700 ease-out" />
+                <Image src={project.imageUrl} alt={`${project.title} screenshot`} fill sizes="(max-width: 1024px) 100vw, 60vw" className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700 ease-out" />
               </motion.div>
             ) : (
               <div className="w-full h-full p-4">
