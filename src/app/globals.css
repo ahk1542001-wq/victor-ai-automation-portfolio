@@ -26,6 +26,180 @@ body {
   background: var(--background);
 }
 
+.hero-stage {
+  isolation: isolate;
+}
+
+.hero-canvas-scene {
+  max-width: 70rem;
+  margin-inline: auto;
+  padding-top: 2rem;
+}
+
+.hero-canvas {
+  position: relative;
+}
+
+.hero-canvas-surface {
+  position: relative;
+  min-height: 38rem;
+  overflow: hidden;
+  background: #0b0d0c;
+  box-shadow: 0 2.25rem 5rem rgb(0 0 0 / 28%);
+}
+
+.hero-screen-copy {
+  position: relative;
+  z-index: 10;
+  padding: 3rem;
+}
+
+.hero-eyebrow,
+.hero-location {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero-eyebrow {
+  color: var(--color-parchment-200);
+}
+
+.hero-screen-copy h1 {
+  position: relative;
+  z-index: 10;
+  margin-top: 1rem;
+  color: #58f28f;
+  font-size: 6rem;
+  font-weight: 900;
+  line-height: 0.9;
+}
+
+.hero-role {
+  position: absolute;
+  top: 21rem;
+  left: 3rem;
+  max-width: 14rem;
+  color: var(--color-parchment-50);
+  font-family: var(--font-instrument-serif), serif;
+  font-size: 1.5rem;
+  line-height: 1.05;
+}
+
+.hero-value {
+  position: absolute;
+  top: 21rem;
+  right: 3rem;
+  max-width: 15rem;
+  color: var(--color-parchment-200);
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
+.hero-contact-link {
+  position: absolute;
+  top: 28.5rem;
+  right: 3rem;
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid #58f28f;
+  color: var(--color-parchment-50);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.hero-portrait-wrap {
+  position: absolute;
+  inset: 7rem 22% 0;
+  z-index: 5;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-title-motion {
+    animation: heroTitleReveal 900ms 180ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .hero-portrait-wrap img {
+    animation: portraitDepth 10s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes heroTitleReveal {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes portraitDepth {
+  from { transform: scale(1.01) translateY(0); }
+  to { transform: scale(1.035) translateY(-0.5rem); }
+}
+
+.hero-location {
+  position: absolute;
+  right: 1rem;
+  bottom: 1.5rem;
+  z-index: 10;
+  color: #58f28f;
+  writing-mode: vertical-rl;
+}
+
+@media (max-width: 767px) {
+  .hero-canvas-scene {
+    padding-top: 0;
+  }
+
+  .hero-canvas-surface {
+    min-height: 44rem;
+  }
+
+  .hero-screen-copy {
+    padding: 2.25rem 1.5rem;
+  }
+
+  .hero-screen-copy h1 {
+    font-size: 4rem;
+  }
+
+  .hero-portrait-wrap {
+    inset: 10rem 0 0;
+  }
+
+  .hero-role {
+    top: 31.5rem;
+    left: 1.5rem;
+    max-width: 17rem;
+    font-size: 1.25rem;
+  }
+
+  .hero-value {
+    top: 36rem;
+    right: auto;
+    left: 1.5rem;
+    max-width: 17rem;
+    font-size: 0.75rem;
+  }
+
+  .hero-contact-link {
+    top: 40rem;
+    right: 1.5rem;
+  }
+
+  .hero-location {
+    display: none;
+  }
+
+}
+
 @layer utilities {
   .editorial-heading {
     letter-spacing: -0.04em;
@@ -133,7 +307,7 @@ body {
 }
 
 .tools-logo-icon,
-.tools-logo-mark {
+.tools-logo-image {
   width: 1.75rem;
   height: 1.75rem;
   flex: 0 0 auto;
@@ -143,17 +317,13 @@ body {
   background: currentColor;
 }
 
-.tools-logo-mark {
-  display: grid;
-  place-items: center;
-  border: 1px solid color-mix(in srgb, currentColor 45%, transparent);
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 0.625rem;
-  line-height: 1;
+.tools-logo-image {
+  object-fit: contain;
+  border-radius: 0.375rem;
 }
 
 .tools-logo-item-emphasized .tools-logo-icon,
-.tools-logo-item-emphasized .tools-logo-mark {
+.tools-logo-item-emphasized .tools-logo-image {
   width: 2rem;
   height: 2rem;
 }
@@ -174,9 +344,9 @@ body {
   }
 
   .tools-logo-icon,
-  .tools-logo-mark,
+  .tools-logo-image,
   .tools-logo-item-emphasized .tools-logo-icon,
-  .tools-logo-item-emphasized .tools-logo-mark {
+  .tools-logo-item-emphasized .tools-logo-image {
     width: 1.5rem;
     height: 1.5rem;
   }

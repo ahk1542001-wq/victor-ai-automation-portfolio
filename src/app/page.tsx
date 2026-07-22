@@ -3,16 +3,20 @@
 import { useRef } from 'react';
 import { type Project, projects } from '@/data/projects';
 import { portfolioContent } from '@/data/content';
+import { credentials } from '@/data/credentials';
 import { YouTubeThumbnail } from '@/components/YouTubeThumbnail';
 import { Header } from '@/components/Header';
 import { TopologyDiagram } from '@/components/TopologyDiagram';
-import { ArrowUpRight, Globe, ExternalLink, Code2 } from 'lucide-react';
+import { ArrowUpRight, Globe, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useScroll, useTransform, MotionConfig } from 'framer-motion';
 
 export default function Home() {
-  const featuredProjects = projects.filter((p) => p.category === 'Feature').slice(0, 3);
+  const n8nProjects = projects.filter((project) => project.projectType === 'n8n Automation');
+  const featuredN8nProjects = n8nProjects.slice(0, 2);
+  const additionalN8nProjects = n8nProjects.slice(2);
+  const softwareProjects = projects.filter((project) => project.projectType === 'AI-Assisted Software');
   
   // Parallax configuration for the main page wrapper
   const containerRef = useRef(null);
@@ -26,42 +30,37 @@ export default function Home() {
       <main id="main-content" className="w-full focus:outline-none relative z-10" tabIndex={-1}>
 
         {/* Hero Section */}
-        <section aria-labelledby="hero-heading" className="pt-32 pb-20 md:pt-40 md:pb-32 relative">
+        <section aria-labelledby="hero-heading" className="hero-stage pt-28 pb-20 md:pt-36 md:pb-32 relative">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
-              
+            <div className="hero-canvas-scene">
               <motion.div 
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="md:col-span-7 flex flex-col space-y-12"
+                className="hero-canvas"
               >
-                <h1 id="hero-heading" className="font-serif text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-normal tracking-tighter w-full leading-[0.9]">
-                  <span className="block text-parchment-50">Victor</span>
-                  <span className="block text-parchment-300">Automation</span>
-                </h1>
-                
-                <p className="text-xl md:text-2xl text-parchment-200 leading-relaxed font-medium max-w-md">
-                  Building intelligent n8n workflows, API integrations, and robust agentic systems.
-                </p>
-
-                <div>
-                  <a
-                    href={`mailto:${portfolioContent.contact.email}`}
-                    className="inline-flex items-center justify-center bg-parchment-50 text-onyx-950 px-10 py-5 text-sm font-extrabold hover:bg-parchment-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-parchment-200"
-                  >
-                    Contact Me <ArrowUpRight className="w-5 h-5 ml-2" />
-                  </a>
+                <div className="hero-canvas-surface">
+                  <div className="hero-screen-copy">
+                    <span className="hero-eyebrow">AI Automation &amp; Agent Workflows</span>
+                    <h1 id="hero-heading" className="hero-title-motion">VICTOR</h1>
+                    <p className="hero-role">AI Automation &amp; Agent Workflow Specialist</p>
+                    <p className="hero-value">Designing reliable n8n workflows, API integrations, and AI-assisted systems.</p>
+                    <a href={`mailto:${portfolioContent.contact.email}`} className="hero-contact-link">
+                      Let&apos;s talk <ArrowUpRight className="h-4 w-4" />
+                    </a>
+                  </div>
+                  <div className="hero-portrait-wrap">
+                    <Image
+                      src="/victor-portrait-retouched.jpg"
+                      alt="Portrait of Victor"
+                      fill
+                      priority
+                      sizes="(max-width: 767px) 92vw, 54vw"
+                      className="object-cover object-[50%_26%]"
+                    />
+                  </div>
+                  <span className="hero-location">Bangkok, Thailand</span>
                 </div>
-              </motion.div>
-
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="md:col-span-5 relative hidden md:block"
-              >
-                <TopologyDiagram />
               </motion.div>
             </div>
 
@@ -69,20 +68,23 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Selected Work Section (Flows naturally, no box backgrounds) */}
+        {/* Selected Work, separated by verified delivery track */}
         <section id="work" aria-labelledby="work-heading" className="py-24 relative">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-24 border-b border-onyx-800 pb-8">
               <div>
-                <span className="text-xs font-mono text-parchment-300 uppercase tracking-widest block mb-4 font-semibold">
-                  Case Studies
+                <span className="text-xs font-mono text-[#58f28f] uppercase tracking-widest block mb-4 font-semibold">
+                  Core Delivery Track
                 </span>
-                <h2 id="work-heading" className="font-serif text-5xl md:text-7xl font-normal tracking-tight text-parchment-50">SELECTED WORK</h2>
+                <h2 id="work-heading" className="font-serif text-5xl md:text-7xl font-normal tracking-normal text-parchment-50">N8N AUTOMATION</h2>
+                <p className="mt-5 max-w-2xl text-lg text-parchment-200 leading-relaxed">
+                  Production-minded workflow systems combining APIs, AI models, data stores, and human approval steps.
+                </p>
               </div>
             </div>
 
             <div className="space-y-40">
-              {featuredProjects.map((project, index) => (
+              {featuredN8nProjects.map((project, index) => (
                 <ProjectSection 
                   key={project.id} 
                   project={project} 
@@ -90,6 +92,45 @@ export default function Home() {
                   isFirst={index === 0} 
                 />
               ))}
+            </div>
+
+            <div className="mt-28">
+              <div className="mb-10 flex items-end justify-between gap-6 border-b border-onyx-800 pb-5">
+                <h3 className="font-serif text-3xl md:text-4xl text-parchment-50">More n8n Systems</h3>
+                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-parchment-300">
+                  {additionalN8nProjects.length} projects
+                </span>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-onyx-800 border border-onyx-800">
+                {additionalN8nProjects.map((project) => (
+                  <CompactProjectCard key={project.id} project={project} />
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-36 border-t border-onyx-800 pt-24">
+              <div className="mb-20 border-b border-onyx-800 pb-8">
+                <span className="text-xs font-mono text-[#58f28f] uppercase tracking-widest block mb-4 font-semibold">
+                  Expanding Direction
+                </span>
+                <h2 className="font-serif text-5xl md:text-7xl font-normal tracking-normal text-parchment-50">
+                  AI-ASSISTED SOFTWARE
+                </h2>
+                <p className="mt-5 max-w-2xl text-lg text-parchment-200 leading-relaxed">
+                  Software products I direct and build with AI coding agents through specifications, testing, and release review.
+                </p>
+              </div>
+
+              <div className="space-y-40">
+                {softwareProjects.map((project, index) => (
+                  <ProjectSection
+                    key={project.id}
+                    project={project}
+                    isEven={index % 2 === 1}
+                    isFirst={false}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -155,17 +196,17 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Experience - Raw Data Ledger / Terminal Table */}
+        {/* Experience and professional credentials */}
         <section id="experience" aria-labelledby="experience-heading" className="py-32 border-t border-onyx-800">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
             <div className="mb-24 flex justify-between items-end border-b border-onyx-800 pb-8">
-              <h2 id="experience-heading" className="font-serif text-5xl md:text-7xl font-normal tracking-tight text-parchment-50">LOG</h2>
-              <span className="text-xs font-mono text-parchment-300 uppercase tracking-widest hidden sm:block">Data Ledger</span>
+              <h2 id="experience-heading" className="font-serif text-5xl md:text-7xl font-normal tracking-normal text-parchment-50">EXPERIENCE &amp; CREDENTIALS</h2>
+              <span className="text-xs font-mono text-[#58f28f] uppercase tracking-widest hidden sm:block">Professional Profile</span>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
               {/* Experience Table */}
-              <div>
+              <div className="lg:col-span-7">
                 <span className="text-xs font-mono text-parchment-300 uppercase tracking-widest block mb-8 font-semibold">Experience</span>
                 <div className="flex flex-col border-t border-onyx-800">
                   {portfolioContent.professionalExperience.map((exp, idx) => (
@@ -181,20 +222,38 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Education Table */}
-              <div>
-                <span className="text-xs font-mono text-parchment-300 uppercase tracking-widest block mb-8 font-semibold">Education</span>
-                <div className="flex flex-col border-t border-onyx-800">
+              <div className="lg:col-span-5 space-y-14">
+                <div>
+                  <span className="text-xs font-mono text-[#58f28f] uppercase tracking-widest block mb-8 font-semibold">AI Certifications</span>
+                  <ol className="border-t border-onyx-800">
+                    {credentials.filter((credential) => credential.priority === 'featured').map((credential, idx) => (
+                      <li key={credential.id} className="flex gap-5 py-5 border-b border-onyx-800">
+                        <span className="font-mono text-xs text-[#58f28f]">{String(idx + 1).padStart(2, '0')}</span>
+                        <span className="font-serif text-xl text-parchment-50 leading-snug">{credential.title}</span>
+                      </li>
+                    ))}
+                  </ol>
+                  <Link
+                    href="/credentials"
+                    className="mt-6 inline-flex min-h-[44px] items-center text-sm font-bold text-parchment-200 transition-colors hover:text-parchment-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]"
+                  >
+                    View all credentials <ArrowUpRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </div>
+
+                <div>
+                  <span className="text-xs font-mono text-parchment-300 uppercase tracking-widest block mb-8 font-semibold">Formal Education</span>
+                  <div className="flex flex-col border-t border-onyx-800">
                   {portfolioContent.education.map((edu, idx) => (
-                    <div key={idx} className="flex justify-between items-baseline py-4 border-b border-onyx-800 group hover:bg-onyx-900 transition-colors">
-                      <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4 w-full">
-                        <span className="font-mono text-xs text-parchment-300 w-32 shrink-0">{edu.period}</span>
+                    <div key={idx} className="py-4 border-b border-onyx-800 group hover:bg-onyx-900 transition-colors">
+                      <div className="flex flex-col gap-2">
                         <span className="font-sans text-sm font-bold text-parchment-50">{edu.institution}</span>
-                        <span className="hidden md:block flex-grow border-b border-dotted border-onyx-700 opacity-30 mx-4"></span>
-                        <span className="font-serif text-lg text-parchment-200">{edu.degree}</span>
+                        <span className="font-serif text-base text-parchment-200">{edu.degree}</span>
+                        <span className="font-mono text-[11px] text-parchment-300">{edu.period}</span>
                       </div>
                     </div>
                   ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -358,7 +417,7 @@ function ProjectSection({ project, isEven, isFirst }: { project: Project; isEven
                 </a>
               )}
               <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-parchment-300 hover:text-parchment-50 transition-colors" title="GitHub Repository">
-                <Code2 className="w-5 h-5" />
+                <Image src="/brands/github.svg" alt="" width={20} height={20} className="invert" aria-hidden="true" />
               </a>
             </div>
           </div>
@@ -368,10 +427,57 @@ function ProjectSection({ project, isEven, isFirst }: { project: Project; isEven
   );
 }
 
+function CompactProjectCard({ project }: { project: Project }) {
+  return (
+    <article className="flex min-h-[320px] flex-col justify-between bg-onyx-950 p-7 sm:p-9 transition-colors hover:bg-onyx-900">
+      <div>
+        <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-[#58f28f]">
+          {project.role}
+        </span>
+        <h4 className="mt-5 font-serif text-3xl leading-tight text-parchment-50">
+          {project.title}
+        </h4>
+        <p className="mt-5 text-sm leading-relaxed text-parchment-200">
+          {project.problem}
+        </p>
+        <div className="mt-6 flex flex-wrap gap-2">
+          {project.tools.slice(0, 4).map((tool) => (
+            <span key={tool} className="border border-onyx-700 px-2.5 py-1 font-mono text-[9px] uppercase text-parchment-300">
+              {tool}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-10 flex items-center justify-between border-t border-onyx-800 pt-5">
+        <Link
+          href={`/projects/${project.id}`}
+          className="inline-flex min-h-[44px] items-center text-sm font-bold text-parchment-200 transition-colors hover:text-parchment-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]"
+        >
+          Case Study <ArrowUpRight className="ml-2 h-4 w-4" />
+        </Link>
+        <a
+          href={project.youtubeUrl ?? project.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center text-parchment-300 transition-colors hover:text-parchment-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]"
+          title={project.youtubeUrl ? 'Watch project demo' : 'GitHub repository'}
+        >
+          {project.youtubeUrl ? (
+            <ExternalLink className="h-5 w-5" />
+          ) : (
+            <Image src="/brands/github.svg" alt="" width={20} height={20} className="invert" aria-hidden="true" />
+          )}
+        </a>
+      </div>
+    </article>
+  );
+}
+
 type Tool = {
   name: string;
-  icon?: string;
-  mark?: string;
+  icon: string;
+  renderAsImage?: boolean;
   emphasize?: boolean;
 };
 
@@ -393,7 +499,8 @@ function ToolsRail() {
     {
       name: "AI-Assisted Development",
       tools: [
-        { name: "Codex", mark: "</>" },
+        { name: "Codex", icon: "/brands/codex.png", renderAsImage: true },
+        { name: "ChatGPT", icon: "/brands/openai.svg" },
         { name: "Claude Code", icon: "/brands/anthropic.svg" },
         { name: "Antigravity", icon: "/brands/antigravity.png" },
       ]
@@ -410,7 +517,6 @@ function ToolsRail() {
       name: "AI Models & Local",
       tools: [
         { name: "Ollama", icon: "/brands/ollama.svg" },
-        { name: "Groq", mark: "G" },
       ]
     },
     {
@@ -457,7 +563,16 @@ function ToolsRail() {
                   aria-label={setIndex === 0 ? tool.name : undefined}
                   title={setIndex === 0 ? tool.name : undefined}
                 >
-                  {tool.icon && (
+                  {tool.renderAsImage ? (
+                    <Image
+                      src={tool.icon}
+                      alt=""
+                      width={32}
+                      height={32}
+                      className="tools-logo-image"
+                      aria-hidden="true"
+                    />
+                  ) : (
                     <span
                       className="tools-logo-icon"
                       style={{
@@ -466,11 +581,6 @@ function ToolsRail() {
                       }}
                       aria-hidden="true"
                     />
-                  )}
-                  {tool.mark && (
-                    <span className="tools-logo-mark" aria-hidden="true">
-                      {tool.mark}
-                    </span>
                   )}
                   <span>{tool.name}</span>
                 </div>
