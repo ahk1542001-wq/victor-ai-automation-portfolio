@@ -9,7 +9,7 @@ import { TopologyDiagram } from '@/components/TopologyDiagram';
 import { ArrowUpRight, Globe, ExternalLink, Code2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, MotionConfig } from 'framer-motion';
 
 export default function Home() {
   const featuredProjects = projects.filter((p) => p.category === 'Feature').slice(0, 3);
@@ -22,7 +22,8 @@ export default function Home() {
   });
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-onyx-950 text-parchment-50 font-sans selection:bg-parchment-200 selection:text-onyx-950 max-w-full overflow-x-hidden relative">
+    <MotionConfig reducedMotion="user">
+      <div ref={containerRef} className="min-h-screen bg-onyx-950 text-parchment-50 font-sans selection:bg-parchment-200 selection:text-onyx-950 max-w-full overflow-x-hidden relative">
       
       <Header />
 
@@ -230,6 +231,7 @@ export default function Home() {
         </div>
       </footer>
     </div>
+    </MotionConfig>
   );
 }
 
