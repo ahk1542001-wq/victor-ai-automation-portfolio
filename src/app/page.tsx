@@ -9,17 +9,13 @@ import { TopologyDiagram } from '@/components/TopologyDiagram';
 import { ArrowUpRight, Globe, ExternalLink, Code2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useScroll, useTransform, MotionConfig } from 'framer-motion';
+import { motion, useScroll, useTransform, MotionConfig, MotionValue } from 'framer-motion';
 
 export default function Home() {
   const featuredProjects = projects.filter((p) => p.category === 'Feature').slice(0, 3);
   
   // Parallax configuration for the main page wrapper
   const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
 
   return (
     <MotionConfig reducedMotion="user">
@@ -266,7 +262,7 @@ function CapabilitiesSection() {
   );
 }
 
-function CapabilityRow({ text, index, scrollYProgress }: { text: string; index: number; scrollYProgress: any }) {
+function CapabilityRow({ text, index, scrollYProgress }: { text: string; index: number; scrollYProgress: MotionValue<number> }) {
   // Staggered parallax for asymmetric editorial movement
   const yOffsets = [
     [0, -100],
