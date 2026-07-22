@@ -64,11 +64,10 @@ export default function Home() {
                 <TopologyDiagram />
               </motion.div>
             </div>
+
+            <ToolsRail />
           </div>
         </section>
-
-        {/* Skills & Tools Section */}
-        <SkillsToolsSection />
 
         {/* Selected Work Section (Flows naturally, no box backgrounds) */}
         <section id="work" aria-labelledby="work-heading" className="py-24 relative">
@@ -381,7 +380,7 @@ type ToolGroup = {
   tools: Tool[];
 };
 
-function SkillsToolsSection() {
+function ToolsRail() {
   const groups: ToolGroup[] = [
     {
       name: "Core Automation",
@@ -430,90 +429,56 @@ function SkillsToolsSection() {
     },
   ];
   const tools = groups.flatMap((group) => group.tools);
-  const categorySummary = groups.map((group) => group.name).join(" · ");
-
   return (
-    <section id="skills" className="py-24 md:py-32 relative border-t border-onyx-800">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 xl:grid-cols-12 gap-16 xl:gap-24 items-center">
-          
-          {/* Editorial Split: Copy Left */}
-          <div className="xl:col-span-5 flex flex-col justify-center">
-            <span className="text-xs font-mono text-parchment-300 uppercase tracking-widest block mb-6 font-semibold">
-              Capabilities Toolkit
-            </span>
-            <h2 className="font-serif text-5xl md:text-7xl font-normal tracking-tight text-parchment-50 mb-8">
-              {portfolioContent.skillsAndTools.title}
-            </h2>
-            <p className="text-xl md:text-2xl text-parchment-200 leading-relaxed font-medium">
-              {portfolioContent.skillsAndTools.description}
-            </p>
-          </div>
+    <motion.div
+      id="tools"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+      className="hero-tools-rail relative mt-16 md:mt-24 border-y border-onyx-800 py-5 overflow-hidden"
+      aria-label="Tools I work with"
+    >
+      <div className="mb-4 px-4 sm:px-8 text-[10px] font-mono font-semibold uppercase tracking-[0.2em] text-parchment-300/65">
+        Tools I Work With
+      </div>
 
-          {/* Animated logo rail */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="xl:col-span-7 relative border border-onyx-800 bg-onyx-950 py-12 sm:py-16 overflow-hidden"
-          >
-            
-            {/* Lightweight pixel background */}
-            <svg className="absolute inset-0 w-full h-full opacity-[0.03] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern id="dotGrid" width="24" height="24" patternUnits="userSpaceOnUse">
-                  <circle cx="2" cy="2" r="1.5" fill="currentColor" className="text-parchment-50" />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#dotGrid)" />
-            </svg>
-            
-            <div className="tools-marquee-shell relative z-10 overflow-hidden">
-              <div className="tools-marquee-track">
-                {[0, 1].map((setIndex) => (
-                  <div
-                    key={setIndex}
-                    className="tools-marquee-set"
-                    aria-hidden={setIndex === 1 ? "true" : undefined}
-                  >
-                    {tools.map((tool) => (
-                      <div
-                        key={`${setIndex}-${tool.name}`}
-                        className={`tools-logo-item ${tool.emphasize ? "tools-logo-item-emphasized" : ""}`}
-                        aria-label={setIndex === 0 ? tool.name : undefined}
-                        title={setIndex === 0 ? tool.name : undefined}
-                      >
-                        {tool.icon && (
-                          <span
-                            className="tools-logo-icon"
-                            style={{
-                              WebkitMask: `url(${tool.icon}) center/contain no-repeat`,
-                              mask: `url(${tool.icon}) center/contain no-repeat`,
-                            }}
-                            aria-hidden="true"
-                          />
-                        )}
-                        {tool.mark && (
-                          <span className="tools-logo-mark" aria-hidden="true">
-                            {tool.mark}
-                          </span>
-                        )}
-                        <span>{tool.name}</span>
-                      </div>
-                    ))}
-                  </div>
-                ))}
-              </div>
+      <div className="tools-marquee-shell overflow-hidden">
+        <div className="tools-marquee-track">
+          {[0, 1].map((setIndex) => (
+            <div
+              key={setIndex}
+              className="tools-marquee-set"
+              aria-hidden={setIndex === 1 ? "true" : undefined}
+            >
+              {tools.map((tool) => (
+                <div
+                  key={`${setIndex}-${tool.name}`}
+                  className={`tools-logo-item ${tool.emphasize ? "tools-logo-item-emphasized" : ""}`}
+                  aria-label={setIndex === 0 ? tool.name : undefined}
+                  title={setIndex === 0 ? tool.name : undefined}
+                >
+                  {tool.icon && (
+                    <span
+                      className="tools-logo-icon"
+                      style={{
+                        WebkitMask: `url(${tool.icon}) center/contain no-repeat`,
+                        mask: `url(${tool.icon}) center/contain no-repeat`,
+                      }}
+                      aria-hidden="true"
+                    />
+                  )}
+                  {tool.mark && (
+                    <span className="tools-logo-mark" aria-hidden="true">
+                      {tool.mark}
+                    </span>
+                  )}
+                  <span>{tool.name}</span>
+                </div>
+              ))}
             </div>
-
-            <p className="relative z-10 mt-10 px-8 sm:px-12 text-[10px] font-mono uppercase tracking-wider leading-relaxed text-parchment-300/55">
-              {categorySummary}
-            </p>
-          </motion.div>
-
+          ))}
         </div>
       </div>
-    </section>
+    </motion.div>
   );
 }
