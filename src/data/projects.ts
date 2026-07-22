@@ -63,7 +63,7 @@ export const projects: Project[] = [
     capabilities: ['Spec-driven AI-agent orchestration', 'Product and system decision-making', 'Reviewing automated tests', 'Release approval'],
     outcome: 'Publicly deployed; release evidence records 80 passing tests and 33 desktop/mobile screenshots.',
     github: 'https://github.com/ahk1542001-wq/url-shortener-api',
-    imageUrl: '/projects/swoosh-shortener.png',
+    imageUrl: '/projects/swoosh-feature-selection.png',
     liveUrl: 'https://swoo-sh.onrender.com'
   },
   {

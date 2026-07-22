@@ -67,9 +67,9 @@ export default function Home() {
         </section>
 
         {/* Selected Work, separated by verified delivery track */}
-        <section id="work" aria-labelledby="work-heading" className="py-24 relative">
+        <section id="work" aria-labelledby="work-heading" className="py-16 md:py-24 relative">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-24 border-b border-onyx-800 pb-8">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-14 border-b border-onyx-800 pb-8">
               <div>
                 <span className="text-xs font-mono text-[#58f28f] uppercase tracking-widest block mb-4 font-semibold">
                   Core Delivery Track
@@ -81,13 +81,13 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="max-w-4xl border border-onyx-800">
+            <div className="max-w-6xl">
               {featuredN8nProjects.map((project, index) => (
                 <HomeProjectCard key={project.id} project={project} eager={index === 0} />
               ))}
             </div>
 
-            <div className="mt-20 flex justify-center">
+            <div className="mt-10 md:mt-12 flex justify-center">
               <Link
                 href="/work"
                 className="inline-flex min-h-[48px] items-center border border-parchment-300 px-7 py-3 text-sm font-bold text-parchment-50 transition-colors hover:bg-parchment-50 hover:text-onyx-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]"
@@ -96,8 +96,8 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="mt-28 border-t border-onyx-800 pt-20">
-              <div className="mb-20 border-b border-onyx-800 pb-8">
+            <div className="mt-16 md:mt-20 border-t border-onyx-800 pt-14 md:pt-16">
+              <div className="mb-12 md:mb-14 border-b border-onyx-800 pb-8">
                 <span className="text-xs font-mono text-[#58f28f] uppercase tracking-widest block mb-4 font-semibold">
                   Expanding Direction
                 </span>
@@ -109,13 +109,13 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="max-w-4xl">
+              <div className="max-w-6xl">
                 {softwareProjects.map((project) => (
                   <HomeProjectCard key={project.id} project={project} eager={false} />
                 ))}
               </div>
 
-              <div className="mt-20 flex justify-center">
+              <div className="mt-10 md:mt-12 flex justify-center">
                 <Link
                   href="/work"
                   className="inline-flex min-h-[48px] items-center text-sm font-bold text-parchment-200 transition-colors hover:text-parchment-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]"
@@ -215,9 +215,9 @@ function HomeProjectCard({ project, eager }: { project: Project; eager: boolean 
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-      className="group flex h-full flex-col bg-onyx-950"
+      className="group grid overflow-hidden border border-onyx-800 bg-onyx-950 lg:grid-cols-[minmax(0,1.15fr)_minmax(22rem,0.85fr)]"
     >
-      <div className="relative aspect-[16/10] overflow-hidden bg-onyx-900">
+      <div className="relative aspect-video overflow-hidden bg-onyx-900 lg:self-stretch">
         {project.youtubeId ? (
           <YouTubeThumbnail youtubeId={project.youtubeId} alt={`${project.title} video thumbnail`} eager={eager} />
         ) : project.imageUrl ? (
@@ -226,14 +226,14 @@ function HomeProjectCard({ project, eager }: { project: Project; eager: boolean 
             alt={`${project.title} screenshot`}
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.025]"
+            className="object-contain transition-transform duration-700 ease-out group-hover:scale-[1.015]"
           />
         ) : (
           <div className="h-full w-full p-4"><TopologyDiagram /></div>
         )}
       </div>
 
-      <div className="flex flex-1 flex-col p-6 sm:p-8">
+      <div className="flex min-w-0 flex-col p-6 sm:p-8 lg:p-9">
         <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-[#58f28f]">{project.role}</span>
         <h3 className="mt-4 font-serif text-3xl leading-tight text-parchment-50 sm:text-4xl">{project.title}</h3>
         <p className="mt-5 text-sm leading-relaxed text-parchment-200 sm:text-base">{project.problem}</p>
