@@ -67,6 +67,9 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Skills & Tools Section */}
+        <SkillsToolsSection />
+
         {/* Selected Work Section (Flows naturally, no box backgrounds) */}
         <section id="work" aria-labelledby="work-heading" className="py-24 relative">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
@@ -363,5 +366,118 @@ function ProjectSection({ project, isEven, isFirst }: { project: Project; isEven
         </div>
       </div>
     </motion.article>
+  );
+}
+
+function SkillsToolsSection() {
+  const groups = [
+    {
+      name: "Core",
+      tools: [
+        { name: "n8n", emphasize: true },
+        { name: "Docker" },
+        { name: "GitHub" },
+      ]
+    },
+    {
+      name: "AI-Assisted Development",
+      tools: [
+        { name: "Codex" },
+        { name: "Claude Code" },
+        { name: "Antigravity" },
+      ]
+    },
+    {
+      name: "Workspace",
+      tools: [
+        { name: "Notion" },
+        { name: "Obsidian" },
+      ]
+    },
+    {
+      name: "AI / Data",
+      tools: [
+        { name: "Qdrant" },
+        { name: "Ollama" },
+        { name: "Groq" },
+      ]
+    },
+    {
+      name: "Integrations",
+      tools: [
+        { name: "Telegram" },
+        { name: "Google Sheets" },
+      ]
+    },
+  ];
+
+  return (
+    <section id="skills" className="py-24 md:py-32 relative border-t border-onyx-800">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 xl:grid-cols-12 gap-16 xl:gap-24 items-center">
+          
+          {/* Editorial Split: Copy Left */}
+          <div className="xl:col-span-5 flex flex-col justify-center">
+            <span className="text-xs font-mono text-parchment-300 uppercase tracking-widest block mb-6 font-semibold">
+              Capabilities Toolkit
+            </span>
+            <h2 className="font-serif text-5xl md:text-7xl font-normal tracking-tight text-parchment-50 mb-8">
+              {portfolioContent.skillsAndTools.title}
+            </h2>
+            <p className="text-xl md:text-2xl text-parchment-200 leading-relaxed font-medium">
+              {portfolioContent.skillsAndTools.description}
+            </p>
+          </div>
+
+          {/* Logo Constellation Right */}
+          <div className="xl:col-span-7 relative border border-onyx-800 bg-onyx-950 p-8 sm:p-12 md:p-16 overflow-hidden">
+            
+            {/* Lightweight pixel background */}
+            <svg className="absolute inset-0 w-full h-full opacity-[0.03] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern id="dotGrid" width="24" height="24" patternUnits="userSpaceOnUse">
+                  <circle cx="2" cy="2" r="1.5" fill="currentColor" className="text-parchment-50" />
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#dotGrid)" />
+            </svg>
+            
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-12 relative z-10">
+              {groups.map((group, groupIdx) => (
+                <motion.div
+                  key={group.name}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.6, delay: groupIdx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex flex-col space-y-4"
+                >
+                  <span className="text-[10px] font-mono uppercase text-parchment-300/50 border-b border-onyx-800 pb-2">
+                    {group.name}
+                  </span>
+                  <div className="flex flex-col space-y-3">
+                    {group.tools.map((tool) => (
+                      <div 
+                        key={tool.name} 
+                        className={`font-sans font-bold transition-colors ${
+                          tool.emphasize 
+                            ? "text-4xl tracking-tight text-parchment-50" 
+                            : "text-lg text-parchment-200 hover:text-parchment-50 cursor-default"
+                        }`}
+                        aria-label={tool.name}
+                      >
+                        {tool.name}
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
   );
 }

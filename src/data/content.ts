@@ -24,6 +24,10 @@ export const portfolioContent = {
       'Google Cloud deployment'
     ]
   },
+  skillsAndTools: {
+    title: 'Skills & Tools',
+    description: 'Automation, AI-assisted development, integrations, and knowledge systems used across my projects.',
+  },
   languages: [
     { name: 'English', proficiency: 'Professional Working' },
     { name: 'Thai', proficiency: 'Elementary' },
