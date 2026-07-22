@@ -21,9 +21,6 @@ export default function Home() {
     offset: ["start start", "end end"]
   });
 
-  // Background slow shift for depth
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "5%"]);
-
   return (
     <div ref={containerRef} className="min-h-screen bg-onyx-950 text-parchment-50 font-sans selection:bg-parchment-200 selection:text-onyx-950 max-w-full overflow-x-hidden relative">
       
@@ -241,7 +238,7 @@ export default function Home() {
 // ----------------------------------------------------
 
 function CapabilitiesSection() {
-  // A highly scattered, parallax heavy layout for capabilities.
+  // A highly scattered, parallax heavy layout for capabilities, using flex to prevent mobile clipping.
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -249,51 +246,52 @@ function CapabilitiesSection() {
   });
 
   // Create staggered parallax values
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -300]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [100, -150]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [-50, -400]);
-  const y4 = useTransform(scrollYProgress, [0, 1], [200, -50]);
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [50, -100]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [-50, -250]);
+  const y4 = useTransform(scrollYProgress, [0, 1], [100, -50]);
 
   const caps = portfolioContent.establishedCapabilities;
 
   return (
-    <section ref={containerRef} id="capabilities" className="py-40 relative border-t border-onyx-800 overflow-hidden min-h-[100vh]">
+    <section ref={containerRef} id="capabilities" className="py-40 relative border-t border-onyx-800 overflow-hidden">
       <div className="absolute top-10 left-4 sm:left-6">
         <span className="text-xs font-mono text-parchment-300 uppercase tracking-widest block font-semibold">Technical Scope</span>
       </div>
       
-      {/* Scattered Pills Container */}
-      <div className="max-w-[1400px] mx-auto w-full h-full relative min-h-[600px] mt-24">
-        
-        {caps[0] && (
-          <motion.div style={{ y: y1 }} className="absolute top-[10%] left-[5%] md:left-[10%]">
-             <Pill text={caps[0]} size="lg" />
-          </motion.div>
-        )}
+      {/* Safe Responsive Scattered Container */}
+      <div className="max-w-[1400px] mx-auto w-full px-4 sm:px-6 relative mt-24">
+        <div className="flex flex-col gap-16 md:gap-32 items-center">
+          {caps[0] && (
+            <motion.div style={{ y: y1 }} className="self-start md:ml-[10%]">
+               <Pill text={caps[0]} size="lg" />
+            </motion.div>
+          )}
 
-        {caps[1] && (
-          <motion.div style={{ y: y3 }} className="absolute top-[30%] right-[10%] md:right-[20%]">
-             <Pill text={caps[1]} size="md" />
-          </motion.div>
-        )}
+          {caps[1] && (
+            <motion.div style={{ y: y3 }} className="self-end md:mr-[15%]">
+               <Pill text={caps[1]} size="md" />
+            </motion.div>
+          )}
 
-        {caps[2] && (
-          <motion.div style={{ y: y2 }} className="absolute top-[50%] left-[20%] md:left-[35%] z-10">
-             <Pill text={caps[2]} size="xl" />
-          </motion.div>
-        )}
+          {caps[2] && (
+            <motion.div style={{ y: y2 }} className="self-center z-10">
+               <Pill text={caps[2]} size="xl" />
+            </motion.div>
+          )}
 
-        {caps[3] && (
-          <motion.div style={{ y: y4 }} className="absolute top-[70%] right-[5%] md:right-[30%]">
-             <Pill text={caps[3]} size="lg" />
-          </motion.div>
-        )}
+          {caps[3] && (
+            <motion.div style={{ y: y4 }} className="self-end md:mr-[25%]">
+               <Pill text={caps[3]} size="lg" />
+            </motion.div>
+          )}
 
-        {caps[4] && (
-          <motion.div style={{ y: y1 }} className="absolute top-[85%] left-[10%] md:left-[25%]">
-             <Pill text={caps[4]} size="md" />
-          </motion.div>
-        )}
+          {caps[4] && (
+            <motion.div style={{ y: y1 }} className="self-start md:ml-[20%]">
+               <Pill text={caps[4]} size="md" />
+            </motion.div>
+          )}
+        </div>
       </div>
     </section>
   );
@@ -301,12 +299,12 @@ function CapabilitiesSection() {
 
 function Pill({ text, size }: { text: string; size: 'md' | 'lg' | 'xl' }) {
   const sizes = {
-    md: "text-xl md:text-2xl px-6 py-3",
-    lg: "text-3xl md:text-5xl px-8 py-4",
-    xl: "text-4xl md:text-7xl px-10 py-5"
+    md: "text-lg md:text-2xl px-6 py-3",
+    lg: "text-2xl md:text-5xl px-6 md:px-8 py-4",
+    xl: "text-3xl md:text-7xl px-8 md:px-10 py-5"
   };
   return (
-    <div className={`font-serif text-parchment-50 border border-onyx-800 bg-onyx-950/80 backdrop-blur-sm rounded-full ${sizes[size]} shadow-2xl hover:border-parchment-300 transition-colors cursor-default whitespace-nowrap`}>
+    <div className={`font-serif text-parchment-50 border border-onyx-800 bg-onyx-950/80 backdrop-blur-sm rounded-[3rem] md:rounded-full ${sizes[size]} shadow-2xl hover:border-parchment-300 transition-colors cursor-default max-w-[90vw] text-center`}>
       {text}
     </div>
   );
