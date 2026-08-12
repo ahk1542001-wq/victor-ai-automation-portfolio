@@ -1,14 +1,16 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { ArrowUpRight, Menu, X } from 'lucide-react';
+import { ArrowUpRight, Menu, X, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
   const isInitialMount = useRef(true);
+  const pathname = usePathname();
 
   const toggleMenu = () => setIsOpen((prev) => !prev);
   const closeMenu = () => setIsOpen(false);
@@ -20,6 +22,8 @@ export function Header() {
     { href: '/about#experience', label: 'Experience' },
     { href: '/credentials', label: 'Credentials' },
   ];
+
+  const isProjectPage = pathname?.startsWith('/projects/');
 
   useEffect(() => {
     if (isInitialMount.current) {
@@ -54,7 +58,7 @@ export function Header() {
   return (
     <header className="fixed top-0 w-full z-50 bg-onyx-950/80 backdrop-blur-md border-b border-onyx-800">
       <nav aria-label="Main Navigation" className="max-w-[1400px] mx-auto px-4 sm:px-6 py-4 flex justify-between items-center text-sm font-medium">
-        {/* Brand Wordmark & Availability */}
+        {/* Brand Wordmark & Back Button */}
         <div className="flex items-center gap-4 sm:gap-6">
           <Link
             href="/"
@@ -63,7 +67,14 @@ export function Header() {
             VICTOR.
           </Link>
 
-
+          {isProjectPage && (
+            <Link
+              href="/work"
+              className="hidden sm:flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-parchment-300 hover:text-parchment-50 transition-colors border-l border-onyx-800 pl-6 ml-2 min-h-[44px]"
+            >
+              <ArrowLeft className="w-4 h-4" /> Back to Work
+            </Link>
+          )}
         </div>
 
         {/* Desktop Navigation Links */}
@@ -110,10 +121,20 @@ export function Header() {
           className="md:hidden bg-onyx-950 border-b border-onyx-800 px-4 pt-3 pb-6 space-y-3 max-w-full overflow-x-hidden animate-fade-in"
         >
           <div className="flex flex-col space-y-1">
+            {isProjectPage && (
+              <Link
+                href="/work"
+                onClick={closeMenu}
+                className="min-h-[44px] px-4 py-3 text-sm font-semibold uppercase tracking-wider text-[#58f28f] hover:bg-onyx-900 transition-colors flex items-center border-b border-onyx-800 mb-2"
+              >
+                <ArrowLeft className="w-4 h-4 mr-2" /> Back to Work
+              </Link>
+            )}
+
             {navLinks.map((link, idx) => (
               <Link
                 key={link.href}
-                ref={idx === 0 ? firstLinkRef : undefined}
+                ref={idx === 0 && !isProjectPage ? firstLinkRef : undefined}
                 href={link.href}
                 onClick={closeMenu}
                 className="min-h-[44px] px-4 py-3 text-sm font-semibold uppercase tracking-wider text-parchment-200 hover:bg-onyx-900 hover:text-parchment-50 transition-colors flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-parchment-300"
@@ -131,8 +152,6 @@ export function Header() {
             >
               Let&apos;s Talk <ArrowUpRight className="w-4 h-4 ml-1.5" />
             </Link>
-
-
           </div>
         </div>
       )}
