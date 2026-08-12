@@ -16,11 +16,10 @@ export function Header() {
   const closeMenu = () => setIsOpen(false);
 
   const navLinks = [
-    { href: '/work', label: 'Work' },
+    { href: '/#work', label: 'Work' },
     { href: '/#capabilities', label: 'Capabilities' },
-    { href: '/about', label: 'About' },
-    { href: '/about#experience', label: 'Experience' },
-    { href: '/credentials', label: 'Credentials' },
+    { href: '/#about', label: 'About' },
+    { href: '/#credentials', label: 'Credentials' },
   ];
 
   const isProjectPage = pathname?.startsWith('/projects/');
@@ -69,10 +68,10 @@ export function Header() {
 
           {isProjectPage && (
             <Link
-              href="/work"
+              href="/"
               className="hidden sm:flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-parchment-300 hover:text-parchment-50 transition-colors border-l border-onyx-800 pl-6 ml-2 min-h-[44px]"
             >
-              <ArrowLeft className="w-4 h-4" /> Back to Work
+              <ArrowLeft className="w-4 h-4" /> Back to Home
             </Link>
           )}
         </div>
@@ -123,11 +122,11 @@ export function Header() {
           <div className="flex flex-col space-y-1">
             {isProjectPage && (
               <Link
-                href="/work"
+                href="/"
                 onClick={closeMenu}
                 className="min-h-[44px] px-4 py-3 text-sm font-semibold uppercase tracking-wider text-[#58f28f] hover:bg-onyx-900 transition-colors flex items-center border-b border-onyx-800 mb-2"
               >
-                <ArrowLeft className="w-4 h-4 mr-2" /> Back to Work
+                <ArrowLeft className="w-4 h-4 mr-2" /> Back to Home
               </Link>
             )}
 
