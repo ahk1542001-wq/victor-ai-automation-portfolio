@@ -190,15 +190,15 @@ export default function Home() {
               BUILDING AN AI AUTOMATION TEAM? LET&apos;S TALK.
             </h2>
             <p className="max-w-2xl text-lg text-parchment-200 mt-6">
-              Whether you need a custom n8n workflow or a full-stack AI system, I&apos;m ready to help you eliminate manual work.
+              Tell me about your most frustrating manual task, and I&apos;ll send you a custom automation plan on how to fix it.
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-6">
               <a
-                href={`mailto:${portfolioContent.contact.email}`}
+                href={`mailto:${portfolioContent.contact.email}?subject=My%20Manual%20Task%20%7C%20Automation%20Plan%20Request&body=Hi%20Victor%2C%0A%0AHere%20is%20the%20manual%20task%20that%20takes%20up%20too%20much%20of%20my%20time%3A%0A%0A%5BDescribe%20your%20task%20here%5D%0A%0AI'd%20love%20to%20hear%20your%20automation%20plan%20for%20this.`}
                 className="inline-flex items-center justify-center bg-[#58f28f] text-onyx-950 px-10 py-5 text-base font-extrabold hover:bg-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-parchment-200 shadow-[0_0_30px_rgba(88,242,143,0.3)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] rounded-sm"
               >
-                Send me an Email <ArrowUpRight className="w-5 h-5 ml-2" />
+                Get Your Free Automation Plan <ArrowUpRight className="w-5 h-5 ml-2" />
               </a>
               <a
                 href={portfolioContent.contact.linkedin}
