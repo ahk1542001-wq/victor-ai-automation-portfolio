@@ -3,18 +3,21 @@
 import { useRef } from 'react';
 import { type Project, projects } from '@/data/projects';
 import { portfolioContent } from '@/data/content';
+import { credentials } from '@/data/credentials';
 import { YouTubeThumbnail } from '@/components/YouTubeThumbnail';
 import { Header } from '@/components/Header';
 import { TopologyDiagram } from '@/components/TopologyDiagram';
+import { Globe as GlobeComponent } from '@/components/globe';
 import { ArrowUpRight, Globe, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, MotionConfig } from 'framer-motion';
 
-export default function Home() {
+  export default function Home() {
   const n8nProjects = projects.filter((project) => project.projectType === 'n8n Automation');
-  const featuredN8nProjects = n8nProjects.slice(0, 1);
   const softwareProjects = projects.filter((project) => project.projectType === 'AI-Assisted Software');
+  const descriptionParts = portfolioContent.about.description.split('. ');
+  const featuredCredentials = credentials.filter((credential) => credential.priority === 'featured');
   
   // Parallax configuration for the main page wrapper
   const containerRef = useRef(null);
@@ -116,38 +119,27 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Selected Work, separated by verified delivery track */}
-        <section id="work" aria-labelledby="work-heading" className="py-16 md:py-24 relative">
+        {/* Selected Work (All Projects included for One-Page Flow) */}
+        <section id="work" aria-labelledby="work-heading" className="py-16 md:py-24 relative bg-onyx-950">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-14 border-b border-onyx-800 pb-8">
-              <div>
-                <span className="text-xs font-mono text-[#58f28f] uppercase tracking-widest block mb-4 font-semibold">
-                  Core Delivery Track
-                </span>
-                <h2 id="work-heading" className="font-serif text-5xl md:text-7xl font-normal tracking-normal text-parchment-50">N8N AUTOMATION</h2>
-                <p className="mt-5 max-w-2xl text-lg text-parchment-200 leading-relaxed">
-                  Production-minded workflow systems combining APIs, AI models, data stores, and human approval steps.
-                </p>
-              </div>
+            <div className="mb-12 md:mb-16">
+              <span className="text-xs font-mono text-[#58f28f] uppercase tracking-widest block mb-4 font-semibold">
+                Core Delivery Track
+              </span>
+              <h2 id="work-heading" className="font-serif text-5xl md:text-7xl font-normal tracking-normal text-parchment-50">N8N AUTOMATION</h2>
+              <p className="mt-5 max-w-2xl text-lg text-parchment-200 leading-relaxed">
+                Production-minded workflow systems combining APIs, AI models, data stores, and human approval steps.
+              </p>
             </div>
 
-            <div className="max-w-6xl">
-              {featuredN8nProjects.map((project, index) => (
-                <HomeProjectCard key={project.id} project={project} eager={index === 0} />
+            <div className="flex flex-col">
+              {n8nProjects.map((project, index) => (
+                <WorkCard key={project.id} project={project} index={index} eager={index < 2} />
               ))}
             </div>
 
-            <div className="mt-10 md:mt-12 flex justify-center">
-              <Link
-                href="/work"
-                className="inline-flex min-h-[48px] items-center border border-parchment-300 px-7 py-3 text-sm font-bold text-parchment-50 transition-colors hover:bg-parchment-50 hover:text-onyx-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]"
-              >
-                View all n8n projects <ArrowUpRight className="ml-2 h-4 w-4" />
-              </Link>
-            </div>
-
-            <div className="mt-16 md:mt-20 border-t border-onyx-800 pt-14 md:pt-16">
-              <div className="mb-12 md:mb-14 border-b border-onyx-800 pb-8">
+            <div className="mt-16 md:mt-24 pt-16 md:pt-20 border-t border-onyx-800">
+              <div className="mb-12 md:mb-16">
                 <span className="text-xs font-mono text-[#58f28f] uppercase tracking-widest block mb-4 font-semibold">
                   Expanding Direction
                 </span>
@@ -159,19 +151,10 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="max-w-6xl">
-                {softwareProjects.map((project) => (
-                  <HomeProjectCard key={project.id} project={project} eager={false} />
+              <div className="flex flex-col">
+                {softwareProjects.map((project, index) => (
+                  <WorkCard key={project.id} project={project} index={index} eager={false} />
                 ))}
-              </div>
-
-              <div className="mt-10 md:mt-12 flex justify-center">
-                <Link
-                  href="/work"
-                  className="inline-flex min-h-[48px] items-center text-sm font-bold text-parchment-200 transition-colors hover:text-parchment-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]"
-                >
-                  Explore the complete work archive <ArrowUpRight className="ml-2 h-4 w-4" />
-                </Link>
               </div>
             </div>
           </div>
@@ -179,6 +162,88 @@ export default function Home() {
 
         {/* Capabilities Section */}
         <CapabilitiesSection />
+
+        {/* About Section */}
+        <section id="about" className="border-t border-onyx-800 py-20 md:py-28 bg-onyx-950" aria-labelledby="background-heading">
+          <div className="mx-auto grid max-w-[1400px] gap-14 px-4 sm:px-6 md:grid-cols-12 md:gap-20">
+            <div className="md:col-span-7 lg:col-span-8 animate-hero-reveal stagger-1">
+              <span className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[#58f28f]">Professional profile</span>
+              <h2 id="background-heading" className="mt-4 font-serif text-5xl sm:text-6xl md:text-8xl">ABOUT VICTOR</h2>
+              <div className="mt-8 columns-1 gap-12 font-serif text-xl leading-relaxed text-parchment-100 md:columns-2 lg:text-2xl">
+                <p className="mb-6 break-inside-avoid">{descriptionParts[0]}.</p>
+                <p className="mb-6 break-inside-avoid">Leveraging project coordination experience to structure reliable automation logic, API data handling, and human-in-the-loop validation checkpoints.</p>
+                <p className="mb-6 break-inside-avoid">{descriptionParts.slice(1).join('. ')}</p>
+              </div>
+            </div>
+            <aside className="md:col-span-5 lg:col-span-4 animate-hero-reveal stagger-2 space-y-12">
+              <div>
+                <span className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[#58f28f] block mb-8">Roots & Base</span>
+                <GlobeComponent />
+              </div>
+              <div className="border-t border-onyx-800 pt-8">
+                <span className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[#58f28f]">Currently learning</span>
+                <p className="mt-5 text-sm leading-relaxed text-parchment-200">{portfolioContent.currentlyLearning.description}</p>
+                <ul className="mt-6 space-y-4">
+                  {portfolioContent.currentlyLearning.items.map((item) => (
+                    <li key={item} className="flex gap-3 text-sm text-parchment-100">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-[#58f28f]" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        {/* Experience Section */}
+        <section id="experience" className="border-t border-onyx-800 py-20 md:py-28 bg-onyx-900/35" aria-labelledby="experience-heading">
+          <div className="mx-auto max-w-[1400px] px-4 sm:px-6 animate-hero-reveal">
+            <h2 id="experience-heading" className="font-serif text-5xl sm:text-6xl md:text-8xl">EXPERIENCE</h2>
+            <div className="mt-14 border-t border-onyx-800">
+              {portfolioContent.professionalExperience.map((experience, idx) => (
+                <div key={`${experience.company}-${experience.period}`} className={`grid gap-3 border-b border-onyx-800 py-6 md:grid-cols-12 md:items-baseline animate-hero-reveal stagger-${Math.min(idx + 1, 4)}`}>
+                  <span className="font-mono text-xs text-parchment-300 md:col-span-3">{experience.period}</span>
+                  <strong className="text-sm text-parchment-50 md:col-span-4">{experience.company}</strong>
+                  <span className="font-serif text-xl text-parchment-200 md:col-span-5">{experience.role}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Credentials Section */}
+        <section id="credentials" className="border-t border-onyx-800 py-20 md:py-28 bg-onyx-950" aria-labelledby="credentials-heading">
+          <div className="mx-auto grid max-w-[1400px] gap-16 px-4 sm:px-6 lg:grid-cols-12">
+            <div className="lg:col-span-7 animate-hero-reveal stagger-1">
+              <h2 id="credentials-heading" className="font-serif text-5xl sm:text-6xl">AI CREDENTIALS</h2>
+              <ol className="mt-10 border-t border-onyx-800">
+                {featuredCredentials.map((credential, index) => (
+                  <li key={credential.id} className="flex gap-5 border-b border-onyx-800 py-5">
+                    <span className="font-mono text-xs text-[#58f28f]">{String(index + 1).padStart(2, '0')}</span>
+                    <span className="font-serif text-xl leading-snug text-parchment-50">{credential.title}</span>
+                  </li>
+                ))}
+              </ol>
+              <Link href="/credentials" className="mt-7 inline-flex min-h-[44px] items-center text-sm font-bold text-parchment-50 hover:text-[#58f28f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]">
+                View all verified credentials <ArrowUpRight className="ml-2 h-4 w-4" />
+              </Link>
+            </div>
+
+            <div className="lg:col-span-5 animate-hero-reveal stagger-2">
+              <h2 className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-parchment-300">Formal education</h2>
+              <div className="mt-8 border-t border-onyx-800">
+                {portfolioContent.education.map((education) => (
+                  <div key={`${education.institution}-${education.period}`} className="border-b border-onyx-800 py-5">
+                    <strong className="text-sm text-parchment-50">{education.institution}</strong>
+                    <p className="mt-2 font-serif text-lg text-parchment-200">{education.degree}</p>
+                    <p className="mt-2 font-mono text-[11px] text-parchment-300">{education.period}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
 
       </main>
 
@@ -249,7 +314,7 @@ function CapabilitiesSection() {
 
 function CapabilityRow({ text, index }: { text: string; index: number }) {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
@@ -269,16 +334,11 @@ function CapabilityRow({ text, index }: { text: string; index: number }) {
 }
 
 
-function HomeProjectCard({ project, eager }: { project: Project; eager: boolean }) {
+function WorkCard({ project, index, eager }: { project: Project; index: number; eager: boolean }) {
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-      className="group grid overflow-hidden border border-onyx-800 bg-onyx-950 lg:grid-cols-[minmax(0,1.15fr)_minmax(22rem,0.85fr)]"
-    >
-      <div className="relative aspect-video overflow-hidden bg-onyx-900 lg:self-stretch">
+    <article className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 border-t border-onyx-800 py-12 md:py-16 animate-hero-reveal">
+      {/* Visual Side (Left) */}
+      <div className="relative aspect-video w-full overflow-hidden border border-onyx-800 bg-onyx-900 flex items-center justify-center group">
         {project.youtubeId ? (
           <YouTubeThumbnail youtubeId={project.youtubeId} alt={`${project.title} video thumbnail`} eager={eager} />
         ) : project.imageUrl ? (
@@ -287,46 +347,64 @@ function HomeProjectCard({ project, eager }: { project: Project; eager: boolean 
             alt={`${project.title} screenshot`}
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-contain transition-transform duration-700 ease-out group-hover:scale-[1.015]"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
           />
         ) : (
           <div className="h-full w-full p-4"><TopologyDiagram /></div>
         )}
       </div>
 
-      <div className="flex min-w-0 flex-col p-6 sm:p-8 lg:p-9">
-        <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-[#58f28f]">{project.role}</span>
-        <h3 className="mt-4 font-serif text-3xl leading-tight text-parchment-50 sm:text-4xl">{project.title}</h3>
-        <p className="mt-5 text-sm leading-relaxed text-parchment-200 sm:text-base">{project.problem}</p>
+      {/* Content Side (Right) */}
+      <div className="flex flex-col justify-center">
+        <div className="flex items-center gap-4 mb-4">
+          <span className="font-mono text-xs text-[#58f28f]">
+            {String(index + 1).padStart(2, '0')}
+          </span>
+          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-parchment-300">
+            {project.role}
+          </span>
+        </div>
 
-        <div className="mt-6 flex flex-wrap gap-2">
-          {project.tools.slice(0, 4).map((tool) => (
-            <span key={tool} className="border border-onyx-700 px-2.5 py-1 font-mono text-[9px] uppercase text-parchment-300">{tool}</span>
+        <h3 className="font-serif text-3xl leading-tight text-parchment-50 sm:text-4xl mb-4 hover:text-[#58f28f] transition-colors">
+          <Link href={`/projects/${project.id}`}>
+            {project.title}
+          </Link>
+        </h3>
+
+        <p className="text-sm leading-relaxed text-parchment-200 sm:text-base mb-6">
+          {project.problem}
+        </p>
+
+        <div className="flex flex-wrap gap-2 mb-8">
+          {project.tools.slice(0, 5).map((tool) => (
+            <span key={tool} className="border border-onyx-700 px-2.5 py-1 font-mono text-[9px] uppercase text-parchment-300">
+              {tool}
+            </span>
           ))}
         </div>
 
-        <div className="mt-auto flex items-center justify-between border-t border-onyx-800 pt-6 mt-8">
+        <div className="flex items-center gap-5 pt-5 border-t border-onyx-800 mt-auto">
           <Link href={`/projects/${project.id}`} className="inline-flex min-h-[44px] items-center text-sm font-bold text-parchment-50 hover:text-[#58f28f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]">
             Read case study <ArrowUpRight className="ml-2 h-4 w-4" />
           </Link>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3 ml-4">
             {project.youtubeUrl && (
-              <a href={project.youtubeUrl} target="_blank" rel="noopener noreferrer" aria-label={`Watch ${project.title} demo`} className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center text-parchment-300 hover:text-parchment-50">
+              <a href={project.youtubeUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center justify-center text-parchment-300 hover:text-parchment-50 transition-colors">
                 <ExternalLink className="h-5 w-5" />
               </a>
             )}
             {project.liveUrl && (
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.title} live application`} className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center text-parchment-300 hover:text-parchment-50">
+              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center justify-center text-parchment-300 hover:text-parchment-50 transition-colors">
                 <Globe className="h-5 w-5" />
               </a>
             )}
-            <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`${project.title} GitHub repository`} className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center text-parchment-300 hover:text-parchment-50">
-              <Image src="/brands/github.svg" alt="" width={20} height={20} className="invert" aria-hidden="true" />
+            <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center justify-center text-parchment-300 hover:text-parchment-50 transition-colors">
+              <Image src="/brands/github.svg" alt="GitHub" width={20} height={20} className="invert opacity-80 hover:opacity-100 transition-opacity" aria-hidden="true" />
             </a>
           </div>
         </div>
       </div>
-    </motion.article>
+    </article>
   );
 }
 
