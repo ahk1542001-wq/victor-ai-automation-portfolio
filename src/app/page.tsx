@@ -41,8 +41,8 @@ export default function Home() {
                   <div className="hero-screen-copy">
                     <span className="hero-eyebrow">AI Automation &amp; Agent Workflows</span>
                     <h1 id="hero-heading" className="hero-title-motion">VICTOR</h1>
-                    <p className="hero-role">AI Automation &amp; Agent Workflow Specialist</p>
-                    <p className="hero-value">Designing reliable n8n workflows, API integrations, and AI-assisted systems.</p>
+                    <p className="hero-role">I build AI automation workflows using n8n and Vertex AI to save you 20 hours a week.</p>
+                    <p className="hero-value">Designing reliable systems, API integrations, and AI-assisted products.</p>
                     <a href={`mailto:${portfolioContent.contact.email}`} className="hero-contact-link">
                       Let&apos;s talk <ArrowUpRight className="h-4 w-4" />
                     </a>
@@ -63,6 +63,56 @@ export default function Home() {
             </div>
 
             <ToolsRail />
+          </div>
+        </section>
+
+        {/* Process Section */}
+        <section id="process" aria-labelledby="process-heading" className="py-16 md:py-24 relative border-t border-onyx-800 bg-onyx-900/50">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+            <div className="mb-12 md:mb-16">
+              <span className="text-xs font-mono text-[#58f28f] uppercase tracking-widest block mb-4 font-semibold">
+                How It Works
+              </span>
+              <h2 id="process-heading" className="font-serif text-5xl md:text-7xl font-normal tracking-normal text-parchment-50">MY PROCESS</h2>
+              <p className="mt-5 max-w-2xl text-lg text-parchment-200 leading-relaxed">
+                A structured approach to transforming manual bottlenecks into reliable, automated systems.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                {
+                  step: "01",
+                  title: "Discovery & Audit",
+                  desc: "We analyze your current manual tasks, identify bottlenecks, and map out where AI and automation will provide the highest ROI."
+                },
+                {
+                  step: "02",
+                  title: "Architecture Design",
+                  desc: "I design a reliable n8n workflow, selecting the right APIs and LLM models (Vertex AI, Claude, etc.) to ensure a scalable and secure solution."
+                },
+                {
+                  step: "03",
+                  title: "Build & Deploy",
+                  desc: "The system is built, tested with real data, and deployed securely. You get back hours of lost time every week."
+                }
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: i * 0.15 }}
+                  className="bg-onyx-950 border border-onyx-800 p-8 rounded-sm relative overflow-hidden group"
+                >
+                  <div className="absolute top-0 right-0 p-6 text-7xl font-serif text-onyx-800/50 transition-colors group-hover:text-onyx-800 select-none">
+                    {item.step}
+                  </div>
+                  <h3 className="text-2xl font-serif text-parchment-50 mb-4 relative z-10">{item.title}</h3>
+                  <p className="text-parchment-200 text-sm leading-relaxed relative z-10">{item.desc}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -133,19 +183,30 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer id="contact" aria-labelledby="contact-heading" className="py-32 border-t border-onyx-800 relative">
+      <footer id="contact" aria-labelledby="contact-heading" className="py-32 border-t border-onyx-800 relative bg-[#0a0e1a]/20">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
           <div className="flex flex-col items-center text-center space-y-16">
             <h2 id="contact-heading" className="font-serif text-5xl sm:text-7xl md:text-8xl font-normal tracking-tight max-w-5xl mx-auto text-parchment-50 leading-[0.9]">
               BUILDING AN AI AUTOMATION TEAM? LET&apos;S TALK.
             </h2>
+            <p className="max-w-2xl text-lg text-parchment-200 mt-6">
+              Whether you need a custom n8n workflow or a full-stack AI system, I&apos;m ready to help you eliminate manual work.
+            </p>
 
-            <div>
+            <div className="mt-8 flex flex-col sm:flex-row gap-6">
               <a
                 href={`mailto:${portfolioContent.contact.email}`}
-                className="inline-flex items-center justify-center bg-parchment-50 text-onyx-950 px-10 py-5 text-sm font-extrabold hover:bg-parchment-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-parchment-200"
+                className="inline-flex items-center justify-center bg-[#58f28f] text-onyx-950 px-10 py-5 text-base font-extrabold hover:bg-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-parchment-200 shadow-[0_0_30px_rgba(88,242,143,0.3)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] rounded-sm"
               >
-                Contact Me <ArrowUpRight className="w-5 h-5 ml-2" />
+                Send me an Email <ArrowUpRight className="w-5 h-5 ml-2" />
+              </a>
+              <a
+                href={portfolioContent.contact.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center border border-parchment-300 text-parchment-50 px-10 py-5 text-base font-bold hover:bg-parchment-50 hover:text-onyx-950 transition-colors rounded-sm"
+              >
+                Connect on LinkedIn <ArrowUpRight className="w-5 h-5 ml-2" />
               </a>
             </div>
 
