@@ -67,6 +67,20 @@ export const projects: Project[] = [
     liveUrl: 'https://swoo-sh.onrender.com'
   },
   {
+    id: 'gcp-genai-agent-architectures',
+    title: 'Enterprise GenAI Agent Architectures on Google Cloud',
+    category: 'Feature',
+    projectType: 'AI-Assisted Software',
+    problem: 'Enterprises require proven, secure agentic patterns to connect LLMs to unstructured knowledge bases, big data warehouses, and automated operational workflows without security risks.',
+    role: 'Cloud AI Architect & Developer',
+    directed: 'Multi-pattern architecture design, Model Context Protocol (MCP) integration, Cloud Run Sandboxes configuration, least-privilege IAM security, and human-in-the-loop governance.',
+    solution: 'A production-grade trilogy of AI Agent architectures featuring: (1) Grounded RAG with Vector Search, (2) Autonomous BigQuery SQL reasoning via MCP Server, and (3) Dynamic Python execution inside Cloud Run Micro-Sandboxes with Google Sheets API and WebSockets.',
+    tools: ['Google Cloud Run', 'Vertex AI (Gemini 2.5/3.6 Flash)', 'Google ADK', 'Model Context Protocol (MCP)', 'BigQuery', 'Google Sheets API', 'FastAPI', 'Streamlit', 'Docker'],
+    capabilities: ['Model Context Protocol (MCP)', 'Cloud Run Micro-Sandboxing', 'Human-in-the-Loop Governance', 'Enterprise BigQuery SQL Reasoning', 'Retrieval-Augmented Generation (RAG)'],
+    outcome: 'Architected, deployed, and verified 3 enterprise architectures on Google Cloud Run with 100% quiz scores (40/40) in Hack2Skill APAC GenAI Academy.',
+    github: 'https://github.com/ahk1542001-wq/gcp-genai-agent-architectures'
+  },
+  {
     id: 'job-matching',
     title: 'AI Job Matching & Cover Letter Workflow',
     category: 'Secondary Project',
