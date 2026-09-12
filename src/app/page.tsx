@@ -45,7 +45,7 @@ export default function Home() {
           {/* ---------------------------------------------------------- */}
           <section aria-labelledby="hero-heading" className="pt-12 pb-16 md:pt-16 md:pb-20">
             <div className="mx-auto max-w-[1120px] px-5 sm:px-6">
-              <div className="grid items-start gap-10 lg:grid-cols-[1.35fr_0.65fr] lg:gap-14">
+              <div className="grid items-start gap-10 lg:grid-cols-[1fr_260px] lg:gap-14">
                 <motion.div
                   initial={{ opacity: 0, y: 28 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -107,20 +107,23 @@ export default function Home() {
                   </dl>
                 </motion.div>
 
-                {/* Portrait — the one deliberate dark plate on a light page */}
+                {/* Portrait — the one deliberate dark plate on a light page.
+                    Mirrored so the gaze travels back into the headline rather
+                    than off the right edge, and cropped tight so the face reads
+                    at 260px instead of 320px. */}
                 <motion.div
                   initial={{ opacity: 0, y: 28 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                  className="mx-auto w-full max-w-[300px] lg:mt-14 lg:max-w-none"
+                  className="mx-auto w-full max-w-[260px] lg:mt-14 lg:max-w-none"
                 >
                   <div className="portrait-frame">
                     <Image
-                      src="/victor-portrait-retouched.jpg"
-                      alt="Portrait of Victor"
+                      src="/victor-portrait-hero.jpg"
+                      alt="Victor, photographed in Bangkok"
                       fill
                       priority
-                      sizes="(max-width: 1023px) 300px, 320px"
+                      sizes="260px"
                     />
                   </div>
                   <p className="eyebrow mt-3 flex items-center gap-1.5">
@@ -560,6 +563,21 @@ export default function Home() {
         {/* ---------------------------------------------------------- */}
         <footer id="contact" aria-labelledby="contact-heading" className="bg-ink px-5 py-16 text-paper sm:px-6 md:py-20">
           <div className="mx-auto max-w-[1120px]">
+            {/* The face again, at the moment the reader decides to write. */}
+            <div className="mb-8 flex items-center gap-3.5">
+              <div className="portrait-chip border-2 border-paper/35">
+                <Image src="/victor-portrait-chip.jpg" alt="" fill sizes="64px" />
+              </div>
+              <div className="leading-tight">
+                <p className="font-serif text-[20px] tracking-[-0.01em] text-paper">
+                  {portfolioContent.hero.name}
+                </p>
+                <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-paper/60">
+                  {portfolioContent.hero.role}
+                </p>
+              </div>
+            </div>
+
             <h2
               id="contact-heading"
               className="max-w-[20ch] font-serif text-[clamp(34px,6vw,64px)] leading-[1.02] tracking-[-0.02em] text-paper"
