@@ -583,22 +583,20 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* The face, closing the page. Same source as the hero had,
-                  mirrored so the gaze reads into the closing line. The
-                  cut-out is transparent RGBA so it composites on both
-                  themes without showing a paper-coloured fringe.
-                  `unoptimized` is required: next/image's optimizer
-                  otherwise converts the RGBA webp to opaque JPEG
-                  composited onto black, which re-creates the dark plate
-                  we just removed. */}
+              {/* The face, closing the page. Full-frame original, not the
+                  cut-out: the cut-out left the head floating in dead space.
+                  Colour-graded instead so the shot sits with the palette —
+                  the cool cyan shadows are pulled toward brand ink/pine so
+                  the plate reads as part of the page rather than a stray
+                  blue-black rectangle. Opaque, so next/image can optimise
+                  it normally (no `unoptimized` needed). */}
               <div className="mx-auto w-full max-w-[260px] lg:mt-14 lg:max-w-none">
                 <div className="portrait-frame">
                   <Image
-                    src="/victor-portrait-cutout-alpha.webp"
+                    src="/victor-portrait-retouched.webp"
                     alt="Victor, photographed in Bangkok"
                     fill
                     sizes="260px"
-                    unoptimized
                     priority={false}
                   />
                 </div>

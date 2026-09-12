@@ -473,10 +473,11 @@
 }
 
 /* ------------------------------------------------------------------
-   Hero portrait frame — the cut-out sits on paper; the 2px ink border
-   and 6px offset shadow keep it in the same edge language as the rest
-   of the page. No dark plate: the photo is now transparent RGBA so it
-   composites correctly on both light and dark themes.
+   Portrait frame — 2px ink border and 6px offset shadow keep the photo
+   in the same edge language as the rest of the page. The image is the
+   full-frame original (opaque, colour-graded to the palette) and its
+   aspect matches the frame exactly, so the background is only there as
+   a safety net for sub-pixel rounding — never visible in practice.
    ------------------------------------------------------------------ */
 .portrait-frame {
   position: relative;
