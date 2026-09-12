@@ -22,8 +22,18 @@ const CATEGORIES: CredentialCategory[] = [
   'Specialization & Foundations',
 ];
 
+function getVerifyPlatform(url: string | null): string {
+  if (!url) return 'Issuer';
+  if (url.includes('skilljar.com')) return 'Skilljar';
+  if (url.includes('coursera.org')) return 'Coursera';
+  return 'Issuer';
+}
+
 export default function CredentialsPage() {
   const verifiedCount = credentials.filter((c) => c.verifyUrl).length;
+  const anthropicCount = credentials.filter((c) => c.category === 'Anthropic & Agent Systems').length;
+  const cloudCount = credentials.filter((c) => c.category === 'Cloud & Enterprise AI').length;
+  const foundationsCount = credentials.filter((c) => c.category === 'Specialization & Foundations').length;
 
   return (
     <div className="min-h-screen bg-onyx-950 text-parchment-50 font-sans selection:bg-[#58f28f] selection:text-onyx-950 max-w-full overflow-x-hidden">
@@ -69,18 +79,22 @@ export default function CredentialsPage() {
           </p>
 
           {/* Quick Metrics Bar */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4">
             <div className="p-4 bg-onyx-900/60 border border-onyx-800 rounded-lg">
-              <div className="text-2xl sm:text-3xl font-serif font-bold text-[#58f28f]">6</div>
-              <div className="text-xs font-mono uppercase tracking-wider text-parchment-300 mt-1">Anthropic Certifications</div>
+              <div className="text-2xl sm:text-3xl font-serif font-bold text-[#58f28f]">{credentials.length}</div>
+              <div className="text-xs font-mono uppercase tracking-wider text-parchment-300 mt-1">Total Credentials</div>
             </div>
             <div className="p-4 bg-onyx-900/60 border border-onyx-800 rounded-lg">
-              <div className="text-2xl sm:text-3xl font-serif font-bold text-[#58f28f]">3</div>
-              <div className="text-xs font-mono uppercase tracking-wider text-parchment-300 mt-1">Cloud & Enterprise AI</div>
+              <div className="text-2xl sm:text-3xl font-serif font-bold text-[#58f28f]">{anthropicCount}</div>
+              <div className="text-xs font-mono uppercase tracking-wider text-parchment-300 mt-1">Anthropic Agent Systems</div>
+            </div>
+            <div className="p-4 bg-onyx-900/60 border border-onyx-800 rounded-lg">
+              <div className="text-2xl sm:text-3xl font-serif font-bold text-[#58f28f]">{cloudCount + foundationsCount}</div>
+              <div className="text-xs font-mono uppercase tracking-wider text-parchment-300 mt-1">Cloud & Foundations</div>
             </div>
             <div className="p-4 bg-onyx-900/60 border border-onyx-800 rounded-lg col-span-2 sm:col-span-1">
-              <div className="text-2xl sm:text-3xl font-serif font-bold text-[#58f28f]">100%</div>
-              <div className="text-xs font-mono uppercase tracking-wider text-parchment-300 mt-1">Independent Verification</div>
+              <div className="text-2xl sm:text-3xl font-serif font-bold text-[#58f28f]">{verifiedCount}/{credentials.length}</div>
+              <div className="text-xs font-mono uppercase tracking-wider text-parchment-300 mt-1">Digitally Verifiable</div>
             </div>
           </div>
         </section>
@@ -174,14 +188,15 @@ export default function CredentialsPage() {
                             href={credential.verifyUrl}
                             target="_blank"
                             rel="noopener noreferrer"
+                            aria-label={`Verify ${credential.title} certificate on ${getVerifyPlatform(credential.verifyUrl)} (opens in new tab)`}
                             className="min-h-[44px] w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-onyx-950 border border-onyx-800 hover:border-[#58f28f] hover:bg-[#58f28f]/10 text-xs font-bold text-[#58f28f] transition-all rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]"
                           >
-                            <span>Verify on {credential.issuer.split(' ')[0]}</span>
-                            <ExternalLink className="w-3.5 h-3.5 shrink-0" />
+                            <span>Verify on {getVerifyPlatform(credential.verifyUrl)}</span>
+                            <ExternalLink className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
                           </a>
                         ) : (
                           <div className="min-h-[44px] w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-onyx-950/50 border border-onyx-800/40 text-xs font-mono text-parchment-400 rounded">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-parchment-400 shrink-0" />
+                            <CheckCircle2 className="w-3.5 h-3.5 text-parchment-400 shrink-0" aria-hidden="true" />
                             <span>Institutional Record Reviewed</span>
                           </div>
                         )}

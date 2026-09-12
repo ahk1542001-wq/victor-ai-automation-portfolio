@@ -122,6 +122,7 @@ export function Header() {
           <div className="flex flex-col space-y-1">
             {isSecondaryPage && (
               <Link
+                ref={firstLinkRef}
                 href="/"
                 onClick={closeMenu}
                 className="min-h-[44px] px-4 py-3 text-sm font-semibold uppercase tracking-wider text-[#58f28f] hover:bg-onyx-900 transition-colors flex items-center border-b border-onyx-800 mb-2"
