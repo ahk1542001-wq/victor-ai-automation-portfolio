@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { ArrowUpRight, Menu, X, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { ThemeToggle } from './ThemeToggle';
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -93,8 +94,12 @@ export function Header() {
           ))}
         </div>
 
-        {/* Desktop CTA & Mobile Toggle */}
+        {/* Desktop CTA, theme switch & Mobile Toggle */}
         <div className="flex items-center gap-2">
+          {/* Theme switch sits before the CTA so the primary action stays
+              rightmost on desktop, and beside the menu button on mobile. */}
+          <ThemeToggle />
+
           <a
             href="mailto:victor.job154@gmail.com"
             className="hidden min-h-[44px] items-center justify-center gap-1.5 rounded-[10px] border-2 border-ink bg-ink px-4 text-[13px] font-medium text-paper shadow-[3px_3px_0_var(--clay)] transition-[transform,box-shadow] duration-100 hover:translate-x-px hover:translate-y-px hover:shadow-[2px_2px_0_var(--clay)] sm:inline-flex"

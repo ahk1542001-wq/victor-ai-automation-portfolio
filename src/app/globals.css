@@ -46,8 +46,33 @@
   --foreground: var(--ink);
 }
 
+/* Dark palette — flipped by a single attribute on <html>.
+
+   The inline script in layout.tsx sets data-theme="light" | "dark" before
+   first paint (from localStorage, else the OS preference), so there is no
+   flash. The attribute — not a media query — is what drives the flip, which
+   is what lets the user override their OS. No component ever needs a
+   `dark:` variant; the token layer still flips in exactly one place. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --paper: #14130e;
+  --paper-2: #201f18;
+  --surface: #1c1b15;
+  --ink: #f2efe6;
+  --ink-soft: #d9d4c7;
+  --muted: #9a9484;
+  --pine: #6fbf9a;
+  --clay: #e08a5c;
+  --sand: #2a2924;
+  --hair: #302e27;
+  --offset: #3d3a32;
+  --on-clay: #14130e;
+}
+
+/* No-JS fallback: honour the OS preference when the script never runs. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme]) {
     color-scheme: dark;
 
     --paper: #14130e;
@@ -64,6 +89,17 @@
     --on-clay: #14130e;
   }
 }
+
+/* ------------------------------------------------------------------
+   Theme toggle icon visibility — driven by the same attribute, so the
+   icons are correct on first paint with no hydration flash and no
+   `dark:` variant.
+   ------------------------------------------------------------------ */
+.icon-when-light { display: block; }
+.icon-when-dark { display: none; }
+
+:root[data-theme="dark"] .icon-when-light { display: none; }
+:root[data-theme="dark"] .icon-when-dark { display: block; }
 
 @layer base {
   html {
