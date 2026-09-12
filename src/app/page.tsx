@@ -583,12 +583,14 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* The face, closing the page. Same asset as the hero had,
-                  mirrored so the gaze reads into the closing line. */}
+              {/* The face, closing the page. Same source as the hero had,
+                  mirrored so the gaze reads into the closing line. The
+                  cut-out is transparent RGBA so it composites on both
+                  themes without showing a paper-coloured fringe. */}
               <div className="mx-auto w-full max-w-[260px] lg:mt-14 lg:max-w-none">
                 <div className="portrait-frame">
                   <Image
-                    src="/victor-portrait-hero.jpg"
+                    src="/victor-portrait-cutout-alpha.webp"
                     alt="Victor, photographed in Bangkok"
                     fill
                     sizes="260px"
