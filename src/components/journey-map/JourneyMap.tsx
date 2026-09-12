@@ -56,7 +56,11 @@ const COUNTRY_PATHS: Array<{ id: string; d: string; labelXY: { lat: number; lon:
   {
     id: 'in',
     d: 'M -40,0 L 300,0 L 300,90 L 270,170 L 245,230 L 200,290 L 130,360 L 50,390 L -40,395 Z',
-    labelXY: { lat: 24, lon: 78 },
+    // lon 91, not 78 — India's real centroid sits west of this
+    // viewport's left edge (LON_MIN 90), which put the label at
+    // x = -480, entirely off-canvas. 91 lands it at x = 40, clear of
+    // Myanmar's western boundary and of the Bangladesh label below.
+    labelXY: { lat: 25, lon: 91 },
   },
   // Bangladesh — small wedge between India and Myanmar
   {
@@ -162,7 +166,13 @@ export function JourneyMap() {
                   fontWeight={500}
                   fill="var(--ink-soft)"
                   style={{ letterSpacing: '0.06em', textTransform: 'uppercase' }}
-                  opacity={0.55}
+                  /* 0.75, not lower: ink-soft at 0.55 measures 2.89:1 on
+                     the sea fill in light mode and 4.33:1 in dark — both
+                     fail WCAG AA for 14px text. At 0.75 the weakest pair
+                     is 4.72:1 (light) / 6.86:1 (dark), and the labels
+                     still read as clearly recessive against the 16:1
+                     city names. */
+                  opacity={0.75}
                 >
                   {c.id === 'mm' ? 'Myanmar'
                     : c.id === 'th' ? 'Thailand'
