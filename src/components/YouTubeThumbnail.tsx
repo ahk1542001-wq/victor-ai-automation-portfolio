@@ -15,7 +15,7 @@ export function YouTubeThumbnail({ youtubeId, alt, eager = false }: YouTubeThumb
   const [src, setSrc] = useState(maxResUrl);
 
   return (
-    <div className="relative w-full aspect-video bg-zinc-100 dark:bg-zinc-800 rounded-t-md overflow-hidden">
+    <div className="relative w-full aspect-video bg-onyx-900 rounded-t-md overflow-hidden">
       <Image
         src={src}
         alt={alt}

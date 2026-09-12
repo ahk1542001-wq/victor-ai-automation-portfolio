@@ -3,21 +3,27 @@ import { ArrowLeft } from 'lucide-react';
 
 export default function NotFound() {
   return (
-    <main id="main-content" tabIndex={-1} className="min-h-screen bg-[#082c22] text-white flex flex-col items-center justify-center p-6 text-center focus:outline-none">
-      <div className="space-y-6 max-w-md">
-        <span className="font-mono text-sm uppercase tracking-widest text-emerald-400 font-semibold">404 — Page Not Found</span>
-        <h1 className="editorial-heading text-5xl font-bold tracking-tight text-white">
+    <main
+      id="main-content"
+      tabIndex={-1}
+      className="flex min-h-screen flex-col items-center justify-center bg-onyx-950 p-6 text-center text-parchment-50 focus:outline-none"
+    >
+      <div className="max-w-md space-y-6">
+        <span className="block font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[#58f28f]">
+          404 — Page not found
+        </span>
+        <h1 className="font-serif text-5xl tracking-tight text-parchment-50">
           PAGE NOT FOUND
         </h1>
-        <p className="text-emerald-100 text-sm leading-relaxed">
+        <p className="text-sm leading-relaxed text-parchment-200">
           The page or case study you are looking for does not exist or has been moved.
         </p>
         <div>
           <Link
             href="/"
-            className="min-h-[44px] px-6 py-3 inline-flex items-center gap-2 bg-emerald-400 text-[#041812] rounded-full text-xs font-extrabold hover:bg-emerald-300 transition-colors shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+            className="inline-flex min-h-[44px] items-center gap-2 rounded-sm bg-[#58f28f] px-6 py-3 text-sm font-extrabold text-onyx-950 transition-colors hover:bg-parchment-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-parchment-200"
           >
-            <ArrowLeft className="w-4 h-4" /> Back to Portfolio Home
+            <ArrowLeft className="h-4 w-4" /> Back to portfolio home
           </Link>
         </div>
       </div>
