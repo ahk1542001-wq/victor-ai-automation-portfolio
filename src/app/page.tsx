@@ -45,13 +45,12 @@ export default function Home() {
           {/* ---------------------------------------------------------- */}
           <section aria-labelledby="hero-heading" className="pt-12 pb-16 md:pt-16 md:pb-20">
             <div className="mx-auto max-w-[1120px] px-5 sm:px-6">
-              <div className="grid items-start gap-10 lg:grid-cols-[1fr_260px] lg:gap-14">
-                <motion.div
-                  initial={{ opacity: 0, y: 28 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <span className="pill">
+              <motion.div
+                initial={{ opacity: 0, y: 28 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <span className="pill">
                     <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-pine" />
                     Featured Ideathon Submission · Hack2Skill APAC GenAI Academy
                   </span>
@@ -106,31 +105,6 @@ export default function Home() {
                     ))}
                   </dl>
                 </motion.div>
-
-                {/* Portrait — the one deliberate dark plate on a light page.
-                    Mirrored so the gaze travels back into the headline rather
-                    than off the right edge, and cropped tight so the face reads
-                    at 260px instead of 320px. */}
-                <motion.div
-                  initial={{ opacity: 0, y: 28 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                  className="mx-auto w-full max-w-[260px] lg:mt-14 lg:max-w-none"
-                >
-                  <div className="portrait-frame">
-                    <Image
-                      src="/victor-portrait-hero.jpg"
-                      alt="Victor, photographed in Bangkok"
-                      fill
-                      priority
-                      sizes="260px"
-                    />
-                  </div>
-                  <p className="eyebrow mt-3 flex items-center gap-1.5">
-                    <MapPin className="h-3 w-3" /> Bangkok, Thailand · UTC+7
-                  </p>
-                </motion.div>
-              </div>
 
               <ToolsRail />
             </div>
@@ -561,65 +535,76 @@ export default function Home() {
         {/* ---------------------------------------------------------- */}
         {/* Contact                                                    */}
         {/* ---------------------------------------------------------- */}
-        <footer id="contact" aria-labelledby="contact-heading" className="bg-ink px-5 py-16 text-paper sm:px-6 md:py-20">
+        {/* Paper background so the dark portrait plate reads as an
+            anchor here too — same compositional language as the hero
+            used to be, but now the face closes the page instead of
+            opening it. The portrait sits on the right so the mirrored
+            gaze travels left, into the closing line. */}
+        <footer id="contact" aria-labelledby="contact-heading" className="border-t-2 border-ink bg-paper px-5 py-16 text-ink sm:px-6 md:py-20">
           <div className="mx-auto max-w-[1120px]">
-            {/* The face again, at the moment the reader decides to write. */}
-            <div className="mb-8 flex items-center gap-3.5">
-              <div className="portrait-chip border-2 border-paper/35">
-                <Image src="/victor-portrait-chip.jpg" alt="" fill sizes="64px" />
-              </div>
-              <div className="leading-tight">
-                <p className="font-serif text-[20px] tracking-[-0.01em] text-paper">
-                  {portfolioContent.hero.name}
+            <div className="grid items-start gap-10 lg:grid-cols-[1fr_260px] lg:gap-14">
+              <div>
+                <span className="eyebrow">Contact</span>
+                <h2
+                  id="contact-heading"
+                  className="mt-3 max-w-[20ch] font-serif text-[clamp(34px,6vw,64px)] leading-[1.02] tracking-[-0.02em] text-ink"
+                >
+                  Hiring for an automation role?
+                </h2>
+
+                <p className="mt-5 max-w-[56ch] text-pretty text-[16px] leading-relaxed text-ink-soft">
+                  Tell me about the most frustrating manual task on your team and I will tell you
+                  honestly whether it is worth automating — and roughly what it would take.
                 </p>
-                <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-paper/60">
-                  {portfolioContent.hero.role}
+
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <a
+                    href={`mailto:${portfolioContent.contact.email}?subject=Automation%20question&body=Hi%20Victor%2C%0A%0AThe%20manual%20task%20that%20costs%20us%20the%20most%20time%20is%3A%0A%0A%5Bdescribe%20it%5D%0A`}
+                    className="btn-hard rounded-xl"
+                  >
+                    <Mail className="h-4 w-4" /> {portfolioContent.contact.email}
+                  </a>
+                  <a
+                    href={portfolioContent.contact.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-hard btn-hard-ghost rounded-xl"
+                  >
+                    LinkedIn <ArrowUpRight className="h-4 w-4" />
+                  </a>
+                  <a
+                    href={portfolioContent.contact.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-hard btn-hard-ghost rounded-xl"
+                  >
+                    GitHub <ArrowUpRight className="h-4 w-4" />
+                  </a>
+                </div>
+              </div>
+
+              {/* The face, closing the page. Same asset as the hero had,
+                  mirrored so the gaze reads into the closing line. */}
+              <div className="mx-auto w-full max-w-[260px] lg:mt-14 lg:max-w-none">
+                <div className="portrait-frame">
+                  <Image
+                    src="/victor-portrait-hero.jpg"
+                    alt="Victor, photographed in Bangkok"
+                    fill
+                    sizes="260px"
+                  />
+                </div>
+                <p className="eyebrow mt-3 flex items-center gap-1.5">
+                  <MapPin className="h-3 w-3" /> Bangkok, Thailand · UTC+7
                 </p>
               </div>
             </div>
 
-            <h2
-              id="contact-heading"
-              className="max-w-[20ch] font-serif text-[clamp(34px,6vw,64px)] leading-[1.02] tracking-[-0.02em] text-paper"
-            >
-              Hiring for an automation role?
-            </h2>
-
-            <p className="mt-5 max-w-[56ch] text-pretty text-[16px] leading-relaxed text-paper/70">
-              Tell me about the most frustrating manual task on your team and I will tell you
-              honestly whether it is worth automating — and roughly what it would take.
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href={`mailto:${portfolioContent.contact.email}?subject=Automation%20question&body=Hi%20Victor%2C%0A%0AThe%20manual%20task%20that%20costs%20us%20the%20most%20time%20is%3A%0A%0A%5Bdescribe%20it%5D%0A`}
-                className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border-2 border-paper/35 px-6 text-sm font-medium text-paper transition-colors hover:border-clay hover:text-clay"
-              >
-                <Mail className="h-4 w-4" /> {portfolioContent.contact.email}
-              </a>
-              <a
-                href={portfolioContent.contact.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border-2 border-paper/35 px-6 text-sm font-medium text-paper transition-colors hover:border-clay hover:text-clay"
-              >
-                LinkedIn <ArrowUpRight className="h-4 w-4" />
-              </a>
-              <a
-                href={portfolioContent.contact.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border-2 border-paper/35 px-6 text-sm font-medium text-paper transition-colors hover:border-clay hover:text-clay"
-              >
-                GitHub <ArrowUpRight className="h-4 w-4" />
-              </a>
-            </div>
-
-            <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-paper/20 pt-6">
-              <span className="font-mono text-[11.5px] uppercase tracking-[0.08em] text-paper/50">
+            <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-hair pt-6">
+              <span className="font-mono text-[11.5px] uppercase tracking-[0.08em] text-muted">
                 Bangkok, Thailand · UTC+7 · Open to remote
               </span>
-              <span className="flex items-center gap-1.5 font-mono text-[11.5px] uppercase tracking-[0.08em] text-paper/50">
+              <span className="flex items-center gap-1.5 font-mono text-[11.5px] uppercase tracking-[0.08em] text-muted">
                 <ShieldCheck className="h-3.5 w-3.5" />
                 {credentials.length} credentials · {verifiable} verifiable
               </span>
