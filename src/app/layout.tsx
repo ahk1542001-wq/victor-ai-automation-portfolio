@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Instrument_Serif } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
 const geist = Geist({
   variable: "--font-geist-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
 });
@@ -70,19 +76,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className={`${geist.variable} ${geistMono.variable} ${instrumentSerif.variable}`}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body
-        className={`${geist.variable} ${instrumentSerif.variable} antialiased text-[#FBF9F5] bg-[#1A1915] selection:bg-[#FBF9F5] selection:text-[#1A1915] font-sans`}
-      >
+      <body className="font-sans text-ink bg-paper">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-5 focus:py-3 focus:bg-[#FBF9F5] focus:text-[#1A1915] focus:font-extrabold focus:rounded-md focus:outline-none focus:ring-4 focus:ring-white shadow-xl"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-5 focus:py-3 focus:bg-ink focus:text-paper focus:font-semibold focus:rounded-lg focus:outline-none"
         >
           Skip to main content
         </a>

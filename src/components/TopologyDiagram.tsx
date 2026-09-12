@@ -2,18 +2,23 @@
 
 import React from 'react';
 
+/**
+ * Fallback visual for projects with no screenshot or video.
+ * Ink-on-paper line diagram — deliberately schematic rather than decorative,
+ * so it reads as a diagram of a system and not as a broken image.
+ */
 export function TopologyDiagram() {
   return (
-    <div className="w-full h-full min-h-[300px] md:min-h-[400px] relative border border-onyx-800 bg-onyx-950 p-6 flex items-center justify-center overflow-hidden">
-      {/* Abstract topology flow using SVG */}
+    <div className="relative flex h-full w-full min-h-[280px] items-center justify-center overflow-hidden border-2 border-ink bg-paper-2 p-6 md:min-h-[360px]">
       <svg
         viewBox="0 0 400 300"
-        className="w-full h-full text-onyx-700 max-w-lg mx-auto"
+        className="mx-auto h-full w-full max-w-lg text-hair"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
       >
-        {/* Thin 1px grid lines for technical feel */}
-        <g stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 4">
+        {/* Grid */}
+        <g stroke="currentColor" strokeWidth="0.75" strokeDasharray="2 5">
           <line x1="0" y1="50" x2="400" y2="50" />
           <line x1="0" y1="150" x2="400" y2="150" />
           <line x1="0" y1="250" x2="400" y2="250" />
@@ -21,45 +26,37 @@ export function TopologyDiagram() {
           <line x1="200" y1="0" x2="200" y2="300" />
           <line x1="300" y1="0" x2="300" y2="300" />
         </g>
-        
-        {/* Nodes */}
-        <g className="stroke-parchment-200 fill-onyx-900 stroke-1">
-          {/* Source Node */}
-          <rect x="20" y="130" width="40" height="40" rx="4" className="hover:stroke-parchment-50 hover:fill-onyx-800 transition-colors cursor-pointer" />
-          
-          {/* Agent Nodes */}
-          <rect x="120" y="70" width="60" height="40" rx="2" className="hover:stroke-parchment-50 hover:fill-onyx-800 transition-colors cursor-pointer" />
-          <rect x="120" y="190" width="60" height="40" rx="2" className="hover:stroke-parchment-50 hover:fill-onyx-800 transition-colors cursor-pointer" />
-          
-          {/* Processing Node */}
-          <circle cx="250" cy="150" r="24" className="hover:stroke-parchment-50 hover:fill-onyx-800 transition-colors cursor-pointer" />
-          
-          {/* Output Node */}
-          <polygon points="340,130 380,150 340,170" className="hover:stroke-parchment-50 hover:fill-onyx-800 transition-colors cursor-pointer" />
-        </g>
 
         {/* Connections */}
-        <g className="stroke-onyx-700 stroke-[1.5px] fill-none">
-          <path d="M60 150 C 90 150, 90 90, 120 90" className="animate-pulse" />
+        <g stroke="var(--ink-soft)" strokeWidth="1.75" fill="none" opacity="0.55">
+          <path d="M60 150 C 90 150, 90 90, 120 90" />
           <path d="M60 150 C 90 150, 90 210, 120 210" />
           <path d="M180 90 C 210 90, 210 150, 226 150" />
           <path d="M180 210 C 210 210, 210 150, 226 150" />
           <path d="M274 150 L 330 150" />
         </g>
 
-        {/* Activity Indicator Dots */}
-        <g className="fill-parchment-100">
-          <circle cx="60" cy="150" r="2" />
-          <circle cx="180" cy="90" r="2" />
-          <circle cx="180" cy="210" r="2" />
-          <circle cx="274" cy="150" r="2" />
+        {/* Nodes */}
+        <g fill="var(--surface)" stroke="var(--ink)" strokeWidth="2">
+          <rect x="20" y="130" width="40" height="40" rx="6" />
+          <rect x="120" y="70" width="60" height="40" rx="6" />
+          <rect x="120" y="190" width="60" height="40" rx="6" />
+          <circle cx="250" cy="150" r="24" />
+          <polygon points="340,130 380,150 340,170" />
+        </g>
+
+        {/* Accent: the single output node is where value lands */}
+        <polygon points="340,130 380,150 340,170" fill="var(--pine)" fillOpacity="0.16" />
+
+        <g fill="var(--pine)">
+          <circle cx="60" cy="150" r="2.5" />
+          <circle cx="180" cy="90" r="2.5" />
+          <circle cx="180" cy="210" r="2.5" />
+          <circle cx="250" cy="150" r="3" />
         </g>
       </svg>
-      
-      {/* Minimal Label */}
-      <div className="absolute bottom-4 right-4 text-[10px] font-sans text-onyx-700 tracking-widest uppercase">
-        System Topology
-      </div>
+
+      <div className="eyebrow absolute bottom-4 right-4">System topology</div>
     </div>
   );
 }
