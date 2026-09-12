@@ -586,7 +586,11 @@ export default function Home() {
               {/* The face, closing the page. Same source as the hero had,
                   mirrored so the gaze reads into the closing line. The
                   cut-out is transparent RGBA so it composites on both
-                  themes without showing a paper-coloured fringe. */}
+                  themes without showing a paper-coloured fringe.
+                  `unoptimized` is required: next/image's optimizer
+                  otherwise converts the RGBA webp to opaque JPEG
+                  composited onto black, which re-creates the dark plate
+                  we just removed. */}
               <div className="mx-auto w-full max-w-[260px] lg:mt-14 lg:max-w-none">
                 <div className="portrait-frame">
                   <Image
@@ -594,6 +598,8 @@ export default function Home() {
                     alt="Victor, photographed in Bangkok"
                     fill
                     sizes="260px"
+                    unoptimized
+                    priority={false}
                   />
                 </div>
                 <p className="eyebrow mt-3 flex items-center gap-1.5">
