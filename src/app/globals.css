@@ -402,14 +402,17 @@
 }
 
 /* ------------------------------------------------------------------
-   Hero portrait frame — the one deliberate dark block on a light page
+   Hero portrait frame — the cut-out sits on paper; the 2px ink border
+   and 6px offset shadow keep it in the same edge language as the rest
+   of the page. No dark plate: the photo is now transparent RGBA so it
+   composites correctly on both light and dark themes.
    ------------------------------------------------------------------ */
 .portrait-frame {
   position: relative;
   overflow: hidden;
   border: 2px solid var(--ink);
   border-radius: 16px;
-  background: var(--ink);
+  background: transparent;
   box-shadow: 6px 6px 0 var(--offset);
   aspect-ratio: 4 / 5;
 }
