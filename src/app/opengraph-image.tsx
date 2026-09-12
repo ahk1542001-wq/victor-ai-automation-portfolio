@@ -57,7 +57,7 @@ export default async function OpengraphImage() {
               display: 'flex',
               alignItems: 'center',
               gap: 16,
-              color: '#6b675c',
+              color: '#686459',
               fontSize: 22,
               letterSpacing: 3,
               textTransform: 'uppercase',
@@ -118,9 +118,9 @@ export default async function OpengraphImage() {
         >
           <div style={{ display: 'flex', fontFamily: display, fontSize: 34, color: '#16150f' }}>
             Victor
-            <span style={{ color: '#b4623a' }}>.</span>
+            <span style={{ color: '#ab5d37' }}>.</span>
           </div>
-          <div style={{ display: 'flex', gap: 22, fontSize: 23, color: '#6b675c' }}>
+          <div style={{ display: 'flex', gap: 22, fontSize: 23, color: '#686459' }}>
             <span>Bangkok, Thailand</span>
             <span>·</span>
             <span>n8n · Google Cloud · MCP · Python</span>
