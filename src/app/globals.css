@@ -493,3 +493,88 @@
   object-fit: cover;
   object-position: 50% 50%;
 }
+
+/* ------------------------------------------------------------------
+   Journey map — replaces the rotating 3D globe. Static atlas-page
+   with two pins and a dashed arc; same edge language as the portrait
+   frame (2px ink, 16px radius, 6px offset shadow) so the two visual
+   blocks feel like siblings.
+
+   The map SVG uses CSS custom properties (var(--paper), var(--ink),
+   etc.) so it follows the theme without a single `dark:` variant.
+   ------------------------------------------------------------------ */
+.journey-map {
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--ink);
+  border-radius: 16px;
+  background: var(--paper);
+  box-shadow: 6px 6px 0 var(--offset);
+  aspect-ratio: 8 / 5;
+}
+
+.journey-map svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.journey-map-cap {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px 14px;
+  border-top: 1px solid var(--ink);
+  font-size: 12.5px;
+  background: var(--paper);
+}
+
+.journey-map-cap .cap-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.journey-map-cap .cap-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  transform: translateY(1px);
+}
+
+.journey-map-cap strong {
+  font-family: ui-serif, Georgia, serif;
+  font-weight: 500;
+  color: var(--ink);
+  font-size: 14px;
+  letter-spacing: 0.01em;
+}
+
+.journey-map-cap .cap-meta {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10.5px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.journey-map-cap .cap-arrow {
+  width: 14px;
+  height: 14px;
+  color: var(--clay);
+  margin: 0 2px;
+  transform: translateY(2px);
+}
+
+.journey-map-cap .cap-note {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10.5px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}

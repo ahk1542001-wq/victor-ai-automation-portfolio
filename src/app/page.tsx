@@ -6,7 +6,7 @@ import { credentials } from '@/data/credentials';
 import { YouTubeThumbnail } from '@/components/YouTubeThumbnail';
 import { Header } from '@/components/Header';
 import { TopologyDiagram } from '@/components/TopologyDiagram';
-import { Globe as GlobeComponent } from '@/components/globe';
+import { JourneyMap } from '@/components/journey-map';
 import {
   ArrowUpRight,
   ArrowRight,
@@ -297,7 +297,7 @@ export default function Home() {
                 </div>
 
                 <aside className="lg:col-span-5">
-                  <GlobeComponent />
+                  <JourneyMap />
 
                   <div className="mt-10 hair-t pt-6">
                     <h3 className="eyebrow mb-4">Languages</h3>
