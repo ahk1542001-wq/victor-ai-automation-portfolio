@@ -389,16 +389,37 @@ function WorkCard({ project, index, eager }: { project: Project; index: number; 
           </Link>
           <div className="flex items-center gap-3 ml-4">
             {project.youtubeUrl && (
-              <a href={project.youtubeUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center justify-center text-parchment-300 hover:text-parchment-50 transition-colors">
+              <a
+                href={project.youtubeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Watch ${project.title} demo on YouTube`}
+                title={`Watch ${project.title} demo on YouTube`}
+                className="inline-flex min-h-[44px] items-center justify-center text-parchment-300 hover:text-parchment-50 transition-colors"
+              >
                 <ExternalLink className="h-5 w-5" />
               </a>
             )}
             {project.liveUrl && (
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center justify-center text-parchment-300 hover:text-parchment-50 transition-colors">
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Visit ${project.title} live application`}
+                title={`Visit ${project.title} live application`}
+                className="inline-flex min-h-[44px] items-center justify-center text-parchment-300 hover:text-parchment-50 transition-colors"
+              >
                 <Globe className="h-5 w-5" />
               </a>
             )}
-            <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center justify-center text-parchment-300 hover:text-parchment-50 transition-colors">
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`View ${project.title} repository on GitHub`}
+              title={`View ${project.title} repository on GitHub`}
+              className="inline-flex min-h-[44px] items-center justify-center text-parchment-300 hover:text-parchment-50 transition-colors"
+            >
               <Image src="/brands/github.svg" alt="GitHub" width={20} height={20} className="invert opacity-80 hover:opacity-100 transition-opacity" aria-hidden="true" />
             </a>
           </div>

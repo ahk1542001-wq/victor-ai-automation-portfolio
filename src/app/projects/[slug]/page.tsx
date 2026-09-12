@@ -143,6 +143,16 @@ export default async function ProjectPage({ params }: Props) {
                     Live App <ArrowUpRight className="w-3.5 h-3.5 ml-1" />
                   </a>
                 )}
+                {project.youtubeUrl && (
+                  <a
+                    href={project.youtubeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="min-h-[44px] px-2 inline-flex items-center text-[#58f28f] font-semibold hover:text-parchment-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f] rounded-md"
+                  >
+                    Demo Video <ArrowUpRight className="w-3.5 h-3.5 ml-1" />
+                  </a>
+                )}
                 <a
                   href={project.github}
                   target="_blank"

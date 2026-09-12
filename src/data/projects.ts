@@ -89,7 +89,7 @@ export const projects: Project[] = [
     role: 'Lead Architect & AI Agent Director / Builder',
     directed: 'Autonomous creation-loop architecture, brand & scene immutable locking, Remotion rendering pipeline, Google ADK & Gemini TTS orchestration, ClickHouse telemetry outbox, and Model Context Protocol (MCP) Data Officer integration.',
     solution: 'A full-stack autonomous brand video studio that orchestrates story generation via Google ADK & Gemini, deterministic multi-format video rendering via Remotion, sanitized telemetry ingestion into ClickHouse Cloud, and natural language analytics via an MCP Data Officer.',
-    tools: ['Next.js', 'Remotion', 'FastAPI', 'Python', 'Google Cloud Run', 'Gemini 2.5 Flash', 'Google ADK', 'ClickHouse Cloud', 'Google Cloud Storage', 'Gemini-TTS'],
+    tools: ['Next.js', 'Remotion', 'FastAPI', 'Python', 'Google Cloud Run', 'Gemini 2.5 Flash', 'Google ADK', 'ClickHouse Cloud', 'Model Context Protocol (MCP)', 'Google Cloud Storage', 'Gemini-TTS'],
     capabilities: ['Multi-Agent Video Pipeline', 'Deterministic Programmatic Rendering', 'ClickHouse Real-Time Telemetry', 'Model Context Protocol (MCP) Integration', 'Brand & Scene Immutable Locking', 'Cloud Run Micro-Services Architecture'],
     outcome: 'Submitted to Google Cloud Agentic Cinema Hackathon (Devpost ClickHouse Partner Track); deployed on Google Cloud Run with verified 74+ test suite, 20 QA verification gates, and full 1080p demo walkthrough.',
     github: 'https://github.com/ahk1542001-wq/fyf-video-pipeline',
