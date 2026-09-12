@@ -74,7 +74,17 @@ for (const slug of projectSlugs) {
   }
 }
 
-// 5. Specific Verification for Hackathon Showcases
+// 5. Specific Verification for Hackathon & Architecture Showcases
+const gcpHtml = fs.readFileSync(path.join(outDir, 'projects', 'gcp-genai-agent-architectures.html'), 'utf-8');
+if (!gcpHtml.includes('https://youtu.be/boDhNKUwZyE')) {
+  console.error('FAIL: GCP GenAI Agent Architectures missing YouTube demo link');
+  process.exit(1);
+}
+if (!gcpHtml.includes('https://personal-gemini-journal-ypp4pspywq-uc.a.run.app')) {
+  console.error('FAIL: GCP GenAI Agent Architectures missing Cloud Run live app link');
+  process.exit(1);
+}
+
 const fyfHtml = fs.readFileSync(path.join(outDir, 'projects', 'fyf-video-pipeline.html'), 'utf-8');
 if (!fyfHtml.includes('https://youtu.be/9MYzaFjR0ck')) {
   console.error('FAIL: FYF Video Pipeline missing YouTube demo link');
@@ -95,4 +105,30 @@ if (!travelCareHtml.includes('https://github.com/ahk1542001-wq/alibaba-atlas-res
   process.exit(1);
 }
 
-console.log(`PASS: All production smoke checks (${projectSlugs.length} projects + homepage links + mandatory sections) completed successfully!`);
+// 6. Verify Dedicated Credentials Page
+if (!homeHtml.includes('/credentials')) {
+  console.error('FAIL: Homepage missing link to /credentials');
+  process.exit(1);
+}
+
+const credentialsHtmlPath = path.join(outDir, 'credentials.html');
+if (!fs.existsSync(credentialsHtmlPath)) {
+  console.error('FAIL: Credentials build output credentials.html not found');
+  process.exit(1);
+}
+
+const credentialsHtml = fs.readFileSync(credentialsHtmlPath, 'utf-8');
+if (!credentialsHtml.includes('Verified AI Credentials')) {
+  console.error('FAIL: Credentials page missing heading "Verified AI Credentials"');
+  process.exit(1);
+}
+if (!credentialsHtml.includes('https://verify.skilljar.com/c/pjy6v36xapxe')) {
+  console.error('FAIL: Credentials page missing Claude Code in Action verification link');
+  process.exit(1);
+}
+if (!credentialsHtml.includes('https://www.coursera.org/account/accomplishments/professional-cert/0SL5SWTENN43')) {
+  console.error('FAIL: Credentials page missing Google AI Professional verification link');
+  process.exit(1);
+}
+
+console.log(`PASS: All production smoke checks (${projectSlugs.length} projects + credentials page + homepage links + mandatory sections) completed successfully!`);
