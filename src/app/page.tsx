@@ -535,11 +535,11 @@ export default function Home() {
         {/* ---------------------------------------------------------- */}
         {/* Contact                                                    */}
         {/* ---------------------------------------------------------- */}
-        {/* Paper background so the dark portrait plate reads as an
-            anchor here too — same compositional language as the hero
-            used to be, but now the face closes the page instead of
-            opening it. The portrait sits on the right so the mirrored
-            gaze travels left, into the closing line. */}
+        {/* The face closes the page. The cut-out (RGBA webp) sits on
+            paper — no dark plate. The 2px ink border + 6px offset
+            shadow keep it in the same edge language as every other
+            block on the page. The portrait sits on the right so the
+            mirrored gaze travels left, into the closing line. */}
         <footer id="contact" aria-labelledby="contact-heading" className="border-t-2 border-ink bg-paper px-5 py-16 text-ink sm:px-6 md:py-20">
           <div className="mx-auto max-w-[1120px]">
             <div className="grid items-start gap-10 lg:grid-cols-[1fr_260px] lg:gap-14">
