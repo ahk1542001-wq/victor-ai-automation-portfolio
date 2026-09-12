@@ -380,17 +380,31 @@
 }
 
 /* The supplied Codex mark ships with a white bitmap background.
-   Multiply keeps the real silhouette against paper. */
-.tools-logo-image-codex {
-  filter: invert(1) grayscale(1) brightness(1.1);
-  mix-blend-mode: multiply;
+   Multiply keeps the real silhouette against paper.
+   The dark-mode variant is driven by the same data-theme attribute as the
+   rest of the palette (with the no-JS prefers-color-scheme fallback),
+   so the toggle actually controls it. The filter and blend-mode live as
+   custom properties so the dark variant is defined in one place. */
+:root {
+  --codex-filter: invert(1) grayscale(1) brightness(1.1);
+  --codex-blend: multiply;
+}
+
+:root[data-theme="dark"] {
+  --codex-filter: invert(0) grayscale(1) brightness(1.6);
+  --codex-blend: screen;
 }
 
 @media (prefers-color-scheme: dark) {
-  .tools-logo-image-codex {
-    filter: invert(0) grayscale(1) brightness(1.6);
-    mix-blend-mode: screen;
+  :root:not([data-theme]) {
+    --codex-filter: invert(0) grayscale(1) brightness(1.6);
+    --codex-blend: screen;
   }
+}
+
+.tools-logo-image-codex {
+  filter: var(--codex-filter);
+  mix-blend-mode: var(--codex-blend);
 }
 
 .tools-logo-item-emphasized .tools-logo-icon,

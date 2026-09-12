@@ -82,6 +82,14 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        {/* Match the mobile browser chrome (status bar, address bar) to the
+            page paper. The `media` attribute lets the browser pick the
+            matching tag automatically when the user follows the OS preference;
+            a manual override via the header toggle may briefly leave the
+            chrome out of sync until the next reload — acceptable trade-off. */}
+        <meta name="theme-color" content="#f4f1ea" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#14130e" media="(prefers-color-scheme: dark)" />
+
         {/* Resolve the theme before first paint. Reading localStorage +
             matchMedia here means the correct palette is applied on the very
             first frame, so there is no flash of the wrong theme. */}
