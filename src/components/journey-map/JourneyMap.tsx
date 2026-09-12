@@ -217,8 +217,8 @@ export function JourneyMap() {
           </text>
 
           {/* Bangkok */}
-          <text x={now.x + 20} y={now.y - 8} fontSize={18} fontWeight={500}>{CITY_NOW.name}</text>
-          <text x={now.x + 20} y={now.y + 9} fontFamily="ui-monospace, monospace" fontSize={9.5} fill="var(--muted)" letterSpacing="0.1em">
+          <text x={now.x + 22} y={now.y - 18} fontSize={18} fontWeight={500}>{CITY_NOW.name}</text>
+          <text x={now.x + 22} y={now.y - 3} fontFamily="ui-monospace, monospace" fontSize={9.5} fill="var(--muted)" letterSpacing="0.1em">
             {CITY_NOW.country.toUpperCase()}
           </text>
         </g>
