@@ -5,6 +5,7 @@ console.log('Running Production Smoke Verification...');
 
 const outDir = path.join(process.cwd(), '.next/server/app');
 const projectsDataPath = path.join(process.cwd(), 'src/data/projects.ts');
+const credentialsDataPath = path.join(process.cwd(), 'src/data/credentials.ts');
 
 // 1. Verify Homepage
 const homeHtmlPath = path.join(outDir, 'index.html');
@@ -74,7 +75,21 @@ for (const slug of projectSlugs) {
   }
 }
 
-// 5. Specific Verification for Hackathon Showcases
+// 5. Specific Verification for Hackathon & Architecture Showcases
+const gcpHtml = fs.readFileSync(path.join(outDir, 'projects', 'gcp-genai-agent-architectures.html'), 'utf-8');
+if (!gcpHtml.includes('https://youtu.be/boDhNKUwZyE')) {
+  console.error('FAIL: GCP GenAI Agent Architectures missing YouTube demo link');
+  process.exit(1);
+}
+if (!gcpHtml.includes('https://personal-gemini-journal-ypp4pspywq-uc.a.run.app')) {
+  console.error('FAIL: GCP GenAI Agent Architectures missing Cloud Run live app link');
+  process.exit(1);
+}
+if (!homeHtml.includes('boDhNKUwZyE')) {
+  console.error('FAIL: Homepage missing GCP GenAI Agent Architectures YouTube thumbnail');
+  process.exit(1);
+}
+
 const fyfHtml = fs.readFileSync(path.join(outDir, 'projects', 'fyf-video-pipeline.html'), 'utf-8');
 if (!fyfHtml.includes('https://youtu.be/9MYzaFjR0ck')) {
   console.error('FAIL: FYF Video Pipeline missing YouTube demo link');
@@ -95,4 +110,58 @@ if (!travelCareHtml.includes('https://github.com/ahk1542001-wq/alibaba-atlas-res
   process.exit(1);
 }
 
-console.log(`PASS: All production smoke checks (${projectSlugs.length} projects + homepage links + mandatory sections) completed successfully!`);
+// 6. Verify Dedicated Credentials Page
+if (!homeHtml.includes('/credentials')) {
+  console.error('FAIL: Homepage missing link to /credentials');
+  process.exit(1);
+}
+
+const credentialsHtmlPath = path.join(outDir, 'credentials.html');
+if (!fs.existsSync(credentialsHtmlPath)) {
+  console.error('FAIL: Credentials build output credentials.html not found');
+  process.exit(1);
+}
+
+const credentialsHtml = fs.readFileSync(credentialsHtmlPath, 'utf-8');
+if (!credentialsHtml.includes('Verified AI Credentials')) {
+  console.error('FAIL: Credentials page missing heading "Verified AI Credentials"');
+  process.exit(1);
+}
+if (!fs.existsSync(credentialsDataPath)) {
+  console.error(`FAIL: Credentials data source not found at ${credentialsDataPath}`);
+  process.exit(1);
+}
+
+const credentialsSource = fs.readFileSync(credentialsDataPath, 'utf-8');
+const verifyUrlMatches = [...credentialsSource.matchAll(/verifyUrl:\s*['"]([^'"]+)['"]/g)];
+const verifyUrls = verifyUrlMatches.map((m) => m[1]);
+
+if (verifyUrls.length < 11) {
+  console.error(`FAIL: Expected at least 11 verifiable credentials in credentials.ts, found ${verifyUrls.length}`);
+  process.exit(1);
+}
+
+const requiredSkilljarUrls = [
+  'https://verify.skilljar.com/c/pjy6v36xapxe',
+  'https://verify.skilljar.com/c/n83j7p93x9fg',
+  'https://verify.skilljar.com/c/a2ynyb62bxr6',
+  'https://verify.skilljar.com/c/eofti5gaf6xd',
+  'https://verify.skilljar.com/c/wdk2aonf9a73',
+  'https://verify.skilljar.com/c/kczxajmkb28k',
+];
+
+for (const skilljarUrl of requiredSkilljarUrls) {
+  if (!verifyUrls.includes(skilljarUrl)) {
+    console.error(`FAIL: Missing required Skilljar URL in credentials.ts: ${skilljarUrl}`);
+    process.exit(1);
+  }
+}
+
+for (const url of verifyUrls) {
+  if (!credentialsHtml.includes(url)) {
+    console.error(`FAIL: Credentials page missing verification URL: ${url}`);
+    process.exit(1);
+  }
+}
+
+console.log(`PASS: All production smoke checks (${projectSlugs.length} projects + credentials page + homepage links + mandatory sections) completed successfully!`);

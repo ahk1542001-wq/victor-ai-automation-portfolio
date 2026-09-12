@@ -7,21 +7,21 @@ export const portfolioContent = {
   },
   about: {
     title: 'About',
-    description: 'I moved from Client Services and Project Coordination into AI Automation. I design, implement, test, and troubleshoot n8n workflows that connect AI models, APIs, business tools, and human approval steps. I am currently expanding into agentic software building and Google Cloud deployment.'
+    description: 'I moved from Client Services and Project Coordination into AI Automation. I architect, deploy, and verify production AI agent systems connecting LLMs, Model Context Protocol (MCP) servers, enterprise APIs, and human-in-the-loop approval workflows across Google Cloud Run and modern serverless platforms.'
   },
   establishedCapabilities: [
-    'n8n workflow architecture and troubleshooting',
-    'APIs, webhooks, LLMs, and business-tool integrations',
-    'Human-in-the-loop, RAG, and data workflows',
-    'Docker, self-hosted n8n, JSON, and basic Python scripting'
+    'Multi-agent orchestration and autonomous creation loops with Google ADK',
+    'Model Context Protocol (MCP) servers, custom tools, and resource protocols',
+    'Cloud Run micro-sandboxing, Docker containerization, and least-privilege IAM',
+    'Production n8n workflow architecture, webhook routing, and human-in-the-loop RAG'
   ],
   currentlyLearning: {
     title: 'Currently Learning',
     description: 'I am currently developing practical skills in:',
     items: [
-      'Agentic software building and Harness Engineering',
-      'AI SDKs, Google ADK, and multi-agent orchestration',
-      'Google Cloud deployment'
+      'Harness Engineering & deterministic agent evaluation pipelines',
+      'AMD ROCm hardware acceleration & local open-weights inference',
+      'Fine-grained agent governance & stateful memory architectures'
     ]
   },
   languages: [

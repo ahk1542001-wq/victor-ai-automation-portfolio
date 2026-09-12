@@ -22,7 +22,7 @@ export function Header() {
     { href: '/#credentials', label: 'Credentials' },
   ];
 
-  const isProjectPage = pathname?.startsWith('/projects/');
+  const isSecondaryPage = pathname?.startsWith('/projects/') || pathname?.startsWith('/credentials');
 
   useEffect(() => {
     if (isInitialMount.current) {
@@ -66,7 +66,7 @@ export function Header() {
             VICTOR.
           </Link>
 
-          {isProjectPage && (
+          {isSecondaryPage && (
             <Link
               href="/"
               className="hidden sm:flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-parchment-300 hover:text-parchment-50 transition-colors border-l border-onyx-800 pl-6 ml-2 min-h-[44px]"
@@ -120,8 +120,9 @@ export function Header() {
           className="md:hidden bg-onyx-950 border-b border-onyx-800 px-4 pt-3 pb-6 space-y-3 max-w-full overflow-x-hidden animate-fade-in"
         >
           <div className="flex flex-col space-y-1">
-            {isProjectPage && (
+            {isSecondaryPage && (
               <Link
+                ref={firstLinkRef}
                 href="/"
                 onClick={closeMenu}
                 className="min-h-[44px] px-4 py-3 text-sm font-semibold uppercase tracking-wider text-[#58f28f] hover:bg-onyx-900 transition-colors flex items-center border-b border-onyx-800 mb-2"
@@ -133,7 +134,7 @@ export function Header() {
             {navLinks.map((link, idx) => (
               <Link
                 key={link.href}
-                ref={idx === 0 && !isProjectPage ? firstLinkRef : undefined}
+                ref={idx === 0 && !isSecondaryPage ? firstLinkRef : undefined}
                 href={link.href}
                 onClick={closeMenu}
                 className="min-h-[44px] px-4 py-3 text-sm font-semibold uppercase tracking-wider text-parchment-200 hover:bg-onyx-900 hover:text-parchment-50 transition-colors flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-parchment-300"

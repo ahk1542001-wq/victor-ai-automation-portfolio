@@ -78,7 +78,10 @@ export const projects: Project[] = [
     tools: ['Google Cloud Run', 'Vertex AI (Gemini 2.5/3.6 Flash)', 'Google ADK', 'Model Context Protocol (MCP)', 'BigQuery', 'Google Sheets API', 'FastAPI', 'Streamlit', 'Docker'],
     capabilities: ['Model Context Protocol (MCP)', 'Cloud Run Micro-Sandboxing', 'Human-in-the-Loop Governance', 'Enterprise BigQuery SQL Reasoning', 'Retrieval-Augmented Generation (RAG)'],
     outcome: 'Architected, deployed, and verified 3 enterprise architectures on Google Cloud Run with 100% quiz scores (40/40) in Hack2Skill APAC GenAI Academy.',
-    github: 'https://github.com/ahk1542001-wq/gcp-genai-agent-architectures'
+    github: 'https://github.com/ahk1542001-wq/gcp-genai-agent-architectures',
+    youtubeUrl: 'https://youtu.be/boDhNKUwZyE',
+    youtubeId: 'boDhNKUwZyE',
+    liveUrl: 'https://personal-gemini-journal-ypp4pspywq-uc.a.run.app'
   },
   {
     id: 'fyf-video-pipeline',
