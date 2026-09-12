@@ -752,7 +752,7 @@ function WorkCard({ project, index, eager }: { project: Project; index: number; 
               alt=""
               width={16}
               height={16}
-              className="opacity-70 dark:invert"
+              className="icon-invert-dark opacity-70"
               aria-hidden="true"
             />
             Source

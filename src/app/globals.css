@@ -101,6 +101,27 @@
 :root[data-theme="dark"] .icon-when-light { display: none; }
 :root[data-theme="dark"] .icon-when-dark { display: block; }
 
+/* Brand marks that ship dark-on-light (GitHub mark) need to invert in
+   the dark palette so they stay legible. Driven by the same attribute
+   so the toggle controls it — and no `dark:` variant in the source. */
+:root {
+  --icon-invert: none;
+}
+
+:root[data-theme="dark"] {
+  --icon-invert: invert(1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --icon-invert: invert(1);
+  }
+}
+
+.icon-invert-dark {
+  filter: var(--icon-invert);
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
