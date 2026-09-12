@@ -17,9 +17,10 @@ export function Header() {
 
   const navLinks = [
     { href: '/#work', label: 'Work' },
-    { href: '/#capabilities', label: 'Capabilities' },
-    { href: '/#about', label: 'About' },
+    { href: '/#numbers', label: 'Numbers' },
+    { href: '/#background', label: 'Background' },
     { href: '/#credentials', label: 'Credentials' },
+    { href: '/#proof', label: 'Proof' },
   ];
 
   const isSecondaryPage = pathname?.startsWith('/projects/') || pathname?.startsWith('/credentials');
@@ -55,34 +56,37 @@ export function Header() {
   }, [isOpen]);
 
   return (
-    <header className="fixed top-0 w-full z-50 bg-onyx-950/80 backdrop-blur-md border-b border-onyx-800">
-      <nav aria-label="Main Navigation" className="max-w-[1400px] mx-auto px-4 sm:px-6 py-4 flex justify-between items-center text-sm font-medium">
+    <header className="sticky top-0 z-50 border-b-2 border-ink bg-paper/92 backdrop-blur-md">
+      <nav
+        aria-label="Main Navigation"
+        className="mx-auto flex h-[66px] max-w-[1120px] items-center justify-between gap-4 px-5 sm:px-6"
+      >
         {/* Brand Wordmark & Back Button */}
-        <div className="flex items-center gap-4 sm:gap-6">
+        <div className="flex items-center gap-4">
           <Link
             href="/"
-            className="min-h-[44px] px-2 flex items-center gap-2 text-xl font-serif tracking-tight text-parchment-50 hover:text-parchment-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-parchment-300 rounded"
+            className="flex min-h-[44px] items-center gap-2 font-serif text-lg tracking-[0.02em] text-ink transition-colors hover:text-clay"
           >
-            VICTOR.
+            VICTOR<span className="text-clay">.</span>
           </Link>
 
           {isSecondaryPage && (
             <Link
               href="/"
-              className="hidden sm:flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-parchment-300 hover:text-parchment-50 transition-colors border-l border-onyx-800 pl-6 ml-2 min-h-[44px]"
+              className="hidden min-h-[44px] items-center gap-2 border-l-2 border-hair pl-4 text-xs font-medium uppercase tracking-[0.08em] text-muted transition-colors hover:text-ink sm:flex"
             >
-              <ArrowLeft className="w-4 h-4" /> Back to Home
+              <ArrowLeft className="h-3.5 w-3.5" /> Back to home
             </Link>
           )}
         </div>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden md:flex items-center gap-6 lg:gap-8 text-xs font-semibold uppercase tracking-wider">
+        <div className="hidden items-center gap-6 lg:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="min-h-[44px] flex items-center px-2 text-parchment-200 hover:text-parchment-50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-parchment-300 rounded"
+              className="navlink flex min-h-[44px] items-center text-[12.5px] font-medium uppercase tracking-[0.07em]"
             >
               {link.label}
             </Link>
@@ -90,13 +94,13 @@ export function Header() {
         </div>
 
         {/* Desktop CTA & Mobile Toggle */}
-        <div className="flex items-center gap-3">
-          <Link
-            href="/#contact"
-            className="hidden sm:inline-flex min-h-[44px] px-6 py-2 items-center justify-center bg-parchment-50 text-onyx-950 rounded-none text-xs font-extrabold hover:bg-parchment-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-parchment-300"
+        <div className="flex items-center gap-2">
+          <a
+            href="mailto:victor.job154@gmail.com"
+            className="hidden min-h-[44px] items-center justify-center gap-1.5 rounded-[10px] border-2 border-ink bg-ink px-4 text-[13px] font-medium text-paper shadow-[3px_3px_0_var(--clay)] transition-[transform,box-shadow] duration-100 hover:translate-x-px hover:translate-y-px hover:shadow-[2px_2px_0_var(--clay)] sm:inline-flex"
           >
-            Let&apos;s Talk <ArrowUpRight className="w-4 h-4 ml-1" />
-          </Link>
+            Let&apos;s talk <ArrowUpRight className="h-3.5 w-3.5" />
+          </a>
 
           {/* Mobile Menu Toggle Button */}
           <button
@@ -106,9 +110,9 @@ export function Header() {
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
             aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
-            className="md:hidden min-h-[44px] min-w-[44px] p-2 flex items-center justify-center text-parchment-200 hover:text-parchment-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-parchment-300 rounded-none border border-onyx-800 bg-onyx-900"
+            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-[10px] border-2 border-ink bg-surface text-ink lg:hidden"
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </nav>
@@ -117,17 +121,17 @@ export function Header() {
       {isOpen && (
         <div
           id="mobile-menu"
-          className="md:hidden bg-onyx-950 border-b border-onyx-800 px-4 pt-3 pb-6 space-y-3 max-w-full overflow-x-hidden animate-fade-in"
+          className="animate-fade-in max-w-full overflow-x-hidden border-t-2 border-hair bg-paper px-5 pb-6 pt-3 lg:hidden"
         >
-          <div className="flex flex-col space-y-1">
+          <div className="flex flex-col">
             {isSecondaryPage && (
               <Link
                 ref={firstLinkRef}
                 href="/"
                 onClick={closeMenu}
-                className="min-h-[44px] px-4 py-3 text-sm font-semibold uppercase tracking-wider text-[#58f28f] hover:bg-onyx-900 transition-colors flex items-center border-b border-onyx-800 mb-2"
+                className="mb-2 flex min-h-[44px] items-center border-b-2 border-hair px-1 py-3 text-[13px] font-medium uppercase tracking-[0.07em] text-pine"
               >
-                <ArrowLeft className="w-4 h-4 mr-2" /> Back to Home
+                <ArrowLeft className="mr-2 h-4 w-4" /> Back to home
               </Link>
             )}
 
@@ -137,21 +141,21 @@ export function Header() {
                 ref={idx === 0 && !isSecondaryPage ? firstLinkRef : undefined}
                 href={link.href}
                 onClick={closeMenu}
-                className="min-h-[44px] px-4 py-3 text-sm font-semibold uppercase tracking-wider text-parchment-200 hover:bg-onyx-900 hover:text-parchment-50 transition-colors flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-parchment-300"
+                className="hair-b flex min-h-[44px] items-center px-1 py-3 text-[13px] font-medium uppercase tracking-[0.07em] text-ink-soft transition-colors last:border-b-0 hover:text-ink"
               >
                 {link.label}
               </Link>
             ))}
           </div>
 
-          <div className="pt-3 border-t border-onyx-800 flex flex-col space-y-3">
-            <Link
-              href="/#contact"
+          <div className="mt-4 flex flex-col">
+            <a
+              href="mailto:victor.job154@gmail.com"
               onClick={closeMenu}
-              className="min-h-[44px] w-full flex items-center justify-center bg-parchment-50 text-onyx-950 text-xs font-extrabold uppercase tracking-wider hover:bg-parchment-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-parchment-300"
+              className="btn-hard-ink inline-flex min-h-[44px] w-full items-center justify-center rounded-[10px] border-2 border-ink px-4 text-[13px] font-medium"
             >
-              Let&apos;s Talk <ArrowUpRight className="w-4 h-4 ml-1.5" />
-            </Link>
+              Let&apos;s talk <ArrowUpRight className="ml-1.5 h-4 w-4" />
+            </a>
           </div>
         </div>
       )}

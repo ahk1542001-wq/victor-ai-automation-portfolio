@@ -1,6 +1,6 @@
 import { credentials, type CredentialCategory } from '@/data/credentials';
 import { Header } from '@/components/Header';
-import { ArrowLeft, ArrowUpRight, ExternalLink, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, ExternalLink, ShieldCheck } from 'lucide-react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: 'Verified AI Credentials & Certifications | Victor Portfolio',
   description:
     'Verified professional AI certifications and technical credentials spanning Anthropic Agent Systems, Model Context Protocol (MCP), Claude Code, Google Cloud Vertex AI, and Enterprise Automation.',
+  alternates: {
+    canonical: '/credentials',
+  },
   openGraph: {
     title: 'Verified AI Credentials & Certifications | Victor Portfolio',
     description:
@@ -30,174 +33,179 @@ function getVerifyPlatform(url: string | null): string {
 }
 
 export default function CredentialsPage() {
-  const verifiedCount = credentials.filter((c) => c.verifyUrl).length;
+  const verifiable = credentials.filter((c) => c.verifyUrl).length;
   const anthropicCount = credentials.filter((c) => c.category === 'Anthropic & Agent Systems').length;
   const cloudCount = credentials.filter((c) => c.category === 'Cloud & Enterprise AI').length;
-  const foundationsCount = credentials.filter((c) => c.category === 'Specialization & Foundations').length;
+  const foundationsCount = credentials.filter(
+    (c) => c.category === 'Specialization & Foundations'
+  ).length;
+
+  const metrics = [
+    { n: String(credentials.length), l: 'Total credentials' },
+    { n: `${verifiable}/${credentials.length}`, l: 'Publicly verifiable', hi: true },
+    { n: String(anthropicCount), l: 'Anthropic & agent systems' },
+    { n: String(cloudCount + foundationsCount), l: 'Cloud & foundations' },
+  ];
 
   return (
-    <div className="min-h-screen bg-onyx-950 text-parchment-50 font-sans selection:bg-[#58f28f] selection:text-onyx-950 max-w-full overflow-x-hidden">
-      {/* Global Navigation Header */}
+    <div className="min-h-screen max-w-full overflow-x-hidden bg-paper font-sans text-ink">
       <Header />
 
-      {/* Main Content */}
-      <main id="main-content" className="max-w-[1400px] mx-auto px-4 sm:px-6 pt-32 pb-24 focus:outline-none" tabIndex={-1}>
-        {/* Top Breadcrumb & Status Sub-bar */}
-        <div className="flex flex-wrap justify-between items-center pb-8 border-b border-onyx-800 mb-12 gap-4">
+      <main
+        id="main-content"
+        className="mx-auto max-w-[1120px] px-5 pb-24 pt-10 focus:outline-none sm:px-6"
+        tabIndex={-1}
+      >
+        {/* Breadcrumb */}
+        <div className="mb-12 flex flex-wrap items-center justify-between gap-3 border-b-2 border-hair pb-6">
           <Link
             href="/#credentials"
-            className="min-h-[44px] px-3 -ml-3 inline-flex items-center text-sm font-semibold text-parchment-200 hover:text-[#58f28f] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f] rounded-md"
+            className="inline-flex min-h-[44px] items-center gap-2 text-[13.5px] font-medium text-ink-soft transition-colors hover:text-pine"
           >
-            <ArrowLeft className="w-4 h-4 mr-2" /> Back to Overview
+            <ArrowLeft className="h-4 w-4" /> Back to overview
           </Link>
 
-          <div className="flex items-center gap-3">
-            <span className="inline-flex items-center gap-2 text-xs font-mono text-[#58f28f] bg-onyx-900 px-3 py-1.5 rounded-full border border-onyx-800">
-              <span className="w-2 h-2 rounded-full bg-[#58f28f] animate-pulse" />
-              <span>{credentials.length} Total Credentials</span>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="pill">
+              <span className="h-1.5 w-1.5 rounded-full bg-pine" />
+              {credentials.length} total
             </span>
-            <span className="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono text-parchment-300 bg-onyx-900 px-3 py-1.5 rounded-full border border-onyx-800">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#58f28f]" />
-              <span>{verifiedCount} Digitally Verifiable</span>
+            <span className="pill">
+              <ShieldCheck className="h-3.5 w-3.5 text-pine" />
+              {verifiable} verifiable
             </span>
           </div>
         </div>
 
-        {/* Hero Section */}
-        <section className="space-y-6 max-w-4xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#58f28f]/10 border border-[#58f28f]/30 rounded text-xs font-mono text-[#58f28f] uppercase tracking-wider font-semibold">
-            <ShieldCheck className="w-3.5 h-3.5" />
-            Verified Technical Qualifications
-          </div>
+        {/* Hero */}
+        <section className="mb-16 max-w-[46rem]">
+          <span className="pill">
+            <ShieldCheck className="h-3.5 w-3.5 text-pine" />
+            Verified technical qualifications
+          </span>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-extrabold tracking-tight text-parchment-50 leading-[1.05]">
-            Verified AI Credentials & Certifications
+          <h1 className="mt-5 font-serif text-[clamp(32px,5.4vw,58px)] leading-[1.04] tracking-[-0.025em] text-ink">
+            Verified AI Credentials &amp; Certifications
           </h1>
 
-          <p className="text-base sm:text-lg text-parchment-200 leading-relaxed max-w-3xl">
-            A comprehensive registry of professional credentials spanning autonomous agent architectures, Model Context Protocol (MCP) server development, Claude Code CLI orchestration, and enterprise cloud deployments on Google Cloud Run and Vertex AI.
+          <p className="mt-5 text-pretty text-[16px] leading-relaxed text-muted">
+            A registry of professional credentials spanning autonomous agent architectures, Model
+            Context Protocol server development, Claude Code CLI orchestration, and enterprise cloud
+            deployment on Google Cloud Run and Vertex AI. Every issuer and issue date is listed, and
+            each verifiable entry links to the issuer&apos;s own registry.
           </p>
 
-          {/* Quick Metrics Bar */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4">
-            <div className="p-4 bg-onyx-900/60 border border-onyx-800 rounded-lg">
-              <div className="text-2xl sm:text-3xl font-serif font-bold text-[#58f28f]">{credentials.length}</div>
-              <div className="text-xs font-mono uppercase tracking-wider text-parchment-300 mt-1">Total Credentials</div>
-            </div>
-            <div className="p-4 bg-onyx-900/60 border border-onyx-800 rounded-lg">
-              <div className="text-2xl sm:text-3xl font-serif font-bold text-[#58f28f]">{anthropicCount}</div>
-              <div className="text-xs font-mono uppercase tracking-wider text-parchment-300 mt-1">Anthropic Agent Systems</div>
-            </div>
-            <div className="p-4 bg-onyx-900/60 border border-onyx-800 rounded-lg">
-              <div className="text-2xl sm:text-3xl font-serif font-bold text-[#58f28f]">{cloudCount + foundationsCount}</div>
-              <div className="text-xs font-mono uppercase tracking-wider text-parchment-300 mt-1">Cloud & Foundations</div>
-            </div>
-            <div className="p-4 bg-onyx-900/60 border border-onyx-800 rounded-lg col-span-2 sm:col-span-1">
-              <div className="text-2xl sm:text-3xl font-serif font-bold text-[#58f28f]">{verifiedCount}/{credentials.length}</div>
-              <div className="text-xs font-mono uppercase tracking-wider text-parchment-300 mt-1">Digitally Verifiable</div>
-            </div>
+          <div className="mt-9 grid grid-cols-2 gap-3.5 lg:grid-cols-4">
+            {metrics.map((m) => (
+              <div
+                key={m.l}
+                className={`rounded-[14px] border-2 border-ink px-5 py-5 shadow-[4px_4px_0_var(--offset)] ${
+                  m.hi ? 'bg-pine' : 'bg-surface'
+                }`}
+              >
+                <b
+                  className={`block font-serif text-[34px] font-normal leading-none tracking-[-0.02em] ${
+                    m.hi ? 'text-paper' : 'text-ink'
+                  }`}
+                >
+                  {m.n}
+                </b>
+                <span
+                  className={`mt-2 block text-[12.5px] leading-snug ${
+                    m.hi ? 'text-paper/85' : 'text-muted'
+                  }`}
+                >
+                  {m.l}
+                </span>
+              </div>
+            ))}
           </div>
         </section>
 
-        {/* Categorized Credentials Sections */}
-        <div className="space-y-20">
+        {/* Categories */}
+        <div className="space-y-16">
           {CATEGORIES.map((category) => {
             const categoryCredentials = credentials.filter((c) => c.category === category);
             if (categoryCredentials.length === 0) return null;
 
+            const anchor = `category-${category.replace(/[^a-zA-Z0-9]/g, '-')}`;
+
             return (
-              <section key={category} aria-labelledby={`category-${category.replace(/[^a-zA-Z0-9]/g, '-')}`}>
-                {/* Category Header */}
-                <div className="flex items-center justify-between pb-4 border-b border-onyx-800 mb-8">
-                  <div>
-                    <h2
-                      id={`category-${category.replace(/[^a-zA-Z0-9]/g, '-')}`}
-                      className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-parchment-50"
-                    >
-                      {category}
-                    </h2>
-                  </div>
-                  <span className="font-mono text-xs text-[#58f28f] bg-onyx-900 px-3 py-1 rounded-full border border-onyx-800">
-                    {categoryCredentials.length} {categoryCredentials.length === 1 ? 'Credential' : 'Credentials'}
+              <section key={category} aria-labelledby={anchor}>
+                <div className="mb-7 flex flex-wrap items-end justify-between gap-3 border-b-2 border-ink pb-3">
+                  <h2
+                    id={anchor}
+                    className="font-serif text-[clamp(22px,3vw,32px)] font-normal leading-tight tracking-[-0.015em] text-ink"
+                  >
+                    {category}
+                  </h2>
+                  <span className="eyebrow">
+                    {categoryCredentials.length}{' '}
+                    {categoryCredentials.length === 1 ? 'credential' : 'credentials'}
                   </span>
                 </div>
 
-                {/* Cards Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                   {categoryCredentials.map((credential) => (
-                    <article
-                      key={credential.id}
-                      className="bg-onyx-900/50 border border-onyx-800 hover:border-onyx-700 transition-all p-6 sm:p-7 rounded-lg flex flex-col justify-between group shadow-sm"
-                    >
-                      <div>
-                        {/* Meta Header */}
-                        <div className="flex items-center justify-between gap-2 mb-4">
-                          <span className="text-xs font-mono text-parchment-300 uppercase tracking-wider">
-                            {credential.issuer}
+                    <article key={credential.id} className="card-hard flex flex-col p-6">
+                      <div className="mb-4 flex items-start justify-between gap-3">
+                        <span className="eyebrow">{credential.issuer}</span>
+                        {credential.priority === 'featured' ? (
+                          <span className="shrink-0 rounded-full bg-clay px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.06em] text-on-clay">
+                            Featured
                           </span>
-                          {credential.priority === 'featured' ? (
-                            <span className="px-2 py-0.5 bg-[#58f28f]/15 text-[#58f28f] text-[10px] font-mono uppercase font-bold rounded border border-[#58f28f]/30">
-                              Featured
-                            </span>
-                          ) : (
-                            <span className="px-2 py-0.5 bg-onyx-800/80 text-parchment-300 text-[10px] font-mono uppercase font-medium rounded border border-onyx-700">
-                              Verified
-                            </span>
-                          )}
-                        </div>
-
-                        {/* Title */}
-                        <h3 className="font-serif text-xl sm:text-2xl font-bold text-parchment-50 leading-snug group-hover:text-parchment-100 transition-colors">
-                          {credential.title}
-                        </h3>
-
-                        {/* Issue Date */}
-                        <div className="mt-2 text-xs font-mono text-parchment-300">
-                          {credential.issued ? `Issued: ${credential.issued}` : 'Issued: Completion Verified'}
-                        </div>
-
-                        {/* Note if applicable */}
-                        {credential.note && (
-                          <p className="mt-3 text-xs text-parchment-300/80 italic leading-relaxed">
-                            {credential.note}
-                          </p>
+                        ) : (
+                          <span className="shrink-0 rounded-full border border-hair px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.06em] text-muted">
+                            Verified
+                          </span>
                         )}
+                      </div>
 
-                        {/* Skills Covered */}
-                        <div className="mt-6 pt-5 border-t border-onyx-800/80">
-                          <div className="text-[10px] font-mono uppercase tracking-wider text-parchment-300 mb-2">
-                            Verified Skills
-                          </div>
-                          <div className="flex flex-wrap gap-1.5">
-                            {credential.skills.map((skill) => (
-                              <span
-                                key={skill}
-                                className="px-2.5 py-1 bg-onyx-950 border border-onyx-800 text-[11px] font-mono text-parchment-200 rounded"
-                              >
-                                {skill}
-                              </span>
-                            ))}
-                          </div>
+                      <h3 className="font-serif text-[21px] font-normal leading-snug text-ink">
+                        {credential.title}
+                      </h3>
+
+                      <p className="mt-2 font-mono text-[11.5px] text-muted">
+                        {credential.issued ? `Issued ${credential.issued}` : 'Completion verified'}
+                      </p>
+
+                      {credential.note && (
+                        <p className="mt-3 text-[12.5px] italic leading-relaxed text-muted">
+                          {credential.note}
+                        </p>
+                      )}
+
+                      <div className="mt-6 hair-t pt-5">
+                        <h4 className="eyebrow mb-2.5">Skills covered</h4>
+                        <div className="flex flex-wrap gap-1.5">
+                          {credential.skills.map((skill) => (
+                            <span
+                              key={skill}
+                              className="rounded-md border border-hair px-2 py-0.5 font-mono text-[10.5px] text-ink-soft"
+                            >
+                              {skill}
+                            </span>
+                          ))}
                         </div>
                       </div>
 
-                      {/* External Verification Action */}
-                      <div className="mt-8 pt-4 border-t border-onyx-800/60">
+                      <div className="mt-auto pt-6">
                         {credential.verifyUrl ? (
                           <a
                             href={credential.verifyUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            aria-label={`Verify ${credential.title} certificate on ${getVerifyPlatform(credential.verifyUrl)} (opens in new tab)`}
-                            className="min-h-[44px] w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-onyx-950 border border-onyx-800 hover:border-[#58f28f] hover:bg-[#58f28f]/10 text-xs font-bold text-[#58f28f] transition-all rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]"
+                            aria-label={`Verify ${credential.title} on ${getVerifyPlatform(
+                              credential.verifyUrl
+                            )} (opens in new tab)`}
+                            className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl border-2 border-pine px-4 text-[13px] font-medium text-pine transition-colors hover:bg-pine hover:text-paper"
                           >
-                            <span>Verify on {getVerifyPlatform(credential.verifyUrl)}</span>
-                            <ExternalLink className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                            Verify on {getVerifyPlatform(credential.verifyUrl)}
+                            <ExternalLink className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                           </a>
                         ) : (
-                          <div className="min-h-[44px] w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-onyx-950/50 border border-onyx-800/40 text-xs font-mono text-parchment-400 rounded">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-parchment-400 shrink-0" aria-hidden="true" />
-                            <span>Institutional Record Reviewed</span>
+                          <div className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl border-2 border-hair px-4 font-mono text-[11.5px] text-muted">
+                            Institutional record reviewed
                           </div>
                         )}
                       </div>
@@ -209,26 +217,22 @@ export default function CredentialsPage() {
           })}
         </div>
 
-        {/* Bottom CTA Callout */}
-        <section className="mt-24 p-8 sm:p-12 bg-onyx-900/40 border border-onyx-800 rounded-lg text-center space-y-6">
-          <h2 className="font-serif text-3xl sm:text-4xl text-parchment-50 font-normal">
-            Ready to integrate verified AI agent workflows into your systems?
+        {/* CTA */}
+        <section className="card-hard mt-20 bg-paper-2 p-8 text-center sm:p-12">
+          <h2 className="mx-auto max-w-[24ch] font-serif text-[clamp(24px,3.6vw,36px)] font-normal leading-tight tracking-[-0.015em] text-ink">
+            Want these patterns built inside your systems?
           </h2>
-          <p className="text-parchment-200 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-            From Model Context Protocol servers to production-ready n8n automation and Cloud Run micro-sandboxes, let&apos;s build reliable, human-in-the-loop workflows.
+          <p className="mx-auto mt-4 max-w-[58ch] text-pretty text-[14.5px] leading-relaxed text-muted">
+            From Model Context Protocol servers to production n8n automation and Cloud Run
+            micro-sandboxes — I build reliable, human-in-the-loop workflows and hand them over with
+            the documentation to own them.
           </p>
-          <div className="flex flex-wrap justify-center gap-4 pt-2">
-            <Link
-              href="/#contact"
-              className="inline-flex min-h-[44px] items-center justify-center px-8 py-3 bg-[#58f28f] text-onyx-950 font-extrabold text-xs uppercase tracking-wider hover:bg-white transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]"
-            >
-              Start a Conversation <ArrowUpRight className="w-4 h-4 ml-1.5" />
+          <div className="mt-7 flex flex-wrap justify-center gap-3">
+            <Link href="/#contact" className="btn-hard rounded-xl text-[13.5px]">
+              Start a conversation <ArrowUpRight className="h-4 w-4" />
             </Link>
-            <Link
-              href="/#work"
-              className="inline-flex min-h-[44px] items-center justify-center px-8 py-3 border border-onyx-700 text-parchment-50 font-bold text-xs uppercase tracking-wider hover:bg-onyx-800 transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]"
-            >
-              Explore Case Studies
+            <Link href="/#work" className="btn-hard btn-hard-ghost rounded-xl text-[13.5px]">
+              Explore case studies
             </Link>
           </div>
         </section>

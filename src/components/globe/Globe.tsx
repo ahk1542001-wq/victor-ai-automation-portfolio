@@ -241,11 +241,11 @@ export function Globe() {
   return (
     <div className="relative w-full max-w-sm mx-auto aspect-square flex flex-col items-center justify-center p-4 sm:p-6 md:p-8">
       {/* Outer Glow */}
-      <div className="absolute inset-0 bg-[#58f28f]/5 rounded-full blur-3xl mix-blend-screen pointer-events-none" />
+      <div className="absolute inset-0 bg-pine/5 rounded-full blur-3xl mix-blend-screen pointer-events-none" />
 
       {/* The Globe Sphere */}
       <div
-        className="relative w-full h-full rounded-full border border-onyx-700 bg-onyx-950 overflow-hidden shadow-[inset_-40px_-20px_60px_rgba(0,0,0,0.8)] isolate touch-pan-y cursor-grab active:cursor-grabbing focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]/50 transition-shadow"
+        className="relative w-full h-full rounded-full border-2 border-ink bg-surface overflow-hidden shadow-[inset_-30px_-18px_50px_color-mix(in_srgb,var(--ink)_16%,transparent)] isolate touch-pan-y cursor-grab active:cursor-grabbing focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pine/50 transition-shadow"
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
@@ -259,7 +259,7 @@ export function Globe() {
       >
         <svg viewBox="0 0 100 100" className="w-full h-full">
           {/* Grid lines */}
-          <g className="stroke-onyx-800 opacity-60 transition-opacity duration-1000" style={{ opacity: mounted ? 0.6 : 0 }}>
+          <g className="stroke-muted transition-opacity duration-1000" style={{ opacity: mounted ? 0.5 : 0 }}>
             {gridLines.map((line, idx) => (
               <path
                 key={idx}
@@ -277,7 +277,7 @@ export function Globe() {
             <path
               d={buildPath(arcPoints)}
               fill="none"
-              stroke="#58f28f"
+              stroke="var(--pine)"
               strokeWidth={0.75}
               strokeDasharray="1 1"
               className="transition-opacity duration-700"
@@ -288,9 +288,9 @@ export function Globe() {
           {/* Myanmar Marker */}
           {showMarkers && projMM.visible && (
             <g className="transition-opacity duration-500 animate-in fade-in zoom-in">
-              <circle cx={projMM.x} cy={projMM.y} r={1} fill="#e5e0d1" />
+              <circle cx={projMM.x} cy={projMM.y} r={1} fill="var(--clay)" />
               {!isReducedMotion && (
-                <circle cx={projMM.x} cy={projMM.y} r={1} fill="#e5e0d1" className="animate-ping" style={{ animationDuration: '3s', transformOrigin: `${projMM.x}px ${projMM.y}px` }} />
+                <circle cx={projMM.x} cy={projMM.y} r={1} fill="var(--clay)" className="animate-ping" style={{ animationDuration: '3s', transformOrigin: `${projMM.x}px ${projMM.y}px` }} />
               )}
             </g>
           )}
@@ -298,9 +298,9 @@ export function Globe() {
           {/* Bangkok Marker */}
           {showMarkers && projBKK.visible && (
             <g className="transition-opacity duration-500 delay-300 animate-in fade-in zoom-in">
-              <circle cx={projBKK.x} cy={projBKK.y} r={1.5} fill="#58f28f" />
+              <circle cx={projBKK.x} cy={projBKK.y} r={1.5} fill="var(--pine)" />
               {!isReducedMotion && (
-                <circle cx={projBKK.x} cy={projBKK.y} r={1.5} fill="#58f28f" className="animate-ping" style={{ transformOrigin: `${projBKK.x}px ${projBKK.y}px` }} />
+                <circle cx={projBKK.x} cy={projBKK.y} r={1.5} fill="var(--pine)" className="animate-ping" style={{ transformOrigin: `${projBKK.x}px ${projBKK.y}px` }} />
               )}
             </g>
           )}
@@ -314,7 +314,7 @@ export function Globe() {
               style={{ left: `${projMM.x}%`, top: `${projMM.y}%`, transform: 'translate(-50%, -150%)' }}
             >
               <div className="flex flex-col items-center">
-                <span className="text-[8px] sm:text-[9px] font-mono text-parchment-200 font-bold tracking-widest bg-onyx-950/80 px-1.5 py-0.5 rounded border border-onyx-800 backdrop-blur whitespace-nowrap">
+                <span className="text-[8px] sm:text-[9px] font-mono text-clay font-semibold tracking-widest bg-surface/90 px-1.5 py-0.5 rounded border border-hair backdrop-blur whitespace-nowrap">
                   MYANMAR / ROOTS
                 </span>
               </div>
@@ -326,7 +326,7 @@ export function Globe() {
               style={{ left: `${projBKK.x}%`, top: `${projBKK.y}%`, transform: 'translate(-50%, 50%)' }}
             >
               <div className="flex flex-col items-center">
-                <span className="text-[8px] sm:text-[9px] font-mono text-[#58f28f] font-bold tracking-widest bg-onyx-950/80 px-1.5 py-0.5 rounded border border-onyx-800 backdrop-blur whitespace-nowrap">
+                <span className="text-[8px] sm:text-[9px] font-mono text-pine font-semibold tracking-widest bg-surface/90 px-1.5 py-0.5 rounded border border-hair backdrop-blur whitespace-nowrap">
                   BANGKOK / BASE
                 </span>
               </div>
@@ -335,15 +335,15 @@ export function Globe() {
         </div>
 
         {/* Inner shadow */}
-        <div className="absolute inset-0 rounded-full shadow-[inset_20px_20px_40px_rgba(255,255,255,0.03)] pointer-events-none" />
+        <div className="absolute inset-0 rounded-full shadow-[inset_18px_18px_36px_color-mix(in_srgb,var(--paper)_30%,transparent)] pointer-events-none" />
       </div>
 
       {/* Controls */}
-      <div className="mt-6 flex items-center justify-center gap-2 sm:gap-4 text-onyx-400">
+      <div className="mt-6 flex items-center justify-center gap-2 sm:gap-4 text-muted">
         <button
           onClick={() => setUserPaused(p => !p)}
           disabled={isReducedMotion}
-          className="min-w-[44px] min-h-[44px] flex items-center justify-center hover:text-[#58f28f] hover:bg-onyx-900 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]/50 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="min-w-[44px] min-h-[44px] flex items-center justify-center hover:text-pine hover:bg-paper-2 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pine/50 disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label={userPaused ? "Resume rotation" : "Pause rotation"}
           title={userPaused ? "Resume rotation (Space)" : "Pause rotation (Space)"}
         >
@@ -360,7 +360,7 @@ export function Globe() {
             resetIdleTimer();
           }}
           disabled={isReducedMotion}
-          className="min-w-[44px] min-h-[44px] flex items-center justify-center hover:text-[#58f28f] hover:bg-onyx-900 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]/50 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="min-w-[44px] min-h-[44px] flex items-center justify-center hover:text-pine hover:bg-paper-2 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pine/50 disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label="Reset view to Southeast Asia"
           title="Reset view (R)"
         >
@@ -372,7 +372,7 @@ export function Globe() {
             setZoom(rZoom.current);
           }}
           disabled={isReducedMotion}
-          className="min-w-[44px] min-h-[44px] flex items-center justify-center hover:text-[#58f28f] hover:bg-onyx-900 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]/50 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="min-w-[44px] min-h-[44px] flex items-center justify-center hover:text-pine hover:bg-paper-2 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pine/50 disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label="Zoom out"
           title="Zoom out (-)"
         >
@@ -384,7 +384,7 @@ export function Globe() {
             setZoom(rZoom.current);
           }}
           disabled={isReducedMotion}
-          className="min-w-[44px] min-h-[44px] flex items-center justify-center hover:text-[#58f28f] hover:bg-onyx-900 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58f28f]/50 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="min-w-[44px] min-h-[44px] flex items-center justify-center hover:text-pine hover:bg-paper-2 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pine/50 disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label="Zoom in"
           title="Zoom in (+)"
         >
