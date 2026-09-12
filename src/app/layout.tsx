@@ -16,13 +16,19 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://portfolioweb-three-sigma.vercel.app'),
   title: "Victor | AI Automation & Agent Workflow Specialist",
   description: "Building intelligent n8n workflows, API integrations, and AI agent automation systems in Bangkok, Thailand.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Victor | AI Automation & Agent Workflow Specialist",
     description: "Building intelligent n8n workflows, API integrations, and AI agent automation systems.",
     type: "website",
     locale: "en_US",
+    siteName: "Victor — AI Automation Portfolio",
+    url: "/",
   },
   twitter: {
     card: "summary_large_image",
