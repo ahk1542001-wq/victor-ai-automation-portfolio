@@ -432,14 +432,14 @@ export default function Home() {
               <SectionHead
                 id="proof-heading"
                 eyebrow="Proof"
-                title="Judged by other people."
-                lede="Anyone can write a portfolio. These are the parts where someone else did the judging, or where a machine did the counting."
+                title="Not just my word for it."
+                lede="Anyone can write a portfolio. Two things here came from outside it — a selection someone else made, and a community I build in the open with. Both are public, so check them rather than take my word for it."
               />
 
               <div className="grid gap-4 md:grid-cols-2">
                 {/* Lead proof — the one that carries the most weight */}
                 <article
-                  className="card-hard flex flex-col bg-paper-2 p-7 md:col-span-2"
+                  className="card-hard flex flex-col bg-paper-2 p-7"
                 >
                   <span className="eyebrow text-clay">Third-party selection</span>
                   <h3 className="mt-2.5 font-serif text-2xl leading-snug text-ink sm:text-[26px]">
@@ -467,36 +467,12 @@ export default function Home() {
 
                 {[
                   {
-                    tag: 'Cloud Run build',
-                    title: 'FYF Video Pipeline — autonomous brand video studio',
-                    body: 'Built and run on Google Cloud Run. Google ADK agents, Gemini TTS, an official mcp-clickhouse MCP server for telemetry, and 20 automated QA gates that check the output before it ships. Submitted to the Google Cloud Agentic Cinema hackathon, ClickHouse Partner Track.',
-                    pills: ['1080p walkthrough', '74+ tests', '20 QA gates'],
-                    href: 'https://github.com/ahk1542001-wq/fyf-video-pipeline',
-                    linkLabel: 'View the repository',
-                  },
-                  {
-                    tag: 'Test evidence',
-                    title: 'TravelCare AI — autonomous flight rescue agent',
-                    body: 'A capability-governed trip graph orchestrating 13 guardrailed skills: EU261 / UK261 / US DOT jurisdiction detection, visa-aware rebooking across 14 passport rules, and regulation-cited appeal letters. Submitted to the Alibaba Cloud × Atlas Agentic AI hackathon.',
-                    pills: ['738 tests passing', '100% security gate'],
-                    href: 'https://github.com/ahk1542001-wq/alibaba-atlas-rescue-agent',
-                    linkLabel: 'View the repository',
-                  },
-                  {
-                    tag: 'Release evidence',
-                    title: 'Swoosh — URL shortener & link-in-bio builder',
-                    body: 'A product I specified, directed and approved rather than hand-wrote: scope decisions, visual direction, test acceptance and release sign-off. Authenticated shortening, click analytics and QR sharing.',
-                    pills: ['80 tests passing', '33 screenshots'],
-                    href: 'https://github.com/ahk1542001-wq/url-shortener-api',
-                    linkLabel: 'View the repository',
-                  },
-                  {
                     tag: 'Community',
                     title: 'vibecode.tours contributor',
-                    body: 'Working in a 20+ contributor developer community, building on shared material and reviewing each other’s work in the open. The closest thing to peer review I have, and it is public.',
-                    pills: ['Open source', 'Peer reviewed'],
-                    href: 'https://github.com/ahk1542001-wq',
-                    linkLabel: 'View my GitHub',
+                    body: 'Contributing to an open-source developer community — building on shared material and reviewing each other’s work in the open. The closest thing to peer review I have, and it is public.',
+                    pills: ['165 contributors', 'Open source'],
+                    href: 'https://github.com/vibe-code-tours/vibe-code-tours.github.io/graphs/contributors',
+                    linkLabel: 'See the contributors',
                   },
                 ].map((proof) => (
                   <article
@@ -523,16 +499,6 @@ export default function Home() {
                     </a>
                   </article>
                 ))}
-
-                {/* Reserved slot — fills in when the first quote lands */}
-                <div className="rounded-[14px] border-2 border-dashed border-clay bg-clay/5 p-6 md:col-span-2">
-                  <p className="text-[13.5px] leading-relaxed text-ink-soft">
-                    <span className="font-medium text-clay">Reserved for a reference.</span> This
-                    space is deliberately empty. I would rather show you a public repository you can check
-                    than a quote you have to take on faith — and when a manager or client writes one,
-                    it goes here.
-                  </p>
-                </div>
               </div>
             </div>
           </section>
