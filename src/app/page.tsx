@@ -355,7 +355,7 @@ export default function Home() {
                 id="credentials-heading"
                 eyebrow={`${credentials.length} credentials · ${verifiable} publicly verifiable`}
                 title="Verified, not claimed."
-                lede="Every credential below lists its issuer and issue date. Ten of them link straight to the issuer's public verification page — check them yourself."
+                lede={`Every credential below lists its issuer and issue date. ${verifiable} of them link straight to the issuer's public verification page — check them yourself.`}
               />
 
               <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">

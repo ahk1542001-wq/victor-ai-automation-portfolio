@@ -149,6 +149,20 @@ export const projects: Project[] = [
     youtubeId: 'gz3gWqSnNVU'
   },
   {
+    id: 'lead-nurturing-crm',
+    title: 'AI Lead Nurturing CRM',
+    category: 'Secondary Project',
+    projectType: 'n8n Automation',
+    problem: 'Leads that arrive through a form go cold — nothing scores them, nothing follows up, and two separate CRMs drift out of step.',
+    role: 'AI Automation Builder',
+    directed: 'Webhook lead capture, Groq scoring with Hot/Warm/Cold tiering, duplicate-checked dual CRM sync, Telegram alert routing, and a spaced 7-day Gmail drip sequence.',
+    solution: 'A webhook form captures each lead, Groq (Llama 3.3 70B) scores it 0-100 and tiers it Hot/Warm/Cold, the record syncs to both Airtable and Google Sheets, Telegram alerts the team on high-value leads, and a 7-day Gmail sequence follows up automatically.',
+    tools: ['n8n', 'Groq (Llama 3.3 70B)', 'Airtable', 'Google Sheets', 'Telegram', 'Gmail'],
+    capabilities: ['AI lead scoring & tiering', 'Duplicate-checked dual CRM sync', 'Multi-step email drip automation'],
+    outcome: 'Scores and tiers incoming leads, keeps Airtable and Google Sheets in sync, and runs the full 7-day follow-up sequence with Telegram alerts.',
+    github: 'https://github.com/ahk1542001-wq/n8n-automation-portfolio/tree/main/AI%20Lead%20Nurturing%20CRM%20%20-%20Airtable%20%2B%20Sheets'
+  },
+  {
     id: 'personal-finance',
     title: 'Personal Finance Capture Workflow',
     category: 'Secondary Project',
