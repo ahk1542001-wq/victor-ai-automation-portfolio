@@ -66,7 +66,7 @@ export default function Home() {
                   </h1>
 
                   <p className="mt-6 max-w-[58ch] text-pretty text-[17px] leading-relaxed text-ink-soft">
-                    AI Automation &amp; Agent Workflow Specialist based in Bangkok. I build multi-agent
+                    AI Automation &amp; Agent Workflow Engineer based in Bangkok. I build multi-agent
                     systems on Google Cloud — ADK agents, Model Context Protocol servers, and
                     telemetry that lets the system audit itself — plus the n8n pipelines that connect
                     them to real business tools.

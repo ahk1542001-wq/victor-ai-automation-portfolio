@@ -1,7 +1,7 @@
 export const portfolioContent = {
   hero: {
     name: 'Victor',
-    role: 'AI Automation & Agent Workflow Specialist',
+    role: 'AI Automation & Agent Workflow Engineer',
     location: 'Bangkok, Thailand',
     valueProposition: 'Designing and building reliable AI-assisted business workflows.'
   },

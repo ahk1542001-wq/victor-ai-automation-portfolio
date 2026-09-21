@@ -14,9 +14,9 @@ import sys
 
 import pymupdf
 
-TITLE = "Aung Hein Kyaw (Victor) — AI Automation & Agent Workflow Specialist"
+TITLE = "Aung Hein Kyaw (Victor) — AI Automation Engineer"
 AUTHOR = "Aung Hein Kyaw (Victor)"
-SUBJECT = "Résumé — AI Automation & Agent Workflow Specialist"
+SUBJECT = "Résumé — AI Automation Engineer"
 CREATOR = "resume/build.sh"
 
 # Terms a recruiter or ATS is likely to search on. Keep them to the things
