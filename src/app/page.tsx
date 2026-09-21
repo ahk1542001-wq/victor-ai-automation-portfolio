@@ -11,6 +11,7 @@ import {
   ArrowUpRight,
   ArrowRight,
   ExternalLink,
+  FileText,
   Mail,
   Globe as GlobeIcon,
   ShieldCheck,
@@ -80,6 +81,14 @@ export default function Home() {
                     </a>
                     <a href="#work" className="btn-hard btn-hard-ghost rounded-xl">
                       See the work <ArrowRight className="h-4 w-4" />
+                    </a>
+                    <a
+                      href={portfolioContent.contact.resume}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-hard btn-hard-ghost rounded-xl"
+                    >
+                      <FileText className="h-4 w-4" /> Résumé
                     </a>
                   </div>
 
@@ -563,6 +572,14 @@ export default function Home() {
                     className="btn-hard rounded-xl"
                   >
                     <Mail className="h-4 w-4" /> {portfolioContent.contact.email}
+                  </a>
+                  <a
+                    href={portfolioContent.contact.resume}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-hard btn-hard-ghost rounded-xl"
+                  >
+                    <FileText className="h-4 w-4" /> Résumé (PDF)
                   </a>
                   <a
                     href={portfolioContent.contact.linkedin}

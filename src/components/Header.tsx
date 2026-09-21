@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { ArrowUpRight, Menu, X, ArrowLeft } from 'lucide-react';
+import { FileText, Mail, Menu, X, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from './ThemeToggle';
@@ -100,11 +100,16 @@ export function Header() {
               rightmost on desktop, and beside the menu button on mobile. */}
           <ThemeToggle />
 
+          {/* The résumé is the header's primary action — a recruiter wants
+              the PDF before they want a conversation. Email stays one
+              click away in the hero and the contact band. */}
           <a
-            href="mailto:victor.job154@gmail.com"
+            href="/victor-resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden min-h-[44px] items-center justify-center gap-1.5 rounded-[10px] border-2 border-ink bg-ink px-4 text-[13px] font-medium text-paper shadow-[3px_3px_0_var(--clay)] transition-[transform,box-shadow] duration-100 hover:translate-x-px hover:translate-y-px hover:shadow-[2px_2px_0_var(--clay)] sm:inline-flex"
           >
-            Let&apos;s talk <ArrowUpRight className="h-3.5 w-3.5" />
+            Résumé <FileText className="h-3.5 w-3.5" />
           </a>
 
           {/* Mobile Menu Toggle Button */}
@@ -153,13 +158,22 @@ export function Header() {
             ))}
           </div>
 
-          <div className="mt-4 flex flex-col">
+          <div className="mt-4 flex flex-col gap-2">
             <a
-              href="mailto:victor.job154@gmail.com"
+              href="/victor-resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={closeMenu}
               className="btn-hard-ink inline-flex min-h-[44px] w-full items-center justify-center rounded-[10px] border-2 border-ink px-4 text-[13px] font-medium"
             >
-              Let&apos;s talk <ArrowUpRight className="ml-1.5 h-4 w-4" />
+              Résumé <FileText className="ml-1.5 h-4 w-4" />
+            </a>
+            <a
+              href="mailto:victor.job154@gmail.com"
+              onClick={closeMenu}
+              className="btn-hard-ghost inline-flex min-h-[44px] w-full items-center justify-center rounded-[10px] border-2 border-ink px-4 text-[13px] font-medium"
+            >
+              Email me <Mail className="ml-1.5 h-4 w-4" />
             </a>
           </div>
         </div>

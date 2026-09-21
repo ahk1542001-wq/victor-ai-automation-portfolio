@@ -67,5 +67,8 @@ export const portfolioContent = {
     email: 'victor.job154@gmail.com',
     linkedin: 'https://www.linkedin.com/in/aung-hein-kyaw',
     github: 'https://github.com/ahk1542001-wq',
+    // Generated from resume/resume.html by resume/build.sh. Kept in sync
+    // with the data files above, so the PDF and the site never disagree.
+    resume: '/victor-resume.pdf',
   }
 };
