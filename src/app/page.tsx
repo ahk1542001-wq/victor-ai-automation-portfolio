@@ -433,7 +433,7 @@ export default function Home() {
                 id="proof-heading"
                 eyebrow="Proof"
                 title="Not just my word for it."
-                lede="Anyone can write a portfolio. Two things here came from outside it — a selection someone else made, and a community I build in the open with. Both are public, so check them rather than take my word for it."
+                lede="A selection someone else made, and a community I build in the open with. Both are public, so check them rather than take my word for it."
               />
 
               <div className="grid gap-4 md:grid-cols-2">
@@ -453,9 +453,9 @@ export default function Home() {
                     micro-sandboxes — built and verified.
                   </p>
                   <div className="mt-5 flex flex-wrap gap-2">
-                    <span className="pill pill-solid">40/40 quiz score</span>
-                    <span className="pill">68/68 tests passing</span>
-                    <span className="pill">3 architectures built</span>
+                    <span className="pill pill-solid">3 architectures</span>
+                    <span className="pill">Vector Search RAG</span>
+                    <span className="pill">BigQuery over MCP</span>
                   </div>
                   <Link
                     href="/projects/gcp-genai-agent-architectures"

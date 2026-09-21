@@ -70,7 +70,7 @@ export const projects: Project[] = [
     solution: 'A FastAPI application combining authenticated URL shortening, click analytics, QR sharing, admin-managed accounts, and public Link Tree profiles.',
     tools: ['AI Coding Agents', 'FastAPI', 'Python', 'PostgreSQL', 'Render'],
     capabilities: ['Spec-driven AI-agent orchestration', 'Product and system decision-making', 'Reviewing automated tests', 'Release approval'],
-    outcome: 'Release evidence records 80 passing tests and 33 desktop/mobile screenshots.',
+    outcome: 'Shipped against acceptance criteria I wrote and signed off — authenticated shortening, click analytics and QR sharing.',
     github: 'https://github.com/ahk1542001-wq/url-shortener-api',
     imageUrl: '/projects/swoosh-feature-selection.png'
   },
@@ -85,7 +85,7 @@ export const projects: Project[] = [
     solution: 'A production-grade trilogy of AI Agent architectures featuring: (1) Grounded RAG with Vector Search, (2) Autonomous BigQuery SQL reasoning via MCP Server, and (3) Dynamic Python execution inside Cloud Run Micro-Sandboxes with Google Sheets API and WebSockets.',
     tools: ['Google Cloud Run', 'Vertex AI (Gemini 2.5/3.6 Flash)', 'Google ADK', 'Model Context Protocol (MCP)', 'BigQuery', 'Google Sheets API', 'FastAPI', 'Streamlit', 'Docker'],
     capabilities: ['Model Context Protocol (MCP)', 'Cloud Run Micro-Sandboxing', 'Human-in-the-Loop Governance', 'Enterprise BigQuery SQL Reasoning', 'Retrieval-Augmented Generation (RAG)'],
-    outcome: 'Architected, built, and verified 3 enterprise architectures on Google Cloud Run with 100% quiz scores (40/40) in Hack2Skill APAC GenAI Academy.',
+    outcome: 'Three architectures I specified and verified on Google Cloud Run — grounded RAG with Vector Search, BigQuery SQL reasoning over an MCP server, and sandboxed Python execution. Selected as a featured Hack2Skill APAC submission.',
     github: 'https://github.com/ahk1542001-wq/gcp-genai-agent-architectures',
     youtubeUrl: 'https://youtu.be/boDhNKUwZyE',
     youtubeId: 'boDhNKUwZyE'
@@ -101,7 +101,7 @@ export const projects: Project[] = [
     solution: 'A full-stack autonomous brand video studio that orchestrates story generation via Google ADK & Gemini, deterministic multi-format video rendering via Remotion, sanitized telemetry ingestion into ClickHouse Cloud, and natural language analytics via an MCP Data Officer.',
     tools: ['Next.js', 'Remotion', 'FastAPI', 'Python', 'Google Cloud Run', 'Gemini 2.5 Flash', 'Google ADK', 'ClickHouse Cloud', 'Model Context Protocol (MCP)', 'Google Cloud Storage', 'Gemini-TTS'],
     capabilities: ['Multi-Agent Video Pipeline', 'Deterministic Programmatic Rendering', 'ClickHouse Real-Time Telemetry', 'Model Context Protocol (MCP) Integration', 'Brand & Scene Immutable Locking', 'Cloud Run Micro-Services Architecture'],
-    outcome: 'Submitted to Google Cloud Agentic Cinema Hackathon (Devpost ClickHouse Partner Track); built on Google Cloud Run with verified 74+ test suite, 20 QA verification gates, and full 1080p demo walkthrough.',
+    outcome: 'The 20 QA gates I defined decide what ships — the pipeline rejects its own output rather than publishing it. Built on Google Cloud Run; Google Cloud Agentic Cinema Hackathon (Devpost ClickHouse Partner Track) entry.',
     github: 'https://github.com/ahk1542001-wq/fyf-video-pipeline',
     youtubeUrl: 'https://youtu.be/9MYzaFjR0ck',
     youtubeId: '9MYzaFjR0ck'
@@ -117,7 +117,7 @@ export const projects: Project[] = [
     solution: 'An autonomous proactive flight rescue agent integrating Atlas flight APIs and Alibaba Cloud Model Studio (Qwen) that instantly detects cancellations, evaluates compensation eligibility, generates regulation-cited appeal letters, and auto-orchestrates visa-safe rescue flights.',
     tools: ['Alibaba Cloud Model Studio', 'Qwen 2.5', 'Atlas Agent Framework', 'FastAPI', 'Python', 'Leaflet', 'Docker'],
     capabilities: ['Proactive Flight Disruption Rescue', 'Claims Autopilot & Jurisdiction Detection', 'Visa-Aware Rebooking Engine', 'Qwen-Agent Multi-Model Orchestration', 'Real-Time Flight API Integration'],
-    outcome: 'Submitted to Alibaba Cloud x Atlas Agentic AI Hackathon with 738 passing tests across dual brain engines (legacy & qwen_agent), 100% clean security gate, and verified 3-minute continuous walkthrough demo.',
+    outcome: '13 guardrailed skills under explicit capability limits — EU261 / UK261 / US DOT jurisdiction detection, visa-aware rebooking across 14 passport rule sets, and regulation-cited appeal letters. Alibaba Cloud x Atlas Agentic AI Hackathon entry.',
     github: 'https://github.com/ahk1542001-wq/alibaba-atlas-rescue-agent',
     youtubeUrl: 'https://youtu.be/H-MC2JHWl7M',
     youtubeId: 'H-MC2JHWl7M'
