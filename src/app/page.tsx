@@ -221,12 +221,12 @@ export default function Home() {
                   {
                     step: '02',
                     title: 'Architecture design',
-                    desc: 'I choose the workflow, the APIs and the models — n8n, Vertex AI, Claude, Qdrant — and write down the failure modes before writing any code.',
+                    desc: 'I choose the workflow, the APIs and the models — n8n, Vertex AI, Claude, Qdrant — and write down the failure modes before any code is written.',
                   },
                   {
                     step: '03',
                     title: 'Build, test, hand over',
-                    desc: 'Built against real data, tested with automated suites and QA gates, deployed, then handed over with the documentation you need to own it.',
+                    desc: 'I direct AI coding agents — Antigravity, Claude Code, ZCode, OpenCode — to implement it, then test it with automated suites and QA gates, deploy, and hand over the documentation you need to own it.',
                   },
                 ].map((item) => (
                   <div
