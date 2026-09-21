@@ -657,7 +657,10 @@ function SectionHead({
   return (
     <div className="mb-10">
       <div className="mb-4 flex items-center gap-4">
-        <span className="eyebrow whitespace-nowrap">{eyebrow}</span>
+        {/* Wraps below sm: the eyebrow is the longest text in this row and at
+            320px `whitespace-nowrap` pushed it past the viewport, where the
+            page's overflow-x-hidden clipped it rather than scrolling. */}
+        <span className="eyebrow min-w-0 sm:whitespace-nowrap">{eyebrow}</span>
         <span className="h-0.5 flex-1 bg-hair" />
       </div>
       <h2
