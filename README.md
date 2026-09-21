@@ -21,7 +21,7 @@ A recruiter-focused portfolio for **Victor**, an AI Automation & Agent Workflow 
 | AI Voice Receptionist | AI Voice Automation Builder | [Source](https://github.com/ahk1542001-wq/n8n-automation-portfolio/tree/main/AI%20Voice%20Receptionist%20for%20Dental%20Clinic%20%28Vapi%20%2B%20n8n%29) · [Demo](https://youtu.be/LKn7nkXoSGE) |
 | AI Content Research & Approval Workflow | Workflow Architect | [Source](https://github.com/ahk1542001-wq/n8n-automation-portfolio/tree/main/AI%20Content%20Creation%20%28n8n%20%2B%20Telegram%20%2B%20Supabase%20%2B%20Airtable%29) · [Demo](https://youtu.be/z7fhq1tr39Y) |
 | AI Job Matching & Cover Letter Workflow | AI Automation Builder | [Source](https://github.com/ahk1542001-wq/n8n-automation-portfolio/tree/main/Career%20Automation%20Agent) · [Demo](https://youtu.be/3JTJG-0S15o) |
-| AI Lead Qualification & Response Workflow | Solution Designer & Workflow Architect | [Source](https://github.com/ahk1542001-wq/n8n-automation-portfolio/tree/main/AI%20Appointment%20booking) · [Demo](https://youtu.be/gz3gWqSnNVU) |
+| AI Lead Qualification & Response Workflow | Solution Designer & Workflow Architect | [Source](https://github.com/ahk1542001-wq/n8n-automation-portfolio/tree/main/AI%20Lead%20Qualification%20%26%20Response%20Workflow) · [Demo](https://youtu.be/gz3gWqSnNVU) |
 | Personal Finance Capture Workflow | AI Automation Builder | [Source](https://github.com/ahk1542001-wq/n8n-automation-portfolio/tree/main/Personal%20Finance%20Agent) · [Demo](https://youtu.be/gk14NcOgRVU) |
 | Daily AI News Briefing | Workflow Architect | [Source](https://github.com/ahk1542001-wq/n8n-automation-portfolio/tree/main/Daily%20AI%20News%20Monitor) · [Demo](https://youtu.be/7EC_qIA381E) |
 

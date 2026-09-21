@@ -144,7 +144,7 @@ export const projects: Project[] = [
     tools: ['n8n', 'Groq', 'Qdrant', 'Ollama embeddings', 'optional OpenAI model', 'Gmail', 'Telegram', 'Google Sheets'],
     capabilities: ['Vector DB (RAG) score routing', 'Email generation', 'Google Sheets logging'],
     outcome: 'Successfully filters leads via score routing and notifies via Telegram/Gmail.',
-    github: 'https://github.com/ahk1542001-wq/n8n-automation-portfolio/tree/main/AI%20Appointment%20booking',
+    github: 'https://github.com/ahk1542001-wq/n8n-automation-portfolio/tree/main/AI%20Lead%20Qualification%20%26%20Response%20Workflow',
     youtubeUrl: 'https://youtu.be/gz3gWqSnNVU',
     youtubeId: 'gz3gWqSnNVU'
   },
