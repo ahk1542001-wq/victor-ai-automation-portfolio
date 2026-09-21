@@ -43,3 +43,6 @@ next-env.d.ts
 
 # UI/UX Pro Max local skill
 .agents/
+
+# résumé build scratch (stripped copy written by resume/build.sh)
+resume/.resume.build.html
