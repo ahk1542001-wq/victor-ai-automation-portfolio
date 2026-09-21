@@ -113,11 +113,11 @@ export const projects: Project[] = [
     projectType: 'AI-Assisted Software',
     problem: 'Flight cancellations and delays leave travelers stranded with complex rebooking procedures, confusing international transit visa requirements, and billions in unclaimed passenger rights compensation.',
     role: 'AI Agent Workflow Architect',
-    directed: 'Autonomous disruption monitoring pipeline, Claims Autopilot with legal jurisdiction detection (EU261/UK261/US DOT), Visa-Aware transit rebooking engine across 14 passport rules, and multi-model Qwen-Agent integration.',
+    directed: 'Autonomous disruption monitoring pipeline, Claims Autopilot with legal jurisdiction detection (EU261/UK261/US DOT), Visa-Aware transit rebooking engine across a curated visa table of 14 passports, and multi-model Qwen-Agent integration.',
     solution: 'An autonomous proactive flight rescue agent integrating Atlas flight APIs and Alibaba Cloud Model Studio (Qwen) that instantly detects cancellations, evaluates compensation eligibility, generates regulation-cited appeal letters, and auto-orchestrates visa-safe rescue flights.',
     tools: ['Alibaba Cloud Model Studio', 'Qwen 2.5', 'Atlas Agent Framework', 'FastAPI', 'Python', 'Leaflet', 'Docker'],
     capabilities: ['Proactive Flight Disruption Rescue', 'Claims Autopilot & Jurisdiction Detection', 'Visa-Aware Rebooking Engine', 'Qwen-Agent Multi-Model Orchestration', 'Real-Time Flight API Integration'],
-    outcome: '13 guardrailed skills under explicit capability limits — EU261 / UK261 / US DOT jurisdiction detection, visa-aware rebooking across 14 passport rule sets, and regulation-cited appeal letters. Alibaba Cloud x Atlas Agentic AI Hackathon entry.',
+    outcome: '13 guardrailed skills under explicit capability limits — EU261 / UK261 / US DOT jurisdiction detection, visa-aware rebooking against a curated visa table of 14 passports, and regulation-cited appeal letters. Alibaba Cloud x Atlas Agentic AI Hackathon entry.',
     github: 'https://github.com/ahk1542001-wq/alibaba-atlas-rescue-agent',
     youtubeUrl: 'https://youtu.be/H-MC2JHWl7M',
     youtubeId: 'H-MC2JHWl7M'
