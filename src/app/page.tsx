@@ -13,7 +13,6 @@ import {
   ExternalLink,
   FileText,
   Mail,
-  Globe as GlobeIcon,
   ShieldCheck,
   MapPin,
 } from 'lucide-react';
@@ -31,7 +30,6 @@ export default function Home() {
   const n8nProjects = projects.filter((p) => p.projectType === 'n8n Automation');
   const softwareProjects = projects.filter((p) => p.projectType === 'AI-Assisted Software');
   const verifiable = credentials.filter((c) => c.verifyUrl).length;
-  const liveCount = projects.filter((p) => p.liveUrl).length;
   const walkthroughs = projects.filter((p) => p.youtubeId).length;
   const aboutParts = portfolioContent.about.description.split('. ');
 
@@ -128,14 +126,13 @@ export default function Home() {
                 id="numbers-heading"
                 eyebrow="By the numbers"
                 title="Every figure is checkable."
-                lede="No rounded-up claims. Each of these can be verified from a public repository, a live URL, or a certificate registry."
+                lede="No rounded-up claims. Each of these can be verified from a public repository, a recorded walkthrough, or a certificate registry."
               />
 
-              <div className="grid grid-cols-2 gap-3.5 lg:grid-cols-4">
+              <div className="grid grid-cols-2 gap-3.5 lg:grid-cols-3">
                 {[
                   { n: String(projects.length), l: 'Projects shipped, end to end', hi: false },
-                  { n: String(liveCount), l: 'Live in production, reachable now', hi: true },
-                  { n: String(credentials.length), l: `Verified credentials · ${verifiable} with a public link`, hi: false },
+                  { n: String(credentials.length), l: `Verified credentials · ${verifiable} with a public link`, hi: true },
                   { n: String(walkthroughs), l: 'Recorded video walkthroughs', hi: false },
                 ].map((m) => (
                   <div
@@ -453,12 +450,12 @@ export default function Home() {
                     for the <em className="not-italic text-ink-soft">Accelerate AI with Cloud Run</em>{' '}
                     track. Three architectures — grounded RAG with Vector Search, autonomous BigQuery
                     SQL reasoning over an MCP server, and dynamic Python execution inside Cloud Run
-                    micro-sandboxes — deployed and verified.
+                    micro-sandboxes — built and verified.
                   </p>
                   <div className="mt-5 flex flex-wrap gap-2">
                     <span className="pill pill-solid">40/40 quiz score</span>
                     <span className="pill">68/68 tests passing</span>
-                    <span className="pill">3 architectures deployed</span>
+                    <span className="pill">3 architectures built</span>
                   </div>
                   <Link
                     href="/projects/gcp-genai-agent-architectures"
@@ -470,12 +467,12 @@ export default function Home() {
 
                 {[
                   {
-                    tag: 'Live deployment',
+                    tag: 'Cloud Run build',
                     title: 'FYF Video Pipeline — autonomous brand video studio',
-                    body: 'Running on Google Cloud Run right now. Google ADK agents, Gemini TTS, an official mcp-clickhouse MCP server for telemetry, and 20 automated QA gates that check the output before it ships. Submitted to the Google Cloud Agentic Cinema hackathon, ClickHouse Partner Track.',
-                    pills: ['Live URL', '74+ tests', '20 QA gates'],
-                    href: 'https://fyf-pipeline-605161166139.asia-southeast1.run.app',
-                    linkLabel: 'Open the live deployment',
+                    body: 'Built and run on Google Cloud Run. Google ADK agents, Gemini TTS, an official mcp-clickhouse MCP server for telemetry, and 20 automated QA gates that check the output before it ships. Submitted to the Google Cloud Agentic Cinema hackathon, ClickHouse Partner Track.',
+                    pills: ['1080p walkthrough', '74+ tests', '20 QA gates'],
+                    href: 'https://github.com/ahk1542001-wq/fyf-video-pipeline',
+                    linkLabel: 'View the repository',
                   },
                   {
                     tag: 'Test evidence',
@@ -488,10 +485,10 @@ export default function Home() {
                   {
                     tag: 'Release evidence',
                     title: 'Swoosh — URL shortener & link-in-bio builder',
-                    body: 'A product I specified, directed and approved rather than hand-wrote: scope decisions, visual direction, test acceptance and release sign-off. Publicly deployed with authenticated shortening, click analytics and QR sharing.',
+                    body: 'A product I specified, directed and approved rather than hand-wrote: scope decisions, visual direction, test acceptance and release sign-off. Authenticated shortening, click analytics and QR sharing.',
                     pills: ['80 tests passing', '33 screenshots'],
-                    href: 'https://swoo-sh.onrender.com',
-                    linkLabel: 'Open the live app',
+                    href: 'https://github.com/ahk1542001-wq/url-shortener-api',
+                    linkLabel: 'View the repository',
                   },
                   {
                     tag: 'Community',
@@ -531,7 +528,7 @@ export default function Home() {
                 <div className="rounded-[14px] border-2 border-dashed border-clay bg-clay/5 p-6 md:col-span-2">
                   <p className="text-[13.5px] leading-relaxed text-ink-soft">
                     <span className="font-medium text-clay">Reserved for a reference.</span> This
-                    space is deliberately empty. I would rather show you a live URL you can check
+                    space is deliberately empty. I would rather show you a public repository you can check
                     than a quote you have to take on faith — and when a manager or client writes one,
                     it goes here.
                   </p>
@@ -716,6 +713,7 @@ function WorkCard({ project, index, eager }: { project: Project; index: number; 
         </p>
 
         <div className="mt-6 flex flex-wrap gap-2">
+          {project.agentic && <span className="chip">AI Agent</span>}
           {project.tools.slice(0, 5).map((tool) => (
             <span key={tool} className="chip">
               {tool}
@@ -743,18 +741,6 @@ function WorkCard({ project, index, eager }: { project: Project; index: number; 
               className="inline-flex min-h-[44px] items-center gap-1.5 text-[13px] text-muted transition-colors hover:text-ink"
             >
               <ExternalLink className="h-3.5 w-3.5" /> Walkthrough
-            </a>
-          )}
-
-          {project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Open the live ${project.title} application`}
-              className="inline-flex min-h-[44px] items-center gap-1.5 text-[13px] text-muted transition-colors hover:text-ink"
-            >
-              <GlobeIcon className="h-3.5 w-3.5" /> Live
             </a>
           )}
 

@@ -2,7 +2,7 @@ import { projects } from '@/data/projects';
 import { YouTubeThumbnail } from '@/components/YouTubeThumbnail';
 import { TopologyDiagram } from '@/components/TopologyDiagram';
 import { Header } from '@/components/Header';
-import { ArrowLeft, ArrowRight, ArrowUpRight, ExternalLink, Globe as GlobeIcon, Check } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight, ExternalLink, Check } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -86,7 +86,7 @@ export default async function ProjectPage({ params }: Props) {
           <header className="max-w-[46rem]">
             <div className="flex flex-wrap items-center gap-2">
               <span className="pill pill-solid">{project.category}</span>
-              <span className="pill">{project.projectType}</span>
+              <span className="pill">{project.agentic ? 'n8n AI Agent' : project.projectType}</span>
             </div>
 
             <h1 className="mt-5 font-serif text-[clamp(32px,5.4vw,58px)] leading-[1.04] tracking-[-0.025em] text-ink">
@@ -148,16 +148,6 @@ export default async function ProjectPage({ params }: Props) {
             <div className="rounded-[14px] border-2 border-ink bg-surface px-5 py-4 shadow-[4px_4px_0_var(--offset)]">
               <dt className="eyebrow mb-2">Public evidence</dt>
               <dd className="flex flex-col gap-1">
-                {project.liveUrl && (
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-[36px] items-center gap-1.5 text-[13.5px] font-medium text-pine hover:underline"
-                  >
-                    <GlobeIcon className="h-3.5 w-3.5" /> Live application
-                  </a>
-                )}
                 {project.youtubeUrl && (
                   <a
                     href={project.youtubeUrl}

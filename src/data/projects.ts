@@ -14,7 +14,15 @@ export interface Project {
   youtubeUrl?: string;
   youtubeId?: string;
   imageUrl?: string;
-  liveUrl?: string;
+  /* True when the workflow contains a real LangChain AI Agent node —
+     verified against the exported workflow JSON, not inferred. */
+  agentic?: boolean;
+  /* Deliberately no `liveUrl`. The Cloud Run / Render deploys are
+     temporary (they cost money), so a link here would eventually 404.
+     Preserved in case the deploys come back:
+       swoosh-shortener              https://swoo-sh.onrender.com
+       gcp-genai-agent-architectures https://personal-gemini-journal-ypp4pspywq-uc.a.run.app
+       fyf-video-pipeline            https://fyf-pipeline-605161166139.asia-southeast1.run.app */
 }
 
 export const projects: Project[] = [
@@ -36,6 +44,7 @@ export const projects: Project[] = [
   },
   {
     id: 'content-research',
+    agentic: true,
     title: 'AI Content Research & Approval Workflow',
     category: 'Feature',
     projectType: 'n8n Automation',
@@ -61,10 +70,9 @@ export const projects: Project[] = [
     solution: 'A FastAPI application combining authenticated URL shortening, click analytics, QR sharing, admin-managed accounts, and public Link Tree profiles.',
     tools: ['AI Coding Agents', 'FastAPI', 'Python', 'PostgreSQL', 'Render'],
     capabilities: ['Spec-driven AI-agent orchestration', 'Product and system decision-making', 'Reviewing automated tests', 'Release approval'],
-    outcome: 'Publicly deployed; release evidence records 80 passing tests and 33 desktop/mobile screenshots.',
+    outcome: 'Release evidence records 80 passing tests and 33 desktop/mobile screenshots.',
     github: 'https://github.com/ahk1542001-wq/url-shortener-api',
-    imageUrl: '/projects/swoosh-feature-selection.png',
-    liveUrl: 'https://swoo-sh.onrender.com'
+    imageUrl: '/projects/swoosh-feature-selection.png'
   },
   {
     id: 'gcp-genai-agent-architectures',
@@ -77,11 +85,10 @@ export const projects: Project[] = [
     solution: 'A production-grade trilogy of AI Agent architectures featuring: (1) Grounded RAG with Vector Search, (2) Autonomous BigQuery SQL reasoning via MCP Server, and (3) Dynamic Python execution inside Cloud Run Micro-Sandboxes with Google Sheets API and WebSockets.',
     tools: ['Google Cloud Run', 'Vertex AI (Gemini 2.5/3.6 Flash)', 'Google ADK', 'Model Context Protocol (MCP)', 'BigQuery', 'Google Sheets API', 'FastAPI', 'Streamlit', 'Docker'],
     capabilities: ['Model Context Protocol (MCP)', 'Cloud Run Micro-Sandboxing', 'Human-in-the-Loop Governance', 'Enterprise BigQuery SQL Reasoning', 'Retrieval-Augmented Generation (RAG)'],
-    outcome: 'Architected, deployed, and verified 3 enterprise architectures on Google Cloud Run with 100% quiz scores (40/40) in Hack2Skill APAC GenAI Academy.',
+    outcome: 'Architected, built, and verified 3 enterprise architectures on Google Cloud Run with 100% quiz scores (40/40) in Hack2Skill APAC GenAI Academy.',
     github: 'https://github.com/ahk1542001-wq/gcp-genai-agent-architectures',
     youtubeUrl: 'https://youtu.be/boDhNKUwZyE',
-    youtubeId: 'boDhNKUwZyE',
-    liveUrl: 'https://personal-gemini-journal-ypp4pspywq-uc.a.run.app'
+    youtubeId: 'boDhNKUwZyE'
   },
   {
     id: 'fyf-video-pipeline',
@@ -94,11 +101,10 @@ export const projects: Project[] = [
     solution: 'A full-stack autonomous brand video studio that orchestrates story generation via Google ADK & Gemini, deterministic multi-format video rendering via Remotion, sanitized telemetry ingestion into ClickHouse Cloud, and natural language analytics via an MCP Data Officer.',
     tools: ['Next.js', 'Remotion', 'FastAPI', 'Python', 'Google Cloud Run', 'Gemini 2.5 Flash', 'Google ADK', 'ClickHouse Cloud', 'Model Context Protocol (MCP)', 'Google Cloud Storage', 'Gemini-TTS'],
     capabilities: ['Multi-Agent Video Pipeline', 'Deterministic Programmatic Rendering', 'ClickHouse Real-Time Telemetry', 'Model Context Protocol (MCP) Integration', 'Brand & Scene Immutable Locking', 'Cloud Run Micro-Services Architecture'],
-    outcome: 'Submitted to Google Cloud Agentic Cinema Hackathon (Devpost ClickHouse Partner Track); deployed on Google Cloud Run with verified 74+ test suite, 20 QA verification gates, and full 1080p demo walkthrough.',
+    outcome: 'Submitted to Google Cloud Agentic Cinema Hackathon (Devpost ClickHouse Partner Track); built on Google Cloud Run with verified 74+ test suite, 20 QA verification gates, and full 1080p demo walkthrough.',
     github: 'https://github.com/ahk1542001-wq/fyf-video-pipeline',
     youtubeUrl: 'https://youtu.be/9MYzaFjR0ck',
-    youtubeId: '9MYzaFjR0ck',
-    liveUrl: 'https://fyf-pipeline-605161166139.asia-southeast1.run.app'
+    youtubeId: '9MYzaFjR0ck'
   },
   {
     id: 'travelcare-ai',
@@ -118,6 +124,7 @@ export const projects: Project[] = [
   },
   {
     id: 'job-matching',
+    agentic: true,
     title: 'AI Job Matching & Cover Letter Workflow',
     category: 'Secondary Project',
     projectType: 'n8n Automation',
@@ -134,6 +141,7 @@ export const projects: Project[] = [
   },
   {
     id: 'lead-qualification',
+    agentic: true,
     title: 'AI Lead Qualification & Response Workflow',
     category: 'Secondary Project',
     projectType: 'n8n Automation',
@@ -150,6 +158,7 @@ export const projects: Project[] = [
   },
   {
     id: 'lead-nurturing-crm',
+    agentic: true,
     title: 'AI Lead Nurturing CRM',
     category: 'Secondary Project',
     projectType: 'n8n Automation',
@@ -164,6 +173,7 @@ export const projects: Project[] = [
   },
   {
     id: 'personal-finance',
+    agentic: true,
     title: 'Personal Finance Capture Workflow',
     category: 'Secondary Project',
     projectType: 'n8n Automation',
