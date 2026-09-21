@@ -446,11 +446,10 @@ export default function Home() {
                     Featured Ideathon Submission — Hack2Skill APAC GenAI Academy
                   </h3>
                   <p className="mt-3 max-w-[62ch] text-[14px] leading-relaxed text-muted">
-                    My Google Cloud GenAI agent architectures were selected as a featured submission
-                    for the <em className="not-italic text-ink-soft">Accelerate AI with Cloud Run</em>{' '}
-                    track. Three architectures — grounded RAG with Vector Search, autonomous BigQuery
-                    SQL reasoning over an MCP server, and dynamic Python execution inside Cloud Run
-                    micro-sandboxes — built and verified.
+                    Selected as a featured submission for the{' '}
+                    <em className="not-italic text-ink-soft">Accelerate AI with Cloud Run</em> track at
+                    the Hack2Skill APAC GenAI Academy. The choice was theirs, not mine — the
+                    architectures themselves are in Selected Work.
                   </p>
                   <div className="mt-5 flex flex-wrap gap-2">
                     <span className="pill pill-solid">3 architectures</span>
