@@ -226,7 +226,7 @@ export default function Home() {
                   {
                     step: '03',
                     title: 'Build, test, hand over',
-                    desc: 'I direct AI coding agents — Antigravity, Claude Code, ZCode, OpenCode — to implement it, then test it with automated suites and QA gates, deploy, and hand over the documentation you need to own it.',
+                    desc: 'I direct AI coding agents — Antigravity, Claude Code, ZCode, OpenCode — to implement it, then judge the result against QA gates I define, deploy, and hand over the documentation you need to own it.',
                   },
                 ].map((item) => (
                   <div
@@ -264,7 +264,7 @@ export default function Home() {
                   <div className="space-y-5 font-serif text-[19px] leading-relaxed text-ink-soft sm:text-[21px]">
                     <p className="text-pretty">{aboutParts[0]}.</p>
                     <p className="text-pretty">
-                      I run every build as a project with a scope, a spec and a review gate. That is
+                      I run every build as a project with a scope, a spec and a QA gate. That is
                       the part of my coordination background that transfers directly: automation
                       fails on ambiguity far more often than it fails on code.
                     </p>

@@ -69,7 +69,7 @@ export const projects: Project[] = [
     directed: 'Product scope, specification decisions, visual direction, testing acceptance, and release approval.',
     solution: 'A FastAPI application combining authenticated URL shortening, click analytics, QR sharing, admin-managed accounts, and public Link Tree profiles.',
     tools: ['AI Coding Agents', 'FastAPI', 'Python', 'PostgreSQL', 'Render'],
-    capabilities: ['Spec-driven AI-agent orchestration', 'Product and system decision-making', 'Reviewing automated tests', 'Release approval'],
+    capabilities: ['Spec-driven AI-agent orchestration', 'Product and system decision-making', 'Acceptance testing', 'Release approval'],
     outcome: 'Shipped against acceptance criteria I wrote and signed off — authenticated shortening, click analytics and QR sharing.',
     github: 'https://github.com/ahk1542001-wq/url-shortener-api',
     imageUrl: '/projects/swoosh-feature-selection.png'
