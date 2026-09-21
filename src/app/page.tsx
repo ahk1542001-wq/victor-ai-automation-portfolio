@@ -226,7 +226,7 @@ export default function Home() {
                   {
                     step: '03',
                     title: 'Build, test, hand over',
-                    desc: 'I direct AI coding agents — Antigravity, Claude Code, ZCode, OpenCode — to implement it, then judge the result against QA gates I define, deploy, and hand over the documentation you need to own it.',
+                    desc: 'I direct AI coding agents — Codex (my main one), Antigravity, Claude Code, ZCode, OpenCode — to implement it, then judge the result against QA gates I define, deploy, and hand over the documentation you need to own it.',
                   },
                 ].map((item) => (
                   <div
