@@ -17,18 +17,53 @@ OUT="$REPO/public/victor-resume.pdf"
 # fonts/ references still resolve.
 SRC="$HERE/resume.html"
 TMP="$HERE/.resume.build.html"
+CHROME_PROFILE="$(mktemp -d "${TMPDIR:-/tmp}/victor-resume-chrome.XXXXXX")"
+CHROME_LOG="$(mktemp "${TMPDIR:-/tmp}/victor-resume-chrome.XXXXXX")"
+PDF_TMP_DIR="$(mktemp -d "$REPO/public/.resume-pdf.XXXXXX")"
+PDF_TMP="$PDF_TMP_DIR/victor-resume.pdf"
+cleanup() {
+  rm -f "$TMP"
+  rm -f "$CHROME_LOG"
+  rm -rf "$CHROME_PROFILE"
+  rm -rf "$PDF_TMP_DIR"
+}
+trap cleanup EXIT
 sed 's/ data-page-node-id="[^"]*"//g' "$SRC" > "$TMP"
 
-"$CHROME" \
+# Chrome 153 on macOS can keep its parent process alive after a successful
+# print even though the PDF is already complete. A bounded alarm prevents a
+# stuck build. Render into a temporary directory and replace the public artifact
+# only after a fresh non-empty PDF exists, so a failed build preserves the last
+# known-good résumé.
+set +e
+{ (perl -e 'alarm 15; exec @ARGV' \
+  "$CHROME" \
   --headless=new \
   --disable-gpu \
   --no-sandbox \
+  --user-data-dir="$CHROME_PROFILE" \
+  --no-first-run \
+  --no-default-browser-check \
+  --disable-background-networking \
+  --disable-component-update \
+  --disable-sync \
+  --disable-extensions \
+  --metrics-recording-only \
+  --disable-cache \
   --no-pdf-header-footer \
   --virtual-time-budget=8000 \
-  --print-to-pdf="$OUT" \
-  "file://$TMP" 2>&1 | grep -v -E "^\[|Fontconfig|DevTools" || true
+  --print-to-pdf="$PDF_TMP" \
+  "file://$TMP") >"$CHROME_LOG" 2>&1; } 2>/dev/null
+CHROME_STATUS=$?
+set -e
 
-rm -f "$TMP" 2>/dev/null || echo "note: left $TMP behind (harmless, git-ignored)"
+if [ ! -s "$PDF_TMP" ]; then
+  cat "$CHROME_LOG" >&2
+  echo "error: Chrome did not produce a résumé PDF (exit $CHROME_STATUS)" >&2
+  exit "$CHROME_STATUS"
+fi
+
+mv "$PDF_TMP" "$OUT"
 
 echo "wrote $OUT ($(stat -f%z "$OUT") bytes)"
 

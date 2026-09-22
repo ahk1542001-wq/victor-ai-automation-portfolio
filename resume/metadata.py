@@ -14,15 +14,15 @@ import sys
 
 import pymupdf
 
-TITLE = "Aung Hein Kyaw (Victor) — AI Automation Engineer"
+TITLE = "Aung Hein Kyaw (Victor) — AI Automation & Agent Workflow Builder"
 AUTHOR = "Aung Hein Kyaw (Victor)"
-SUBJECT = "Résumé — AI Automation Engineer"
+SUBJECT = "Résumé — AI Automation & Agent Workflow Builder"
 CREATOR = "resume/build.sh"
 
 # Terms a recruiter or ATS is likely to search on. Keep them to the things
 # this résumé genuinely evidences — keyword stuffing gets a PDF filtered out.
 KEYWORDS = ", ".join([
-    "AI automation", "AI agent engineer", "agentic workflows",
+    "AI automation", "AI agent workflows", "agentic workflows",
     "Model Context Protocol", "MCP", "Google ADK", "Google Cloud Run",
     "Vertex AI", "n8n", "Python", "FastAPI", "Docker", "RAG",
     "human-in-the-loop", "LLM integration", "Bangkok", "remote",

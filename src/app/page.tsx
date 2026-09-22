@@ -59,15 +59,13 @@ export default function Home() {
                     className="mt-6 text-balance font-serif text-[clamp(38px,7.2vw,80px)] leading-[0.98] tracking-[-0.03em] text-ink"
                   >
                     I build agentic systems that{' '}
-                    <em className="not-italic text-pine">run in production</em>, not{' '}
-                    <span className="text-clay">in a demo.</span>
+                    <em className="not-italic text-pine">stand up to real verification.</em>
                   </h1>
 
                   <p className="mt-6 max-w-[58ch] text-pretty text-[17px] leading-relaxed text-ink-soft">
-                    AI Automation &amp; Agent Workflow Engineer based in Bangkok. I build multi-agent
-                    systems on Google Cloud — ADK agents, Model Context Protocol servers, and
-                    telemetry that lets the system audit itself — plus the n8n pipelines that connect
-                    them to real business tools.
+                    AI Automation &amp; Agent Workflow Builder based in Bangkok. I design and verify
+                    multi-agent systems on Google Cloud — ADK agents, Model Context Protocol
+                    servers, and telemetry — plus the n8n workflows that connect them to business tools.
                   </p>
 
                   <div className="mt-8 flex flex-wrap gap-3">
@@ -131,7 +129,7 @@ export default function Home() {
 
               <div className="grid grid-cols-2 gap-3.5 lg:grid-cols-3">
                 {[
-                  { n: String(projects.length), l: 'Projects shipped, end to end', hi: false },
+                  { n: String(projects.length), l: 'Public project case studies', hi: false },
                   { n: String(credentials.length), l: `Verified credentials · ${verifiable} with a public link`, hi: true },
                   { n: String(walkthroughs), l: 'Recorded video walkthroughs', hi: false },
                 ].map((m) => (
@@ -169,7 +167,7 @@ export default function Home() {
               <SectionHead
                 id="work-heading"
                 eyebrow={`${projects.length} projects · ${walkthroughs} recorded walkthroughs`}
-                title="What I've shipped."
+                title="What I've built and verified."
                 lede="Two tracks: the n8n automation systems that pay for themselves in saved hours, and the AI-assisted software products I direct from specification to release."
               />
 

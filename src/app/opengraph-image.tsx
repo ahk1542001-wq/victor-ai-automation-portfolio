@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-export const alt = 'Victor — AI Automation & Agent Workflow Engineer';
+export const alt = 'Victor — AI Automation & Agent Workflow Builder';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -100,7 +100,7 @@ export default async function OpengraphImage() {
               display: 'flex',
             }}
           >
-            that run in production.
+            verified beyond the demo.
           </div>
         </div>
 

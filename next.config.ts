@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Keep the repository's reviewed AGENTS.md authoritative. Next.js 16.3+
+  // otherwise appends generated rules every time `next dev` starts.
+  agentRules: false,
   turbopack: {
     root: process.cwd(),
   },
