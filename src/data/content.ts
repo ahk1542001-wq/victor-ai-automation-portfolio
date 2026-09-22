@@ -1,19 +1,19 @@
 export const portfolioContent = {
   hero: {
     name: 'Victor',
-    role: 'AI Automation & Agent Workflow Engineer',
+    role: 'AI Automation & Agent Workflow Builder',
     location: 'Bangkok, Thailand',
     valueProposition: 'Designing and building reliable AI-assisted business workflows.'
   },
   about: {
     title: 'About',
-    description: 'I moved from Client Services and Project Coordination into AI Automation. I architect, deploy, and verify production AI agent systems connecting LLMs, Model Context Protocol (MCP) servers, enterprise APIs, and human-in-the-loop approval workflows across Google Cloud Run and modern serverless platforms.'
+    description: 'I moved from Client Services and Project Coordination into AI Automation. I design, implement, test, and troubleshoot n8n workflows and agent systems with API, webhook, LLM, RAG, and human-in-the-loop integrations.'
   },
   establishedCapabilities: [
     'Multi-agent orchestration and autonomous creation loops with Google ADK',
     'Model Context Protocol (MCP) servers, custom tools, and resource protocols',
     'Cloud Run micro-sandboxing, Docker containerization, and least-privilege IAM',
-    'Production n8n workflow architecture, webhook routing, and human-in-the-loop RAG'
+    'n8n workflow architecture, webhook routing, and human-in-the-loop RAG'
   ],
   currentlyLearning: {
     title: 'Currently Learning',
@@ -57,10 +57,10 @@ export const portfolioContent = {
       description: ''
     },
     {
-      degree: 'Bachelor of Applied Science, Industrial Chemistry',
-      institution: 'East Yangon University',
+      degree: 'Industrial Chemistry coursework',
+      institution: 'East Yangon University — degree not completed',
       period: 'February 2017 to March 2019',
-      description: ''
+      description: 'Left during the final year without completing the degree'
     }
   ],
   contact: {

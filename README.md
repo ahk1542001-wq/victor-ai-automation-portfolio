@@ -1,6 +1,6 @@
 # Victor - AI Automation & Agent Workflow Portfolio
 
-A recruiter-focused portfolio for **Victor**, an AI Automation & Agent Workflow Engineer based in Bangkok. The site presents verified n8n automation work, AI-assisted software projects, professional experience, and evidence-backed credentials without overstating production status or results.
+A recruiter-focused portfolio for **Victor**, an AI Automation & Agent Workflow Builder based in Bangkok. The site presents verified n8n automation work, AI-assisted software projects, professional experience, and evidence-backed credentials without overstating production status or results.
 
 ![Victor's AI Automation portfolio homepage](docs/portfolio-preview.png)
 

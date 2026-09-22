@@ -23,13 +23,13 @@ const instrumentSerif = Instrument_Serif({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://portfolioweb-three-sigma.vercel.app'),
-  title: "Victor | AI Automation & Agent Workflow Engineer",
+  title: "Victor | AI Automation & Agent Workflow Builder",
   description: "Building intelligent n8n workflows, API integrations, and AI agent automation systems in Bangkok, Thailand.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Victor | AI Automation & Agent Workflow Engineer",
+    title: "Victor | AI Automation & Agent Workflow Builder",
     description: "Building intelligent n8n workflows, API integrations, and AI agent automation systems.",
     type: "website",
     locale: "en_US",
@@ -38,8 +38,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Victor | AI Automation Engineer",
-    description: "AI Automation & Agent Workflow Engineer based in Bangkok, Thailand.",
+    title: "Victor | AI Automation & Agent Workflow Builder",
+    description: "AI Automation & Agent Workflow Builder based in Bangkok, Thailand.",
   },
   icons: {
     icon: "/favicon.ico",
@@ -50,7 +50,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Victor",
-  "jobTitle": "AI Automation & Agent Workflow Engineer",
+  "jobTitle": "AI Automation & Agent Workflow Builder",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Bangkok",
