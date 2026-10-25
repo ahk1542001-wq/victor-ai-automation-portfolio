@@ -3,6 +3,8 @@ export interface Project {
   title: string;
   category: 'Feature' | 'Secondary Project';
   projectType: 'n8n Automation' | 'AI-Assisted Software';
+  /* Honest build status, shown publicly next to each project. */
+  status: 'Hackathon demo' | 'MVP demo' | 'Live MVP';
   problem: string;
   role: string;
   directed: string;
@@ -31,6 +33,7 @@ export const projects: Project[] = [
     title: 'AI Voice Receptionist',
     category: 'Feature',
     projectType: 'n8n Automation',
+    status: 'MVP demo',
     problem: 'Automating inbound clinic calls to handle patient inquiries and book calendar appointments.',
     role: 'AI Voice Automation Builder',
     directed: 'Vapi.ai configuration, n8n webhook routing, Google Calendar syncing, ElevenLabs voice setup.',
@@ -48,6 +51,7 @@ export const projects: Project[] = [
     title: 'AI Content Research & Approval Workflow',
     category: 'Feature',
     projectType: 'n8n Automation',
+    status: 'MVP demo',
     problem: 'Automating industry news research and drafting persona-matched LinkedIn posts safely.',
     role: 'Workflow Architect',
     directed: 'Dual-agent orchestration, Firecrawl integration, AI-assisted JavaScript workflow logic, multi-database syncing (Supabase/Airtable).',
@@ -64,6 +68,7 @@ export const projects: Project[] = [
     title: 'Swoosh — URL Shortener & Link-in-Bio Builder',
     category: 'Feature',
     projectType: 'AI-Assisted Software',
+    status: 'Live MVP',
     problem: 'People need a controlled way to create trackable short links and manage multiple public link-in-bio pages.',
     role: 'AI-Agent-Directed Product Builder',
     directed: 'Product scope, specification decisions, visual direction, testing acceptance, and release approval.',
@@ -79,6 +84,7 @@ export const projects: Project[] = [
     title: 'Enterprise GenAI Agent Architectures on Google Cloud',
     category: 'Feature',
     projectType: 'AI-Assisted Software',
+    status: 'Hackathon demo',
     problem: 'Enterprises require proven, secure agentic patterns to connect LLMs to unstructured knowledge bases, big data warehouses, and automated operational workflows without security risks.',
     role: 'Cloud AI Architect & Agent Director',
     directed: 'Multi-pattern architecture design, Model Context Protocol (MCP) integration, Cloud Run Sandboxes configuration, least-privilege IAM security, and human-in-the-loop governance.',
@@ -95,6 +101,7 @@ export const projects: Project[] = [
     title: 'FYF Video Pipeline — Autonomous Brand Video Studio',
     category: 'Feature',
     projectType: 'AI-Assisted Software',
+    status: 'Hackathon demo',
     problem: 'Producing localized high-retention video ads and explainers traditionally requires expensive video crews, disjointed editing tools, and manual telemetry tracking.',
     role: 'Lead Architect & AI Agent Director / Builder',
     directed: 'Autonomous creation-loop architecture, brand & scene immutable locking, Remotion rendering pipeline, Google ADK & Gemini TTS orchestration, ClickHouse telemetry outbox, and Model Context Protocol (MCP) Data Officer integration.',
@@ -111,6 +118,7 @@ export const projects: Project[] = [
     title: 'TravelCare AI — Autonomous Flight Rescue Agent',
     category: 'Feature',
     projectType: 'AI-Assisted Software',
+    status: 'Hackathon demo',
     problem: 'Flight cancellations and delays leave travelers stranded with complex rebooking procedures, confusing international transit visa requirements, and billions in unclaimed passenger rights compensation.',
     role: 'AI Agent Workflow Architect',
     directed: 'Autonomous disruption monitoring pipeline, Claims Autopilot with legal jurisdiction detection (EU261/UK261/US DOT), Visa-Aware transit rebooking engine across a curated visa table of 14 passports, and multi-model Qwen-Agent integration.',
@@ -123,28 +131,12 @@ export const projects: Project[] = [
     youtubeId: 'H-MC2JHWl7M'
   },
   {
-    id: 'job-matching',
-    agentic: true,
-    title: 'AI Job Matching & Cover Letter Workflow',
-    category: 'Secondary Project',
-    projectType: 'n8n Automation',
-    problem: 'Automating the searching of job boards, checking CV matches, and drafting cover letters.',
-    role: 'AI Automation Builder',
-    directed: 'SerpAPI Google Jobs Search integration, human-in-the-loop Telegram bot creation, LLM integration, Google Drive CV parsing.',
-    solution: 'A workflow that searches job postings via SerpAPI, matches them against a CV, and sends an interactive Telegram message asking to auto-generate a cover letter.',
-    tools: ['n8n', 'Groq', 'Telegram API', 'Google Drive/Sheets', 'SerpAPI Google Jobs Search'],
-    capabilities: ['SerpAPI integration', 'LLM text matching', 'Human-in-the-loop (HITL) workflows'],
-    outcome: 'Successfully matches job descriptions and sends Telegram interactive approvals.',
-    github: 'https://github.com/ahk1542001-wq/n8n-automation-portfolio/tree/main/Career%20Automation%20Agent',
-    youtubeUrl: 'https://youtu.be/3JTJG-0S15o',
-    youtubeId: '3JTJG-0S15o'
-  },
-  {
     id: 'lead-qualification',
     agentic: true,
     title: 'AI Lead Qualification & Response Workflow',
     category: 'Secondary Project',
     projectType: 'n8n Automation',
+    status: 'MVP demo',
     problem: 'Handling incoming client requests efficiently by filtering out low-budget leads.',
     role: 'Solution Designer & Workflow Architect',
     directed: 'RAG architecture setup (Qdrant), Telegram notification routing, Gmail drafting logic, logic branching based on lead scores.',
@@ -162,6 +154,7 @@ export const projects: Project[] = [
     title: 'AI Lead Nurturing CRM',
     category: 'Secondary Project',
     projectType: 'n8n Automation',
+    status: 'MVP demo',
     problem: 'Leads that arrive through a form go cold — nothing scores them, nothing follows up, and two separate CRMs drift out of step.',
     role: 'AI Automation Builder',
     directed: 'Form-trigger lead capture, Groq scoring with Hot/Warm/Cold tiering, duplicate-checked dual CRM sync, Telegram alert routing, and a spaced 7-day Gmail drip sequence.',
@@ -170,38 +163,5 @@ export const projects: Project[] = [
     capabilities: ['AI lead scoring & tiering', 'Duplicate-checked dual CRM sync', 'Multi-step email drip automation'],
     outcome: 'Scores and tiers incoming leads, keeps Airtable and Google Sheets in sync, and runs the full 7-day follow-up sequence with Telegram alerts.',
     github: 'https://github.com/ahk1542001-wq/n8n-automation-portfolio/tree/main/AI%20Lead%20Nurturing%20CRM%20%20-%20Airtable%20%2B%20Sheets'
-  },
-  {
-    id: 'personal-finance',
-    agentic: true,
-    title: 'Personal Finance Capture Workflow',
-    category: 'Secondary Project',
-    projectType: 'n8n Automation',
-    problem: 'Eliminating manual spreadsheet logging using a natural language interface.',
-    role: 'AI Automation Builder',
-    directed: 'n8n workflow architecture, Telegram API integration, Google Sheets/Notion database syncing.',
-    solution: 'A Telegram bot that parses unstructured expense/income text using local LLM parsing through Ollama and synchronizes records to Notion and Google Sheets.',
-    tools: ['n8n', 'Ollama', 'Google Sheets', 'Telegram Bot API', 'Notion'],
-    capabilities: ['Local LLM text parsing', 'API syncing'],
-    outcome: 'Parses natural language into structured Notion/Sheets data with flow calculations.',
-    github: 'https://github.com/ahk1542001-wq/n8n-automation-portfolio/tree/main/Personal%20Finance%20Agent',
-    youtubeUrl: 'https://youtu.be/gk14NcOgRVU',
-    youtubeId: 'gk14NcOgRVU'
-  },
-  {
-    id: 'daily-news',
-    title: 'Daily AI News Briefing',
-    category: 'Secondary Project',
-    projectType: 'n8n Automation',
-    problem: 'Monitoring multiple AI news sources manually is time-consuming.',
-    role: 'Workflow Architect',
-    directed: 'Main + Sub workflow design, Cron scheduling, Groq LLM summarization prompting (English to Burmese), global error handling.',
-    solution: 'A scheduled n8n architecture that loops through RSS feeds via Sub-workflows, extracts articles, summarizes them into Burmese, and delivers them to Telegram.',
-    tools: ['n8n', 'Groq (Llama 3.3 70B)', 'Telegram', 'RSS feeds'],
-    capabilities: ['Main/Sub modular workflow design', 'LLM translation/summarization'],
-    outcome: 'Processes feeds and outputs Burmese text summaries.',
-    github: 'https://github.com/ahk1542001-wq/n8n-automation-portfolio/tree/main/Daily%20AI%20News%20Monitor',
-    youtubeUrl: 'https://youtu.be/7EC_qIA381E',
-    youtubeId: '7EC_qIA381E'
   }
 ];
