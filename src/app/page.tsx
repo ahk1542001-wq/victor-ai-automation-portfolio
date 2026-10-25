@@ -170,7 +170,7 @@ export default function Home() {
                 id="work-heading"
                 eyebrow={`${projects.length} projects · ${walkthroughs} recorded walkthroughs`}
                 title="What I've built and verified."
-                lede="Two tracks: the n8n automation systems that pay for themselves in saved hours, and the AI-assisted software products I direct from specification to release."
+                lede="Two tracks: n8n automation systems and AI-assisted software products I direct from specification to release. Every project is labelled honestly — hackathon demos and MVPs built to prove an approach, not production systems in daily use."
               />
 
               <h3 className="hair-t mb-8 flex flex-wrap items-baseline gap-3 pt-6 font-serif text-2xl text-ink sm:text-3xl">
@@ -736,7 +736,7 @@ function WorkCard({ project, index, eager }: { project: Project; index: number; 
         }`}
       >
         <span className="absolute left-4 top-4 rounded-full border-2 border-ink bg-paper px-3 py-0.5 font-mono text-[10px] uppercase tracking-[0.08em] text-ink">
-          {project.category === 'Feature' ? 'Flagship' : 'Secondary'}
+          {project.category === 'Feature' ? 'Flagship' : 'Secondary'} · {project.status}
         </span>
 
         <div className="w-full overflow-hidden rounded-[10px] border-2 border-dashed border-paper/55">

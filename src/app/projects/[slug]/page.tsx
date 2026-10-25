@@ -87,6 +87,7 @@ export default async function ProjectPage({ params }: Props) {
             <div className="flex flex-wrap items-center gap-2">
               <span className="pill pill-solid">{project.category}</span>
               <span className="pill">{project.agentic ? 'n8n AI Agent' : project.projectType}</span>
+              <span className="pill">{project.status}</span>
             </div>
 
             <h1 className="mt-5 font-serif text-[clamp(32px,5.4vw,58px)] leading-[1.04] tracking-[-0.025em] text-ink">
