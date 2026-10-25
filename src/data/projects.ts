@@ -92,9 +92,7 @@ export const projects: Project[] = [
     tools: ['Google Cloud Run', 'Vertex AI (Gemini 2.5/3.6 Flash)', 'Google ADK', 'Model Context Protocol (MCP)', 'BigQuery', 'Google Sheets API', 'FastAPI', 'Streamlit', 'Docker'],
     capabilities: ['Model Context Protocol (MCP)', 'Cloud Run Micro-Sandboxing', 'Human-in-the-Loop Governance', 'Enterprise BigQuery SQL Reasoning', 'Retrieval-Augmented Generation (RAG)'],
     outcome: 'Three architectures I specified and verified on Google Cloud Run — grounded RAG with Vector Search, BigQuery SQL reasoning over an MCP server, and sandboxed Python execution. Selected as a featured Hack2Skill APAC submission.',
-    github: 'https://github.com/ahk1542001-wq/gcp-genai-agent-architectures',
-    youtubeUrl: 'https://youtu.be/boDhNKUwZyE',
-    youtubeId: 'boDhNKUwZyE'
+    github: 'https://github.com/ahk1542001-wq/gcp-genai-agent-architectures'
   },
   {
     id: 'fyf-video-pipeline',
