@@ -10,7 +10,8 @@ export function VicGallery() {
   return (
     <div className="grid gap-6 lg:grid-cols-[minmax(0,1.65fr)_minmax(240px,1fr)]">
       <div className="min-w-0">
-        <div className="flex aspect-video items-center justify-center overflow-hidden bg-black">
+        <div className="card-hard bg-pine p-3 sm:p-5 lg:p-6">
+          <div className="flex aspect-video items-center justify-center overflow-hidden rounded-[10px] border-2 border-dashed border-paper/55 bg-black">
           <video
             key={sample.id}
             controls
@@ -23,6 +24,7 @@ export function VicGallery() {
             <source src={sample.src} type="video/mp4" />
             Your browser cannot play this video. <a href={sample.src}>Open the sample</a>.
           </video>
+          </div>
         </div>
         <div className="mt-4 flex flex-wrap items-baseline justify-between gap-2">
           <h3 className="font-serif text-2xl text-ink">{sample.topic}</h3>
