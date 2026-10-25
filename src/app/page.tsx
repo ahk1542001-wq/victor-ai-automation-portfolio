@@ -7,6 +7,7 @@ import { YouTubeThumbnail } from '@/components/YouTubeThumbnail';
 import { Header } from '@/components/Header';
 import { TopologyDiagram } from '@/components/TopologyDiagram';
 import { JourneyMap } from '@/components/journey-map';
+import { VicShowcase } from '@/components/VicShowcase';
 import {
   ArrowUpRight,
   ArrowRight,
@@ -58,15 +59,15 @@ export default function Home() {
                     id="hero-heading"
                     className="mt-6 text-balance font-serif text-[clamp(38px,7.2vw,80px)] leading-[0.98] tracking-[-0.03em] text-ink"
                   >
-                    I build AI agents that{' '}
-                    <em className="not-italic text-pine">do the marketing work.</em>
+                    I build AI agents for{' '}
+                    <em className="not-italic text-pine">content creation</em> and business automation.
                   </h1>
 
                   <p className="mt-6 max-w-[58ch] text-pretty text-[17px] leading-relaxed text-ink-soft">
-                    AI Automation &amp; Agent Workflow Builder based in Bangkok — with a past
-                    life in content marketing. Before AI, I was the client-facing lead at
+                    AI Automation &amp; Agent Workflow Builder based in Bangkok. From research and scripting to animated videos and voiceovers, I design AI-assisted workflows and direct the creative process. With a past
+                    life in content marketing, I was the client-facing lead at
                     Technity for sponsored content from global brands such as Samsung and
-                    Huawei. Now I build the other side of that work: n8n workflows and
+                    Huawei. Today, I combine that background with n8n workflows and
                     multi-agent systems that research, draft, qualify leads and follow up.
                   </p>
 
@@ -202,6 +203,8 @@ export default function Home() {
           {/* ---------------------------------------------------------- */}
           {/* How I work                                                 */}
           {/* ---------------------------------------------------------- */}
+          <VicShowcase />
+
           <section id="how" aria-labelledby="how-heading" className="border-t-2 border-ink bg-paper-2 py-16 md:py-20">
             <div className="mx-auto max-w-[1120px] px-5 sm:px-6">
               <SectionHead

@@ -3,7 +3,7 @@ export const portfolioContent = {
     name: 'Victor',
     role: 'AI Automation & Agent Workflow Builder',
     location: 'Bangkok, Thailand',
-    valueProposition: 'Designing and building reliable AI-assisted business workflows.'
+    valueProposition: 'I build AI agents for content creation and business automation.'
   },
   about: {
     title: 'About',
