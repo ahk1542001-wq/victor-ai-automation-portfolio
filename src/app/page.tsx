@@ -58,14 +58,16 @@ export default function Home() {
                     id="hero-heading"
                     className="mt-6 text-balance font-serif text-[clamp(38px,7.2vw,80px)] leading-[0.98] tracking-[-0.03em] text-ink"
                   >
-                    I build agentic systems that{' '}
-                    <em className="not-italic text-pine">stand up to real verification.</em>
+                    I build AI agents that{' '}
+                    <em className="not-italic text-pine">do the marketing work.</em>
                   </h1>
 
                   <p className="mt-6 max-w-[58ch] text-pretty text-[17px] leading-relaxed text-ink-soft">
-                    AI Automation &amp; Agent Workflow Builder based in Bangkok. I design and verify
-                    multi-agent systems on Google Cloud — ADK agents, Model Context Protocol
-                    servers, and telemetry — plus the n8n workflows that connect them to business tools.
+                    AI Automation &amp; Agent Workflow Builder based in Bangkok — with a past
+                    life in content marketing. Before AI, I was the client-facing lead at
+                    Technity for sponsored content from global brands such as Samsung and
+                    Huawei. Now I build the other side of that work: n8n workflows and
+                    multi-agent systems that research, draft, qualify leads and follow up.
                   </p>
 
                   <div className="mt-8 flex flex-wrap gap-3">
@@ -93,7 +95,7 @@ export default function Home() {
                     {[
                       { dt: 'Based in', dd: 'Bangkok, Thailand' },
                       { dt: 'Languages', dd: 'Burmese · English · Thai' },
-                      { dt: 'Open to', dd: 'Automation · AI agents · AI product' },
+                      { dt: 'Open to', dd: 'Automation · AI agents · Content & marketing systems' },
                       { dt: 'Availability', dd: 'Immediate · Remote or onsite' },
                     ].map((fact, i) => (
                       <div
