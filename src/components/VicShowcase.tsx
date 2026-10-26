@@ -14,7 +14,7 @@ export function VicShowcase() {
         <VicGallery />
         <div className="mt-8 flex flex-wrap items-center gap-5">
           <Link href="/work/vic" className="btn-hard btn-hard-ghost">How I built the workflow <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></Link>
-          <span className="text-sm text-muted">Script · Motion · Voice cloning · Human review</span>
+          <span className="max-w-[68ch] text-sm leading-relaxed text-muted">Built with Hermes: GPT-6.1 Sol plans and reviews; Gemini Flash subagents execute scoped tasks.</span>
         </div>
       </div>
     </section>
