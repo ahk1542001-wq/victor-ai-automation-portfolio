@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Victor | AI Automation & Agent Workflow Builder",
-    description: "Building intelligent n8n workflows, API integrations, and AI agent automation systems.",
+    description: "AI agents for content creation and business automation, including Burmese video production, voice cloning and reusable workflows.",
     type: "website",
     locale: "en_US",
     siteName: "Victor — AI Automation Portfolio",

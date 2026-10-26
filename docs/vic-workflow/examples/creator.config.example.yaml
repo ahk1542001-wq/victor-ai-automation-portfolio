@@ -1,0 +1,27 @@
+# Credential-free reference; configure accounts/providers separately.
+# Model identifiers reflect one inspected installation, not guaranteed availability.
+model:
+  default: gpt-6.1-sol
+  provider: openai-codex
+  api_mode: codex_responses
+  streaming: true
+agent:
+  reasoning_effort: medium
+fallback_providers: []
+toolsets: [web, browser, skills, terminal, file, code_execution, vision, tts, memory, delegation]
+providers:
+  9router:
+    name: 9Router
+    base_url: http://127.0.0.1:20127/v1
+    model: ag/gemini-3.8-flash-high
+    api_mode: chat_completions
+delegation:
+  provider: 9router
+  model: ag/gemini-3.8-flash-high
+  reasoning_effort: high
+  max_spawn_depth: 1
+  max_concurrent_children: 2
+  max_iterations: 100
+  inherit_mcp_toolsets: false
+  orchestrator_enabled: false
+  fallback_providers: []

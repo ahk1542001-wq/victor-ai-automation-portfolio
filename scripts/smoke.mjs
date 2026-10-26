@@ -110,8 +110,8 @@ const projectsSource = fs.readFileSync(projectsDataPath, 'utf-8');
 const idMatches = [...projectsSource.matchAll(/id:\s*['"]([^'"]+)['"]/g)];
 const projectSlugs = idMatches.map((m) => m[1]);
 
-if (projectSlugs.length < 10) {
-  console.error(`FAIL: Expected at least 10 projects, but found ${projectSlugs.length}`);
+if (projectSlugs.length === 0 || new Set(projectSlugs).size !== projectSlugs.length) {
+  console.error('FAIL: Project inventory must be nonempty with unique slugs');
   process.exit(1);
 }
 
@@ -150,12 +150,9 @@ for (const slug of projectSlugs) {
 
 // 5. Specific Verification for Hackathon & Architecture Showcases
 const gcpHtml = fs.readFileSync(path.join(outDir, 'projects', 'gcp-genai-agent-architectures.html'), 'utf-8');
-if (!gcpHtml.includes('https://youtu.be/boDhNKUwZyE')) {
-  console.error('FAIL: GCP GenAI Agent Architectures missing YouTube demo link');
-  process.exit(1);
-}
-if (!homeHtml.includes('boDhNKUwZyE')) {
-  console.error('FAIL: Homepage missing GCP GenAI Agent Architectures YouTube thumbnail');
+// PR #34 deliberately removed this dead walkthrough. Do not resurrect it.
+if (gcpHtml.includes('boDhNKUwZyE') || homeHtml.includes('boDhNKUwZyE')) {
+  console.error('FAIL: Removed GCP walkthrough link has returned');
   process.exit(1);
 }
 
@@ -230,3 +227,28 @@ for (const url of verifyUrls) {
 }
 
 console.log(`PASS: All production smoke checks (${projectSlugs.length} projects + credentials page + homepage links + mandatory sections) completed successfully!`);
+
+// VIC discovery and real local media, including styles not initially selected.
+const vicPath = path.join(outDir, 'work', 'vic.html');
+if (!fs.existsSync(vicPath) || !homeHtml.includes('/work/vic')) {
+  throw new Error('VIC case study must be built and discoverable from the homepage');
+}
+const vicHtml = fs.readFileSync(vicPath, 'utf8');
+for (const phrase of ['Watch the work', 'VoxCPM2', 'voice-demo.mp3', 'not a turnkey installer']) {
+  if (!vicHtml.includes(phrase)) throw new Error(`Missing VIC evidence: ${phrase}`);
+}
+const vicSource = fs.readFileSync(path.join(process.cwd(), 'src/data/vic.ts'), 'utf8');
+const samples = JSON.parse(vicSource.match(/export const vicSamples = ([\s\S]*?) as const;/)[1]);
+if (samples.length !== 5 || new Set(samples.map((s) => s.style)).size !== 5) {
+  throw new Error('VIC must expose five distinct styles');
+}
+for (const sample of samples) {
+  for (const asset of [sample.src, sample.poster]) {
+    const actual = path.join(process.cwd(), 'public', asset);
+    if (!fs.existsSync(actual) || !fs.statSync(actual).size) throw new Error(`Missing VIC asset: ${asset}`);
+  }
+}
+for (const asset of ['voice-demo.mp3', 'voice-transcript.txt', 'vic-video-workflow-review.zip']) {
+  if (!fs.existsSync(path.join(process.cwd(), 'public/vic', asset))) throw new Error(`Missing VIC evidence: ${asset}`);
+}
+console.log('PASS: VIC five-style inventory, local media, narration and workflow download.');

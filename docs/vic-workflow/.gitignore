@@ -1,0 +1,17 @@
+# Never copy live profiles into this repository.
+.env
+.env.*
+!.env.example
+*credentials*.json
+*service-account*.json
+*.pem
+*.key
+node_modules/
+.venv/
+__pycache__/
+attachments/
+sessions/
+logs/
+backups/
+models/
+media-private/

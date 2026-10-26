@@ -18,13 +18,14 @@ export function Header() {
 
   const navLinks = [
     { href: '/#work', label: 'Work' },
+    { href: '/#content', label: 'Videos' },
     { href: '/#numbers', label: 'Numbers' },
     { href: '/#background', label: 'Background' },
     { href: '/#credentials', label: 'Credentials' },
     { href: '/#proof', label: 'Proof' },
   ];
 
-  const isSecondaryPage = pathname?.startsWith('/projects/') || pathname?.startsWith('/credentials');
+  const isSecondaryPage = pathname?.startsWith('/projects/') || pathname?.startsWith('/credentials') || pathname?.startsWith('/work/');
 
   useEffect(() => {
     if (isInitialMount.current) {
