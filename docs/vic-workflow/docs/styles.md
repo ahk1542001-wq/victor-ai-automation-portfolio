@@ -6,7 +6,7 @@
 | vic-sh-visualStory | 9:16 short | Fresh cartoon artwork plus UI/object action | RAG Visual Story proof |
 | vic-lg-spatialMotion | 16:9 long | Layered depth, typography, motivated camera | Accepted landscape full example |
 | vic-lg-cartoonStory | 16:9 long | Character intentions, contact, reactions and layered camera | Cartoon agent-task example |
-| vic-lg-paperMotion | 16:9 long | Paper/sticker scenes and kinetic chapters | Historical AI Token example |
+| vic-lg-paperMotion | 16:9 long | Paper/sticker scenes and kinetic chapters | Local vs Cloud AI models — classic presenter example |
 
 Short and long are editorial defaults, not fixed minute limits. New ratios require an explicit composition and bounds review. Examples show mechanics and style; they are not universal casts, colors, scripts, topic templates or proof of fresh unattended production.
 

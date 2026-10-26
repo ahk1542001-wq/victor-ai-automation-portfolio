@@ -8,10 +8,10 @@ Reviewed 2026-10-26 for the owner's requested public GitHub review branch. No so
 | Visual Story | Existing RAG beginner character-motion export, 35–53s | Topic-specific cartoon illustration with explanatory object action |
 | Spatial Motion | Owner-accepted landscape Remotion/AI-agent example, 43–61s | Layered layout, original VIC presenter and spatial motion |
 | Cartoon Story | Existing file-sort cartoon, complete 34.4s example | Character/prop action; later warm-music revision |
-| Paper Motion | Historical AI Token export, 54–72s | Paper/kinetic token explanation |
+| Paper Motion | Owner-supplied Local vs Cloud export, 89.36–106.00s | Classic paper/presenter treatment; local-model/offline explanation |
 | Dry voice demo | A complete generated narration chunk from the RAG job | Reference-conditioned owner voice; private conditioning recording excluded |
 
-All samples were encoded as small web previews from existing local outputs. No new voice/art synthesis, external stock download or background track was added during portfolio preparation. Original output hashes, excerpt offsets and preview hashes are recorded privately; the public source includes only compact previews/posters and the generated voice demo. The owner selected this gallery and instructed the GitHub push/PR.
+All samples were encoded as small web previews from existing local outputs. The owner subsequently supplied Local vs Cloud and requested one better Paper Motion sample; it replaces AI Token in the same slot. The other four samples are unchanged. No new voice/art synthesis, external stock download or background track was added during portfolio preparation. Original output hashes, excerpt offsets and preview hashes are recorded privately; the public source includes only compact previews/posters and the generated voice demo. The owner selected this gallery and instructed the GitHub push/PR.
 
 ## Upstream attribution
 

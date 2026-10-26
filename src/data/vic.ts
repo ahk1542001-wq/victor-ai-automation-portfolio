@@ -51,12 +51,12 @@ export const vicSamples = [
     "id": "paper-motion",
     "title": "Paper Motion",
     "style": "vic-lg-paperMotion",
-    "topic": "AI tokens explained",
+    "topic": "Local vs Cloud AI models",
     "format": "16:9",
     "src": "/vic/paper-motion.mp4",
     "poster": "/vic/paper-motion.jpg",
-    "duration": 18.0,
-    "sourceStart": 54,
+    "duration": 16.7,
+    "sourceStart": 89.36,
     "excerpt": true
   }
 ] as const;
