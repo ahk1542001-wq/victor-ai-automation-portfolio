@@ -118,49 +118,6 @@ export default function Home() {
             </div>
           </section>
 
-          {/* ---------------------------------------------------------- */}
-          {/* Numbers                                                    */}
-          {/* ---------------------------------------------------------- */}
-          <section id="numbers" aria-labelledby="numbers-heading" className="border-t-2 border-ink py-16 md:py-20">
-            <div className="mx-auto max-w-[1120px] px-5 sm:px-6">
-              <SectionHead
-                id="numbers-heading"
-                eyebrow="By the numbers"
-                title="Every figure is checkable."
-                lede="No rounded-up claims. Each of these can be verified from a public repository, a recorded walkthrough, or a certificate registry."
-              />
-
-              <div className="grid grid-cols-2 gap-3.5 lg:grid-cols-3">
-                {[
-                  { n: String(projects.length), l: 'Public project case studies', hi: false },
-                  { n: String(credentials.length), l: `Verified credentials · ${verifiable} with a public link`, hi: true },
-                  { n: String(walkthroughs), l: 'Recorded video walkthroughs', hi: false },
-                ].map((m) => (
-                  <div
-                    key={m.l}
-                    className={`rounded-[14px] border-2 border-ink px-5 py-6 shadow-[4px_4px_0_var(--offset)] ${
-                      m.hi ? 'bg-pine' : 'bg-surface'
-                    }`}
-                  >
-                    <b
-                      className={`block font-serif text-[42px] font-normal leading-none tracking-[-0.02em] ${
-                        m.hi ? 'text-paper' : 'text-ink'
-                      }`}
-                    >
-                      {m.n}
-                    </b>
-                    <span
-                      className={`mt-2.5 block text-[13px] leading-snug ${
-                        m.hi ? 'text-paper/85' : 'text-muted'
-                      }`}
-                    >
-                      {m.l}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
 
           {/* ---------------------------------------------------------- */}
           {/* Selected work                                              */}
@@ -201,54 +158,10 @@ export default function Home() {
           </section>
 
           {/* ---------------------------------------------------------- */}
-          {/* How I work                                                 */}
+          {/* Content creation                                           */}
           {/* ---------------------------------------------------------- */}
           <VicShowcase />
 
-          <section id="how" aria-labelledby="how-heading" className="border-t-2 border-ink bg-paper-2 py-16 md:py-20">
-            <div className="mx-auto max-w-[1120px] px-5 sm:px-6">
-              <SectionHead
-                id="how-heading"
-                eyebrow="How I work"
-                title="Three steps, no mystery."
-                lede="The same process whether it is a two-week n8n build or a multi-agent system on Cloud Run."
-              />
-
-              <div className="grid gap-4 md:grid-cols-3">
-                {[
-                  {
-                    step: '01',
-                    title: 'Discovery & audit',
-                    desc: 'I map the current manual work, find where the hours actually go, and say plainly which parts are worth automating and which are not.',
-                  },
-                  {
-                    step: '02',
-                    title: 'Architecture design',
-                    desc: 'I choose the workflow, the APIs and the models — n8n, Vertex AI, Claude, Qdrant — and write down the failure modes before any code is written.',
-                  },
-                  {
-                    step: '03',
-                    title: 'Build, test, hand over',
-                    desc: 'I direct AI coding agents — Codex (my main one), Antigravity, Claude Code, ZCode, OpenCode — to implement it, then judge the result against QA gates I define, deploy, and hand over the documentation you need to own it.',
-                  },
-                ].map((item) => (
-                  <div
-                    key={item.step}
-                    className="card-hard relative overflow-hidden p-7"
-                  >
-                    <span className="pointer-events-none absolute right-5 top-4 select-none font-serif text-6xl text-ink/10">
-                      {item.step}
-                    </span>
-                    <span className="eyebrow text-clay">{item.step}</span>
-                    <h3 className="relative mt-3 font-serif text-2xl leading-snug text-ink">
-                      {item.title}
-                    </h3>
-                    <p className="mt-3 text-[14px] leading-relaxed text-muted">{item.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
 
           {/* ---------------------------------------------------------- */}
           {/* Background                                                 */}
@@ -292,17 +205,6 @@ export default function Home() {
                     </ul>
                   </div>
 
-                  {/* Currently learning */}
-                  <div className="mt-9 hair-t pt-6">
-                    <h3 className="eyebrow mb-4">Currently learning</h3>
-                    <ul className="flex flex-wrap gap-2">
-                      {portfolioContent.currentlyLearning.items.map((item) => (
-                        <li key={item} className="chip">
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
                 </div>
 
                 <aside className="lg:col-span-5">
@@ -427,83 +329,6 @@ export default function Home() {
             </div>
           </section>
 
-          {/* ---------------------------------------------------------- */}
-          {/* Proof                                                      */}
-          {/* ---------------------------------------------------------- */}
-          <section id="proof" aria-labelledby="proof-heading" className="border-t-2 border-ink py-16 md:py-20">
-            <div className="mx-auto max-w-[1120px] px-5 sm:px-6">
-              <SectionHead
-                id="proof-heading"
-                eyebrow="Proof"
-                title="Not just my word for it."
-                lede="A selection someone else made, and a community I build in the open with. Both are public, so check them rather than take my word for it."
-              />
-
-              <div className="grid gap-4 md:grid-cols-2">
-                {/* Lead proof — the one that carries the most weight */}
-                <article
-                  className="card-hard flex flex-col bg-paper-2 p-7"
-                >
-                  <span className="eyebrow text-clay">Third-party selection</span>
-                  <h3 className="mt-2.5 font-serif text-2xl leading-snug text-ink sm:text-[26px]">
-                    Featured Ideathon Submission — Hack2Skill APAC GenAI Academy
-                  </h3>
-                  <p className="mt-3 max-w-[62ch] text-[14px] leading-relaxed text-muted">
-                    Selected as a featured submission for the{' '}
-                    <em className="not-italic text-ink-soft">Accelerate AI with Cloud Run</em> track at
-                    the Hack2Skill APAC GenAI Academy. The choice was theirs, not mine — the
-                    architectures themselves are in Selected Work.
-                  </p>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    <span className="pill pill-solid">3 architectures</span>
-                    <span className="pill">Vector Search RAG</span>
-                    <span className="pill">BigQuery over MCP</span>
-                  </div>
-                  <Link
-                    href="/projects/gcp-genai-agent-architectures"
-                    className="mt-6 inline-flex w-fit min-h-[44px] items-center gap-2 text-sm font-medium text-ink underline decoration-clay decoration-2 underline-offset-4 hover:text-pine"
-                  >
-                    Read the case study <ArrowUpRight className="h-4 w-4" />
-                  </Link>
-                </article>
-
-                {[
-                  {
-                    tag: 'Community',
-                    title: 'vibecode.tours contributor',
-                    body: 'Contributing to an open-source developer community — building on shared material and reviewing each other’s work in the open. The closest thing to peer review I have, and it is public.',
-                    pills: ['165 contributors', 'Open source'],
-                    href: 'https://github.com/vibe-code-tours/vibe-code-tours.github.io/graphs/contributors',
-                    linkLabel: 'See the contributors',
-                  },
-                ].map((proof) => (
-                  <article
-                    key={proof.title}
-                    className="card-hard flex flex-col p-6"
-                  >
-                    <span className="eyebrow text-clay">{proof.tag}</span>
-                    <h3 className="mt-2.5 font-serif text-xl leading-snug text-ink">{proof.title}</h3>
-                    <p className="mt-3 text-[13.5px] leading-relaxed text-muted">{proof.body}</p>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {proof.pills.map((pill) => (
-                        <span key={pill} className="pill">
-                          {pill}
-                        </span>
-                      ))}
-                    </div>
-                    <a
-                      href={proof.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-auto inline-flex min-h-[44px] w-fit items-center gap-1.5 pt-5 text-[13px] font-medium text-ink underline decoration-clay decoration-2 underline-offset-4 hover:text-pine"
-                    >
-                      {proof.linkLabel} <ArrowUpRight className="h-3.5 w-3.5" />
-                    </a>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </section>
         </main>
 
         {/* ---------------------------------------------------------- */}
