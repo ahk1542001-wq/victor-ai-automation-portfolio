@@ -25,7 +25,7 @@ Read [vic-video](skills/vic-video/SKILL.md) for the exported workflow. Only owne
 
 ## Current release scope
 
-This candidate contains the public-adapted VIC skill instructions (five styles), an original timing helper with tests, public-facing documentation and a credential-free configuration example. It does not include the private Hermes installation, voice recording, credentials, conversations, rendered media or a turnkey renderer installer. Runtime implementations and personal media assets are deliberately excluded. See [runtime boundaries](skills/vic-video/references/runtime-map.md) and [rights](docs/RIGHTS.md); this instruction edition alone cannot render videos. Distribution licensing and media clearance remain release decisions.
+This candidate contains the public-adapted VIC skill instructions (five styles), an original timing helper with tests, public-facing documentation and a credential-free configuration example. It does not include the private Hermes installation, voice recording, credentials, conversations, rendered media or a turnkey renderer installer. Runtime implementations and personal media assets are deliberately excluded. See [runtime boundaries](skills/vic-video/references/runtime-map.md) and [rights](docs/RIGHTS.md); this instruction edition alone cannot render videos. See the [sample provenance review](docs/sample-provenance.md) for checked origins, owner authorization and remaining rights/verification limits.
 
 Existing videos demonstrate individual styles. The consolidated five-style skill has offline checks and historical render evidence; a fresh unattended end-to-end run across all five styles is not established. No campaign performance, sales, retention or audience-growth results are claimed.
 

@@ -1,6 +1,6 @@
 # Source and media rights boundary
 
-This candidate exports VIC's instruction modules and an original timing helper, with owner-local paths generalized. It makes no new blanket license grant for original work; the owner must choose distribution terms before a public repository release. Until then, this is a review snapshot, not a permissively licensed turnkey product.
+This review snapshot exports VIC's instruction modules and an original timing helper, with owner-local paths generalized. The owner authorized publication of this review branch. No blanket permissive license is granted for the combined pack or sample media; do not describe it as a permissively licensed turnkey product.
 
 ## Upstream software and references
 
@@ -14,4 +14,4 @@ This candidate exports VIC's instruction modules and an original timing helper, 
 
 Portfolio excerpts are illustrative outputs, not proof of every depicted integration having been run. Real logos/screens retain their source meaning. Voice belongs to the owner; only generated narration is a publication candidate, never the reference recording. A software license does not automatically clear music, artwork, brand marks or screenshots.
 
-The local review includes cropped-in-time excerpts of existing videos without adding stock assets or music. Per-sample source/voice/music/visual provenance must be reviewed before public upload. The rights inventory is kept outside the public pack so private paths and source receipts are not exposed.
+The local review includes cropped-in-time excerpts of existing videos without adding stock assets or music. The [sample provenance review](sample-provenance.md) records the checked sources, owner authorization and remaining limits. The rights inventory is kept outside the public pack so private paths and source receipts are not exposed.

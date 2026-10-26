@@ -1,18 +1,20 @@
 # Release checklist
 
-This is a local candidate, not approval to publish.
+The owner authorized a public GitHub review branch and PR on 2026-10-26. Merge and production deployment remain separate. This checklist records the scoped review, not an independent legal clearance.
 
 - [x] Inspect latest portfolio main and preserve dirty local resume work.
 - [x] Verify model/worker settings against local configuration without exporting secrets.
 - [x] Record existing sample paths, file hashes and ffprobe metadata privately.
 - [x] Draft public copy without local home paths or private credentials.
-- [ ] Owner selects which sample versions can be publicly shown, including their voice tracks.
-- [ ] Review music/SFX, illustration, avatar, brand, screenshot and font reuse rights for each selected sample.
-- [ ] Audit exact full skill/resource export and dependency closure; remove private paths and historical-job dependencies; validate all links.
-- [ ] Choose repository name, visibility and licensing for original work; retain required upstream notices. Do not give upstream work a blanket new license.
-- [ ] Approve public project claims and final portfolio copy.
-- [ ] Implement in an isolated branch from current main; lint/build/smoke and responsive visual review.
-- [ ] Review the exact allowlisted GitHub diff before push/PR; Victor merges manually.
-- [ ] Check final media hosting, poster images, caption/transcript accessibility and public playback.
+- [x] Owner reviewed the self-hosted gallery/voice demo and instructed push/PR.
+- [x] Record bounded music/art/voice/source provenance and upstream credits; distinguish remaining licensing uncertainty in sample-provenance.md.
+- [x] Audit the exact instruction/helper edition; validate links and metadata; exclude private runtime/asset/voice dependencies explicitly. This is not a full executable runtime export.
+- [x] Use the existing public portfolio repository and retain upstream attribution. No blanket new license has been assigned.
+- [x] Owner approved content-creation headline/supporting copy, reviewed local preview and instructed push/PR.
+- [x] Implement in an isolated branch from main; lint/build/smoke, exported timing tests and responsive visual review passed.
+- [x] Review the exact allowlisted source/media diff and archive contents before push/PR; Victor merges manually.
+- [x] Verify local self-hosted media/posters, embedded captions, voice transcript, keyboard controls and download.
+- [ ] Verify public preview/production playback after a separately authorized deployment.
+- [ ] Independently certify every historical source media right (not established by this scoped review).
 
 Exclude private Hermes profiles/config dumps, .env, keys, service accounts, OAuth state, voice references, chat/session databases, raw logs, cloud session receipts, internal project IDs, backups, node_modules, model weights, rejected/old exports and restricted upstream mascots. A gitignore is a guardrail, not a security review.
