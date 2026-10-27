@@ -121,7 +121,7 @@ The portfolio application is deployed in production on Vercel at [https://portfo
 
 ## v-vic product-ad concepts
 
-Three complete fictional-product AI concept films — FORGED, HANDS FULL? (UGC Style A), and ORBIT — show creative direction and local editing with Codex. The separate Hermes commercial workflow assigns planning/final QA to GPT-6.1 Sol and bounded execution to Gemini Flash, with one exclusive Google Flow browser worker.
+Three complete fictional-product AI concept films — FORGED, HANDS FULL? (UGC Style A), and ORBIT — show creative direction and hands-on local editing. The separate Hermes commercial workflow assigns planning/final QA to GPT-6.1 Sol and bounded execution to Gemini Flash, with one exclusive Google Flow browser worker.
 
 [Sanitized architecture, setup and limits](docs/v-vic-workflow/README.md) · [Media hashes and music credits](docs/v-vic-workflow/media-manifest.json) · [Case study](https://portfolioweb-three-sigma.vercel.app/work/v-vic)
 

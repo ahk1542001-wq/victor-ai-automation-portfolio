@@ -26,7 +26,7 @@ export default function VvicCaseStudy() {
           <p className="eyebrow">Personal concept work · Creative direction + agent workflows</p>
           <h1 className="mt-4 font-serif text-[clamp(38px,6vw,72px)] leading-[1.02] tracking-[-0.03em]">v-vic: from product idea<br />to a finished film.</h1>
           <p className="mt-6 max-w-[65ch] text-lg leading-relaxed text-ink-soft">I direct AI-assisted product films: the hook, the demonstration, the edit and the sound. These three pieces explore different ways to tell a fictional bottle’s story.</p>
-          <p className="mt-4 text-sm leading-relaxed text-muted">My role: creative direction, workflow design, AI-assisted implementation, editing and final review. The selected films were directed and finished with Codex. They do not demonstrate autonomous end-to-end production by Hermes.</p>
+          <p className="mt-4 text-sm leading-relaxed text-muted">My role: creative direction, workflow design, AI-assisted implementation, editing and final review. The selected films were creatively directed and finished with hands-on review. They do not demonstrate autonomous end-to-end production by Hermes.</p>
         </header>
         <section aria-labelledby="vvic-films-heading">
           <h2 id="vvic-films-heading" className="mb-6 font-serif text-3xl">Watch the three treatments</h2>

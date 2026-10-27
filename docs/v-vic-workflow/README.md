@@ -8,7 +8,7 @@ Separate from [VIC’s explainer workflow](../vic-workflow/).
 Three complete 9:16 films accompany this reference: FORGED / Carry the day,
 HANDS FULL? / UGC Style A, and ORBIT. Products are fictional; the UGC presenter
 is AI-generated, not a customer testimonial. Victor directed the concepts,
-AI-assisted implementation, edits and final review with Codex. These exact
+AI-assisted implementation, edits and hands-on final review. These exact
 films are **not evidence that Hermes produced them autonomously end-to-end**.
 No client endorsement, conversion/retention results or real product testing is claimed.
 
