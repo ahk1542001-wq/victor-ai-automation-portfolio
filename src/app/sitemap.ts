@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     { url: `${baseUrl}/work/vic`, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/work/v-vic`, changeFrequency: 'monthly', priority: 0.8 },
     ...projectEntries,
   ];
 }
