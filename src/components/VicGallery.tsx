@@ -47,8 +47,8 @@ export function VicGallery() {
             className={`flex min-h-[72px] w-full items-start justify-between gap-4 border-t border-hair py-4 text-left transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-pine ${selected === index ? 'text-pine' : 'text-ink-soft hover:text-ink'}`}
           >
             <span className="min-w-0">
-              <span className="block text-lg font-medium">{item.title}</span>
-              <span className="mt-1 block text-xs leading-relaxed text-muted">{item.topic}</span>
+              <span className="block text-base font-medium">{item.topic}</span>
+              <span className="mt-1 block text-xs leading-relaxed text-muted">{item.title}</span>
             </span>
             <span className="shrink-0 pt-1 font-mono text-xs">{item.format}{selected === index ? ' · Selected' : ''}</span>
           </button>

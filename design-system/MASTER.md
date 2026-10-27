@@ -4,7 +4,7 @@
 - **Framework:** Next.js (App Router)
 - **Styling:** Tailwind CSS
 - **Icons:** Lucide React
-- **Typography:** Inter (Primary), Geist Mono (Code)
+- **Typography:** Instrument Serif (headings), Geist (body/UI), Geist Mono (code and compact metadata)
 
 ## Approved Decisions
 - **Pre-flight Rules:** Audit existing UI before redesign. Preserve approved content and Information Architecture (IA).
@@ -12,20 +12,20 @@
 - **Animations:** Motion/Framer Motion allowed but limit to transform/opacity only where practical. `prefers-reduced-motion` mandatory.
 - **Visuals:** No fake UI, fake metrics, or decorative status elements. Abstract TopologyDiagram component is preferred.
 - **QA:** Visual QA required before PR.
-- **Layout:** Swiss Editorial aesthetics. Break the grid intentionally with asymmetry, overlapping elements, and extreme typographic scale, but ensure elements are bounded and readable.
+- **Layout:** Warm editorial portfolio. Use deliberate asymmetry within equal outer margins, large serif headings and real output previews. Keep the text and media balanced and readable.
 - **Color Scheme & Aesthetics:**
-  - **Main Background Color:** Deep Onyx (`#1A1915`).
-  - **Primary Text:** Warm Parchment (`#FBF9F5` / `#E8E4D9`).
+  - **Main Background Color:** Deep Onyx (`#14130e` dark; `#f4f1ea` light).
+  - **Primary Text:** Warm Parchment (`#f2efe6` dark; `#16150f` light).
   - **Card Containers:** Minimal use. Prefer edge-to-edge flow with typography as structure.
-  - **Accent Colors:** Viridian green (`#58f28f`) used selectively for identity, active proof, and primary emphasis. Onyx/Parchment remain dominant.
-- **Components:** Avoid standard boxy borders. Use typography and spacing to divide sections.
+  - **Accent Colors:** Pine (`#6fbf9a` dark / `#2e5e4e` light) for links and selected states; clay (`#e08a5c` dark / `#ab5d37` light) for primary actions. Onyx/Parchment remain dominant.
+- **Components:** Typography and spacing divide sections; retain the owner-requested strong collection borders and restrained offset shadows.
 
 ## Taste Review Constraints
 - Use audit-first redesign mode: preserve approved content, URLs, navigation meaning, and evidence hierarchy before changing presentation.
-- Keep one accent color across the experience: Viridian `#58f28f`. Do not introduce unrelated CTA colors.
-- Keep one sharp editorial shape language. Rounded pills and mixed radius systems are not part of this portfolio.
+- Keep the pine-link / clay-action roles above consistent. Do not introduce unrelated accent colors.
+- Use the existing restrained frame language consistently: 10px controls/media, 12px larger frames; compact metadata may use pills. Avoid unrelated corner/shadow systems.
 - Keep the page theme consistently Onyx/Parchment; section hierarchy comes from spacing and restrained surface shifts, not unrelated theme changes.
-- Keep the Hero disciplined: a single visible name, concise role/value copy, and a visible contact action without decorative status strips or scroll cues.
+- Keep the Hero disciplined: a single visible name, concise role/value copy, and a visible contact action without decorative status strips or scroll cues. Show a real work preview beside the copy on desktop, beneath it on phone.
 - Use real project screenshots and demos. Do not build fake terminals, fake dashboards, fake simulators, fake metrics, or decorative product UI.
 - Avoid numbered decorative eyebrows, three-equal-card feature rows, atmospheric city/time strips, and excessive border rows.
 - Prefer Motion transforms/opacity with reduced-motion support. Do not add hand-rolled window scroll listeners.
@@ -44,3 +44,12 @@
 - **Collection navigation:** Products and Films each have their own strong bordered container; distinguish them on both stacked-phone and side-by-side desktop layouts.
 - **Production approach:** Keep a short homepage teaser with the full role/stage map on `/films#production-approach`. Describe the human-directed system without claiming every sample was produced autonomously end-to-end.
 - **Exclusions:** Confidential client work and unverified projects are excluded.
+
+## Approved visual/recruiter polish — 2026-10-27
+- Short hero value statement; original portrait stays lower in Background. Hero image links to the real TravelCare case; no fake UI.
+- Keep exactly three selected works; commercial and explainer previews share a stage height while preserving their native video ratios.
+- Products use compact, output-first browsing cards; complete outcomes and implementation detail remain in each case study.
+- Film topics lead, with visual style as a secondary label. Preserve all eight projects, five VIC samples and three commercial films.
+- Use selective one-time IntersectionObserver reveals with visible server-rendered content, native scrolling and fine-pointer hover feedback. No custom cursor, scroll hijacking, scroll listeners or autoplay.
+- Anchor offset must clear the sticky header. Reduced-motion must disable smooth scrolling and movement. Test keyboard/touch, no-JS reading and 1440/1024/390/320 widths.
+- Taste documentation is a reference for subject-specific imagery, hierarchy and screenshot critique. Existing owner-approved content, palette, borders and routing take precedence; no external skill scripts or assets are installed.
