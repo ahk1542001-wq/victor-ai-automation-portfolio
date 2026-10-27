@@ -30,7 +30,7 @@ export default function About() {
 
                   {/* Capabilities */}
                   <div className="mt-10">
-                    <h3 className="eyebrow mb-4">Established capabilities</h3>
+                    <h3 className="eyebrow mb-4">What I build</h3>
                     <ul className="grid gap-2.5 sm:grid-cols-2">
                       {portfolioContent.establishedCapabilities.map((cap) => (<li key={cap} className="flex items-start gap-2.5 text-[13.5px] leading-relaxed text-ink-soft">
                           <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-pine"/>

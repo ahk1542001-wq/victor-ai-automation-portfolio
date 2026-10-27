@@ -10,10 +10,10 @@ export const portfolioContent = {
     description: 'I moved from Client Services and Project Coordination into AI Automation. I design, implement, test, and troubleshoot n8n workflows and agent systems with API, webhook, LLM, RAG, and human-in-the-loop integrations.'
   },
   establishedCapabilities: [
-    'Multi-agent orchestration and autonomous creation loops with Google ADK',
-    'Model Context Protocol (MCP) servers, custom tools, and resource protocols',
-    'Cloud Run micro-sandboxing, Docker containerization, and least-privilege IAM',
-    'n8n workflow architecture, webhook routing, and human-in-the-loop RAG'
+    'AI agent workflows — give agents clear tasks and coordinate their work.',
+    'Connected AI tools — link agents to apps, APIs and your documents.',
+    'Cloud deployment — package apps with Docker, run them on Cloud Run and control access.',
+    'Workflow automation — connect tasks and data in n8n, with human review where needed.'
   ],
   currentlyLearning: {
     title: 'Currently Learning',
