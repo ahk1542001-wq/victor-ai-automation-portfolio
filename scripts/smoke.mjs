@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { createHash } from 'crypto';
 
 console.log('Running Production Smoke Verification...');
 
@@ -252,3 +253,25 @@ for (const asset of ['voice-demo.mp3', 'voice-transcript.txt', 'vic-video-workfl
   if (!fs.existsSync(path.join(process.cwd(), 'public/vic', asset))) throw new Error(`Missing VIC evidence: ${asset}`);
 }
 console.log('PASS: VIC five-style inventory, local media, narration and workflow download.');
+
+// Commercial concepts stay separate from VIC, with exact accepted media.
+const vvicHtmlPath = path.join(outDir, 'work', 'v-vic.html');
+if (!fs.existsSync(vvicHtmlPath) || !homeHtml.includes('/work/v-vic')) {
+  throw new Error('v-vic case study must be built and discoverable');
+}
+const vvicHtml = fs.readFileSync(vvicHtmlPath, 'utf8');
+for (const phrase of ['FORGED', 'HANDS FULL?', 'ORBIT', 'Google Flow', '172 offline tests', 'not a turnkey installer', 'not demonstrate autonomous end-to-end production']) {
+  if (!vvicHtml.includes(phrase)) throw new Error(`Missing v-vic evidence boundary: ${phrase}`);
+}
+const mediaManifest = JSON.parse(fs.readFileSync('docs/v-vic-workflow/media-manifest.json', 'utf8'));
+if (mediaManifest.pieces.length !== 3) throw new Error('v-vic must expose three accepted films');
+for (const piece of mediaManifest.pieces) {
+  for (const [asset, expected] of [[piece.file, piece.sha256], [piece.poster, piece.poster_sha256]]) {
+    const bytes = fs.readFileSync(path.join('public', asset));
+    if (createHash('sha256').update(bytes).digest('hex') !== expected) throw new Error(`Unexpected v-vic media version: ${asset}`);
+  }
+}
+for (const removed of ['id="how"', 'id="numbers"', 'id="proof"']) {
+  if (homeHtml.includes(removed)) throw new Error(`Removed homepage section returned: ${removed}`);
+}
+console.log('PASS: v-vic discovery, honest role boundaries, three exact media/poster hashes and homepage simplification.');

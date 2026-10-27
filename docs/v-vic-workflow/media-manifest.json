@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-27",
+  "pieces": [
+    {
+      "id": "forged",
+      "file": "/v-vic/forged.mp4",
+      "sha256": "8024b188d4b34b32413f23b87dbcb22e7581815b4b57a31e06332a2228ffcebd",
+      "bytes": 9761139,
+      "duration": 20.366667,
+      "delivery": "byte-identical accepted master; no transcode",
+      "poster": "/v-vic/forged.jpg",
+      "poster_sha256": "c9c8c048d986a6b79da5bff9e62cabccb001507f846266cc5d5eded29aa8b144",
+      "poster_source_seconds": 16.4
+    },
+    {
+      "id": "hands-full",
+      "file": "/v-vic/hands-full.mp4",
+      "sha256": "50a506af036c09c8df906dd27bc5c81d18bf6e7e755b2ce386955ee9d05bce96",
+      "bytes": 9125979,
+      "duration": 16.4,
+      "delivery": "byte-identical accepted master; no transcode",
+      "poster": "/v-vic/hands-full.jpg",
+      "poster_sha256": "3c1401b73f22e099cba26dcabb6299553e4091cedbb120b25a13f66e78e65937",
+      "poster_source_seconds": 0.7
+    },
+    {
+      "id": "orbit",
+      "file": "/v-vic/orbit.mp4",
+      "sha256": "0b6fcc32ad12f741dc8c165712f2dc1fe3fd1e4c4d796a0cf443ca76f0e1dcdc",
+      "bytes": 12611062,
+      "duration": 16.0,
+      "delivery": "byte-identical accepted master; no transcode",
+      "poster": "/v-vic/orbit.jpg",
+      "poster_sha256": "40920e100c3e2fffa3217b2dbfced13e51608dc2ba23955e7b4f5d5e5e39c473",
+      "poster_source_seconds": 14.9
+    }
+  ],
+  "music": {
+    "title": "Gimme that Groove!",
+    "author": "Michael Ramir C.",
+    "source": "https://mixkit.co/free-stock-music/funk/",
+    "track_id": 872,
+    "license": "Mixkit Stock Music Free License",
+    "license_url": "https://mixkit.co/license/modal/musicFree/",
+    "checked": "2026-10-27",
+    "distribution": "Embedded soundtrack in complete edited concept films; no separate music asset supplied"
+  },
+  "disclosure": "Fictional-product AI concept films. Human-directed final edits; not evidence of unattended Hermes end-to-end production."
+}

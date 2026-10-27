@@ -8,6 +8,7 @@ import { Header } from '@/components/Header';
 import { TopologyDiagram } from '@/components/TopologyDiagram';
 import { JourneyMap } from '@/components/journey-map';
 import { VicShowcase } from '@/components/VicShowcase';
+import { VvicShowcase } from '@/components/VvicShowcase';
 import {
   ArrowUpRight,
   ArrowRight,
@@ -161,6 +162,7 @@ export default function Home() {
           {/* Content creation                                           */}
           {/* ---------------------------------------------------------- */}
           <VicShowcase />
+          <VvicShowcase />
 
 
           {/* ---------------------------------------------------------- */}
