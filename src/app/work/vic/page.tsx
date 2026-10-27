@@ -22,7 +22,7 @@ export default function VicCaseStudy() {
     <div className="min-h-screen bg-paper text-ink">
       <Header />
       <main id="main-content" tabIndex={-1} className="mx-auto max-w-[1120px] px-5 py-12 focus:outline-none sm:px-6 md:py-16">
-        <Link href="/#content" className="inline-flex min-h-[44px] items-center text-sm text-pine underline underline-offset-4">Back to selected videos</Link>
+        <Link href="/films#content" className="inline-flex min-h-[44px] items-center text-sm text-pine underline underline-offset-4">Back to selected videos</Link>
         <header className="mb-12 mt-6 max-w-[800px]">
           <p className="eyebrow">Personal project · AI-assisted content production</p>
           <h1 className="mt-4 font-serif text-[clamp(38px,6vw,72px)] leading-[1.02] tracking-[-0.03em]">VIC: the story,<br />the voice, the workflow.</h1>

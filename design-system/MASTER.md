@@ -33,12 +33,12 @@
 
 ## Component Specifics
 - **Navigation:** Fixed header, Onyx background, crisp Parchment wordmark, homepage anchors plus dedicated Credentials route.
-- **Hero Section:** Unframed cinematic portrait canvas with disciplined Viridian typography and reduced-motion-safe depth movement.
+- **Hero Section:** Concise owner-approved identity, supporting sentence and clear work/contact actions. No decorative tools rail; selected work follows immediately.
 - **Hero Identity:** Use one visible `VICTOR` title only; do not add a second decorative name watermark above the canvas.
 - **Brand Assets:** Tool and repository marks must use approved real brand assets. Do not substitute text glyphs or generic code icons for brand logos; omit a brand when a permitted asset is unavailable.
-- **Selected Work:** Editorial project sections separated into n8n Automation and AI-Assisted Software tracks. Each verified project has a dedicated case-study page.
+- **Selected Work:** Homepage curates exactly three starting points: one software demo, one commercial concept and one personal-brand explainer. Full Products & Automation inventory lives at `/work` (software/n8n tracks); full Films & Content inventory lives at `/films` (v-vic/VIC). Preserve dedicated case studies and existing media. Show output before workflow detail.
 - **Capabilities:** Bounded responsive motion layout (no scattered off-screen pills).
-- **Experience:** Experience & Credentials hierarchy. Feature relevant AI credentials before compact formal education.
+- **Experience:** Keep homepage background and selected credentials concise; detailed professional history and education at `/about`, full verified credentials at `/credentials`.
 - **Credentials:** Dedicated evidence page for all verified credentials; homepage shows only the four most relevant items and links to the full page.
-- **Contact CTA:** High-contrast recruiter heading ("BUILDING AN AI AUTOMATION TEAM? LET'S TALK.") with crisp CTA button.
+- **Contact CTA:** Clear invitation for systems/content work with direct email and LinkedIn actions.
 - **Exclusions:** Confidential client work and unverified projects are excluded.
