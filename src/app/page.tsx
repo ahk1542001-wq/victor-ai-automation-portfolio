@@ -1,684 +1,124 @@
-'use client';
-
-import { type Project, projects } from '@/data/projects';
+import Link from 'next/link';
+import { ArrowUpRight, ArrowRight, Mail } from 'lucide-react';
+import { Header } from '@/components/Header';
+import { ProjectWorkCard } from '@/components/ProjectWorkCard';
+import { projects } from '@/data/projects';
 import { portfolioContent } from '@/data/content';
 import { credentials } from '@/data/credentials';
-import { YouTubeThumbnail } from '@/components/YouTubeThumbnail';
-import { Header } from '@/components/Header';
-import { TopologyDiagram } from '@/components/TopologyDiagram';
-import { JourneyMap } from '@/components/journey-map';
-import { VicShowcase } from '@/components/VicShowcase';
-import { VvicShowcase } from '@/components/VvicShowcase';
-import {
-  ArrowUpRight,
-  ArrowRight,
-  ExternalLink,
-  FileText,
-  Mail,
-  ShieldCheck,
-  MapPin,
-} from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { motion, MotionConfig } from 'framer-motion';
-
-/* Deliberately no scroll-triggered opacity animation on content.
-   `whileInView` serialises `opacity: 0` into the static HTML, which
-   blanks the page for print/PDF, reader mode, and any client where JS
-   is slow or blocked. Motion is limited to the hero, which is above the
-   fold and always plays. */
-
 export default function Home() {
-  const n8nProjects = projects.filter((p) => p.projectType === 'n8n Automation');
-  const softwareProjects = projects.filter((p) => p.projectType === 'AI-Assisted Software');
-  const verifiable = credentials.filter((c) => c.verifyUrl).length;
-  const walkthroughs = projects.filter((p) => p.youtubeId).length;
-  const aboutParts = portfolioContent.about.description.split('. ');
-
-  return (
-    <MotionConfig reducedMotion="user">
-      <div className="min-h-screen max-w-full overflow-x-hidden bg-paper font-sans text-ink">
-        <Header />
-
-        <main id="main-content" className="relative w-full focus:outline-none" tabIndex={-1}>
-          {/* ---------------------------------------------------------- */}
-          {/* Hero                                                       */}
-          {/* ---------------------------------------------------------- */}
-          <section aria-labelledby="hero-heading" className="pt-12 pb-16 md:pt-16 md:pb-20">
-            <div className="mx-auto max-w-[1120px] px-5 sm:px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 28 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <span className="pill">
-                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-pine" />
-                    Featured Ideathon Submission · Hack2Skill APAC GenAI Academy
-                  </span>
-
-                  <h1
-                    id="hero-heading"
-                    className="mt-6 text-balance font-serif text-[clamp(38px,7.2vw,80px)] leading-[0.98] tracking-[-0.03em] text-ink"
-                  >
-                    I build AI agents for{' '}
-                    <em className="not-italic text-pine">content creation</em> and business automation.
-                  </h1>
-
-                  <p className="mt-6 max-w-[58ch] text-pretty text-[17px] leading-relaxed text-ink-soft">
-                    AI Automation &amp; Agent Workflow Builder based in Bangkok. From research and scripting to animated videos and voiceovers, I design AI-assisted workflows and direct the creative process. With a past
-                    life in content marketing, I was the client-facing lead at
-                    Technity for sponsored content from global brands such as Samsung and
-                    Huawei. Today, I combine that background with n8n workflows and
-                    multi-agent systems that research, draft, qualify leads and follow up.
-                  </p>
-
-                  <div className="mt-8 flex flex-wrap gap-3">
-                    <a
-                      href={`mailto:${portfolioContent.contact.email}?subject=AI%20automation%20role`}
-                      className="btn-hard rounded-xl"
-                    >
-                      <Mail className="h-4 w-4" /> Email me
-                    </a>
-                    <a href="#work" className="btn-hard btn-hard-ghost rounded-xl">
-                      See the work <ArrowRight className="h-4 w-4" />
-                    </a>
-                    <a
-                      href={portfolioContent.contact.resume}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-hard btn-hard-ghost rounded-xl"
-                    >
-                      <FileText className="h-4 w-4" /> Résumé
-                    </a>
-                  </div>
-
-                  {/* Facts row */}
-                  <dl className="card-hard mt-10 grid grid-cols-2 overflow-hidden p-0 sm:grid-cols-4">
-                    {[
-                      { dt: 'Based in', dd: 'Bangkok, Thailand' },
-                      { dt: 'Languages', dd: 'Burmese · English · Thai' },
-                      { dt: 'Open to', dd: 'Automation · AI agents · Content & marketing systems' },
-                      { dt: 'Availability', dd: 'Immediate · Remote or onsite' },
-                    ].map((fact, i) => (
-                      <div
-                        key={fact.dt}
-                        className={`border-hair px-5 py-4 ${i % 2 === 0 ? 'border-r-2' : ''} ${
-                          i < 2 ? 'border-b-2 sm:border-b-0' : ''
-                        } ${i === 1 ? 'sm:border-r-2' : ''} ${
-                          i === 2 ? 'sm:border-r-2' : 'sm:border-r-0'
-                        }`}
-                      >
-                        <dt className="eyebrow mb-1.5">{fact.dt}</dt>
-                        <dd className="text-[14px] font-medium leading-snug text-ink">{fact.dd}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                </motion.div>
-
-              <ToolsRail />
-            </div>
-          </section>
-
-
-          {/* ---------------------------------------------------------- */}
-          {/* Selected work                                              */}
-          {/* ---------------------------------------------------------- */}
-          <section id="work" aria-labelledby="work-heading" className="border-t-2 border-ink py-16 md:py-20">
-            <div className="mx-auto max-w-[1120px] px-5 sm:px-6">
-              <SectionHead
-                id="work-heading"
-                eyebrow={`${projects.length} projects · ${walkthroughs} recorded walkthroughs`}
-                title="What I've built and verified."
-                lede="Two tracks: n8n automation systems and AI-assisted software products I direct from specification to release. Every project is labelled honestly — hackathon demos and MVPs built to prove an approach, not production systems in daily use."
-              />
-
-              <h3 className="hair-t mb-8 flex flex-wrap items-baseline gap-3 pt-6 font-serif text-2xl text-ink sm:text-3xl">
-                n8n Automation
-                <span className="font-mono text-xs uppercase tracking-[0.1em] text-muted">
-                  {n8nProjects.length} systems
-                </span>
-              </h3>
-              <div className="flex flex-col gap-8">
-                {n8nProjects.map((project, index) => (
-                  <WorkCard key={project.id} project={project} index={index} eager={index < 2} />
-                ))}
-              </div>
-
-              <h3 className="hair-t mb-8 mt-20 flex flex-wrap items-baseline gap-3 pt-6 font-serif text-2xl text-ink sm:text-3xl">
-                AI-Assisted Software
-                <span className="font-mono text-xs uppercase tracking-[0.1em] text-muted">
-                  {softwareProjects.length} products
-                </span>
-              </h3>
-              <div className="flex flex-col gap-8">
-                {softwareProjects.map((project, index) => (
-                  <WorkCard key={project.id} project={project} index={index} eager={false} />
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* ---------------------------------------------------------- */}
-          {/* Content creation                                           */}
-          {/* ---------------------------------------------------------- */}
-          <VicShowcase />
-          <VvicShowcase />
-
-
-          {/* ---------------------------------------------------------- */}
-          {/* Background                                                 */}
-          {/* ---------------------------------------------------------- */}
-          <section id="background" aria-labelledby="background-heading" className="border-t-2 border-ink py-16 md:py-20">
-            <div className="mx-auto max-w-[1120px] px-5 sm:px-6">
-              <SectionHead
-                id="background-heading"
-                eyebrow="Background"
-                title="Where I've been."
-                lede="Client services, project coordination, hospitality — then a deliberate move into AI automation. The operations background is why I design for handover, not for demos."
-              />
-
-              <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
-                <div className="lg:col-span-7">
-                  <div className="space-y-5 font-serif text-[19px] leading-relaxed text-ink-soft sm:text-[21px]">
-                    <p className="text-pretty">{aboutParts[0]}.</p>
-                    <p className="text-pretty">
-                      I run every build as a project with a scope, a spec and a QA gate. That is
-                      the part of my coordination background that transfers directly: automation
-                      fails on ambiguity far more often than it fails on code.
-                    </p>
-                    {aboutParts.slice(1).length > 0 && (
-                      <p className="text-pretty">{aboutParts.slice(1).join('. ')}</p>
-                    )}
-                  </div>
-
-                  {/* Capabilities */}
-                  <div className="mt-10">
-                    <h3 className="eyebrow mb-4">Established capabilities</h3>
-                    <ul className="grid gap-2.5 sm:grid-cols-2">
-                      {portfolioContent.establishedCapabilities.map((cap) => (
-                        <li
-                          key={cap}
-                          className="flex items-start gap-2.5 text-[13.5px] leading-relaxed text-ink-soft"
-                        >
-                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-pine" />
-                          <span>{cap}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                </div>
-
-                <aside className="lg:col-span-5">
-                  <JourneyMap />
-
-                  <div className="mt-10 hair-t pt-6">
-                    <h3 className="eyebrow mb-4">Languages</h3>
-                    <dl className="space-y-0">
-                      {portfolioContent.languages.map((lang) => (
-                        <div
-                          key={lang.name}
-                          className="hair-b flex items-baseline justify-between gap-4 py-3 last:border-b-0"
-                        >
-                          <dt className="font-serif text-lg text-ink">{lang.name}</dt>
-                          <dd className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted">
-                            {lang.proficiency}
-                          </dd>
-                        </div>
-                      ))}
-                    </dl>
-                  </div>
-                </aside>
-              </div>
-
-              {/* Experience timeline */}
-              <div className="mt-16">
-                <h3 className="eyebrow mb-2">Professional experience</h3>
-                <div className="rule-t">
-                  {portfolioContent.professionalExperience.map((exp) => (
-                    <div
-                      key={`${exp.company}-${exp.period}`}
-                      className="hair-b grid gap-1.5 py-5 md:grid-cols-[200px_1fr_230px] md:items-baseline md:gap-6"
-                    >
-                      <span className="font-mono text-[12.5px] text-muted">{exp.period}</span>
-                      <span className="font-serif text-xl leading-snug text-ink">{exp.role}</span>
-                      <span className="text-[13.5px] text-muted md:text-right">{exp.company}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* ---------------------------------------------------------- */}
-          {/* Credentials                                                */}
-          {/* ---------------------------------------------------------- */}
-          <section id="credentials" aria-labelledby="credentials-heading" className="border-t-2 border-ink bg-paper-2 py-16 md:py-20">
-            <div className="mx-auto max-w-[1120px] px-5 sm:px-6">
-              <SectionHead
-                id="credentials-heading"
-                eyebrow={`${credentials.length} credentials · ${verifiable} publicly verifiable`}
-                title="Verified, not claimed."
-                lede={`Every credential below lists its issuer and issue date. ${verifiable} of them link straight to the issuer's public verification page — check them yourself.`}
-              />
-
-              <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
-                <div className="lg:col-span-8">
-                  <div className="rule-t">
-                    {credentials.map((credential, index) => (
-                      <div
-                        key={credential.id}
-                        className="hair-b grid grid-cols-1 items-center gap-3 py-4 sm:grid-cols-[1fr_auto] sm:gap-5"
-                      >
-                        <div className="min-w-0">
-                          <div className="flex items-baseline gap-2.5">
-                            <span className="font-mono text-[11px] text-clay">
-                              {String(index + 1).padStart(2, '0')}
-                            </span>
-                            <strong className="font-serif text-[18px] font-normal leading-snug text-ink">
-                              {credential.title}
-                            </strong>
-                          </div>
-                          <p className="mt-1 pl-[30px] font-mono text-[11.5px] text-muted">
-                            {credential.issuer}
-                            {credential.issued ? ` · ${credential.issued}` : ' · completion verified'}
-                          </p>
-                        </div>
-
-                        {credential.verifyUrl ? (
-                          <a
-                            href={credential.verifyUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`Verify ${credential.title} with ${credential.issuer} (opens in new tab)`}
-                            className="inline-flex min-h-[44px] w-fit items-center gap-1.5 rounded-full border-2 border-pine px-3.5 text-[12px] font-medium text-pine transition-colors hover:bg-pine hover:text-paper"
-                          >
-                            Verify <ArrowUpRight className="h-3.5 w-3.5" />
-                          </a>
-                        ) : (
-                          <span className="inline-flex min-h-[44px] w-fit items-center gap-1.5 rounded-full border-2 border-hair px-3.5 font-mono text-[11px] text-muted">
-                            Reviewed
-                          </span>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-
-                  <Link
-                    href="/credentials"
-                    className="mt-7 inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-ink underline decoration-clay decoration-2 underline-offset-4 hover:text-pine"
-                  >
-                    Full credential registry, with skills covered
-                    <ArrowUpRight className="h-4 w-4" />
-                  </Link>
-                </div>
-
-                <div className="lg:col-span-4">
-                  <h3 className="eyebrow mb-2">Formal education</h3>
-                  <div className="rule-t">
-                    {portfolioContent.education.map((education) => (
-                      <div key={`${education.institution}-${education.period}`} className="hair-b py-5">
-                        <strong className="font-serif text-[17px] font-normal text-ink">
-                          {education.degree}
-                        </strong>
-                        <p className="mt-1.5 text-[13.5px] text-muted">{education.institution}</p>
-                        <p className="mt-1 font-mono text-[11px] text-muted">{education.period}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-        </main>
-
-        {/* ---------------------------------------------------------- */}
-        {/* Contact                                                    */}
-        {/* ---------------------------------------------------------- */}
-        {/* The face closes the page. The cut-out (RGBA webp) sits on
-            paper — no dark plate. The 2px ink border + 6px offset
-            shadow keep it in the same edge language as every other
-            block on the page. The portrait sits on the right so the
-            mirrored gaze travels left, into the closing line. */}
-        <footer id="contact" aria-labelledby="contact-heading" className="border-t-2 border-ink bg-paper px-5 py-16 text-ink sm:px-6 md:py-20">
-          <div className="mx-auto max-w-[1120px]">
-            <div className="grid items-start gap-10 lg:grid-cols-[1fr_260px] lg:gap-14">
-              <div>
-                <span className="eyebrow">Contact</span>
-                <h2
-                  id="contact-heading"
-                  className="mt-3 max-w-[20ch] font-serif text-[clamp(34px,6vw,64px)] leading-[1.02] tracking-[-0.02em] text-ink"
-                >
-                  Hiring for an automation role?
-                </h2>
-
-                <p className="mt-5 max-w-[56ch] text-pretty text-[16px] leading-relaxed text-ink-soft">
-                  Tell me about the most frustrating manual task on your team and I will tell you
-                  honestly whether it is worth automating — and roughly what it would take.
-                </p>
-
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <a
-                    href={`mailto:${portfolioContent.contact.email}?subject=Automation%20question&body=Hi%20Victor%2C%0A%0AThe%20manual%20task%20that%20costs%20us%20the%20most%20time%20is%3A%0A%0A%5Bdescribe%20it%5D%0A`}
-                    className="btn-hard rounded-xl"
-                  >
-                    <Mail className="h-4 w-4" /> {portfolioContent.contact.email}
-                  </a>
-                  <a
-                    href={portfolioContent.contact.resume}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-hard btn-hard-ghost rounded-xl"
-                  >
-                    <FileText className="h-4 w-4" /> Résumé (PDF)
-                  </a>
-                  <a
-                    href={portfolioContent.contact.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-hard btn-hard-ghost rounded-xl"
-                  >
-                    LinkedIn <ArrowUpRight className="h-4 w-4" />
-                  </a>
-                  <a
-                    href={portfolioContent.contact.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-hard btn-hard-ghost rounded-xl"
-                  >
-                    GitHub <ArrowUpRight className="h-4 w-4" />
-                  </a>
-                </div>
-              </div>
-
-              {/* The face, closing the page. Full-frame original, not the
-                  cut-out: the cut-out left the head floating in dead space.
-                  Colour-graded instead so the shot sits with the palette —
-                  the cool cyan shadows are pulled toward brand ink/pine so
-                  the plate reads as part of the page rather than a stray
-                  blue-black rectangle. Opaque, so next/image can optimise
-                  it normally (no `unoptimized` needed). */}
-              <div className="mx-auto w-full max-w-[260px] lg:mt-14 lg:max-w-none">
-                <div className="portrait-frame">
-                  <Image
-                    src="/victor-portrait-retouched.webp"
-                    alt="Victor, photographed in Bangkok"
-                    fill
-                    sizes="260px"
-                    priority={false}
-                  />
-                </div>
-                <p className="eyebrow mt-3 flex items-center gap-1.5">
-                  <MapPin className="h-3 w-3" /> Bangkok, Thailand · UTC+7
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-hair pt-6">
-              <span className="font-mono text-[11.5px] uppercase tracking-[0.08em] text-muted">
-                Bangkok, Thailand · UTC+7 · Open to remote
-              </span>
-              <span className="flex items-center gap-1.5 font-mono text-[11.5px] uppercase tracking-[0.08em] text-muted">
-                <ShieldCheck className="h-3.5 w-3.5" />
-                {credentials.length} credentials · {verifiable} verifiable
-              </span>
-            </div>
-          </div>
-        </footer>
-      </div>
-    </MotionConfig>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/* Sub-components                                                     */
-/* ------------------------------------------------------------------ */
-
-function SectionHead({
-  id,
-  eyebrow,
-  title,
-  lede,
-}: {
-  id: string;
-  eyebrow: string;
-  title: string;
-  lede?: string;
-}) {
-  return (
-    <div className="mb-10">
-      <div className="mb-4 flex items-center gap-4">
-        {/* Wraps below sm: the eyebrow is the longest text in this row and at
-            320px `whitespace-nowrap` pushed it past the viewport, where the
-            page's overflow-x-hidden clipped it rather than scrolling. */}
-        <span className="eyebrow min-w-0 sm:whitespace-nowrap">{eyebrow}</span>
-        <span className="h-0.5 flex-1 bg-hair" />
-      </div>
-      <h2
-        id={id}
-        className="font-serif text-[clamp(30px,4.6vw,52px)] leading-[1.05] tracking-[-0.02em] text-ink"
-      >
-        {title}
-      </h2>
-      {lede && (
-        <p className="mt-4 max-w-[60ch] text-pretty text-[15.5px] leading-relaxed text-muted">
-          {lede}
-        </p>
-      )}
+    const flagship = projects.find(p => p.id === 'travelcare-ai')!;
+    const featuredCredentials = ['google-ai-professional', 'agentic-prompt-engineering', 'generative-ai-assistants', 'intro-to-mcp'];
+    const highlights = credentials.filter(c => featuredCredentials.includes(c.id)).slice(0, 4);
+    return <div className="min-h-screen bg-paper font-sans text-ink">
+    <Header />
+    <main id="main-content" tabIndex={-1} className="focus:outline-none">
+    <section aria-labelledby="hero-heading" className="mx-auto max-w-[1120px] px-5 py-12 sm:px-6 md:py-16">
+      <p className="eyebrow">Victor · Bangkok · AI Automation &amp; Agent Workflow Builder</p>
+      <h1 id="hero-heading" className="mt-5 max-w-[19ch] font-serif text-[clamp(40px,7vw,80px)] leading-[1.02] tracking-[-0.025em]">I build AI agents for <span className="text-pine">content creation</span> and business automation.</h1>
+      <p className="mt-6 max-w-[62ch] text-[17px] leading-relaxed text-ink-soft">From research and scripting to animated videos and voiceovers, I design AI-assisted workflows and direct the creative process.</p>
+      <div className="mt-8 flex flex-wrap gap-3">
+    <a href="#work" className="btn-hard">Explore selected work <ArrowRight className="h-4 w-4" aria-hidden="true"/>
+    </a>
+    <a href={`mailto:${portfolioContent.contact.email}`} className="btn-hard btn-hard-ghost">Email me <Mail className="h-4 w-4" aria-hidden="true"/>
+    </a>
     </div>
-  );
-}
-
-/* Colour plates for the project visual. The thumbnail covers most of it,
-   so the plate reads as a mat rather than a big block of colour. */
-const PLATES = ['bg-pine', 'bg-clay', 'bg-ink'];
-
-function WorkCard({ project, index, eager }: { project: Project; index: number; eager: boolean }) {
-  const plate = PLATES[index % PLATES.length];
-  const flip = index % 2 === 1;
-
-  return (
-    <article
-      className={`card-hard grid overflow-hidden lg:grid-cols-[1.12fr_0.88fr] ${
-        flip ? 'lg:grid-cols-[0.88fr_1.12fr]' : ''
-      }`}
-    >
-      {/* Body */}
-      <div className={`flex flex-col p-6 sm:p-8 ${flip ? 'lg:order-2' : ''}`}>
-        <div className="mb-3 flex items-center gap-3">
-          <span className="font-mono text-[12px] text-muted">
-            {String(index + 1).padStart(2, '0')}
-          </span>
-          <span className="h-px flex-1 bg-hair" />
-          <span className="eyebrow text-right">{project.role}</span>
-        </div>
-
-        <h4 className="font-serif text-[26px] leading-[1.15] tracking-[-0.01em] text-ink sm:text-[30px]">
-          <Link href={`/projects/${project.id}`} className="transition-colors hover:text-pine">
-            {project.title}
-          </Link>
-        </h4>
-
-        <p className="mt-3 text-[14.5px] leading-relaxed text-muted">{project.problem}</p>
-
-        <p className="mt-5 border-l-[3px] border-clay pl-3.5 text-[13.5px] leading-relaxed text-ink-soft">
-          <span className="font-medium text-ink">Outcome — </span>
-          {project.outcome}
-        </p>
-
-        <div className="mt-6 flex flex-wrap gap-2">
-          {project.agentic && <span className="chip">AI Agent</span>}
-          {project.tools.slice(0, 5).map((tool) => (
-            <span key={tool} className="chip">
-              {tool}
-            </span>
-          ))}
-          {project.tools.length > 5 && (
-            <span className="chip border-dashed">+{project.tools.length - 5}</span>
-          )}
-        </div>
-
-        <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-1 pt-6">
-          <Link
-            href={`/projects/${project.id}`}
-            className="inline-flex min-h-[44px] items-center gap-1.5 text-[13.5px] font-medium text-ink underline decoration-clay decoration-2 underline-offset-4 transition-colors hover:text-pine"
-          >
-            Read case study <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
-
-          {project.youtubeUrl && (
-            <a
-              href={project.youtubeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Watch the ${project.title} walkthrough on YouTube`}
-              className="inline-flex min-h-[44px] items-center gap-1.5 text-[13px] text-muted transition-colors hover:text-ink"
-            >
-              <ExternalLink className="h-3.5 w-3.5" /> Walkthrough
-            </a>
-          )}
-
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`View the ${project.title} source on GitHub`}
-            className="ml-auto inline-flex min-h-[44px] items-center gap-1.5 text-[13px] text-muted transition-colors hover:text-ink"
-          >
-            <Image
-              src="/brands/github.svg"
-              alt=""
-              width={16}
-              height={16}
-              className="icon-invert-dark opacity-70"
-              aria-hidden="true"
-            />
-            Source
-          </a>
-        </div>
-      </div>
-
-      {/* Visual plate */}
-      <div
-        className={`relative flex min-h-[200px] items-center justify-center p-6 lg:min-h-[280px] ${plate} ${
-          flip ? 'lg:order-1' : ''
-        }`}
-      >
-        <span className="absolute left-4 top-4 rounded-full border-2 border-ink bg-paper px-3 py-0.5 font-mono text-[10px] uppercase tracking-[0.08em] text-ink">
-          {project.category === 'Feature' ? 'Flagship' : 'Secondary'} · {project.status}
-        </span>
-
-        <div className="w-full overflow-hidden rounded-[10px] border-2 border-dashed border-paper/55">
-          {project.youtubeId ? (
-            <YouTubeThumbnail
-              youtubeId={project.youtubeId}
-              alt={`${project.title} walkthrough thumbnail`}
-              eager={eager}
-            />
-          ) : project.imageUrl ? (
-            <div className="relative aspect-video w-full">
-              <Image
-                src={project.imageUrl}
-                alt={`${project.title} screenshot`}
-                fill
-                sizes="(max-width: 1023px) 100vw, 45vw"
-                className="object-cover object-top"
-              />
-            </div>
-          ) : (
-            <TopologyDiagram />
-          )}
-        </div>
-      </div>
+    </section>
+    <section id="work" aria-labelledby="work-heading" className="border-t-2 border-ink py-12 md:py-16">
+    <div className="mx-auto max-w-[1120px] px-5 sm:px-6">
+      <div className="mb-9 flex flex-wrap items-end justify-between gap-5">
+    <div>
+    <p className="eyebrow">Selected work</p>
+    <h2 id="work-heading" className="mt-4 font-serif text-[clamp(32px,5vw,52px)] leading-tight">Build the system.<br />Create the story.</h2>
+    </div>
+    <p className="max-w-[42ch] text-[15px] leading-relaxed text-muted">A software demo, a commercial concept and a personal-brand explainer. Three starting points into my work.</p>
+    </div>
+      <div data-featured-work="product">
+    <p className="eyebrow mb-4">Product · AI-assisted software</p>
+    <ProjectWorkCard project={flagship} index={0} eager={true} compact summary="A flight-disruption demo that helps travelers review rescue options, visa-aware routes and compensation drafts."/>
+    </div>
+      <div id="content" className="mt-10 grid gap-10 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
+        <article id="product-ads" data-featured-work="commercial" className="min-w-0">
+    <p className="eyebrow mb-4">Commercial concept · v-vic</p>
+    <div className="card-hard mx-auto max-w-[330px] bg-pine p-3">
+    <div className="aspect-[9/16] overflow-hidden rounded-[10px] border-2 border-dashed border-paper/55 bg-black">
+    <video controls playsInline preload="none" poster="/v-vic/forged.jpg" aria-label="FORGED: complete fictional-product commercial concept" className="h-full w-full object-contain">
+    <source src="/v-vic/forged.mp4" type="video/mp4"/>Your browser cannot play this film. <a href="/v-vic/forged.mp4">Open FORGED</a>.</video>
+    </div>
+    </div>
+    <h3 className="mt-5 font-serif text-3xl">FORGED — Carry the day</h3>
+    <p className="mt-3 text-sm leading-relaxed text-muted">A fictional product, told through material, movement and a carry demonstration. Creative direction, AI-assisted visuals and a finished local edit.</p>
+    <p className="mt-3 text-xs text-muted">20.37s · Fictional-product concept</p>
+<Link href="/films#product-ads" className="mt-3 flex w-fit min-h-[44px] items-center text-pine underline underline-offset-4">Explore commercial films →</Link>
+<Link href="/work/v-vic" className="mt-1 inline-flex min-h-[44px] items-center gap-2 text-pine underline underline-offset-4">Behind the commercial workflow <ArrowUpRight className="h-4 w-4" aria-hidden="true"/>
+    </Link>
     </article>
-  );
-}
+        <article data-featured-work="personal" className="min-w-0">
+    <p className="eyebrow mb-4">Personal branding · VIC</p>
+    <div className="card-hard bg-pine p-3 sm:p-4">
+    <div className="aspect-video overflow-hidden rounded-[10px] border-2 border-dashed border-paper/55 bg-black">
+    <video controls playsInline preload="none" poster="/vic/cartoon-story.jpg" aria-label="An agent organizes files: Burmese cartoon explainer with embedded captions" className="h-full w-full object-contain">
+    <source src="/vic/cartoon-story.mp4" type="video/mp4"/>Your browser cannot play this film. <a href="/vic/cartoon-story.mp4">Open the cartoon explainer</a>.</video>
+    </div>
+    </div>
+    <h3 className="mt-5 font-serif text-3xl">An agent organizes files</h3>
+    <p className="mt-3 text-sm leading-relaxed text-muted">A beginner-friendly Burmese explainer with cartoon action, my cloned narration and embedded captions. One of five visual styles in the VIC personal-brand workflow.</p>
+    <p className="mt-3 text-xs text-muted">34.4s · Burmese · Embedded captions</p>
+<Link href="/films#content" className="mt-3 flex w-fit min-h-[44px] items-center text-pine underline underline-offset-4">Explore explainers →</Link>
+<Link href="/work/vic" className="mt-1 inline-flex min-h-[44px] items-center gap-2 text-pine underline underline-offset-4">Behind the explainer workflow <ArrowUpRight className="h-4 w-4" aria-hidden="true"/>
+    </Link>
 
-/* ------------------------------------------------------------------ */
-/* Tools rail                                                         */
-/* ------------------------------------------------------------------ */
-
-type Tool = {
-  name: string;
-  icon: string;
-  renderAsImage?: boolean;
-  emphasize?: boolean;
-};
-
-function ToolsRail() {
-  const tools: Tool[] = [
-    { name: 'n8n', icon: '/brands/n8n.svg', emphasize: true },
-    { name: 'Docker', icon: '/brands/docker.svg' },
-    { name: 'GitHub', icon: '/brands/github.svg' },
-    { name: 'Codex', icon: '/brands/codex.png', renderAsImage: true },
-    { name: 'ChatGPT', icon: '/brands/openai.svg' },
-    { name: 'Claude Code', icon: '/brands/anthropic.svg' },
-    { name: 'Antigravity', icon: '/brands/antigravity.png', renderAsImage: true },
-    { name: 'Cloudflare', icon: '/brands/cloudflare.svg' },
-    { name: 'PostgreSQL', icon: '/brands/postgresql.svg' },
-    { name: 'Qdrant', icon: '/brands/qdrant.svg' },
-    { name: 'Ollama', icon: '/brands/ollama.svg' },
-    { name: 'Notion', icon: '/brands/notion.svg' },
-    { name: 'Obsidian', icon: '/brands/obsidian.svg' },
-    { name: 'Telegram', icon: '/brands/telegram.svg' },
-    { name: 'Google Sheets', icon: '/brands/googlesheets.svg' },
-  ];
-
-  return (
-    <motion.div
-      id="tools"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-      className="hair-t relative mt-14 overflow-hidden py-5 md:mt-16"
-      aria-label="Tools I work with"
-    >
-      <div className="eyebrow mb-4 px-1">Tools I work with</div>
-
-      <div className="tools-marquee-shell overflow-hidden">
-        <div className="tools-marquee-track">
-          {[0, 1].map((setIndex) => (
-            <div
-              key={setIndex}
-              className="tools-marquee-set"
-              aria-hidden={setIndex === 1 ? 'true' : undefined}
-            >
-              {tools.map((tool) => (
-                <div
-                  key={`${setIndex}-${tool.name}`}
-                  className={`tools-logo-item ${tool.emphasize ? 'tools-logo-item-emphasized' : ''}`}
-                  aria-label={setIndex === 0 ? tool.name : undefined}
-                  title={setIndex === 0 ? tool.name : undefined}
-                >
-                  {tool.renderAsImage ? (
-                    <Image
-                      src={tool.icon}
-                      alt=""
-                      width={32}
-                      height={32}
-                      className={`tools-logo-image ${
-                        tool.name === 'Codex' ? 'tools-logo-image-codex' : ''
-                      }`}
-                      aria-hidden="true"
-                    />
-                  ) : (
-                    <span
-                      className="tools-logo-icon"
-                      style={{
-                        WebkitMask: `url(${tool.icon}) center/contain no-repeat`,
-                        mask: `url(${tool.icon}) center/contain no-repeat`,
-                      }}
-                      aria-hidden="true"
-                    />
-                  )}
-                  <span>{tool.name}</span>
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
+        </article>
       </div>
-    </motion.div>
-  );
+      <nav aria-label="Explore all work" className="mt-12 grid gap-6 border-t-2 border-ink pt-8 sm:grid-cols-2">
+    <Link href="/work" className="group min-w-0 py-3">
+    <span className="eyebrow">Build</span>
+    <span className="mt-3 flex items-center justify-between gap-3 font-serif text-3xl group-hover:text-pine">Products &amp; Automation <ArrowRight className="h-5 w-5 shrink-0" aria-hidden="true"/>
+    </span>
+    <span className="mt-2 block text-sm text-muted">Explore all eight projects, demos and source links.</span>
+    </Link>
+    <Link href="/films" className="group min-w-0 py-3">
+    <span className="eyebrow">Create</span>
+    <span className="mt-3 flex items-center justify-between gap-3 font-serif text-3xl group-hover:text-pine">Films &amp; Content <ArrowRight className="h-5 w-5 shrink-0" aria-hidden="true"/>
+    </span>
+    <span className="mt-2 block text-sm text-muted">Commercial concepts and personal-brand explainers.</span>
+    </Link>
+    </nav>
+    </div>
+    </section>
+    <section id="background" aria-labelledby="background-heading" className="border-t-2 border-ink py-12 md:py-16">
+    <div className="mx-auto grid max-w-[1120px] gap-8 px-5 sm:px-6 md:grid-cols-[1fr_1.4fr]">
+    <div>
+    <p className="eyebrow">The person behind the work</p>
+    <h2 id="background-heading" className="mt-4 font-serif text-4xl">Creative direction.<br />Systems thinking.</h2>
+    </div>
+    <div>
+    <p className="text-[16px] leading-relaxed text-ink-soft">I moved from client services and project coordination into AI automation. At Technity, I was the client-facing lead for sponsored content from brands including Samsung and Huawei. Today, I combine that background with agent workflows and AI-assisted content creation.</p>
+    <div className="mt-5 flex flex-wrap gap-x-6">
+    <Link href="/about" className="inline-flex min-h-[44px] items-center text-pine underline underline-offset-4">Background &amp; experience</Link>
+    <a href={portfolioContent.contact.resume} className="inline-flex min-h-[44px] items-center text-pine underline underline-offset-4">Download résumé</a>
+    </div>
+    <div id="credentials" className="mt-6 border-t border-hair pt-5">
+    <p className="eyebrow">Selected credentials</p>
+    <ul className="mt-3 space-y-2">{highlights.map(c => <li key={c.id} className="text-sm leading-relaxed text-muted">{c.title} · {c.issuer}</li>)}</ul>
+    <Link href="/credentials" className="mt-3 inline-flex min-h-[44px] items-center text-pine underline underline-offset-4">All verified credentials →</Link>
+    </div>
+    </div>
+    </div>
+    </section>
+  </main>
+    <footer id="contact" className="border-t-2 border-ink bg-paper-2 py-12">
+    <div className="mx-auto flex max-w-[1120px] flex-wrap items-center justify-between gap-7 px-5 sm:px-6">
+    <div>
+    <p className="eyebrow">Let’s work together</p>
+    <h2 className="mt-4 font-serif text-4xl">A system to build.<br />A story to tell.</h2>
+    </div>
+    <div className="flex flex-wrap gap-3">
+    <a href={`mailto:${portfolioContent.contact.email}`} className="btn-hard">Email Victor <Mail className="h-4 w-4" aria-hidden="true"/>
+    </a>
+    <a href={portfolioContent.contact.linkedin} className="btn-hard btn-hard-ghost">LinkedIn <ArrowUpRight className="h-4 w-4" aria-hidden="true"/>
+    </a>
+    </div>
+    </div>
+    </footer>
+    </div>;
 }

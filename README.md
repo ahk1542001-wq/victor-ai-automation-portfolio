@@ -42,13 +42,13 @@ A recruiter-focused portfolio for **Victor**, an AI Automation & Agent Workflow 
 
 ## Experience Design
 
-- Cinematic Viridian portrait hero with restrained, reduced-motion-safe movement
+- Concise identity and three selected works before the complete collections
 - Separate n8n Automation and AI-Assisted Software tracks
 - Streamlined recruiter homepage with featured project previews
-- Dedicated work archive separating n8n Automation from AI-Assisted Software
-- Dedicated professional profile page for background, experience, learning direction, and featured credentials
-- Ten statically generated project case-study routes
-- Dedicated credentials route with five public verification links
+- `/work` collection separating software products from n8n Automation
+- `/about` page preserving background, professional experience, languages and education
+- Three selected homepage works, with complete Products & Automation and Films & Content collections
+- Dedicated credentials route retaining the complete verified inventory
 - Responsive navigation and layouts for desktop, tablet, and small mobile screens
 - Real approved tool and repository brand assets instead of generic placeholder marks
 
@@ -111,7 +111,7 @@ This runs ESLint, a production Next.js build, and the smoke verification script.
 
 ## Deployment Status
  
-The portfolio application is deployed in production on Vercel at [https://portfolioweb-three-sigma.vercel.app](https://portfolioweb-three-sigma.vercel.app) under the `portfolio_web` project. The live deployment serves the verified `main` branch with 14 statically generated pages.
+The portfolio application is deployed in production on Vercel at [https://portfolioweb-three-sigma.vercel.app](https://portfolioweb-three-sigma.vercel.app) under the `portfolio_web` project. Production follows the reviewed `main` branch; unmerged branches remain review previews.
 
 ## Contact
 

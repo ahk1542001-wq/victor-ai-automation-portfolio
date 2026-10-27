@@ -17,13 +17,14 @@ export function Header() {
   const closeMenu = () => setIsOpen(false);
 
   const navLinks = [
-    { href: '/#work', label: 'Work' },
-    { href: '/#content', label: 'Videos' },
-    { href: '/#background', label: 'Background' },
-    { href: '/#credentials', label: 'Credentials' },
+    { href: '/#work', label: 'Selected' },
+    { href: '/work', label: 'Products' },
+    { href: '/films', label: 'Films' },
+    { href: '/about', label: 'About' },
+    { href: '/credentials', label: 'Credentials' },
   ];
 
-  const isSecondaryPage = pathname?.startsWith('/projects/') || pathname?.startsWith('/credentials') || pathname?.startsWith('/work/');
+  const isSecondaryPage = pathname !== '/';
 
   useEffect(() => {
     if (isInitialMount.current) {

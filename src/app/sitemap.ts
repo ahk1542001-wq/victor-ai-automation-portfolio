@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     { url: `${baseUrl}/work/vic`, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/work/v-vic`, changeFrequency: 'monthly', priority: 0.8 },
+    ...['/work', '/films', '/about', '/credentials'].map(route => ({ url: `${baseUrl}${route}`, changeFrequency: 'monthly' as const, priority: 0.8 })),
     ...projectEntries,
   ];
 }

@@ -21,6 +21,9 @@ if (!fs.existsSync(homeHtmlPath)) {
 }
 
 const homeHtml = fs.readFileSync(homeHtmlPath, 'utf-8');
+const workHtml = fs.readFileSync(path.join(outDir, 'work.html'), 'utf-8');
+const filmsHtml = fs.readFileSync(path.join(outDir, 'films.html'), 'utf-8');
+const aboutHtml = fs.readFileSync(path.join(outDir, 'about.html'), 'utf-8');
 
 if (!homeHtml.includes('VICTOR')) {
   console.error('FAIL: Hero text VICTOR not found on homepage');
@@ -128,9 +131,9 @@ const mandatorySections = [
 ];
 
 for (const slug of projectSlugs) {
-  // Check link existence on homepage
-  if (!homeHtml.includes(`/projects/${slug}`)) {
-    console.error(`FAIL: Homepage missing link to project ${slug}`);
+  // Check every project remains discoverable from the products collection
+  if (!workHtml.includes(`/projects/${slug}`)) {
+    console.error(`FAIL: Products collection missing link to project ${slug}`);
     process.exit(1);
   }
 
@@ -275,3 +278,21 @@ for (const removed of ['id="how"', 'id="numbers"', 'id="proof"']) {
   if (homeHtml.includes(removed)) throw new Error(`Removed homepage section returned: ${removed}`);
 }
 console.log('PASS: v-vic discovery, honest role boundaries, three exact media/poster hashes and homepage simplification.');
+
+// Curated homepage: three representative works; full inventories stay discoverable.
+if ((homeHtml.match(/data-featured-work=/g) || []).length !== 3) throw new Error('Homepage must show exactly three selected works');
+if (homeHtml.includes('Choose a VIC video style') || homeHtml.includes('Choose a v-vic concept film')) throw new Error('Full galleries belong on the films collection');
+for (const route of ['/work', '/films', '/about', '/credentials']) {
+  if (!homeHtml.includes(`href="${route}"`)) throw new Error(`Missing collection/detail route ${route}`);
+}
+for (const id of ['product-ads', 'content']) {
+  if (!filmsHtml.includes(`id="${id}"`)) throw new Error(`Film collection missing ${id}`);
+}
+for (const phrase of ['Choose a VIC video style', 'Choose a v-vic concept film']) {
+  if (!filmsHtml.includes(phrase)) throw new Error(`Missing film inventory ${phrase}`);
+}
+for (const company of ['Technity', 'Gala Bangkok', 'Mercure Yangon']) {
+  if (!aboutHtml.includes(company)) throw new Error(`Detailed background missing ${company}`);
+}
+if (!vicHtml.includes('/films#content') || !vvicHtml.includes('/films#product-ads')) throw new Error('Case return links must point to the full film collections');
+console.log('PASS: curated three-work homepage, products/films collections, detailed background and collection return links.');
