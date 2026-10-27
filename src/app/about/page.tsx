@@ -18,12 +18,11 @@ export default function About() {
 
               <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
                 <div className="lg:col-span-7">
-                  <div className="space-y-5 font-serif text-[19px] leading-relaxed text-ink-soft sm:text-[21px]">
+                  <div className="max-w-[65ch] space-y-5 text-[16px] leading-[1.8] text-ink-soft">
                     <p className="text-pretty">{aboutParts[0]}.</p>
                     <p className="text-pretty">
-                      I run every build as a project with a scope, a spec and a QA gate. That is
-                      the part of my coordination background that transfers directly: automation
-                      fails on ambiguity far more often than it fails on code.
+                      My coordination background shapes how I build: define the scope, direct the
+                      work and check the result against clear acceptance criteria.
                     </p>
                     {aboutParts.slice(1).length > 0 && (<p className="text-pretty">{aboutParts.slice(1).join('. ')}</p>)}
                   </div>

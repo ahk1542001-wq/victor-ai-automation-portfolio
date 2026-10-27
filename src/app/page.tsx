@@ -6,6 +6,8 @@ import { ProjectWorkCard } from '@/components/ProjectWorkCard';
 import { projects } from '@/data/projects';
 import { portfolioContent } from '@/data/content';
 import { credentials } from '@/data/credentials';
+import { YouTubeThumbnail } from '@/components/YouTubeThumbnail';
+import { Reveal } from '@/components/Reveal';
 export default function Home() {
     const flagship = projects.find(p => p.id === 'travelcare-ai')!;
     const featuredCredentials = ['google-ai-professional', 'agentic-prompt-engineering', 'generative-ai-assistants', 'intro-to-mcp'];
@@ -13,19 +15,28 @@ export default function Home() {
     return <div className="min-h-screen bg-paper font-sans text-ink">
     <Header />
     <main id="main-content" tabIndex={-1} className="focus:outline-none">
-    <section aria-labelledby="hero-heading" className="mx-auto max-w-[1120px] px-5 py-12 sm:px-6 md:py-16">
-
-      <p className="eyebrow">Victor · Bangkok · AI Automation &amp; Agent Workflow Builder</p>
-      <h1 id="hero-heading" className="mt-5 max-w-[19ch] font-serif text-[clamp(40px,7vw,80px)] leading-[1.02] tracking-[-0.025em]">I build AI agents for <span className="text-pine">content creation</span> and business automation.</h1>
-      <p className="mt-6 max-w-[62ch] text-[17px] leading-relaxed text-ink-soft">From research and scripting to animated videos and voiceovers, I design AI-assisted workflows and direct the creative process.</p>
-      <div className="mt-8 flex flex-wrap gap-3">
-    <a href="#work" className="btn-hard">Explore selected work <ArrowRight className="h-4 w-4" aria-hidden="true"/>
-    </a>
-    <a href={`mailto:${portfolioContent.contact.email}`} className="btn-hard btn-hard-ghost">Email me <Mail className="h-4 w-4" aria-hidden="true"/>
-    </a>
-<a href={portfolioContent.contact.github} className="btn-hard btn-hard-ghost" target="_blank" rel="noopener noreferrer">GitHub <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></a>
-    </div>
-
+    <section aria-labelledby="hero-heading" className="hero-editorial mx-auto max-w-[1120px] px-5 py-12 sm:px-6 md:py-20">
+      <div className="grid items-center gap-9 lg:grid-cols-[1.12fr_0.88fr] lg:gap-12">
+        <div>
+          <p className="eyebrow">AI Automation &amp; Agent Workflow Builder · Bangkok</p>
+          <h1 id="hero-heading" className="mt-5 max-w-[16ch] font-serif text-[clamp(42px,5.5vw,72px)] leading-[1.03] tracking-[-0.025em]">AI agents for content and automation.</h1>
+          <p className="mt-6 max-w-[48ch] text-[16px] leading-relaxed text-ink-soft">From research and scripting to animated videos and voiceovers, I design AI-assisted workflows and direct the creative process.</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a href="#work" className="btn-hard">Explore my work <ArrowRight className="h-4 w-4" aria-hidden="true" /></a>
+            <a href={`mailto:${portfolioContent.contact.email}`} className="btn-hard btn-hard-ghost">Email me <Mail className="h-4 w-4" aria-hidden="true" /></a>
+            <a href={portfolioContent.contact.github} className="inline-flex min-h-[44px] items-center gap-2 px-2 text-sm text-pine underline underline-offset-4" target="_blank" rel="noopener noreferrer">GitHub <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></a>
+          </div>
+        </div>
+        <Link href="/projects/travelcare-ai" className="hero-work-link group block min-w-0" aria-label="Explore TravelCare AI, my flight-rescue hackathon demo">
+          <div className="hero-work-image overflow-hidden border border-hair bg-paper-2 p-2 sm:p-3">
+            <YouTubeThumbnail youtubeId={flagship.youtubeId!} alt="TravelCare AI flight-rescue demo interface" eager />
+          </div>
+          <div className="mt-4 flex items-center justify-between gap-4 text-sm">
+            <span><span className="block font-medium">TravelCare AI</span><span className="mt-1 block text-xs text-muted">Agent workflow · Hackathon demo</span></span>
+            <ArrowUpRight className="h-5 w-5 shrink-0 text-pine" aria-hidden="true" />
+          </div>
+        </Link>
+      </div>
     </section>
     <section id="work" aria-labelledby="work-heading" className="border-t-2 border-ink py-12 md:py-16">
     <div className="mx-auto max-w-[1120px] px-5 sm:px-6">
@@ -36,21 +47,23 @@ export default function Home() {
     </div>
     <p className="max-w-[42ch] text-[15px] leading-relaxed text-muted">A software demo, a commercial concept and a personal-brand explainer. Three starting points into my work.</p>
     </div>
-      <div data-featured-work="product">
+      <Reveal><div data-featured-work="product">
     <p className="eyebrow mb-4">Product · AI-assisted software</p>
-    <ProjectWorkCard project={flagship} index={0} eager={true} compact summary="A flight-disruption demo that helps travelers review rescue options, visa-aware routes and compensation drafts."/>
+    <ProjectWorkCard project={flagship} eager={true} compact summary="A flight-disruption demo that helps travelers review rescue options, visa-aware routes and compensation drafts."/>
     </div>
-      <div id="content" className="mt-10 grid gap-10 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
+      </Reveal>
+      <Reveal><div id="content" className="mt-10 grid gap-10 md:grid-cols-2">
         <article id="product-ads" data-featured-work="commercial" className="min-w-0">
     <p className="eyebrow mb-4">Commercial concept · v-vic</p>
-    <div className="card-hard mx-auto max-w-[330px] bg-pine p-3">
-    <div className="aspect-[9/16] overflow-hidden rounded-[10px] border-2 border-dashed border-paper/55 bg-black">
-    <video controls playsInline preload="none" poster="/v-vic/forged.jpg" aria-label="FORGED: complete fictional-product commercial concept" className="h-full w-full object-contain">
-    <source src="/v-vic/forged.mp4" type="video/mp4"/>Your browser cannot play this film. <a href="/v-vic/forged.mp4">Open FORGED</a>.</video>
-    </div>
+    <div className="featured-film-stage">
+      <div className="featured-film-portrait media-frame">
+        <video controls playsInline preload="none" poster="/v-vic/forged.jpg" aria-label="FORGED: complete fictional-product commercial concept" className="h-full w-full object-contain">
+          <source src="/v-vic/forged.mp4" type="video/mp4" />Your browser cannot play this film. <a href="/v-vic/forged.mp4">Open FORGED</a>.
+        </video>
+      </div>
     </div>
     <h3 className="mt-5 font-serif text-3xl">FORGED — Carry the day</h3>
-    <p className="mt-3 text-sm leading-relaxed text-muted">A fictional product, told through material, movement and a carry demonstration. Creative direction, AI-assisted visuals and a finished local edit.</p>
+    <p className="mt-3 text-sm leading-relaxed text-muted">A product story built around material, movement and everyday use. I directed the concept, AI-assisted visuals and final edit.</p>
     <p className="mt-3 text-xs text-muted">20.37s · Fictional-product concept</p>
 <Link href="/films#product-ads" className="mt-3 flex w-fit min-h-[44px] items-center text-pine underline underline-offset-4">Explore commercial films →</Link>
 <Link href="/work/v-vic" className="mt-1 inline-flex min-h-[44px] items-center gap-2 text-pine underline underline-offset-4">Behind the commercial workflow <ArrowUpRight className="h-4 w-4" aria-hidden="true"/>
@@ -58,21 +71,22 @@ export default function Home() {
     </article>
         <article data-featured-work="personal" className="min-w-0">
     <p className="eyebrow mb-4">Personal branding · VIC</p>
-    <div className="card-hard bg-pine p-3 sm:p-4">
-    <div className="aspect-video overflow-hidden rounded-[10px] border-2 border-dashed border-paper/55 bg-black">
-    <video controls playsInline preload="none" poster="/vic/cartoon-story.jpg" aria-label="An agent organizes files: Burmese cartoon explainer with embedded captions" className="h-full w-full object-contain">
-    <source src="/vic/cartoon-story.mp4" type="video/mp4"/>Your browser cannot play this film. <a href="/vic/cartoon-story.mp4">Open the cartoon explainer</a>.</video>
-    </div>
+    <div className="featured-film-stage">
+      <div className="aspect-video w-full media-frame">
+        <video controls playsInline preload="none" poster="/vic/cartoon-story.jpg" aria-label="An agent organizes files: Burmese cartoon explainer with embedded captions" className="h-full w-full object-contain">
+          <source src="/vic/cartoon-story.mp4" type="video/mp4" />Your browser cannot play this film. <a href="/vic/cartoon-story.mp4">Open the cartoon explainer</a>.
+        </video>
+      </div>
     </div>
     <h3 className="mt-5 font-serif text-3xl">An agent organizes files</h3>
-    <p className="mt-3 text-sm leading-relaxed text-muted">A beginner-friendly Burmese explainer with cartoon action, my cloned narration and embedded captions. One of five visual styles in the VIC personal-brand workflow.</p>
+    <p className="mt-3 text-sm leading-relaxed text-muted">An everyday AI-agent use case, explained through cartoon action. I directed the script, animation and my cloned Burmese narration.</p>
     <p className="mt-3 text-xs text-muted">34.4s · Burmese · Embedded captions</p>
 <Link href="/films#content" className="mt-3 flex w-fit min-h-[44px] items-center text-pine underline underline-offset-4">Explore explainers →</Link>
 <Link href="/work/vic" className="mt-1 inline-flex min-h-[44px] items-center gap-2 text-pine underline underline-offset-4">Behind the explainer workflow <ArrowUpRight className="h-4 w-4" aria-hidden="true"/>
     </Link>
 
         </article>
-      </div>
+      </div></Reveal>
 <aside aria-label="My video production approach" className="mt-10 border-l-[3px] border-pine pl-5">
 <p className="eyebrow">The system behind the films</p><p className="mt-3 max-w-[78ch] text-[15px] leading-relaxed text-ink-soft">I design human-directed, multi-agent production workflows with Hermes: VIC Creator with my voice-cloning procedure for personal branding, and v-vic for commercial films. The approach covers the brief, script, assets, voice, edit and final review.</p>
 <Link href="/films#production-approach" className="mt-3 inline-flex min-h-[44px] items-center gap-2 text-pine underline underline-offset-4">How I set up the agents <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></Link></aside>

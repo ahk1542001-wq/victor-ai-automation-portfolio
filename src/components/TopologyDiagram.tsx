@@ -7,9 +7,9 @@ import React from 'react';
  * Ink-on-paper line diagram — deliberately schematic rather than decorative,
  * so it reads as a diagram of a system and not as a broken image.
  */
-export function TopologyDiagram() {
+export function TopologyDiagram({ compact = false }: { compact?: boolean }) {
   return (
-    <div className="relative flex h-full w-full min-h-[280px] items-center justify-center overflow-hidden border-2 border-ink bg-paper-2 p-6 md:min-h-[360px]">
+    <div className={`relative flex h-full w-full items-center justify-center overflow-hidden bg-paper-2 p-6 ${compact ? '' : 'min-h-[280px] border-2 border-ink md:min-h-[360px]'}`}>
       <svg
         viewBox="0 0 400 300"
         className="mx-auto h-full w-full max-w-lg text-hair"

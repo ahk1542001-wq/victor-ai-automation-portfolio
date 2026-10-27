@@ -25,6 +25,8 @@
 }
 
 :root {
+  --radius-control: 10px;
+  --radius-frame: 12px;
   color-scheme: light;
 
   --paper: #f4f1ea;
@@ -125,7 +127,10 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 88px;
   }
+
+  [id] { scroll-margin-top: 12px; }
 
   body {
     color: var(--foreground);
@@ -155,14 +160,14 @@
   .card-hard {
     background: var(--surface);
     border: 2px solid var(--ink);
-    border-radius: 14px;
+    border-radius: var(--radius-frame);
     box-shadow: 5px 5px 0 var(--offset);
   }
 
   .card-flat {
     background: var(--surface);
     border: 2px solid var(--ink);
-    border-radius: 14px;
+    border-radius: var(--radius-frame);
   }
 
   /* Primary action. Clay fill = attention, ink rule = weight.
@@ -178,7 +183,7 @@
     min-height: 44px;
     padding: 13px 24px;
     border: 2px solid var(--ink);
-    border-radius: 12px;
+    border-radius: var(--radius-control);
     background: var(--clay);
     color: var(--on-clay);
     font-family: var(--font-geist-sans), system-ui, sans-serif;
@@ -483,7 +488,7 @@
   position: relative;
   overflow: hidden;
   border: 2px solid var(--ink);
-  border-radius: 16px;
+  border-radius: var(--radius-frame);
   background: transparent;
   box-shadow: 6px 6px 0 var(--offset);
   aspect-ratio: 4 / 5;
@@ -507,7 +512,7 @@
   position: relative;
   overflow: hidden;
   border: 2px solid var(--ink);
-  border-radius: 16px;
+  border-radius: var(--radius-frame);
   background: var(--paper);
   box-shadow: 6px 6px 0 var(--offset);
   aspect-ratio: 8 / 5;
@@ -577,4 +582,43 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   white-space: nowrap;
+}
+
+/* Portfolio presentation: real outputs carry the visual identity. */
+.hero-editorial { position: relative; }
+.hero-work-image { border-radius: var(--radius-frame); }
+.hero-work-link img, .project-browse .project-visual img {
+  transition: transform 320ms cubic-bezier(.2,.7,.2,1);
+}
+.project-visual { width: 100%; overflow: hidden; border-radius: var(--radius-control); background: var(--paper-2); }
+.project-browse { padding-bottom: 24px; border-bottom: 1px solid var(--hair); }
+.featured-film-stage {
+  display: flex; align-items: center; justify-content: center;
+  height: 340px; padding: 20px; background: var(--paper-2);
+  border-radius: var(--radius-frame);
+}
+.featured-film-portrait { height: 100%; aspect-ratio: 9 / 16; }
+.media-frame { overflow: hidden; background: #0d0d0d; border-radius: var(--radius-control); }
+[data-collection-cards] a { transition: border-color 180ms ease; }
+[data-collection-cards] svg, .work-link svg, .hero-work-link svg { transition: transform 180ms ease; }
+@media (hover: hover) and (pointer: fine) {
+  .hero-work-link:hover img, .project-browse:hover .project-visual img { transform: scale(1.025); }
+  .hero-work-link:hover svg { transform: translate(2px, -2px); }
+  .work-link:hover svg, [data-collection-cards] a:hover svg { transform: translateX(4px); }
+  [data-collection-cards] a:hover { border-color: var(--pine); }
+}
+@media (max-width: 767px) {
+  .featured-film-stage { height: 300px; padding: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .btn-hard:hover, .btn-hard-ghost:hover, .btn-hard-ink:hover,
+  .hero-work-link:hover img, .project-browse:hover .project-visual img,
+  .hero-work-link:hover svg, .work-link:hover svg, [data-collection-cards] a:hover svg {
+    transform: none;
+  }
 }
