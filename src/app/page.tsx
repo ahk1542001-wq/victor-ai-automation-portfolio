@@ -96,7 +96,7 @@ export default function Home() {
     <div className="mx-auto grid max-w-[1120px] gap-8 px-5 sm:px-6 md:grid-cols-[1fr_1.4fr]">
     <div>
     <p className="eyebrow">The person behind the work</p>
-    <h2 id="background-heading" className="mt-4 font-serif text-4xl">Creative direction.<br />Systems thinking.</h2>
+    <h2 id="background-heading" className="sr-only">About Victor</h2>
 <figure className="mt-7 w-[220px] max-w-full">
 <div className="portrait-frame"><Image src="/victor-portrait-retouched.webp" alt="Victor, photographed in Bangkok" fill sizes="220px" /></div>
 <figcaption className="mt-4 font-mono text-xs text-muted">Victor · Bangkok, Thailand</figcaption>
