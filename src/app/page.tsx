@@ -14,7 +14,7 @@ export default function Home() {
     <Header />
     <main id="main-content" tabIndex={-1} className="focus:outline-none">
     <section aria-labelledby="hero-heading" className="mx-auto max-w-[1120px] px-5 py-12 sm:px-6 md:py-16">
-<div className="grid items-center gap-9 md:grid-cols-[minmax(0,1fr)_240px] lg:grid-cols-[minmax(0,1fr)_300px]"><div>
+
       <p className="eyebrow">Victor · Bangkok · AI Automation &amp; Agent Workflow Builder</p>
       <h1 id="hero-heading" className="mt-5 max-w-[19ch] font-serif text-[clamp(40px,7vw,80px)] leading-[1.02] tracking-[-0.025em]">I build AI agents for <span className="text-pine">content creation</span> and business automation.</h1>
       <p className="mt-6 max-w-[62ch] text-[17px] leading-relaxed text-ink-soft">From research and scripting to animated videos and voiceovers, I design AI-assisted workflows and direct the creative process.</p>
@@ -25,10 +25,7 @@ export default function Home() {
     </a>
 <a href={portfolioContent.contact.github} className="btn-hard btn-hard-ghost" target="_blank" rel="noopener noreferrer">GitHub <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></a>
     </div>
-</div><figure className="w-[180px] justify-self-start md:w-full md:justify-self-end">
-<div className="portrait-frame"><Image src="/victor-portrait-retouched.webp" alt="Victor, photographed in Bangkok" fill priority sizes="(min-width: 1024px) 300px, (min-width: 768px) 240px, 180px" /></div>
-<figcaption className="mt-4 font-mono text-xs text-muted">Victor · Bangkok, Thailand</figcaption>
-</figure></div>
+
     </section>
     <section id="work" aria-labelledby="work-heading" className="border-t-2 border-ink py-12 md:py-16">
     <div className="mx-auto max-w-[1120px] px-5 sm:px-6">
@@ -100,6 +97,10 @@ export default function Home() {
     <div>
     <p className="eyebrow">The person behind the work</p>
     <h2 id="background-heading" className="mt-4 font-serif text-4xl">Creative direction.<br />Systems thinking.</h2>
+<figure className="mt-7 w-[220px] max-w-full">
+<div className="portrait-frame"><Image src="/victor-portrait-retouched.webp" alt="Victor, photographed in Bangkok" fill sizes="220px" /></div>
+<figcaption className="mt-4 font-mono text-xs text-muted">Victor · Bangkok, Thailand</figcaption>
+</figure>
     </div>
     <div>
     <p className="text-[16px] leading-relaxed text-ink-soft">I moved from client services and project coordination into AI automation. At Technity, I was the client-facing lead for sponsored content from brands including Samsung and Huawei. Today, I combine that background with agent workflows and AI-assisted content creation.</p>
