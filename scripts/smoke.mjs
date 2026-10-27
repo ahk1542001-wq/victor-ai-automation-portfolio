@@ -296,3 +296,13 @@ for (const company of ['Technity', 'Gala Bangkok', 'Mercure Yangon']) {
 }
 if (!vicHtml.includes('/films#content') || !vvicHtml.includes('/films#product-ads')) throw new Error('Case return links must point to the full film collections');
 console.log('PASS: curated three-work homepage, products/films collections, detailed background and collection return links.');
+
+// Preserve owner identity and the requested production-approach explanation.
+if (!homeHtml.includes('victor-portrait-retouched.webp')) throw new Error('Owner portrait must remain visible on the homepage');
+if ((homeHtml.match(/href="https:\/\/github\.com\/ahk1542001-wq"/g) || []).length < 2) throw new Error('GitHub account must remain explicit in hero and footer');
+if (!homeHtml.includes('data-collection-cards')) throw new Error('Product/film collection links need separate visual containers');
+if (!homeHtml.includes('/films#production-approach') || !filmsHtml.includes('id="production-approach"')) throw new Error('Production approach must be discoverable');
+for (const phrase of ['GPT-6.1 Sol', 'Gemini Flash', 'VIC Voice', 'do not establish fully unattended Hermes production']) {
+  if (!filmsHtml.includes(phrase)) throw new Error(`Production role/evidence boundary missing: ${phrase}`);
+}
+console.log('PASS: portrait, explicit GitHub links, collection containers and honest multi-agent approach retained.');

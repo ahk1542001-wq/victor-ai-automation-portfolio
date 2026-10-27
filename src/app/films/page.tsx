@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Header } from '@/components/Header';
+import { ProductionApproach } from '@/components/ProductionApproach';
 import { VicShowcase } from '@/components/VicShowcase';
 import { VvicShowcase } from '@/components/VvicShowcase';
 export const metadata: Metadata = { title: 'Films & Content | Victor', description: 'AI-assisted commercial concepts and personal-brand Burmese explainers, with creative direction and the Hermes workflows behind them.', alternates: { canonical: '/films' } };
@@ -16,10 +17,12 @@ export default function Films() {
     <nav aria-label="Film collections" className="mt-7 flex flex-wrap gap-x-7 gap-y-2">
     <a href="#product-ads" className="inline-flex min-h-[44px] items-center text-pine underline underline-offset-4">Commercial concepts</a>
     <a href="#content" className="inline-flex min-h-[44px] items-center text-pine underline underline-offset-4">Personal-brand explainers</a>
+    <a href="#production-approach" className="inline-flex min-h-[44px] items-center text-pine underline underline-offset-4">My multi-agent setup</a>
     </nav>
     </header>
    <VvicShowcase />
     <VicShowcase />
+    <ProductionApproach />
  </main>
     </div>;
 }
