@@ -33,12 +33,14 @@
 
 ## Component Specifics
 - **Navigation:** Fixed header, Onyx background, crisp Parchment wordmark, homepage anchors plus dedicated Credentials route.
-- **Hero Section:** Concise owner-approved identity, supporting sentence and clear work/contact actions. No decorative tools rail; selected work follows immediately.
+- **Hero Section:** Concise owner-approved identity with Victor’s retained real portrait, supporting sentence and clear work/email/GitHub actions. Keep the face visible at phone and desktop sizes. No decorative tools rail; selected work follows immediately.
 - **Hero Identity:** Use one visible `VICTOR` title only; do not add a second decorative name watermark above the canvas.
 - **Brand Assets:** Tool and repository marks must use approved real brand assets. Do not substitute text glyphs or generic code icons for brand logos; omit a brand when a permitted asset is unavailable.
 - **Selected Work:** Homepage curates exactly three starting points: one software demo, one commercial concept and one personal-brand explainer. Full Products & Automation inventory lives at `/work` (software/n8n tracks); full Films & Content inventory lives at `/films` (v-vic/VIC). Preserve dedicated case studies and existing media. Show output before workflow detail.
 - **Capabilities:** Bounded responsive motion layout (no scattered off-screen pills).
 - **Experience:** Keep homepage background and selected credentials concise; detailed professional history and education at `/about`, full verified credentials at `/credentials`.
 - **Credentials:** Dedicated evidence page for all verified credentials; homepage shows only the four most relevant items and links to the full page.
-- **Contact CTA:** Clear invitation for systems/content work with direct email and LinkedIn actions.
+- **Contact CTA:** Clear invitation for systems/content work with direct email, LinkedIn and a visible text GitHub link.
+- **Collection navigation:** Products and Films each have their own strong bordered container; distinguish them on both stacked-phone and side-by-side desktop layouts.
+- **Production approach:** Keep a short homepage teaser with the full role/stage map on `/films#production-approach`. Describe the human-directed system without claiming every sample was produced autonomously end-to-end.
 - **Exclusions:** Confidential client work and unverified projects are excluded.

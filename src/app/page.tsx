@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight, ArrowRight, Mail } from 'lucide-react';
 import { Header } from '@/components/Header';
@@ -13,6 +14,7 @@ export default function Home() {
     <Header />
     <main id="main-content" tabIndex={-1} className="focus:outline-none">
     <section aria-labelledby="hero-heading" className="mx-auto max-w-[1120px] px-5 py-12 sm:px-6 md:py-16">
+<div className="grid items-center gap-9 md:grid-cols-[minmax(0,1fr)_240px] lg:grid-cols-[minmax(0,1fr)_300px]"><div>
       <p className="eyebrow">Victor · Bangkok · AI Automation &amp; Agent Workflow Builder</p>
       <h1 id="hero-heading" className="mt-5 max-w-[19ch] font-serif text-[clamp(40px,7vw,80px)] leading-[1.02] tracking-[-0.025em]">I build AI agents for <span className="text-pine">content creation</span> and business automation.</h1>
       <p className="mt-6 max-w-[62ch] text-[17px] leading-relaxed text-ink-soft">From research and scripting to animated videos and voiceovers, I design AI-assisted workflows and direct the creative process.</p>
@@ -21,7 +23,12 @@ export default function Home() {
     </a>
     <a href={`mailto:${portfolioContent.contact.email}`} className="btn-hard btn-hard-ghost">Email me <Mail className="h-4 w-4" aria-hidden="true"/>
     </a>
+<a href={portfolioContent.contact.github} className="btn-hard btn-hard-ghost" target="_blank" rel="noopener noreferrer">GitHub <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></a>
     </div>
+</div><figure className="w-[180px] justify-self-start md:w-full md:justify-self-end">
+<div className="portrait-frame"><Image src="/victor-portrait-retouched.webp" alt="Victor, photographed in Bangkok" fill priority sizes="(min-width: 1024px) 300px, (min-width: 768px) 240px, 180px" /></div>
+<figcaption className="mt-4 font-mono text-xs text-muted">Victor · Bangkok, Thailand</figcaption>
+</figure></div>
     </section>
     <section id="work" aria-labelledby="work-heading" className="border-t-2 border-ink py-12 md:py-16">
     <div className="mx-auto max-w-[1120px] px-5 sm:px-6">
@@ -69,14 +76,17 @@ export default function Home() {
 
         </article>
       </div>
-      <nav aria-label="Explore all work" className="mt-12 grid gap-6 border-t-2 border-ink pt-8 sm:grid-cols-2">
-    <Link href="/work" className="group min-w-0 py-3">
+<aside aria-label="My video production approach" className="mt-10 border-l-[3px] border-pine pl-5">
+<p className="eyebrow">The system behind the films</p><p className="mt-3 max-w-[78ch] text-[15px] leading-relaxed text-ink-soft">I design human-directed, multi-agent production workflows with Hermes: VIC Creator with my voice-cloning procedure for personal branding, and v-vic for commercial films. The approach covers the brief, script, assets, voice, edit and final review.</p>
+<Link href="/films#production-approach" className="mt-3 inline-flex min-h-[44px] items-center gap-2 text-pine underline underline-offset-4">How I set up the agents <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></Link></aside>
+<nav aria-label="Explore all work" data-collection-cards className="mt-10 grid gap-6 sm:grid-cols-2">
+    <Link href="/work" className="card-hard group min-w-0 bg-surface p-6 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-pine">
     <span className="eyebrow">Build</span>
     <span className="mt-3 flex items-center justify-between gap-3 font-serif text-3xl group-hover:text-pine">Products &amp; Automation <ArrowRight className="h-5 w-5 shrink-0" aria-hidden="true"/>
     </span>
     <span className="mt-2 block text-sm text-muted">Explore all eight projects, demos and source links.</span>
     </Link>
-    <Link href="/films" className="group min-w-0 py-3">
+    <Link href="/films" className="card-hard group min-w-0 bg-paper-2 p-6 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-pine">
     <span className="eyebrow">Create</span>
     <span className="mt-3 flex items-center justify-between gap-3 font-serif text-3xl group-hover:text-pine">Films &amp; Content <ArrowRight className="h-5 w-5 shrink-0" aria-hidden="true"/>
     </span>
@@ -117,6 +127,7 @@ export default function Home() {
     </a>
     <a href={portfolioContent.contact.linkedin} className="btn-hard btn-hard-ghost">LinkedIn <ArrowUpRight className="h-4 w-4" aria-hidden="true"/>
     </a>
+<a href={portfolioContent.contact.github} className="btn-hard btn-hard-ghost" target="_blank" rel="noopener noreferrer">GitHub <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></a>
     </div>
     </div>
     </footer>
