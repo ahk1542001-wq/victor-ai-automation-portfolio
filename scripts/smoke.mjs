@@ -298,7 +298,9 @@ if (!vicHtml.includes('/films#content') || !vvicHtml.includes('/films#product-ad
 console.log('PASS: curated three-work homepage, products/films collections, detailed background and collection return links.');
 
 // Preserve owner identity and the requested production-approach explanation.
-if (!homeHtml.includes('victor-portrait-retouched.webp')) throw new Error('Owner portrait must remain visible on the homepage');
+const heroSectionHtml = homeHtml.match(/<section[^>]*aria-labelledby="hero-heading"[\s\S]*?<\/section>/)?.[0] ?? '';
+const backgroundSectionHtml = homeHtml.match(/<section[^>]*id="background"[\s\S]*?<\/section>/)?.[0] ?? '';
+if (!heroSectionHtml || heroSectionHtml.includes('victor-portrait-retouched.webp') || !backgroundSectionHtml.includes('victor-portrait-retouched.webp')) throw new Error('Portrait belongs in Background, not the hero');
 if ((homeHtml.match(/href="https:\/\/github\.com\/ahk1542001-wq"/g) || []).length < 2) throw new Error('GitHub account must remain explicit in hero and footer');
 if (!homeHtml.includes('data-collection-cards')) throw new Error('Product/film collection links need separate visual containers');
 if (!homeHtml.includes('/films#production-approach') || !filmsHtml.includes('id="production-approach"')) throw new Error('Production approach must be discoverable');
