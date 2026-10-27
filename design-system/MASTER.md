@@ -25,7 +25,7 @@
 - Keep the pine-link / clay-action roles above consistent. Do not introduce unrelated accent colors.
 - Use the existing restrained frame language consistently: 10px controls/media, 12px larger frames; compact metadata may use pills. Avoid unrelated corner/shadow systems.
 - Keep the page theme consistently Onyx/Parchment; section hierarchy comes from spacing and restrained surface shifts, not unrelated theme changes.
-- Keep the Hero disciplined: a single visible name, concise role/value copy, and a visible contact action without decorative status strips or scroll cues. Show a real work preview beside the copy on desktop, beneath it on phone.
+- Keep the Hero disciplined: a single visible name, concise role/value copy, and a visible contact action without decorative status strips or scroll cues. Use an identity-led typographic opening, with no project screenshot or portrait in the first screen.
 - Use real project screenshots and demos. Do not build fake terminals, fake dashboards, fake simulators, fake metrics, or decorative product UI.
 - Avoid numbered decorative eyebrows, three-equal-card feature rows, atmospheric city/time strips, and excessive border rows.
 - Prefer Motion transforms/opacity with reduced-motion support. Do not add hand-rolled window scroll listeners.
@@ -33,7 +33,7 @@
 
 ## Component Specifics
 - **Navigation:** Fixed header, Onyx background, crisp Parchment wordmark, homepage anchors plus dedicated Credentials route.
-- **Hero Section:** Text-led identity with supporting sentence and clear work/email/GitHub actions. The owner does not want the portrait in the hero/top section. Keep the retained real portrait lower on the homepage in Background/About, visible on phone and desktop. No decorative tools rail; selected work follows immediately.
+- **Hero Section:** Text-led identity with supporting sentence and clear work/email/GitHub actions. The owner does not want the portrait in the hero/top section. Keep the retained real portrait lower on the homepage in Background/About, on the right of the background copy on desktop and after it on phone. No decorative tools rail; selected work follows immediately.
 - **Hero Identity:** Use one visible `VICTOR` title only; do not add a second decorative name watermark above the canvas.
 - **Brand Assets:** Tool and repository marks must use approved real brand assets. Do not substitute text glyphs or generic code icons for brand logos; omit a brand when a permitted asset is unavailable.
 - **Selected Work:** Homepage curates exactly three starting points: one software demo, one commercial concept and one personal-brand explainer. Full Products & Automation inventory lives at `/work` (software/n8n tracks); full Films & Content inventory lives at `/films` (v-vic/VIC). Preserve dedicated case studies and existing media. Show output before workflow detail.
@@ -46,7 +46,7 @@
 - **Exclusions:** Confidential client work and unverified projects are excluded.
 
 ## Approved visual/recruiter polish — 2026-10-27
-- Short hero value statement; original portrait stays lower in Background. Hero image links to the real TravelCare case; no fake UI.
+- Owner correction after PR44: the hero is about Victor, not a project. Use bold, two-line identity copy with restrained pine/clay word blocks, supporting context and work/résumé/contact actions. No hero project preview or face. Keep the original portrait lower/right in Background; selected projects begin below the hero.
 - Keep exactly three selected works; commercial and explainer previews share a stage height while preserving their native video ratios.
 - Products use compact, output-first browsing cards; complete outcomes and implementation detail remain in each case study.
 - Film topics lead, with visual style as a secondary label. Preserve all eight projects, five VIC samples and three commercial films.
