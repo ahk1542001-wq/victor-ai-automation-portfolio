@@ -654,3 +654,76 @@
   width: min(100%, 360px);
 }
 .hero-primary-actions .btn-hard { padding-inline: 10px; }
+
+/* One short hero entrance; text stays readable throughout and without JS. */
+.hero-identity { position: relative; isolation: isolate; }
+.hero-identity::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+.hero-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-control);
+  color: var(--ink-soft);
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+.hero-social-link:hover, .hero-social-link:focus-visible { background: var(--paper-2); }
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .hero-social-link:hover { transform: translateY(-2px); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-intro, .hero-statement, .hero-support, .hero-actions {
+    animation: identityEnter 480ms cubic-bezier(.2,.7,.2,1) backwards;
+  }
+  .hero-intro { animation-delay: 0ms; }
+  .hero-statement { animation-delay: 40ms; }
+  .hero-support { animation-delay: 110ms; }
+  .hero-actions { animation-delay: 170ms; }
+  .hero-word { animation: wordSettle 540ms cubic-bezier(.2,.7,.2,1) 80ms backwards; }
+  .hero-word-clay { animation-delay: 140ms; }
+}
+@keyframes identityEnter {
+  from { opacity: .88; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes wordSettle {
+  from { transform: translateX(-8px) rotate(-1deg); }
+  to { transform: translateX(0) rotate(0); }
+}
+
+/* Restore the old rail as a small, controllable list beneath the hero.
+   CSS-only/no-JS fallback wraps, rather than hiding offscreen logos. */
+.stack-rail .tools-marquee-shell { -webkit-mask-image: none; mask-image: none; }
+.stack-rail .tools-marquee-track { animation: none; width: 100%; }
+.stack-rail .tools-marquee-set { flex: 1 1 100%; min-width: 0; flex-wrap: wrap; justify-content: center; padding-right: 0; gap: 20px 32px; }
+.stack-rail .tools-marquee-set[aria-hidden='true'] { display: none; }
+.stack-pause { visibility: hidden; }
+.stack-rail[data-motion-ready='true'] .stack-pause { visibility: visible; }
+@media (prefers-reduced-motion: no-preference) {
+  .stack-rail[data-motion-ready='true'] .tools-marquee-shell {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+  .stack-rail[data-motion-ready='true'] .tools-marquee-track {
+    width: max-content;
+    animation: toolsMarquee 46s linear infinite;
+  }
+  .stack-rail[data-motion-ready='true'] .tools-marquee-set { flex: 0 0 auto; flex-wrap: nowrap; justify-content: flex-start; padding-right: 40px; gap: 40px; }
+  .stack-rail[data-motion-ready='true'] .tools-marquee-set[aria-hidden='true'] { display: flex; }
+  .stack-rail[data-paused='true'] .tools-marquee-track,
+  .stack-rail .tools-marquee-shell:hover .tools-marquee-track,
+  .stack-rail .tools-marquee-shell:focus-within .tools-marquee-track { animation-play-state: paused; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stack-rail .stack-pause { display: none; }
+  .stack-rail .tools-logo-item:hover { transform: none; }
+}

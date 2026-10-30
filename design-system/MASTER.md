@@ -33,7 +33,7 @@
 
 ## Component Specifics
 - **Navigation:** Fixed header, Onyx background, crisp Parchment wordmark, homepage anchors plus dedicated Credentials route.
-- **Hero Section:** Text-led identity with supporting sentence and clear work/email/GitHub actions. The owner does not want the portrait in the hero/top section. Keep the retained real portrait lower on the homepage in Background/About, on the right of the background copy on desktop and after it on phone. No decorative tools rail; selected work follows immediately.
+- **Hero Section:** Text-led identity with supporting sentence and clear work/email/GitHub actions. The owner does not want the portrait in the hero/top section. Keep the retained real portrait lower on the homepage in Background/About, on the right of the background copy on desktop and after it on phone. The owner-approved compact Tools rail sits beneath the hero, followed by selected work. Keep it secondary to the headline, with explicit pause/resume and static reduced-motion/no-JS fallback.
 - **Hero Identity:** Use one visible `VICTOR` title only; do not add a second decorative name watermark above the canvas.
 - **Brand Assets:** Tool and repository marks must use approved real brand assets. Do not substitute text glyphs or generic code icons for brand logos; omit a brand when a permitted asset is unavailable.
 - **Selected Work:** Homepage curates exactly three starting points: one software demo, one commercial concept and one personal-brand explainer. Full Products & Automation inventory lives at `/work` (software/n8n tracks); full Films & Content inventory lives at `/films` (v-vic/VIC). Preserve dedicated case studies and existing media. Show output before workflow detail.
@@ -53,3 +53,10 @@
 - Use selective one-time IntersectionObserver reveals with visible server-rendered content, native scrolling and fine-pointer hover feedback. No custom cursor, scroll hijacking, scroll listeners or autoplay.
 - Anchor offset must clear the sticky header. Reduced-motion must disable smooth scrolling and movement. Test keyboard/touch, no-JS reading and 1440/1024/390/320 widths.
 - Taste documentation is a reference for subject-specific imagery, hierarchy and screenshot critique. Existing owner-approved content, palette, borders and routing take precedence; no external skill scripts or assets are installed.
+
+## Hero motion and tools refinement — 2026-10-27
+- One short transform/opacity entrance for title, supporting copy and actions; gentle word-block settling. Text remains readable, with no opacity-zero loading state. Reduced motion is static.
+- Hero-only, low-opacity static SVG grain, no moving particles or downloaded assets.
+- Hero email uses a labelled envelope icon; GitHub uses the retained real mark. Icon links need 44px targets, visible focus and accessible names/tooltips.
+- Restore the existing technology marquee concept as a compact rail below the hero; reuse approved local marks, support pause/resume, hover/focus pause and wrapping reduced-motion/no-JS content. Do not add skills, dependencies, logo substitutes or unverified tool claims.
+- Footer keeps Email as the primary labelled action, with LinkedIn/GitHub secondary; do not duplicate the hero's icon-only treatment throughout the page.

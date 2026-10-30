@@ -7,6 +7,7 @@ import { projects } from '@/data/projects';
 import { portfolioContent } from '@/data/content';
 import { credentials } from '@/data/credentials';
 import { Reveal } from '@/components/Reveal';
+import { TechStackRail } from '@/components/TechStackRail';
 export default function Home() {
     const flagship = projects.find(p => p.id === 'travelcare-ai')!;
     const featuredCredentials = ['google-ai-professional', 'agentic-prompt-engineering', 'generative-ai-assistants', 'intro-to-mcp'];
@@ -15,23 +16,24 @@ export default function Home() {
     <Header />
     <main id="main-content" tabIndex={-1} className="focus:outline-none">
     <section aria-labelledby="hero-heading" className="hero-identity mx-auto max-w-[1120px] px-5 sm:px-6">
-      <p className="text-sm leading-relaxed text-muted">AI Automation &amp; Agent Workflow Builder · Bangkok</p>
+      <p className="hero-intro text-sm leading-relaxed text-muted">AI Automation &amp; Agent Workflow Builder · Bangkok</p>
       <h1 id="hero-heading" className="hero-statement">
         <span className="hero-statement-line">I build <span className="hero-word hero-word-pine">AI agents.</span></span>{' '}
         <span className="hero-statement-line">I create <span className="hero-word hero-word-clay">content.</span></span>
       </h1>
-      <p className="mx-auto mt-8 max-w-[57ch] text-[16px] leading-relaxed text-ink-soft sm:text-lg">I design AI workflows and direct animated explainers, commercial films and voiceovers—from the first brief to the final review.</p>
-      <div className="mt-8 flex flex-col items-center gap-3">
+      <p className="hero-support mx-auto mt-8 max-w-[57ch] text-[16px] leading-relaxed text-ink-soft sm:text-lg">I design AI workflows and direct animated explainers, commercial films and voiceovers—from the first brief to the final review.</p>
+      <div className="hero-actions mt-8 flex flex-col items-center gap-3">
         <div className="hero-primary-actions">
         <a href="#work" className="btn-hard">See my work <ArrowRight className="h-4 w-4" aria-hidden="true" /></a>
         <a href={portfolioContent.contact.resume} className="btn-hard btn-hard-ghost">View résumé <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></a>
         </div>
-        <div className="flex items-center justify-center gap-5">
-        <a href={`mailto:${portfolioContent.contact.email}`} className="inline-flex min-h-[44px] items-center gap-2 px-3 text-sm text-pine underline underline-offset-4">Email me <Mail className="h-4 w-4" aria-hidden="true" /></a>
-        <a href={portfolioContent.contact.github} className="inline-flex min-h-[44px] items-center gap-2 px-3 text-sm text-pine underline underline-offset-4" target="_blank" rel="noopener noreferrer">GitHub <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></a>
+        <div className="flex items-center justify-center gap-3">
+          <a href={`mailto:${portfolioContent.contact.email}`} aria-label="Email Victor" title="Email Victor" className="hero-social-link"><Mail className="h-5 w-5" aria-hidden="true" /></a>
+          <a href={portfolioContent.contact.github} aria-label="Victor on GitHub" title="GitHub" className="hero-social-link" target="_blank" rel="noopener noreferrer"><Image src="/brands/github.svg" alt="" width={20} height={20} className="icon-invert-dark" /></a>
         </div>
       </div>
     </section>
+    <TechStackRail />
     <section id="work" aria-labelledby="work-heading" className="border-t-2 border-ink py-12 md:py-16">
     <div className="mx-auto max-w-[1120px] px-5 sm:px-6">
       <div className="mb-9 flex flex-wrap items-end justify-between gap-5">
