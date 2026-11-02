@@ -1,0 +1,58 @@
+{
+  "film": "/afterlight/what-stays.mp4",
+  "duration_seconds": 49,
+  "width": 1280,
+  "height": 720,
+  "fps": 24,
+  "fictional_product": true,
+  "synthetic_cast": true,
+  "music": {
+    "title": "Romantic",
+    "artist": "Francisco Alvear",
+    "source": "Mixkit track659",
+    "license": "https://mixkit.co/license/modal/musicFree/",
+    "scope": "Synced web/social/online-ad demo; no standalone music or broadcast rights included"
+  },
+  "files": [
+    {
+      "path": "/afterlight/what-stays.mp4",
+      "sha256": "1381c72ac277eb7e4e0ba298d6f604087b85eeae363ec6982ec0ebc1ccd35c0b",
+      "bytes": 14132448
+    },
+    {
+      "path": "/afterlight/poster.jpg",
+      "sha256": "7922824b0269197e73c0a05a1adcd2eb0e0eaba6868a1c2b2cf94aae30f9df90",
+      "bytes": 54194
+    },
+    {
+      "path": "/afterlight/story-01.jpg",
+      "sha256": "d5fc084b094e3b473eb1a5f26f2d9000f494eb8ab8d9fb65c064fb3408ccb7e1",
+      "bytes": 69488
+    },
+    {
+      "path": "/afterlight/story-02.jpg",
+      "sha256": "cf5742a8a712f90b42f5794145c7fd70cb1b82afe0b3fffd32bb5b537c5660a3",
+      "bytes": 73855
+    },
+    {
+      "path": "/afterlight/story-03.jpg",
+      "sha256": "b60417697a22bf5a772bf226a0ff69ef4b9ef320570fc24e7ff861f73a976993",
+      "bytes": 69130
+    },
+    {
+      "path": "/afterlight/story-04.jpg",
+      "sha256": "3d2591f1a932b548b609ef4728b78fbd72d12452687f92b04bf19cf228af871c",
+      "bytes": 71605
+    },
+    {
+      "path": "/afterlight/story-05.jpg",
+      "sha256": "11ab981cd9674e49a7ca08c268cd05da6a9e84c1c68e00c47461880b030ea95d",
+      "bytes": 71011
+    },
+    {
+      "path": "/afterlight/story-06.jpg",
+      "sha256": "b537a10690881a5465dbb2ba7c824fd8c776a205cdef87320ca32aff977f7775",
+      "bytes": 112336
+    }
+  ]
+}
