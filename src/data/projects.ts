@@ -3,6 +3,7 @@ export interface Project {
   title: string;
   category: 'Feature' | 'Secondary Project';
   projectType: 'n8n Automation' | 'AI-Assisted Software';
+  workOutcome: 'customer-workflows' | 'meeting-research' | 'content-production' | 'product-prototypes';
   /* Honest build status, shown publicly next to each project. */
   status: 'Hackathon demo' | 'MVP demo' | 'Live MVP';
   problem: string;
@@ -34,6 +35,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 'voice-receptionist',
+    workOutcome: 'customer-workflows',
     title: 'AI Voice Receptionist',
     category: 'Feature',
     projectType: 'n8n Automation',
@@ -51,6 +53,7 @@ export const projects: Project[] = [
   },
   {
     id: 'content-research',
+    workOutcome: 'content-production',
     agentic: true,
     title: 'AI Content Research & Approval Workflow',
     category: 'Feature',
@@ -69,6 +72,7 @@ export const projects: Project[] = [
   },
   {
     id: 'swoosh-shortener',
+    workOutcome: 'product-prototypes',
     title: 'Swoosh — URL Shortener & Link-in-Bio Builder',
     category: 'Feature',
     projectType: 'AI-Assisted Software',
@@ -85,6 +89,7 @@ export const projects: Project[] = [
   },
   {
     id: 'gcp-genai-agent-architectures',
+    workOutcome: 'product-prototypes',
     title: 'Enterprise GenAI Agent Architectures on Google Cloud',
     category: 'Feature',
     projectType: 'AI-Assisted Software',
@@ -100,6 +105,7 @@ export const projects: Project[] = [
   },
   {
     id: 'fyf-video-pipeline',
+    workOutcome: 'content-production',
     title: 'FYF Video Pipeline — Autonomous Brand Video Studio',
     category: 'Feature',
     projectType: 'AI-Assisted Software',
@@ -117,6 +123,7 @@ export const projects: Project[] = [
   },
   {
     id: 'travelcare-ai',
+    workOutcome: 'product-prototypes',
     title: 'TravelCare AI — Autonomous Flight Rescue Agent',
     category: 'Feature',
     projectType: 'AI-Assisted Software',
@@ -134,6 +141,7 @@ export const projects: Project[] = [
   },
   {
     id: 'meeting-prep-research-agent',
+    workOutcome: 'meeting-research',
     title: 'Meeting Prep Research Agent',
     category: 'Feature',
     projectType: 'AI-Assisted Software',
@@ -150,6 +158,7 @@ export const projects: Project[] = [
   },
   {
     id: 'lead-qualification',
+    workOutcome: 'customer-workflows',
     agentic: true,
     title: 'AI Lead Qualification & Response Workflow',
     category: 'Secondary Project',
@@ -168,6 +177,7 @@ export const projects: Project[] = [
   },
   {
     id: 'lead-nurturing-crm',
+    workOutcome: 'customer-workflows',
     agentic: true,
     title: 'AI Lead Nurturing CRM',
     category: 'Secondary Project',
