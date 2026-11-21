@@ -14,12 +14,15 @@ export default function Home() {
     <Header />
     <main id="main-content" tabIndex={-1} className="focus:outline-none">
     <section aria-labelledby="hero-heading" className="hero-identity mx-auto max-w-[1120px] px-5 sm:px-6">
-      <p className="hero-intro text-sm leading-relaxed text-muted">AI Automation &amp; Agent Workflow Builder · Bangkok</p>
+      <p className="hero-intro text-sm leading-relaxed text-muted">Bangkok, Thailand</p>
       <h1 id="hero-heading" className="hero-statement">
         <span className="hero-statement-line">I build <span className="hero-word hero-word-pine">AI agents.</span></span>{' '}
         <span className="hero-statement-line">I create <span className="hero-word hero-word-clay">content.</span></span>
       </h1>
-      <p className="hero-support mx-auto mt-8 max-w-[57ch] text-[16px] leading-relaxed text-ink-soft sm:text-lg">I design AI workflows and direct animated explainers, commercial films and voiceovers—from the first brief to the final review.</p>
+      <p className="hero-support mx-auto mt-8 max-w-[57ch] text-[16px] leading-relaxed text-ink-soft sm:text-lg">I use AI agents to build workflows and software, and to make commercial films and Burmese explainers.</p>
+      <Link href="/projects/meeting-prep-research-agent" className="mt-3 inline-flex min-h-[44px] items-center gap-2 text-sm text-pine underline underline-offset-4">
+        See the Meeting Prep Research Agent <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+      </Link>
       <div className="hero-actions mt-8 flex flex-col items-center gap-3">
         <div className="hero-primary-actions">
         <a href="#work" className="btn-hard">See my work <ArrowRight className="h-4 w-4" aria-hidden="true" /></a>

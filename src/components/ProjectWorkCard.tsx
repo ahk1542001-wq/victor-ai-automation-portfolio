@@ -16,7 +16,7 @@ export function ProjectWorkCard({ project, eager, compact = false, summary, brow
   return <article className={browse ? 'project-browse group flex h-full flex-col' : 'card-hard grid overflow-hidden lg:grid-cols-[1.12fr_0.88fr]'}>
     {browse && <Link href={`/projects/${project.id}`} className="block" aria-label={`Read the ${project.title} case study`}>{visual}</Link>}
     <div className={browse ? 'flex flex-1 flex-col pt-5' : 'flex flex-col p-6 sm:p-8'}>
-      <p className="mb-3 text-xs text-muted">{project.status} · {project.role}</p>
+      <p className="mb-3 text-xs text-muted">{project.status}</p>
       <h3 className="font-serif text-[27px] leading-[1.16] text-ink sm:text-[30px]">
         <Link href={`/projects/${project.id}`} className="transition-colors hover:text-pine">{project.title}</Link>
       </h3>

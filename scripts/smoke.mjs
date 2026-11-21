@@ -30,9 +30,8 @@ if (!homeHtml.includes('VICTOR')) {
   process.exit(1);
 }
 
-if (!homeHtml.includes('AI Automation &amp; Agent Workflow Builder')) {
-  console.error('FAIL: Homepage missing approved Builder positioning');
-  process.exit(1);
+if (!homeHtml.includes('href="/projects/meeting-prep-research-agent"')) {
+  throw new Error('Homepage must link directly to the research agent example');
 }
 
 if (homeHtml.includes('Bachelor of Applied Science, Industrial Chemistry')) {
@@ -124,10 +123,9 @@ console.log(`Verifying ${projectSlugs.length} project case studies...`);
 // 4. Verify Each Project Route & Mandatory Sections
 const mandatorySections = [
   'The Problem',
-  'My Role',
-  'What I Personally Directed',
+  'What I did',
   'The Solution',
-  'Verified Outcome'
+  'What it shows'
 ];
 
 for (const slug of projectSlugs) {
@@ -150,6 +148,11 @@ for (const slug of projectSlugs) {
       process.exit(1);
     }
   }
+}
+
+const meetingHtml = fs.readFileSync(path.join(outDir, 'projects', 'meeting-prep-research-agent.html'), 'utf8');
+if (!meetingHtml.includes('/meeting-prep-research-agent/blob/main/brief-example.md') || !meetingHtml.includes('Read a sample brief')) {
+  throw new Error('Meeting Prep case study must link to the public sample brief');
 }
 
 // 5. Specific Verification for Hackathon & Architecture Showcases
@@ -234,7 +237,7 @@ if (!fs.existsSync(vicPath) || !filmsHtml.includes('href="/work/vic"')) {
   throw new Error('VIC case study must be built and discoverable from the films collection');
 }
 const vicHtml = fs.readFileSync(vicPath, 'utf8');
-for (const phrase of ['Watch the work', 'VoxCPM2', 'voice-demo.mp3', 'View skill source on GitHub']) {
+for (const phrase of ['Watch the work', 'VoxCPM2', 'voice-demo.mp3']) {
   if (!vicHtml.includes(phrase)) throw new Error(`Missing VIC evidence: ${phrase}`);
 }
 const vicSource = fs.readFileSync(path.join(process.cwd(), 'src/data/vic.ts'), 'utf8');
@@ -252,8 +255,8 @@ for (const asset of ['voice-demo.mp3', 'voice-transcript.txt']) {
   if (!fs.existsSync(path.join(process.cwd(), 'public/vic', asset))) throw new Error(`Missing VIC evidence: ${asset}`);
 }
 const retiredVicPackage = 'vic-video-workflow-review.zip';
-if (vicHtml.includes(retiredVicPackage) || fs.existsSync(path.join(process.cwd(), 'public/vic', retiredVicPackage))) {
-  throw new Error('VIC workflow review package must not be publicly available');
+if (vicHtml.includes('id="setup-heading"') || vicHtml.includes(retiredVicPackage) || fs.existsSync(path.join(process.cwd(), 'public/vic', retiredVicPackage))) {
+  throw new Error('VIC reusable setup section and workflow review package must stay removed');
 }
 console.log('PASS: VIC five-style inventory, local media, narration, and workflow package removal.');
 

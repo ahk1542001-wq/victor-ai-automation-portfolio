@@ -54,10 +54,8 @@ export default async function ProjectPage({ params }: Props) {
 
   const sections = [
     { heading: 'The Problem', body: project.problem },
-    { heading: 'My Role', body: project.role },
-    { heading: 'What I Personally Directed', body: project.directed },
+    { heading: 'What I did', body: project.directed },
     { heading: 'The Solution', body: project.solution },
-    { heading: 'Verified Outcome', body: project.outcome },
   ];
 
   return (
@@ -98,9 +96,14 @@ export default async function ProjectPage({ params }: Props) {
             </h1>
 
             <p className="mt-5 border-l-[3px] border-clay pl-4 text-pretty text-[15.5px] leading-relaxed text-ink-soft">
-              <span className="font-medium text-ink">Verified outcome — </span>
+              <span className="font-medium text-ink">What it shows — </span>
               {project.outcome}
             </p>
+            {project.exampleUrl && (
+              <a href={project.exampleUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex min-h-[44px] items-center gap-2 text-sm text-pine underline underline-offset-4">
+                Read a sample brief <ExternalLink className="h-4 w-4" aria-hidden="true" />
+              </a>
+            )}
           </header>
 
           {/* Media plate */}
@@ -156,9 +159,7 @@ export default async function ProjectPage({ params }: Props) {
           </div>
 
           {/* Quick facts */}
-          <dl className="mt-4 grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
-            <FactCard label="My verified role" value={project.role} />
-            <FactCard label="Classification" value={project.category} />
+          <dl className="mt-4 grid grid-cols-1 gap-3.5 sm:grid-cols-2">
             <FactCard label="Primary tools" value={project.tools.slice(0, 3).join(', ')} />
             <div className="rounded-[14px] border-2 border-ink bg-surface px-5 py-4 shadow-[4px_4px_0_var(--offset)]">
               <dt className="eyebrow mb-2">Public evidence</dt>
@@ -206,30 +207,19 @@ export default async function ProjectPage({ params }: Props) {
           {/* Body + sidebar */}
           <div className="mt-14 grid gap-12 lg:grid-cols-3 lg:gap-14">
             <div className="space-y-10 lg:col-span-2">
-              {sections.map((section) => {
-                const isOutcome = section.heading === 'Verified Outcome';
-                return (
-                  <section key={section.heading}>
-                    <h2 className="hair-b pb-2.5 font-serif text-[22px] font-normal tracking-[-0.01em] text-ink">
-                      {section.heading}
-                    </h2>
-                    {isOutcome ? (
-                      <p className="mt-4 border-l-[3px] border-clay pl-4 text-pretty text-[16px] leading-relaxed text-ink-soft">
-                        {section.body}
-                      </p>
-                    ) : (
-                      <p className="mt-4 text-pretty text-[16px] leading-relaxed text-ink-soft">
-                        {section.body}
-                      </p>
-                    )}
-                  </section>
-                );
-              })}
+              {sections.map((section) => (
+                <section key={section.heading}>
+                  <h2 className="hair-b pb-2.5 font-serif text-[22px] font-normal tracking-[-0.01em] text-ink">
+                    {section.heading}
+                  </h2>
+                  <p className="mt-4 text-pretty text-[16px] leading-relaxed text-ink-soft">{section.body}</p>
+                </section>
+              ))}
             </div>
 
             <aside className="space-y-6">
               <div className="card-hard p-6">
-                <h3 className="eyebrow mb-3">Approved tools</h3>
+                <h3 className="eyebrow mb-3">Tools used</h3>
                 <div className="flex flex-wrap gap-2">
                   {project.tools.map((tool) => (
                     <span key={tool} className="chip">
