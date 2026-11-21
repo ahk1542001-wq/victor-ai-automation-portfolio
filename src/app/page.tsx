@@ -80,10 +80,7 @@ export default function Home() {
   </main>
     <footer id="contact" className="border-t-2 border-ink bg-paper-2 py-12">
     <div className="mx-auto flex max-w-[1120px] flex-wrap items-center justify-between gap-7 px-5 sm:px-6">
-    <div>
-    <p className="eyebrow">Let’s work together</p>
-    <h2 className="mt-4 font-serif text-4xl">A system to build.<br />A story to tell.</h2>
-    </div>
+    <h2 className="font-serif text-4xl">Contact</h2>
     <div className="flex flex-wrap gap-3">
     <a href={`mailto:${portfolioContent.contact.email}`} className="btn-hard">Email Victor <Mail className="h-4 w-4" aria-hidden="true"/>
     </a>

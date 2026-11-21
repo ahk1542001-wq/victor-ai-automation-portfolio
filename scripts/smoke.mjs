@@ -142,6 +142,9 @@ for (const slug of projectSlugs) {
   }
 
   const projectHtml = fs.readFileSync(projectHtmlPath, 'utf-8');
+  if (/My Role|My verified role|Want the same result\?|Start a conversation/.test(projectHtml)) {
+    throw new Error(`Case study must stay focused on the work and its evidence: ${slug}`);
+  }
   for (const section of mandatorySections) {
     if (!projectHtml.includes(section)) {
       console.error(`FAIL: ${slug} missing mandatory case study section "${section}"`);

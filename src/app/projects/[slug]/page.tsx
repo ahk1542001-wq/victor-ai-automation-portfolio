@@ -3,7 +3,7 @@ import { YouTubeThumbnail } from '@/components/YouTubeThumbnail';
 import { TopologyDiagram } from '@/components/TopologyDiagram';
 import { Header } from '@/components/Header';
 import { workAreas } from '@/data/portfolio-navigation';
-import { ArrowLeft, ArrowRight, ArrowUpRight, ExternalLink, Check } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ExternalLink, Check } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -217,7 +217,7 @@ export default async function ProjectPage({ params }: Props) {
               ))}
             </div>
 
-            <aside className="space-y-6">
+            <aside>
               <div className="card-hard p-6">
                 <h3 className="eyebrow mb-3">Tools used</h3>
                 <div className="flex flex-wrap gap-2">
@@ -239,17 +239,6 @@ export default async function ProjectPage({ params }: Props) {
                     ))}
                   </ul>
                 </div>
-              </div>
-
-              <div className="rounded-[14px] border-2 border-ink bg-paper-2 p-6">
-                <h3 className="eyebrow mb-3">Want the same result?</h3>
-                <p className="text-[13.5px] leading-relaxed text-ink-soft">
-                  If this looks like a problem you have, tell me the manual version of it and I will
-                  tell you honestly whether it is worth automating.
-                </p>
-                <Link href="/#contact" className="btn-hard-ink mt-5 rounded-xl text-[13px]">
-                  Start a conversation <ArrowUpRight className="h-3.5 w-3.5" />
-                </Link>
               </div>
             </aside>
           </div>
