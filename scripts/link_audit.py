@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
-"""Audit every external link the portfolio and the resume point at.
-
-The deploys are being torn down, so any remaining dead link is now a live
-liability — a recruiter who clicks a 404 stops trusting the rest of the page.
-Crawls the home page, the credentials page and all 11 case studies, plus the
-link annotations in the generated PDF, then checks each unique URL.
+"""Audit external links from the public portfolio pages.
 
 Usage: python link_audit.py
 """
@@ -14,10 +9,8 @@ import re
 import sys
 import urllib.error
 import urllib.request
-from pathlib import Path
 
 BASE = "https://portfolioweb-three-sigma.vercel.app"
-PDF = Path(__file__).resolve().parents[1] / "public/victor-resume.pdf"
 UA = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
     "(KHTML, like Gecko) Chrome/126.0 Safari/537.36"
@@ -40,7 +33,7 @@ def fetch(url, timeout=25):
 
 
 def collect():
-    """Return {url: set(where it was found)} for the site and the PDF."""
+    """Return {url: set(where it was found)} for the site."""
     found = {}
 
     def add(u, where):
@@ -58,15 +51,6 @@ def collect():
         for m in re.finditer(r'href="(https?://[^"]+)"', html.unescape(body)):
             add(m.group(1), path)
         print(f"  crawled {path}")
-
-    if PDF.exists():
-        import pymupdf
-        doc = pymupdf.open(PDF)
-        for page in doc:
-            for link in page.get_links():
-                if link.get("uri"):
-                    add(link["uri"], "resume.pdf")
-        print("  crawled resume.pdf")
 
     return found
 

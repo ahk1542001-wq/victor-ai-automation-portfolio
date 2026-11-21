@@ -24,10 +24,7 @@ export default function Home() {
         See the Meeting Prep Research Agent <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
       </Link>
       <div className="hero-actions mt-8 flex flex-col items-center gap-3">
-        <div className="hero-primary-actions">
         <a href="#work" className="btn-hard">See my work <ArrowRight className="h-4 w-4" aria-hidden="true" /></a>
-        <a href={portfolioContent.contact.resume} className="btn-hard btn-hard-ghost">View résumé <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></a>
-        </div>
         <div className="flex items-center justify-center gap-3">
           <a href={`mailto:${portfolioContent.contact.email}`} aria-label="Email Victor" title="Email Victor" className="hero-social-link"><Mail className="h-5 w-5" aria-hidden="true" /></a>
           <a href={portfolioContent.contact.github} aria-label="Victor on GitHub" title="GitHub" className="hero-social-link" target="_blank" rel="noopener noreferrer"><Image src="/brands/github.svg" alt="" width={20} height={20} className="icon-invert-dark" /></a>
@@ -67,7 +64,6 @@ export default function Home() {
     <p className="text-[16px] leading-relaxed text-ink-soft">I moved from client services and project coordination into AI automation. At Technity, I was the client-facing lead for sponsored content from brands including Samsung and Huawei. Today, I combine that background with agent workflows and AI-assisted content creation.</p>
     <div className="mt-5 flex flex-wrap gap-x-6">
     <Link href={about.href} className="inline-flex min-h-[44px] items-center text-pine underline underline-offset-4">{about.title}</Link>
-    <a href={portfolioContent.contact.resume} className="inline-flex min-h-[44px] items-center text-pine underline underline-offset-4">Download résumé</a>
     </div>
     <div id="credentials" className="mt-6 border-t border-hair pt-5">
     <p className="eyebrow">Selected credentials</p>

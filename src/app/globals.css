@@ -647,14 +647,6 @@
   .hero-word:hover { transform: rotate(-1deg); }
 }
 
-.hero-primary-actions {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  width: min(100%, 360px);
-}
-.hero-primary-actions .btn-hard { padding-inline: 10px; }
-
 /* One short hero entrance; text stays readable throughout and without JS. */
 .hero-identity { position: relative; isolation: isolate; }
 .hero-identity::before {
