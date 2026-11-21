@@ -36,7 +36,7 @@
 - **Hero Section:** Text-led identity with supporting sentence and clear work/email/GitHub actions. The owner does not want the portrait in the hero/top section. Keep the retained real portrait lower on the homepage in Background/About, on the right of the background copy on desktop and after it on phone. The owner-approved compact Tools rail sits beneath the hero, followed by selected work. Keep it secondary to the headline, with explicit pause/resume and static reduced-motion/no-JS fallback.
 - **Hero Identity:** Use one visible `VICTOR` title only; do not add a second decorative name watermark above the canvas.
 - **Brand Assets:** Tool and repository marks must use approved real brand assets. Do not substitute text glyphs or generic code icons for brand logos; omit a brand when a permitted asset is unavailable.
-- **Selected Work:** The homepage lists three linked focus areas: AI Agents & Automation, Content & Video, and AI-Assisted Products. Project demos, films, and workflow details live in the linked collections.
+- **Selected Work:** The homepage lists three linked focus areas: AI Agents & Automation, AI-Assisted Products, and Content & Video. Project demos, films, and workflow details live in the linked collections.
 - **Capabilities:** Bounded responsive motion layout (no scattered off-screen pills).
 - **Experience:** Keep homepage background and selected credentials concise; detailed professional history and education at `/about`, full verified credentials at `/credentials`.
 - **Credentials:** Dedicated evidence page for all verified credentials; homepage shows only the four most relevant items and links to the full page.
