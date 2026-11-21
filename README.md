@@ -16,20 +16,20 @@ A recruiter-focused portfolio for **Victor**, based in Bangkok. The site present
 
 ### n8n Automation
 
-| Project | Verified role | Evidence |
-| --- | --- | --- |
-| AI Voice Receptionist | AI Voice Automation Builder | [Source](https://github.com/ahk1542001-wq/n8n-automation-portfolio/tree/main/AI%20Voice%20Receptionist%20for%20Dental%20Clinic%20%28Vapi%20%2B%20n8n%29) · [Demo](https://youtu.be/LKn7nkXoSGE) |
-| AI Content Research & Approval Workflow | Workflow Architect | [Source](https://github.com/ahk1542001-wq/n8n-automation-portfolio/tree/main/AI%20Content%20Creation%20%28n8n%20%2B%20Telegram%20%2B%20Supabase%20%2B%20Airtable%29) · [Demo](https://youtu.be/z7fhq1tr39Y) |
-| AI Lead Qualification & Response Workflow | Solution Designer & Workflow Architect | [Source](https://github.com/ahk1542001-wq/n8n-automation-portfolio/tree/main/AI%20Lead%20Qualification%20%26%20Response%20Workflow) · [Demo](https://youtu.be/gz3gWqSnNVU) |
+| Project | Evidence |
+| --- | --- |
+| AI Voice Receptionist | [Source](https://github.com/ahk1542001-wq/n8n-automation-portfolio/tree/main/AI%20Voice%20Receptionist%20for%20Dental%20Clinic%20%28Vapi%20%2B%20n8n%29) · [Demo](https://youtu.be/LKn7nkXoSGE) |
+| AI Content Research & Approval Workflow | [Source](https://github.com/ahk1542001-wq/n8n-automation-portfolio/tree/main/AI%20Content%20Creation%20%28n8n%20%2B%20Telegram%20%2B%20Supabase%20%2B%20Airtable%29) · [Demo](https://youtu.be/z7fhq1tr39Y) |
+| AI Lead Qualification & Response Workflow | [Source](https://github.com/ahk1542001-wq/n8n-automation-portfolio/tree/main/AI%20Lead%20Qualification%20%26%20Response%20Workflow) · [Demo](https://youtu.be/gz3gWqSnNVU) |
 
 ### AI-Assisted Software
 
-| Project | Focus / Hackathon | Role | Links |
-| --- | --- | --- | --- |
-| **Enterprise GenAI Agent Architectures on Google Cloud** | Grounded RAG, BigQuery MCP, Cloud Run Sandboxes (Hack2Skill APAC GenAI Academy) | Cloud AI Architect & Developer | [Source](https://github.com/ahk1542001-wq/gcp-genai-agent-architectures) · [Case Study](https://portfolioweb-three-sigma.vercel.app/projects/gcp-genai-agent-architectures) |
-| **FYF Video Pipeline — Autonomous Brand Video Studio** | Multi-agent autonomous video rendering & ClickHouse telemetry (Google Cloud Agentic Cinema Hackathon) | Lead Architect & AI Agent Director / Builder | [Source](https://github.com/ahk1542001-wq/fyf-video-pipeline) · [Live App](https://fyf-pipeline-605161166139.asia-southeast1.run.app) · [Demo](https://youtu.be/9MYzaFjR0ck) · [Case Study](https://portfolioweb-three-sigma.vercel.app/projects/fyf-video-pipeline) |
-| **TravelCare AI — Autonomous Flight Rescue Agent** | Proactive flight disruption rescue & visa-aware transit engine (Alibaba Cloud x Atlas Agentic AI Hackathon) | AI Agent Workflow Architect | [Source](https://github.com/ahk1542001-wq/alibaba-atlas-rescue-agent) · [Demo](https://youtu.be/H-MC2JHWl7M) · [Case Study](https://portfolioweb-three-sigma.vercel.app/projects/travelcare-ai) |
-| **Swoosh — URL Shortener & Link-in-Bio Builder** | Authenticated URL shortening, QR generation & public link trees | AI-Agent-Directed Product Builder | [Source](https://github.com/ahk1542001-wq/url-shortener-api) · [Case Study](https://portfolioweb-three-sigma.vercel.app/projects/swoosh-shortener) |
+| Project | Focus / Hackathon | Links |
+| --- | --- | --- |
+| **Enterprise GenAI Agent Architectures on Google Cloud** | Grounded RAG, BigQuery MCP, Cloud Run Sandboxes (Hack2Skill APAC GenAI Academy) | [Source](https://github.com/ahk1542001-wq/gcp-genai-agent-architectures) · [Case Study](https://portfolioweb-three-sigma.vercel.app/projects/gcp-genai-agent-architectures) |
+| **FYF Video Pipeline — Autonomous Brand Video Studio** | Multi-agent autonomous video rendering & ClickHouse telemetry (Google Cloud Agentic Cinema Hackathon) | [Source](https://github.com/ahk1542001-wq/fyf-video-pipeline) · [Live App](https://fyf-pipeline-605161166139.asia-southeast1.run.app) · [Demo](https://youtu.be/9MYzaFjR0ck) · [Case Study](https://portfolioweb-three-sigma.vercel.app/projects/fyf-video-pipeline) |
+| **TravelCare AI — Autonomous Flight Rescue Agent** | Proactive flight disruption rescue & visa-aware transit engine (Alibaba Cloud x Atlas Agentic AI Hackathon) | [Source](https://github.com/ahk1542001-wq/alibaba-atlas-rescue-agent) · [Demo](https://youtu.be/H-MC2JHWl7M) · [Case Study](https://portfolioweb-three-sigma.vercel.app/projects/travelcare-ai) |
+| **Swoosh — URL Shortener & Link-in-Bio Builder** | Authenticated URL shortening, QR generation & public link trees | [Source](https://github.com/ahk1542001-wq/url-shortener-api) · [Case Study](https://portfolioweb-three-sigma.vercel.app/projects/swoosh-shortener) |
 
 ## Verified Credentials
 

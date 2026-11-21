@@ -26,7 +26,7 @@ export default function Work() {
         <Link href={selectedWork.href} className="inline-flex min-h-[44px] items-center text-pine underline underline-offset-4">Back to {selectedWork.title.toLowerCase()}</Link>
         <header className="mb-8 mt-5 max-w-[760px]">
           <h1 className="font-serif text-[clamp(38px,6vw,72px)] leading-[1.04]">{workAreas.automation.title}</h1>
-          <p className="mt-5 text-lg leading-relaxed text-ink-soft">Explore what each project helps people do. The case studies cover my role, design decisions and how the work was verified.</p>
+          <p className="mt-5 text-lg leading-relaxed text-ink-soft">Explore what each project helps people do. The case studies cover how each project works and what its demo shows.</p>
         </header>
         <nav aria-label="Browse by outcome" className="mb-10 flex flex-wrap gap-x-7 gap-y-1">
           {Object.entries(outcomes).map(([id, title]) => (
