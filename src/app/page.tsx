@@ -12,14 +12,14 @@ const workAreas = [
     description: 'Agent workflows, customer follow-up and research automation.',
   },
   {
-    href: '/films',
-    title: 'Content & Video',
-    description: 'Commercial films, Burmese explainers and the Hermes workflows behind them.',
-  },
-  {
     href: '/work#product-prototypes',
     title: 'AI-Assisted Products',
     description: 'Software demos and product prototypes built with AI assistance.',
+  },
+  {
+    href: '/films',
+    title: 'Content & Video',
+    description: 'Commercial films, Burmese explainers and the Hermes workflows behind them.',
   },
 ];
 

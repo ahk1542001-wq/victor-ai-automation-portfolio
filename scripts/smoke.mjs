@@ -284,8 +284,8 @@ const selectedWorkHtml = homeHtml.match(/<section[^>]*id="work"[\s\S]*?<\/sectio
 const workAreaLinks = [...selectedWorkHtml.matchAll(/<a[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)];
 const expectedWorkAreas = [
   ['/work', 'AI Agents &amp; Automation'],
-  ['/films', 'Content &amp; Video'],
   ['/work#product-prototypes', 'AI-Assisted Products'],
+  ['/films', 'Content &amp; Video'],
 ];
 if (workAreaLinks.length !== expectedWorkAreas.length || !expectedWorkAreas.every(([href, title], i) => (
   workAreaLinks[i][1] === href && workAreaLinks[i][2].includes(title)
