@@ -146,7 +146,7 @@ export const projects: Project[] = [
     capabilities: ['Live web research orchestration', 'Source-checked LLM guardrails', 'Clarify-first conversational intake', 'Structured meeting context (5W)', 'Deterministic fallback design'],
     outcome: 'Solo build for the Geek Room Global AI Hackathon (Tavily track), submitted 15 November 2026. The repo ships real example briefs for a company and for a person, and the citation guardrail is enforced in code, not just in the prompt: a draft that cites a source the search did not return is discarded.',
     github: 'https://github.com/ahk1542001-wq/meeting-prep-research-agent',
-    demoUrl: 'https://github.com/ahk1542001-wq/meeting-prep-research-agent/blob/main/meeting-prep-ui-demo-v1.mp4'
+    demoUrl: 'https://github.com/ahk1542001-wq/meeting-prep-research-agent/blob/main/meeting-prep-ui-demo-v2.mp4'
   },
   {
     id: 'lead-qualification',
