@@ -238,7 +238,7 @@ if (!fs.existsSync(vicPath) || !filmsHtml.includes('href="/work/vic"')) {
   throw new Error('VIC case study must be built and discoverable from the films collection');
 }
 const vicHtml = fs.readFileSync(vicPath, 'utf8');
-for (const phrase of ['Watch the work', 'VoxCPM2', 'voice-demo.mp3', 'not a turnkey installer']) {
+for (const phrase of ['Watch the work', 'VoxCPM2', 'voice-demo.mp3', 'View skill source on GitHub']) {
   if (!vicHtml.includes(phrase)) throw new Error(`Missing VIC evidence: ${phrase}`);
 }
 const vicSource = fs.readFileSync(path.join(process.cwd(), 'src/data/vic.ts'), 'utf8');
@@ -252,10 +252,14 @@ for (const sample of samples) {
     if (!fs.existsSync(actual) || !fs.statSync(actual).size) throw new Error(`Missing VIC asset: ${asset}`);
   }
 }
-for (const asset of ['voice-demo.mp3', 'voice-transcript.txt', 'vic-video-workflow-review.zip']) {
+for (const asset of ['voice-demo.mp3', 'voice-transcript.txt']) {
   if (!fs.existsSync(path.join(process.cwd(), 'public/vic', asset))) throw new Error(`Missing VIC evidence: ${asset}`);
 }
-console.log('PASS: VIC five-style inventory, local media, narration and workflow download.');
+const retiredVicPackage = 'vic-video-workflow-review.zip';
+if (vicHtml.includes(retiredVicPackage) || fs.existsSync(path.join(process.cwd(), 'public/vic', retiredVicPackage))) {
+  throw new Error('VIC workflow review package must not be publicly available');
+}
+console.log('PASS: VIC five-style inventory, local media, narration, and workflow package removal.');
 
 // Commercial concepts stay separate from VIC, with exact accepted media.
 const vvicHtmlPath = path.join(outDir, 'work', 'v-vic.html');
