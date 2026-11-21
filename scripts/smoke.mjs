@@ -131,7 +131,7 @@ if (!meetingHtml.includes('/meeting-prep-research-agent/blob/main/brief-example.
   throw new Error('Meeting Prep case study must link to the public sample brief');
 }
 
-if (!workHtml.includes('href="https://github.com/ahk1542001-wq/meeting-prep-research-agent/blob/main/meeting-prep-ui-demo-v2.mp4"')) {
+if (!workHtml.includes('href="https://youtu.be/cgYgdm-ERbM"')) {
   throw new Error('Work must link directly to the Meeting Prep demo');
 }
 const sitemapXml = fs.readFileSync(path.join(outDir, 'sitemap.xml.body'), 'utf-8');
