@@ -39,18 +39,18 @@ export default function Home() {
       <div className="mb-9 flex flex-wrap items-end justify-between gap-5">
     <div>
     <p className="eyebrow">Selected work</p>
-    <h2 id="work-heading" className="mt-4 font-serif text-[clamp(32px,5vw,52px)] leading-tight">Build the system.<br />Create the story.</h2>
+    <h2 id="work-heading" className="mt-4 font-serif text-[clamp(32px,5vw,52px)] leading-tight">Automation, agents &amp; films</h2>
     </div>
-    <p className="max-w-[42ch] text-[15px] leading-relaxed text-muted">A software demo, a commercial concept and a personal-brand explainer. Three starting points into my work.</p>
+    <p className="max-w-[42ch] text-[15px] leading-relaxed text-muted">A flight rescue agent, a product film and a Burmese explainer. Each shows how I turn a brief into something you can try or watch.</p>
     </div>
       <Reveal><div data-featured-work="product">
-    <p className="eyebrow mb-4">Product · AI-assisted software</p>
+    <p className="eyebrow mb-4">AI agent demo</p>
     <ProjectWorkCard project={flagship} eager={true} compact summary="A flight-disruption demo that helps travelers review rescue options, visa-aware routes and compensation drafts."/>
     </div>
       </Reveal>
       <Reveal><div id="content" className="mt-10 grid gap-10 md:grid-cols-2">
         <article id="product-ads" data-featured-work="commercial" className="min-w-0">
-    <p className="eyebrow mb-4">Commercial concept · v-vic</p>
+    <p className="eyebrow mb-4">Product film · v-vic</p>
     <div className="featured-film-stage">
       <div className="featured-film-portrait media-frame">
         <video controls playsInline preload="none" poster="/v-vic/forged.jpg" aria-label="FORGED: complete fictional-product commercial concept" className="h-full w-full object-contain">
@@ -60,7 +60,7 @@ export default function Home() {
     </div>
     <h3 className="mt-5 font-serif text-3xl">FORGED — Carry the day</h3>
     <p className="mt-3 text-sm leading-relaxed text-muted">A product story built around material, movement and everyday use. I directed the concept, AI-assisted visuals and final edit.</p>
-    <p className="mt-3 text-xs text-muted">20.37s · Fictional-product concept</p>
+    <p className="mt-3 text-xs text-muted">20s · Fictional product</p>
 <Link href="/films#product-ads" className="mt-3 flex w-fit min-h-[44px] items-center text-pine underline underline-offset-4">Explore commercial films →</Link>
 <Link href="/work/v-vic" className="mt-1 inline-flex min-h-[44px] items-center gap-2 text-pine underline underline-offset-4">Behind the commercial workflow <ArrowUpRight className="h-4 w-4" aria-hidden="true"/>
     </Link>
@@ -84,20 +84,20 @@ export default function Home() {
         </article>
       </div></Reveal>
 <aside aria-label="My video production approach" className="mt-10 border-l-[3px] border-pine pl-5">
-<p className="eyebrow">The system behind the films</p><p className="mt-3 max-w-[78ch] text-[15px] leading-relaxed text-ink-soft">I design human-directed, multi-agent production workflows with Hermes: VIC Creator with my voice-cloning procedure for personal branding, and v-vic for commercial films. The approach covers the brief, script, assets, voice, edit and final review.</p>
+<p className="eyebrow">The system behind the films</p><p className="mt-3 max-w-[78ch] text-[15px] leading-relaxed text-ink-soft">I direct and review both Hermes workflows. VIC Creator uses my Burmese voice setup for explainers. v-vic takes a product brief through shot planning, editing and delivery.</p>
 <Link href="/films#production-approach" className="mt-3 inline-flex min-h-[44px] items-center gap-2 text-pine underline underline-offset-4">How I set up the agents <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></Link></aside>
 <nav aria-label="Explore all work" data-collection-cards className="mt-10 grid gap-6 sm:grid-cols-2">
     <Link href="/work" className="card-hard group min-w-0 bg-surface p-6 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-pine">
     <span className="eyebrow">Build</span>
     <span className="mt-3 flex items-center justify-between gap-3 font-serif text-3xl group-hover:text-pine">Products &amp; Automation <ArrowRight className="h-5 w-5 shrink-0" aria-hidden="true"/>
     </span>
-    <span className="mt-2 block text-sm text-muted">Explore all eight projects, demos and source links.</span>
+    <span className="mt-2 block text-sm text-muted">Explore projects by outcome, with demos and source links.</span>
     </Link>
     <Link href="/films" className="card-hard group min-w-0 bg-paper-2 p-6 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-pine">
     <span className="eyebrow">Create</span>
     <span className="mt-3 flex items-center justify-between gap-3 font-serif text-3xl group-hover:text-pine">Films &amp; Content <ArrowRight className="h-5 w-5 shrink-0" aria-hidden="true"/>
     </span>
-    <span className="mt-2 block text-sm text-muted">Commercial concepts and personal-brand explainers.</span>
+    <span className="mt-2 block text-sm text-muted">Watch product films and Burmese explainers.</span>
     </Link>
     </nav>
     </div>
