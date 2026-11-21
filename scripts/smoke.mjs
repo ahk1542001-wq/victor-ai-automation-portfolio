@@ -8,7 +8,6 @@ const outDir = path.join(process.cwd(), '.next/server/app');
 const projectsDataPath = path.join(process.cwd(), 'src/data/projects.ts');
 const credentialsDataPath = path.join(process.cwd(), 'src/data/credentials.ts');
 const contentDataPath = path.join(process.cwd(), 'src/data/content.ts');
-const resumeSourcePath = path.join(process.cwd(), 'resume/resume.html');
 const resumePdfPath = path.join(process.cwd(), 'public/victor-resume.pdf');
 const nextConfigPath = path.join(process.cwd(), 'next.config.ts');
 const agentsPath = path.join(process.cwd(), 'AGENTS.md');
@@ -45,7 +44,7 @@ if (homeHtml.includes('Ye Man')) {
   process.exit(1);
 }
 
-for (const requiredPath of [contentDataPath, resumeSourcePath, resumePdfPath, nextConfigPath, agentsPath]) {
+for (const requiredPath of [contentDataPath, nextConfigPath, agentsPath]) {
   if (!fs.existsSync(requiredPath)) {
     console.error(`FAIL: Required public profile artifact not found at ${requiredPath}`);
     process.exit(1);
@@ -53,8 +52,6 @@ for (const requiredPath of [contentDataPath, resumeSourcePath, resumePdfPath, ne
 }
 
 const contentSource = fs.readFileSync(contentDataPath, 'utf-8');
-const resumeSource = fs.readFileSync(resumeSourcePath, 'utf-8');
-const resumePdf = fs.readFileSync(resumePdfPath, 'latin1');
 const nextConfigSource = fs.readFileSync(nextConfigPath, 'utf-8');
 const agentsSource = fs.readFileSync(agentsPath, 'utf-8');
 
@@ -68,39 +65,16 @@ if (agentsSource.includes('BEGIN:nextjs-agent-rules')) {
   process.exit(1);
 }
 
-for (const [label, source] of [['portfolio content', contentSource], ['resume source', resumeSource]]) {
-  if (source.includes('Bachelor of Applied Science, Industrial Chemistry')) {
-    console.error(`FAIL: ${label} represents unfinished study as a completed Bachelor degree`);
-    process.exit(1);
-  }
+if (contentSource.includes('Bachelor of Applied Science, Industrial Chemistry') || !aboutHtml.includes('degree not completed')) {
+  throw new Error('The portfolio must describe Industrial Chemistry as unfinished coursework');
 }
 
-if (!resumeSource.includes('degree not completed')) {
-  console.error('FAIL: Resume must state clearly that the Industrial Chemistry degree was not completed');
-  process.exit(1);
+if (fs.existsSync(resumePdfPath)) {
+  throw new Error('The retired résumé PDF must stay out of public assets');
 }
-
-for (const link of [
-  ['LinkedIn', 'https://www.linkedin.com/in/aung-hein-kyaw'],
-  ['GitHub', 'https://github.com/ahk1542001-wq'],
-  ['Portfolio', 'https://portfolioweb-three-sigma.vercel.app'],
-]) {
-  const [label, href] = link;
-  if (!resumeSource.includes(`href="${href}"`) || !resumeSource.includes(`>${label}<`)) {
-    console.error(`FAIL: Resume missing named clickable ${label} link`);
-    process.exit(1);
-  }
-}
-
-if (!resumePdf.startsWith('%PDF-')) {
-  console.error('FAIL: victor-resume.pdf is not a valid PDF header');
-  process.exit(1);
-}
-
-const pdfPageCount = (resumePdf.match(/\/Type\s*\/Page(?!s)\b/g) || []).length;
-if (pdfPageCount !== 2) {
-  console.error(`FAIL: Resume must be exactly 2 pages, found ${pdfPageCount}`);
-  process.exit(1);
+for (const page of fs.readdirSync(outDir, { recursive: true }).filter(file => file.endsWith('.html'))) {
+  const html = fs.readFileSync(path.join(outDir, page), 'utf-8');
+  if (html.includes('/victor-resume.pdf')) throw new Error(`Retired résumé link exposed on ${page}`);
 }
 
 // 3. Dynamically extract project IDs from projects.ts to prevent silent omissions

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { FileText, Mail, Menu, X, ArrowLeft } from 'lucide-react';
+import { Mail, Menu, X, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from './ThemeToggle';
@@ -89,23 +89,8 @@ export function Header() {
           ))}
         </div>
 
-        {/* Desktop CTA, theme switch & Mobile Toggle */}
         <div className="flex items-center gap-2">
-          {/* Theme switch sits before the CTA so the primary action stays
-              rightmost on desktop, and beside the menu button on mobile. */}
           <ThemeToggle />
-
-          {/* The résumé is the header's primary action — a recruiter wants
-              the PDF before they want a conversation. Email stays one
-              click away in the hero and the contact band. */}
-          <a
-            href="/victor-resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden min-h-[44px] items-center justify-center gap-1.5 rounded-[10px] border-2 border-ink bg-ink px-4 text-[13px] font-medium text-paper shadow-[3px_3px_0_var(--clay)] transition-[transform,box-shadow] duration-100 hover:translate-x-px hover:translate-y-px hover:shadow-[2px_2px_0_var(--clay)] sm:inline-flex"
-          >
-            Résumé <FileText className="h-3.5 w-3.5" />
-          </a>
 
           {/* Mobile Menu Toggle Button */}
           <button
@@ -154,15 +139,6 @@ export function Header() {
           </div>
 
           <div className="mt-4 flex flex-col gap-2">
-            <a
-              href="/victor-resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={closeMenu}
-              className="btn-hard-ink inline-flex min-h-[44px] w-full items-center justify-center rounded-[10px] border-2 border-ink px-4 text-[13px] font-medium"
-            >
-              Résumé <FileText className="ml-1.5 h-4 w-4" />
-            </a>
             <a
               href="mailto:victor.job154@gmail.com"
               onClick={closeMenu}

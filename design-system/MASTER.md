@@ -46,7 +46,7 @@
 - **Exclusions:** Confidential client work and unverified projects are excluded.
 
 ## Approved visual/recruiter polish — 2026-10-27
-- Owner correction after PR44: the hero is about Victor, not a project. Use bold, two-line identity copy with restrained pine/clay word blocks, supporting context and work/résumé/contact actions. No hero project preview or face. Keep the original portrait lower/right in Background; selected projects begin below the hero.
+- Owner correction after PR44: the hero is about Victor, not a project. Use bold, two-line identity copy with restrained pine/clay word blocks, supporting context and work and contact actions. No hero project preview or face. Keep the original portrait lower/right in Background; selected projects begin below the hero.
 - Keep commercial and explainer previews in the films collection and preserve native video ratios.
 - Products use compact, output-first browsing cards; complete outcomes and implementation detail remain in each case study.
 - Film topics lead, with visual style as a secondary label. Preserve all eight projects, five VIC samples and three commercial films.
