@@ -36,18 +36,18 @@
 - **Hero Section:** Text-led identity with supporting sentence and clear work/email/GitHub actions. The owner does not want the portrait in the hero/top section. Keep the retained real portrait lower on the homepage in Background/About, on the right of the background copy on desktop and after it on phone. The owner-approved compact Tools rail sits beneath the hero, followed by selected work. Keep it secondary to the headline, with explicit pause/resume and static reduced-motion/no-JS fallback.
 - **Hero Identity:** Use one visible `VICTOR` title only; do not add a second decorative name watermark above the canvas.
 - **Brand Assets:** Tool and repository marks must use approved real brand assets. Do not substitute text glyphs or generic code icons for brand logos; omit a brand when a permitted asset is unavailable.
-- **Selected Work:** Homepage curates exactly three starting points: one software demo, one commercial concept and one personal-brand explainer. Full Products & Automation inventory lives at `/work` (software/n8n tracks); full Films & Content inventory lives at `/films` (v-vic/VIC). Preserve dedicated case studies and existing media. Show output before workflow detail.
+- **Selected Work:** The homepage lists three linked focus areas: AI Agents & Automation, Content & Video, and AI-Assisted Products. Project demos, films, and workflow details live in the linked collections.
 - **Capabilities:** Bounded responsive motion layout (no scattered off-screen pills).
 - **Experience:** Keep homepage background and selected credentials concise; detailed professional history and education at `/about`, full verified credentials at `/credentials`.
 - **Credentials:** Dedicated evidence page for all verified credentials; homepage shows only the four most relevant items and links to the full page.
 - **Contact CTA:** Clear invitation for systems/content work with direct email, LinkedIn and a visible text GitHub link.
-- **Collection navigation:** Products and Films each have their own strong bordered container; distinguish them on both stacked-phone and side-by-side desktop layouts.
-- **Production approach:** Keep a short homepage teaser with the full role/stage map on `/films#production-approach`. Describe the human-directed system without claiming every sample was produced autonomously end-to-end.
+- **Collection navigation:** Give each focus area a full-width link with a clear label, one line of context, and visible keyboard focus. The product link targets the prototypes section in the work collection.
+- **Production approach:** The full role and stage map lives at `/films#production-approach`. Describe the human-directed system and the scope of the showcased evidence.
 - **Exclusions:** Confidential client work and unverified projects are excluded.
 
 ## Approved visual/recruiter polish — 2026-10-27
 - Owner correction after PR44: the hero is about Victor, not a project. Use bold, two-line identity copy with restrained pine/clay word blocks, supporting context and work/résumé/contact actions. No hero project preview or face. Keep the original portrait lower/right in Background; selected projects begin below the hero.
-- Keep exactly three selected works; commercial and explainer previews share a stage height while preserving their native video ratios.
+- Keep commercial and explainer previews in the films collection and preserve native video ratios.
 - Products use compact, output-first browsing cards; complete outcomes and implementation detail remain in each case study.
 - Film topics lead, with visual style as a secondary label. Preserve all eight projects, five VIC samples and three commercial films.
 - Use selective one-time IntersectionObserver reveals with visible server-rendered content, native scrolling and fine-pointer hover feedback. No custom cursor, scroll hijacking, scroll listeners or autoplay.

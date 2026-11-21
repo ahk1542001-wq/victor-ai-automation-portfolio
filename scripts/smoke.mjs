@@ -234,8 +234,8 @@ console.log(`PASS: All production smoke checks (${projectSlugs.length} projects 
 
 // VIC discovery and real local media, including styles not initially selected.
 const vicPath = path.join(outDir, 'work', 'vic.html');
-if (!fs.existsSync(vicPath) || !homeHtml.includes('/work/vic')) {
-  throw new Error('VIC case study must be built and discoverable from the homepage');
+if (!fs.existsSync(vicPath) || !filmsHtml.includes('href="/work/vic"')) {
+  throw new Error('VIC case study must be built and discoverable from the films collection');
 }
 const vicHtml = fs.readFileSync(vicPath, 'utf8');
 for (const phrase of ['Watch the work', 'VoxCPM2', 'voice-demo.mp3', 'not a turnkey installer']) {
@@ -259,7 +259,7 @@ console.log('PASS: VIC five-style inventory, local media, narration and workflow
 
 // Commercial concepts stay separate from VIC, with exact accepted media.
 const vvicHtmlPath = path.join(outDir, 'work', 'v-vic.html');
-if (!fs.existsSync(vvicHtmlPath) || !homeHtml.includes('/work/v-vic')) {
+if (!fs.existsSync(vvicHtmlPath) || !filmsHtml.includes('href="/work/v-vic"')) {
   throw new Error('v-vic case study must be built and discoverable');
 }
 const vvicHtml = fs.readFileSync(vvicHtmlPath, 'utf8');
@@ -279,8 +279,19 @@ for (const removed of ['id="how"', 'id="numbers"', 'id="proof"']) {
 }
 console.log('PASS: v-vic discovery, honest role boundaries, three exact media/poster hashes and homepage simplification.');
 
-// Curated homepage: three representative works; full inventories stay discoverable.
-if ((homeHtml.match(/data-featured-work=/g) || []).length !== 3) throw new Error('Homepage must show exactly three selected works');
+// Selected Work routes visitors to the three portfolio focus areas.
+const selectedWorkHtml = homeHtml.match(/<section[^>]*id="work"[\s\S]*?<\/section>/)?.[0] ?? '';
+const workAreaLinks = [...selectedWorkHtml.matchAll(/<a[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)];
+const expectedWorkAreas = [
+  ['/work', 'AI Agents &amp; Automation'],
+  ['/films', 'Content &amp; Video'],
+  ['/work#product-prototypes', 'AI-Assisted Products'],
+];
+if (workAreaLinks.length !== expectedWorkAreas.length || !expectedWorkAreas.every(([href, title], i) => (
+  workAreaLinks[i][1] === href && workAreaLinks[i][2].includes(title)
+))) throw new Error('Selected Work must link to the three portfolio focus areas');
+if (/<video\b|data-featured-work=/.test(selectedWorkHtml)) throw new Error('Selected Work should link out to project and video collections');
+if (!workHtml.includes('id="product-prototypes"')) throw new Error('AI-Assisted Products link must land on the product prototypes');
 if (homeHtml.includes('Choose a VIC video style') || homeHtml.includes('Choose a v-vic concept film')) throw new Error('Full galleries belong on the films collection');
 for (const route of ['/work', '/films', '/about', '/credentials']) {
   if (!homeHtml.includes(`href="${route}"`)) throw new Error(`Missing collection/detail route ${route}`);
@@ -295,16 +306,15 @@ for (const company of ['Technity', 'Gala Bangkok', 'Mercure Yangon']) {
   if (!aboutHtml.includes(company)) throw new Error(`Detailed background missing ${company}`);
 }
 if (!vicHtml.includes('/films#content') || !vvicHtml.includes('/films#product-ads')) throw new Error('Case return links must point to the full film collections');
-console.log('PASS: curated three-work homepage, products/films collections, detailed background and collection return links.');
+console.log('PASS: three homepage focus areas, products/films collections, detailed background and collection return links.');
 
 // Preserve owner identity and the requested production-approach explanation.
 const heroSectionHtml = homeHtml.match(/<section[^>]*aria-labelledby="hero-heading"[\s\S]*?<\/section>/)?.[0] ?? '';
 const backgroundSectionHtml = homeHtml.match(/<section[^>]*id="background"[\s\S]*?<\/section>/)?.[0] ?? '';
 if (!heroSectionHtml || heroSectionHtml.includes('victor-portrait-retouched.webp') || !backgroundSectionHtml.includes('victor-portrait-retouched.webp')) throw new Error('Portrait belongs in Background, not the hero');
 if ((homeHtml.match(/href="https:\/\/github\.com\/ahk1542001-wq"/g) || []).length < 2) throw new Error('GitHub account must remain explicit in hero and footer');
-if (!homeHtml.includes('data-collection-cards')) throw new Error('Product/film collection links need separate visual containers');
-if (!homeHtml.includes('/films#production-approach') || !filmsHtml.includes('id="production-approach"')) throw new Error('Production approach must be discoverable');
+if (!filmsHtml.includes('href="#production-approach"') || !filmsHtml.includes('id="production-approach"')) throw new Error('Production approach must be discoverable');
 for (const phrase of ['GPT-6.1 Sol', 'Gemini Flash', 'VIC Voice', 'do not establish fully unattended Hermes production']) {
   if (!filmsHtml.includes(phrase)) throw new Error(`Production role/evidence boundary missing: ${phrase}`);
 }
-console.log('PASS: portrait, explicit GitHub links, collection containers and honest multi-agent approach retained.');
+console.log('PASS: portrait, explicit GitHub links, and honest multi-agent approach retained.');
