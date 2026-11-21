@@ -15,6 +15,10 @@ export interface Project {
   github: string;
   youtubeUrl?: string;
   youtubeId?: string;
+  /* Demo hosted outside YouTube (for example an MP4 file in the project
+     repo). Rendered as a plain link on the case study page; the youtube
+     fields above stay YouTube-only. */
+  demoUrl?: string;
   imageUrl?: string;
   /* True when the workflow contains a real LangChain AI Agent node —
      verified against the exported workflow JSON, not inferred. */
@@ -127,6 +131,22 @@ export const projects: Project[] = [
     github: 'https://github.com/ahk1542001-wq/alibaba-atlas-rescue-agent',
     youtubeUrl: 'https://youtu.be/H-MC2JHWl7M',
     youtubeId: 'H-MC2JHWl7M'
+  },
+  {
+    id: 'meeting-prep-research-agent',
+    title: 'Meeting Prep Research Agent',
+    category: 'Feature',
+    projectType: 'AI-Assisted Software',
+    status: 'Hackathon demo',
+    problem: 'Most people walk into sales calls, partnership talks and interviews cold, because doing the research properly takes 30 to 60 minutes of searching and skimming that nobody has before a meeting.',
+    role: 'AI Agent Builder',
+    directed: 'Three-pass research design (overview, recent news, key people), 5W structured meeting context, clarify-first intake rules, a chat intake that collects context one question at a time, and source-checked LLM guardrails with a deterministic fallback.',
+    solution: 'Give the agent a company or a person and it researches them on the live web with the Tavily API, then writes a one-page brief: a snapshot, what changed in the last month, the key people, questions to ask, and a source list behind every claim. The meeting date does real work too, narrowing the news window when the meeting is close.',
+    tools: ['Tavily Search API', 'Python (standard library only)', 'Nebius Token Factory', 'Meta Model API'],
+    capabilities: ['Live web research orchestration', 'Source-checked LLM guardrails', 'Clarify-first conversational intake', 'Structured meeting context (5W)', 'Deterministic fallback design'],
+    outcome: 'Solo build for the Geek Room Global AI Hackathon (Tavily track), submitted 15 November 2026. The repo ships real example briefs for a company and for a person, and the citation guardrail is enforced in code, not just in the prompt: a draft that cites a source the search did not return is discarded.',
+    github: 'https://github.com/ahk1542001-wq/meeting-prep-research-agent',
+    demoUrl: 'https://github.com/ahk1542001-wq/meeting-prep-research-agent/blob/main/meeting-prep-ui-demo-v2.mp4'
   },
   {
     id: 'lead-qualification',

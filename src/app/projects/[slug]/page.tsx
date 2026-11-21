@@ -139,6 +139,17 @@ export default async function ProjectPage({ params }: Props) {
                 Watch the full walkthrough <ExternalLink className="h-4 w-4" />
               </a>
             )}
+
+            {project.demoUrl && (
+              <a
+                href={project.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-hard mt-6 rounded-xl"
+              >
+                Watch the demo video <ExternalLink className="h-4 w-4" />
+              </a>
+            )}
           </div>
 
           {/* Quick facts */}
@@ -157,6 +168,16 @@ export default async function ProjectPage({ params }: Props) {
                     className="inline-flex min-h-[36px] items-center gap-1.5 text-[13.5px] font-medium text-pine hover:underline"
                   >
                     <ExternalLink className="h-3.5 w-3.5" /> Demo video
+                  </a>
+                )}
+                {project.demoUrl && (
+                  <a
+                    href={project.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-[36px] items-center gap-1.5 text-[13.5px] font-medium text-pine hover:underline"
+                  >
+                    <ExternalLink className="h-3.5 w-3.5" /> Demo video (MP4 on GitHub)
                   </a>
                 )}
                 <a
