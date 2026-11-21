@@ -91,12 +91,12 @@ export const projects: Project[] = [
     category: 'Feature',
     projectType: 'AI-Assisted Software',
     status: 'Hackathon demo',
-    problem: 'Enterprises require proven, secure agentic patterns to connect LLMs to unstructured knowledge bases, big data warehouses, and automated operational workflows without security risks.',
-    implementation: 'Multi-pattern architecture design, Model Context Protocol (MCP) integration, Cloud Run Sandboxes configuration, least-privilege IAM security, and human-in-the-loop governance.',
-    solution: 'A production-grade trilogy of AI Agent architectures featuring: (1) Grounded RAG with Vector Search, (2) Autonomous BigQuery SQL reasoning via MCP Server, and (3) Dynamic Python execution inside Cloud Run Micro-Sandboxes with Google Sheets API and WebSockets.',
+    problem: 'How can an agent retrieve documents, query a data warehouse, and run code with separate controls for each task?',
+    implementation: 'Multi-pattern architecture design, Model Context Protocol (MCP) integration, Cloud Run Sandboxes configuration, IAM permissions scoped to the demos, and human review steps.',
+    solution: 'The hackathon project demonstrated three patterns on Google Cloud Run: document retrieval with Vertex AI Vector Search, BigQuery SQL queries through an MCP server, and Python execution in Cloud Run sandboxes. The sandbox demo used the Google Sheets API and WebSockets.',
     tools: ['Google Cloud Run', 'Vertex AI (Gemini 2.5/3.6 Flash)', 'Google ADK', 'Model Context Protocol (MCP)', 'BigQuery', 'Google Sheets API', 'FastAPI', 'Streamlit', 'Docker'],
     capabilities: ['Model Context Protocol (MCP)', 'Cloud Run Micro-Sandboxing', 'Human-in-the-Loop Governance', 'Enterprise BigQuery SQL Reasoning', 'Retrieval-Augmented Generation (RAG)'],
-    outcome: 'Three architectures I specified and verified on Google Cloud Run — grounded RAG with Vector Search, BigQuery SQL reasoning over an MCP server, and sandboxed Python execution. Selected as a featured Hack2Skill APAC submission.',
+    outcome: 'Three working prototypes demonstrated document retrieval, BigQuery queries, and sandboxed Python on Cloud Run. The project was selected as a featured Hack2Skill APAC submission.',
     github: 'https://github.com/ahk1542001-wq/gcp-genai-agent-architectures'
   },
   {

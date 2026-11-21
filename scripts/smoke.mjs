@@ -131,8 +131,19 @@ if (!meetingHtml.includes('/meeting-prep-research-agent/blob/main/brief-example.
   throw new Error('Meeting Prep case study must link to the public sample brief');
 }
 
+if (!workHtml.includes('href="https://github.com/ahk1542001-wq/meeting-prep-research-agent/blob/main/meeting-prep-ui-demo-v2.mp4"')) {
+  throw new Error('Work must link directly to the Meeting Prep demo');
+}
+const sitemapXml = fs.readFileSync(path.join(outDir, 'sitemap.xml.body'), 'utf-8');
+if (!sitemapXml.includes('<loc>https://portfolioweb-three-sigma.vercel.app/work/run-with-john</loc>')) {
+  throw new Error('Run With John must be listed in the sitemap');
+}
+
 // 5. Specific Verification for Hackathon & Architecture Showcases
 const gcpHtml = fs.readFileSync(path.join(outDir, 'projects', 'gcp-genai-agent-architectures.html'), 'utf-8');
+if (gcpHtml.includes('production-grade') || !gcpHtml.includes('The hackathon project demonstrated three patterns on Google Cloud Run')) {
+  throw new Error('GCP case study must describe the demonstrated hackathon scope');
+}
 // PR #34 deliberately removed this dead walkthrough. Do not resurrect it.
 if (gcpHtml.includes('boDhNKUwZyE') || homeHtml.includes('boDhNKUwZyE')) {
   console.error('FAIL: Removed GCP walkthrough link has returned');
