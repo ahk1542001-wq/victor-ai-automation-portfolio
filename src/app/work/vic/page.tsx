@@ -28,7 +28,7 @@ export default function VicCaseStudy() {
           <p className="eyebrow">Personal project · AI-assisted content production</p>
           <h1 className="mt-4 font-serif text-[clamp(38px,6vw,72px)] leading-[1.02] tracking-[-0.03em]">VIC: the story,<br />the voice, the workflow.</h1>
           <p className="mt-6 max-w-[65ch] text-lg leading-relaxed text-ink-soft">I direct beginner-friendly Burmese explainers and build the agent workflows behind them. The work combines scripting, visual direction, animation, my reference-based voice clone and hands-on review.</p>
-          <p className="mt-4 text-sm leading-relaxed text-muted">My role: creative direction, workflow design, AI-assisted implementation, output review and iteration. Hermes supplies the agent runtime; the underlying animation and voice models are upstream tools.</p>
+          <p className="mt-4 text-sm leading-relaxed text-muted">I set the creative direction, designed the workflow and reviewed the output. The agents ran through Hermes and used separate tools for animation and voice.</p>
         </header>
         <section aria-labelledby="samples-heading">
           <h2 id="samples-heading" className="mb-6 font-serif text-3xl">Watch the work</h2>
@@ -74,12 +74,6 @@ export default function VicCaseStudy() {
               </details>
             </div>
           </div>
-        </section>
-        <section aria-labelledby="setup-heading" className="mt-14 border-t-2 border-ink pt-10">
-          <p className="eyebrow">The reusable setup</p>
-          <h2 id="setup-heading" className="mt-4 font-serif text-4xl">Five styles. One shared foundation.</h2>
-          <p className="mt-5 max-w-[75ch] text-sm leading-relaxed text-ink-soft">The inspected setup uses GPT-6.1 Sol / Medium for the main agent and Gemini Flash High through 9Router for execution. Short styles use HTML/browser/FFmpeg; landscape styles use HyperFrames/GSAP, AniDoodle-based Canvas or a paper-motion Canvas engine. Account access and model identifiers are installation-specific.</p>
-          <a href="https://github.com/ahk1542001-wq/victor-ai-automation-portfolio/blob/d4cc054/docs/vic-workflow/skills/vic-video/SKILL.md" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex min-h-[44px] items-center text-sm text-pine underline underline-offset-4">View skill source on GitHub</a>
         </section>
         <aside aria-label="Evidence and limitations" className="mt-12 border-t border-hair pt-6 text-sm leading-relaxed text-muted">
           <p>Existing videos demonstrate individual visual styles. The consolidated skill has offline validation; a fresh unattended end-to-end run across all five styles is not established. Technical checks do not prove complete listening or creative acceptance. No campaign ROI, retention or audience-growth results are claimed.</p>

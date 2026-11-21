@@ -5,9 +5,8 @@ export interface Project {
   projectType: 'n8n Automation' | 'AI-Assisted Software';
   workOutcome: 'customer-workflows' | 'meeting-research' | 'content-production' | 'product-prototypes';
   /* Honest build status, shown publicly next to each project. */
-  status: 'Hackathon demo' | 'MVP demo' | 'Live MVP';
+  status: 'Hackathon demo' | 'MVP demo' | 'Released MVP';
   problem: string;
-  role: string;
   directed: string;
   solution: string;
   tools: string[];
@@ -20,6 +19,7 @@ export interface Project {
      repo). Rendered as a plain link on the case study page; the youtube
      fields above stay YouTube-only. */
   demoUrl?: string;
+  exampleUrl?: string;
   imageUrl?: string;
   /* True when the workflow contains a real LangChain AI Agent node —
      verified against the exported workflow JSON, not inferred. */
@@ -41,12 +41,11 @@ export const projects: Project[] = [
     projectType: 'n8n Automation',
     status: 'MVP demo',
     problem: 'Automating inbound clinic calls to handle patient inquiries and book calendar appointments.',
-    role: 'AI Voice Automation Builder',
     directed: 'Vapi.ai configuration, n8n webhook routing, Google Calendar syncing, ElevenLabs voice setup.',
     solution: 'A conversational voice agent that connects callers to available slots via n8n backend logic.',
     tools: ['Vapi', 'n8n', 'ElevenLabs', 'OpenAI (GPT-4o-mini)', 'Anthropic (Claude 3.5 Sonnet)', 'Google Calendar', 'Google Sheets'],
     capabilities: ['Voice AI integration', 'Calendar API connectivity', 'Real-time conversational logic'],
-    outcome: 'Successfully connects call context to Google Calendar events and Sheets via n8n.',
+    outcome: 'The recorded MVP walkthrough shows an inbound call passing booking details through n8n to Google Calendar and Google Sheets.',
     github: 'https://github.com/ahk1542001-wq/n8n-automation-portfolio/tree/main/AI%20Voice%20Receptionist%20for%20Dental%20Clinic%20(Vapi%20%2B%20n8n)',
     youtubeUrl: 'https://youtu.be/LKn7nkXoSGE',
     youtubeId: 'LKn7nkXoSGE'
@@ -60,7 +59,6 @@ export const projects: Project[] = [
     projectType: 'n8n Automation',
     status: 'MVP demo',
     problem: 'Automating industry news research and drafting persona-matched LinkedIn posts safely.',
-    role: 'Workflow Architect',
     directed: 'Dual-agent orchestration, Firecrawl integration, AI-assisted JavaScript workflow logic, multi-database syncing (Supabase/Airtable).',
     solution: 'A dual-agent system where Agent 1 scrapes tech blogs and Agent 2 uses RAG to draft posts, sending them to Telegram for editing and approval before pushing to databases.',
     tools: ['n8n', 'Firecrawl', 'Groq', 'OpenAI', 'Ollama', 'Qdrant', 'Supabase', 'Airtable', 'Telegram'],
@@ -76,10 +74,9 @@ export const projects: Project[] = [
     title: 'Swoosh — URL Shortener & Link-in-Bio Builder',
     category: 'Feature',
     projectType: 'AI-Assisted Software',
-    status: 'Live MVP',
+    status: 'Released MVP',
     problem: 'People need a controlled way to create trackable short links and manage multiple public link-in-bio pages.',
-    role: 'AI-Agent-Directed Product Builder',
-    directed: 'Product scope, specification decisions, visual direction, testing acceptance, and release approval.',
+    directed: 'I scoped the first release, wrote acceptance criteria for authenticated links, click analytics and QR sharing, and reviewed the AI-assisted implementation before approving release.',
     solution: 'A FastAPI application combining authenticated URL shortening, click analytics, QR sharing, admin-managed accounts, and public Link Tree profiles.',
     tools: ['AI Coding Agents', 'FastAPI', 'Python', 'PostgreSQL', 'Render'],
     capabilities: ['Spec-driven AI-agent orchestration', 'Product and system decision-making', 'Acceptance testing', 'Release approval'],
@@ -95,7 +92,6 @@ export const projects: Project[] = [
     projectType: 'AI-Assisted Software',
     status: 'Hackathon demo',
     problem: 'Enterprises require proven, secure agentic patterns to connect LLMs to unstructured knowledge bases, big data warehouses, and automated operational workflows without security risks.',
-    role: 'Cloud AI Architect & Agent Director',
     directed: 'Multi-pattern architecture design, Model Context Protocol (MCP) integration, Cloud Run Sandboxes configuration, least-privilege IAM security, and human-in-the-loop governance.',
     solution: 'A production-grade trilogy of AI Agent architectures featuring: (1) Grounded RAG with Vector Search, (2) Autonomous BigQuery SQL reasoning via MCP Server, and (3) Dynamic Python execution inside Cloud Run Micro-Sandboxes with Google Sheets API and WebSockets.',
     tools: ['Google Cloud Run', 'Vertex AI (Gemini 2.5/3.6 Flash)', 'Google ADK', 'Model Context Protocol (MCP)', 'BigQuery', 'Google Sheets API', 'FastAPI', 'Streamlit', 'Docker'],
@@ -111,7 +107,6 @@ export const projects: Project[] = [
     projectType: 'AI-Assisted Software',
     status: 'Hackathon demo',
     problem: 'Producing localized high-retention video ads and explainers traditionally requires expensive video crews, disjointed editing tools, and manual telemetry tracking.',
-    role: 'Lead Architect & AI Agent Director / Builder',
     directed: 'Autonomous creation-loop architecture, brand & scene immutable locking, Remotion rendering pipeline, Google ADK & Gemini TTS orchestration, ClickHouse telemetry outbox, and Model Context Protocol (MCP) Data Officer integration.',
     solution: 'A full-stack autonomous brand video studio that orchestrates story generation via Google ADK & Gemini, deterministic multi-format video rendering via Remotion, sanitized telemetry ingestion into ClickHouse Cloud, and natural language analytics via an MCP Data Officer.',
     tools: ['Next.js', 'Remotion', 'FastAPI', 'Python', 'Google Cloud Run', 'Gemini 2.5 Flash', 'Google ADK', 'ClickHouse Cloud', 'Model Context Protocol (MCP)', 'Google Cloud Storage', 'Gemini-TTS'],
@@ -129,12 +124,11 @@ export const projects: Project[] = [
     projectType: 'AI-Assisted Software',
     status: 'Hackathon demo',
     problem: 'Flight cancellations and delays leave travelers stranded with complex rebooking procedures, confusing international transit visa requirements, and billions in unclaimed passenger rights compensation.',
-    role: 'AI Agent Workflow Architect',
     directed: 'Autonomous disruption monitoring pipeline, Claims Autopilot with legal jurisdiction detection (EU261/UK261/US DOT), Visa-Aware transit rebooking engine across a curated visa table of 14 passports, and multi-model Qwen-Agent integration.',
-    solution: 'An autonomous proactive flight rescue agent integrating Atlas flight APIs and Alibaba Cloud Model Studio (Qwen) that instantly detects cancellations, evaluates compensation eligibility, generates regulation-cited appeal letters, and auto-orchestrates visa-safe rescue flights.',
+    solution: 'An autonomous proactive flight rescue agent integrating Atlas flight APIs and Alibaba Cloud Model Studio (Qwen) with a demo flow that detects disruptions, evaluates compensation eligibility, checks candidate routes against a curated visa table, and drafts regulation-cited appeal letters.',
     tools: ['Alibaba Cloud Model Studio', 'Qwen 2.5', 'Atlas Agent Framework', 'FastAPI', 'Python', 'Leaflet', 'Playwright'],
     capabilities: ['Proactive Flight Disruption Rescue', 'Claims Autopilot & Jurisdiction Detection', 'Visa-Aware Rebooking Engine', 'Qwen-Agent Multi-Model Orchestration', 'Real-Time Flight API Integration'],
-    outcome: '13 guardrailed skills under explicit capability limits — EU261 / UK261 / US DOT jurisdiction detection, visa-aware rebooking against a curated visa table of 14 passports, and regulation-cited appeal letters. Alibaba Cloud x Atlas Agentic AI Hackathon entry.',
+    outcome: '13 guardrailed skills under explicit capability limits — EU261 / UK261 / US DOT jurisdiction detection, visa-aware route evaluation against a curated visa table of 14 passports, and regulation-cited appeal letters. Alibaba Cloud x Atlas Agentic AI Hackathon entry.',
     github: 'https://github.com/ahk1542001-wq/alibaba-atlas-rescue-agent',
     youtubeUrl: 'https://youtu.be/H-MC2JHWl7M',
     youtubeId: 'H-MC2JHWl7M'
@@ -147,14 +141,14 @@ export const projects: Project[] = [
     projectType: 'AI-Assisted Software',
     status: 'Hackathon demo',
     problem: 'Most people walk into sales calls, partnership talks and interviews cold, because doing the research properly takes 30 to 60 minutes of searching and skimming that nobody has before a meeting.',
-    role: 'AI Agent Builder',
     directed: 'Three-pass research design (overview, recent news, key people), 5W structured meeting context, clarify-first intake rules, a chat intake that collects context one question at a time, and source-checked LLM guardrails with a deterministic fallback.',
     solution: 'Give the agent a company or a person and it researches them on the live web with the Tavily API, then writes a one-page brief: a snapshot, what changed in the last month, the key people, questions to ask, and a source list behind every claim. The meeting date does real work too, narrowing the news window when the meeting is close.',
     tools: ['Tavily Search API', 'Python (standard library only)', 'Nebius Token Factory', 'Meta Model API'],
     capabilities: ['Live web research orchestration', 'Source-checked LLM guardrails', 'Clarify-first conversational intake', 'Structured meeting context (5W)', 'Deterministic fallback design'],
-    outcome: 'Solo build for the Geek Room Global AI Hackathon (Tavily track), submitted 15 November 2026. The repo ships real example briefs for a company and for a person, and the citation guardrail is enforced in code, not just in the prompt: a draft that cites a source the search did not return is discarded.',
+    outcome: 'This hackathon demo turns web research into a meeting brief with linked sources. The citation check discards a model draft that references a URL the search did not return. The public repository includes company and person example briefs.',
     github: 'https://github.com/ahk1542001-wq/meeting-prep-research-agent',
-    demoUrl: 'https://github.com/ahk1542001-wq/meeting-prep-research-agent/blob/main/meeting-prep-ui-demo-v2.mp4'
+    demoUrl: 'https://github.com/ahk1542001-wq/meeting-prep-research-agent/blob/main/meeting-prep-ui-demo-v2.mp4',
+    exampleUrl: 'https://github.com/ahk1542001-wq/meeting-prep-research-agent/blob/main/brief-example.md'
   },
   {
     id: 'lead-qualification',
@@ -165,7 +159,6 @@ export const projects: Project[] = [
     projectType: 'n8n Automation',
     status: 'MVP demo',
     problem: 'Handling incoming client requests efficiently by filtering out low-budget leads.',
-    role: 'Solution Designer & Workflow Architect',
     directed: 'RAG architecture setup (Qdrant), Telegram notification routing, Gmail drafting logic, logic branching based on lead scores.',
     solution: 'An AI agent that analyzes webhook leads, searches internal pricing guidelines via Qdrant, performs score routing, sends Telegram notifications, drafts Gmail responses, and logs to Google Sheets.',
     tools: ['n8n', 'Groq', 'Qdrant', 'Ollama embeddings', 'optional OpenAI model', 'Gmail', 'Telegram', 'Google Sheets'],
@@ -184,7 +177,6 @@ export const projects: Project[] = [
     projectType: 'n8n Automation',
     status: 'MVP demo',
     problem: 'Leads that arrive through a form go cold — nothing scores them, nothing follows up, and two separate CRMs drift out of step.',
-    role: 'AI Automation Builder',
     directed: 'Form-trigger lead capture, Groq scoring with Hot/Warm/Cold tiering, duplicate-checked dual CRM sync, Telegram alert routing, and a spaced 7-day Gmail drip sequence.',
     solution: 'A hosted n8n form captures each lead, Groq (Llama 3.3 70B) scores it 0-100 and tiers it Hot/Warm/Cold, the record syncs to both Airtable and Google Sheets, Telegram alerts the team on high-value leads, and a 7-day Gmail sequence follows up automatically.',
     tools: ['n8n', 'Groq (Llama 3.3 70B)', 'Airtable', 'Google Sheets', 'Telegram', 'Gmail'],

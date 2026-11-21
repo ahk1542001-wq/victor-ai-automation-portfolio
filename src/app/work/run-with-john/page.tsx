@@ -20,6 +20,7 @@ export default function RunWithJohn() {
     <main id="main-content" tabIndex={-1} className="mx-auto max-w-[1120px] px-5 py-12 focus:outline-none sm:px-6 md:py-16">
       <Link href={workAreas.video.href} className="inline-flex min-h-[44px] items-center text-sm text-pine underline underline-offset-4">Back to {workAreas.video.title}</Link>
       <header className="mb-10 mt-6 max-w-3xl">
+        <p className="eyebrow mb-3">AI-assisted product film</p>
         <h1 className="font-serif text-[clamp(38px,7vw,80px)] leading-none">Run With John</h1>
         <p className="mt-5 max-w-[60ch] text-lg leading-relaxed text-ink-soft">A running-sock film built around the moments before the first stride, from adjusting the cuff to finding a rhythm on the track.</p>
       </header>

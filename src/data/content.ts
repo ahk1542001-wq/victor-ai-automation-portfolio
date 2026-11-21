@@ -1,7 +1,6 @@
 export const portfolioContent = {
   hero: {
     name: 'Victor',
-    role: 'AI Automation & Agent Workflow Builder',
     location: 'Bangkok, Thailand',
     valueProposition: 'I build AI agents for content creation and business automation.'
   },
