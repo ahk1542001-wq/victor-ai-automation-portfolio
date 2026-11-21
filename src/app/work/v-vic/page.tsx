@@ -5,15 +5,15 @@ import { VvicGallery } from '@/components/VvicGallery';
 
 export const metadata: Metadata = {
   title: 'v-vic — AI product-ad concepts | Victor',
-  description: 'Three fictional-product concept films, creative direction and a bounded Hermes commercial-video workflow with Google Flow and local editing.',
+  description: 'A human-directed commercial production workflow with Hermes, from shot planning and supervised Google Flow generation to local editing, review and clean delivery.',
   alternates: { canonical: '/work/v-vic' },
 };
 
 const stages = [
-  ['Brief and direction', 'Define audience, supported benefit, visual hook and shot plan. The main GPT-6.1 Sol agent owns planning and final QA; scoped Gemini Flash tasks execute the plan.'],
+  ['Brief and direction', 'I define the audience, visual hook and story. The Hermes main agent turns those decisions into a shot plan and reviews the results of scoped worker tasks.'],
   ['Approved generation', 'One exclusive CLI/CDP browser worker operates Google Flow with owner-controlled login and bounded credit approval. Independent local tasks can run in parallel; browser ownership stays exclusive.'],
-  ['Local editing', 'FFmpeg and Pillow handle cuts, captions and audio; HyperFrames/GSAP supplies motion graphics. Measured source timing drives the edit. Accepted assets are reused without new generation when possible.'],
-  ['Review and delivery', 'Check decoded video, audio, safe areas, source/output hashes and actual playback. Review motion, product continuity and sound separately from technical checks, then ask for owner acceptance. Publishing remains a separate decision.'],
+  ['Local editing', 'I choose the takes and cut them against a continuous score. FFmpeg and Pillow handle assembly, captions and audio, with HyperFrames and GSAP for motion graphics. Approved product artwork can be tracked onto fabric to correct lettering while preserving the action.'],
+  ['Review and delivery', 'Check readable product text, motion across cuts and audio alignment. Verify that the export decodes and matches the edit plan. Deliver the finished cut alongside clean clips with source audio when the footage needs to be reused.'],
 ];
 
 export default function VvicCaseStudy() {
@@ -26,7 +26,7 @@ export default function VvicCaseStudy() {
           <p className="eyebrow">Personal concept work · Creative direction + agent workflows</p>
           <h1 className="mt-4 font-serif text-[clamp(38px,6vw,72px)] leading-[1.02] tracking-[-0.03em]">v-vic: from product idea<br />to a finished film.</h1>
           <p className="mt-6 max-w-[65ch] text-lg leading-relaxed text-ink-soft">I direct AI-assisted product films: the hook, the demonstration, the edit and the sound. These three pieces explore different ways to tell a fictional bottle’s story.</p>
-          <p className="mt-4 text-sm leading-relaxed text-muted">My role: creative direction, workflow design, AI-assisted implementation, editing and final review. The selected films were creatively directed and finished with hands-on review. They do not demonstrate autonomous end-to-end production by Hermes.</p>
+          <p className="mt-4 text-sm leading-relaxed text-muted">I designed the workflow, directed the production and reviewed the final edits. The examples show the complete production process under human direction. A separate Hermes pilot exercised local editing, rendering and review with existing footage.</p>
         </header>
         <section aria-labelledby="vvic-films-heading">
           <h2 id="vvic-films-heading" className="mb-6 font-serif text-3xl">Watch the three treatments</h2>
@@ -44,8 +44,9 @@ export default function VvicCaseStudy() {
           <h2 id="vvic-reuse-heading" className="mt-4 font-serif text-4xl">Keep the treatment.<br />Adapt the story.</h2>
           <p className="mt-5 max-w-[80ch] text-sm leading-relaxed text-ink-soft">The UGC Style A caption preset works with reviewed phrase cues and clean conformed footage. It preserves the accepted AAC audio, checks safe areas and refuses overwritten outputs. The FORGED and ORBIT recipes are asset-specific references that need new shot, brand and timing decisions for another product.</p>
           <p className="mt-4 max-w-[80ch] text-sm leading-relaxed text-ink-soft">The integration passed 172 offline tests, including a real 24-frame synthetic encode and exact AAC preservation. Hermes skill discovery and a separate one-clip Flow pilot were checked within their own scopes. These checks are not a fresh paid or unattended production test.</p>
-          <a href="https://github.com/ahk1542001-wq/victor-ai-automation-portfolio/tree/93ca1508d9c1e27984e517eb280264b76ca58a65/docs/v-vic-workflow" target="_blank" rel="noopener noreferrer" className="btn-hard btn-hard-ghost mt-6">Read the sanitized workflow on GitHub</a>
-          <p className="mt-3 text-xs leading-relaxed text-muted">Architecture and setup reference, not a turnkey installer. Private profiles, sessions, credentials, source assets and font binaries are excluded.</p>
+          <a href="https://github.com/ahk1542001-wq/victor-ai-automation-portfolio/tree/93ca1508d9c1e27984e517eb280264b76ca58a65/docs/v-vic-workflow" target="_blank" rel="noopener noreferrer" className="btn-hard btn-hard-ghost mt-6">Read the production notes on GitHub</a>
+          <a href="https://github.com/ahk1542001-wq/hermes-agent-workforce/tree/677dfc457c232446f0d2d8b368c9f379db46ac06/agents/v-vic" target="_blank" rel="noopener noreferrer" className="btn-hard btn-hard-ghost mt-3 sm:ml-3">Get the Hermes commercial setup</a>
+          <p className="mt-3 text-xs leading-relaxed text-muted">Includes a profile template, the commercial video skill and a synthetic FFmpeg example you can render locally.</p>
         </section>
         <aside aria-label="Credits and verification limits" className="mt-12 border-t border-hair pt-6 text-sm leading-relaxed text-muted">
           <p>Music: “Gimme that Groove!” by Michael Ramir C., track 872 from Mixkit, embedded under the <a href="https://mixkit.co/license/modal/musicFree/" className="underline underline-offset-4">Mixkit Stock Music Free License</a>. No standalone music file or ownership claim is supplied.</p>
