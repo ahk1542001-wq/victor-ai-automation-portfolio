@@ -8,6 +8,7 @@ import Link from 'next/link';
 export function ProjectWorkCard({ project, eager, compact = false, summary, browse = false }: {
   project: Project; eager: boolean; compact?: boolean; summary?: string; browse?: boolean;
 }) {
+  const demoUrl = project.youtubeUrl ?? project.demoUrl;
   const visual = <div className="project-visual">
     {project.youtubeId ? <YouTubeThumbnail youtubeId={project.youtubeId} alt={`${project.title} walkthrough thumbnail`} eager={eager} />
       : project.imageUrl ? <div className="relative aspect-video w-full"><Image src={project.imageUrl} alt={`${project.title} screenshot`} fill sizes="(max-width: 767px) 100vw, 45vw" className="object-cover object-top" /></div>
@@ -24,7 +25,7 @@ export function ProjectWorkCard({ project, eager, compact = false, summary, brow
       {!compact && !browse && <p className="mt-5 border-l-2 border-pine pl-4 text-sm leading-relaxed text-ink-soft">{project.outcome}</p>}
       <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-1 pt-5 text-sm">
         <Link href={`/projects/${project.id}`} className="work-link inline-flex min-h-[44px] items-center gap-2 text-pine underline underline-offset-4">Case study <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
-        {project.youtubeUrl && <a href={project.youtubeUrl} target="_blank" rel="noopener noreferrer" aria-label={`Watch the ${project.title} walkthrough on YouTube`} className="inline-flex min-h-[44px] items-center gap-1.5 text-muted hover:text-ink"><ExternalLink className="h-3.5 w-3.5" aria-hidden="true" /> Demo</a>}
+        {demoUrl && <a href={demoUrl} target="_blank" rel="noopener noreferrer" aria-label={`Watch the ${project.title} demo`} className="inline-flex min-h-[44px] items-center gap-1.5 text-muted hover:text-ink"><ExternalLink className="h-3.5 w-3.5" aria-hidden="true" /> Demo</a>}
         <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`View the ${project.title} source on GitHub`} className="inline-flex min-h-[44px] items-center gap-1.5 text-muted hover:text-ink"><Image src="/brands/github.svg" alt="" width={16} height={16} className="icon-invert-dark" /> Source</a>
       </div>
     </div>
