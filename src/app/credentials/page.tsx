@@ -1,7 +1,7 @@
 import { credentials, type CredentialCategory } from '@/data/credentials';
 import { Header } from '@/components/Header';
 import { credentialsPage, workAreas } from '@/data/portfolio-navigation';
-import { ArrowLeft, ArrowUpRight, ExternalLink, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, ExternalLink, ShieldCheck } from 'lucide-react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
@@ -218,25 +218,9 @@ export default function CredentialsPage() {
           })}
         </div>
 
-        {/* CTA */}
-        <section className="card-hard mt-20 bg-paper-2 p-8 text-center sm:p-12">
-          <h2 className="mx-auto max-w-[24ch] font-serif text-[clamp(24px,3.6vw,36px)] font-normal leading-tight tracking-[-0.015em] text-ink">
-            Want these patterns built inside your systems?
-          </h2>
-          <p className="mx-auto mt-4 max-w-[58ch] text-pretty text-[14.5px] leading-relaxed text-muted">
-            From Model Context Protocol servers to production n8n automation and Cloud Run
-            micro-sandboxes — I build reliable, human-in-the-loop workflows and hand them over with
-            the documentation to own them.
-          </p>
-          <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <Link href="/#contact" className="btn-hard rounded-xl text-[13.5px]">
-              Start a conversation <ArrowUpRight className="h-4 w-4" />
-            </Link>
-            <Link href={workAreas.automation.href} className="btn-hard btn-hard-ghost rounded-xl text-[13.5px]">
-              Explore {workAreas.automation.title}
-            </Link>
-          </div>
-        </section>
+        <Link href={workAreas.automation.href} className="mt-12 inline-flex min-h-[44px] items-center text-pine underline underline-offset-4">
+          Explore {workAreas.automation.title}
+        </Link>
       </main>
     </div>
   );
