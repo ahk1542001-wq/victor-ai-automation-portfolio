@@ -1,18 +1,19 @@
 import { credentials, type CredentialCategory } from '@/data/credentials';
 import { Header } from '@/components/Header';
+import { credentialsPage, workAreas } from '@/data/portfolio-navigation';
 import { ArrowLeft, ArrowUpRight, ExternalLink, ShieldCheck } from 'lucide-react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Verified AI Credentials & Certifications | Victor Portfolio',
+  title: `${credentialsPage.title} | Victor`,
   description:
     'Verified professional AI certifications and technical credentials spanning Anthropic Agent Systems, Model Context Protocol (MCP), Claude Code, Google Cloud Vertex AI, and Enterprise Automation.',
   alternates: {
     canonical: '/credentials',
   },
   openGraph: {
-    title: 'Verified AI Credentials & Certifications | Victor Portfolio',
+    title: `${credentialsPage.title} | Victor`,
     description:
       'Verified professional AI credentials in Anthropic Agent Systems, Model Context Protocol, Google Cloud Vertex AI, and Enterprise Automation.',
     type: 'website',
@@ -62,7 +63,7 @@ export default function CredentialsPage() {
             href="/#credentials"
             className="inline-flex min-h-[44px] items-center gap-2 text-[13.5px] font-medium text-ink-soft transition-colors hover:text-pine"
           >
-            <ArrowLeft className="h-4 w-4" /> Back to overview
+            <ArrowLeft className="h-4 w-4" /> Back to homepage credentials
           </Link>
 
           <div className="flex flex-wrap items-center gap-2">
@@ -85,7 +86,7 @@ export default function CredentialsPage() {
           </span>
 
           <h1 className="mt-5 font-serif text-[clamp(32px,5.4vw,58px)] leading-[1.04] tracking-[-0.025em] text-ink">
-            Verified AI Credentials &amp; Certifications
+            {credentialsPage.title}
           </h1>
 
           <p className="mt-5 text-pretty text-[16px] leading-relaxed text-muted">
@@ -231,8 +232,8 @@ export default function CredentialsPage() {
             <Link href="/#contact" className="btn-hard rounded-xl text-[13.5px]">
               Start a conversation <ArrowUpRight className="h-4 w-4" />
             </Link>
-            <Link href="/#work" className="btn-hard btn-hard-ghost rounded-xl text-[13.5px]">
-              Explore case studies
+            <Link href={workAreas.automation.href} className="btn-hard btn-hard-ghost rounded-xl text-[13.5px]">
+              Explore {workAreas.automation.title}
             </Link>
           </div>
         </section>

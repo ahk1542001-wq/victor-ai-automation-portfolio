@@ -1,20 +1,21 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Header } from '@/components/Header';
+import { about, credentialsPage } from '@/data/portfolio-navigation';
 import { JourneyMap } from '@/components/journey-map';
 import { portfolioContent } from '@/data/content';
-export const metadata: Metadata = { title: 'About Victor — background and experience', alternates: { canonical: '/about' } };
+export const metadata: Metadata = { title: `${about.title} — background and experience`, alternates: { canonical: '/about' } };
 export default function About() {
     const aboutParts = portfolioContent.about.description.split('. ');
     return <div className="min-h-screen bg-paper text-ink">
     <Header />
     <main id="main-content" tabIndex={-1}>
     <div className="mx-auto max-w-[1120px] px-5 pt-10 sm:px-6">
-    <Link href="/#background" className="inline-flex min-h-[44px] items-center text-pine underline underline-offset-4">Back to overview</Link>
+    <Link href="/#background" className="inline-flex min-h-[44px] items-center text-pine underline underline-offset-4">Back to homepage bio</Link>
     </div>
           <section id="background" aria-labelledby="background-heading" className="border-t-2 border-ink py-16 md:py-20">
             <div className="mx-auto max-w-[1120px] px-5 sm:px-6">
-              <h1 id="background-heading" className="mb-10 font-serif text-5xl">Where I’ve been.</h1>
+              <h1 id="background-heading" className="mb-10 font-serif text-5xl">{about.title}</h1>
 
               <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
                 <div className="lg:col-span-7">
@@ -77,7 +78,7 @@ export default function About() {
         <p className="mt-2 text-sm leading-relaxed text-muted">{item.institution} · {item.period}</p>
         <p className="mt-2 text-sm text-muted">{item.description}</p>
         </div>)}</div>
-    <Link href="/credentials" className="mt-6 inline-flex min-h-[44px] items-center text-pine underline underline-offset-4">View all credentials</Link>
+    <Link href={credentialsPage.href} className="mt-6 inline-flex min-h-[44px] items-center text-pine underline underline-offset-4">{credentialsPage.title}</Link>
     </section>
   </main>
     </div>;

@@ -5,6 +5,9 @@ import { FileText, Mail, Menu, X, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from './ThemeToggle';
+import { about, credentialsPage, selectedWork, workAreas } from '@/data/portfolio-navigation';
+
+const navLinks = [selectedWork, ...Object.values(workAreas), about, credentialsPage];
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,14 +18,6 @@ export function Header() {
 
   const toggleMenu = () => setIsOpen((prev) => !prev);
   const closeMenu = () => setIsOpen(false);
-
-  const navLinks = [
-    { href: '/#work', label: 'Selected' },
-    { href: '/work', label: 'Products' },
-    { href: '/films', label: 'Films' },
-    { href: '/about', label: 'About' },
-    { href: '/credentials', label: 'Credentials' },
-  ];
 
   const isSecondaryPage = pathname !== '/';
 
@@ -74,7 +69,7 @@ export function Header() {
           {isSecondaryPage && (
             <Link
               href="/"
-              className="hidden min-h-[44px] items-center gap-2 border-l-2 border-hair pl-4 text-xs font-medium uppercase tracking-[0.08em] text-muted transition-colors hover:text-ink sm:flex"
+              className="hidden min-h-[44px] items-center gap-2 border-l-2 border-hair pl-4 text-xs font-medium uppercase tracking-[0.08em] text-muted transition-colors hover:text-ink sm:flex lg:hidden"
             >
               <ArrowLeft className="h-3.5 w-3.5" /> Back to home
             </Link>
@@ -82,14 +77,14 @@ export function Header() {
         </div>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden items-center gap-6 lg:flex">
+        <div className="hidden items-center gap-3 lg:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="navlink flex min-h-[44px] items-center text-[12.5px] font-medium uppercase tracking-[0.07em]"
+              className="navlink flex min-h-[44px] whitespace-nowrap items-center text-[13px] font-medium"
             >
-              {link.label}
+              {link.title}
             </Link>
           ))}
         </div>
@@ -131,7 +126,7 @@ export function Header() {
       {isOpen && (
         <div
           id="mobile-menu"
-          className="animate-fade-in max-w-full overflow-x-hidden border-t-2 border-hair bg-paper px-5 pb-6 pt-3 lg:hidden"
+          className="animate-fade-in max-h-[calc(100dvh-68px)] max-w-full overflow-x-hidden overflow-y-auto border-t-2 border-hair bg-paper px-5 pb-6 pt-3 lg:hidden"
         >
           <div className="flex flex-col">
             {isSecondaryPage && (
@@ -151,9 +146,9 @@ export function Header() {
                 ref={idx === 0 && !isSecondaryPage ? firstLinkRef : undefined}
                 href={link.href}
                 onClick={closeMenu}
-                className="hair-b flex min-h-[44px] items-center px-1 py-3 text-[13px] font-medium uppercase tracking-[0.07em] text-ink-soft transition-colors last:border-b-0 hover:text-ink"
+                className="hair-b flex min-h-[44px] items-center px-1 py-3 text-[13px] font-medium text-ink-soft transition-colors last:border-b-0 hover:text-ink"
               >
-                {link.label}
+                {link.title}
               </Link>
             ))}
           </div>
