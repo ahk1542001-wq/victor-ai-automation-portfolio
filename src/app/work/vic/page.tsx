@@ -38,7 +38,7 @@ export default function VicCaseStudy() {
           <div className="grid gap-8 md:grid-cols-[1fr_1.6fr]">
             <div>
               <p className="eyebrow">One Creator · bounded execution workers</p>
-              <h2 id="workflow-heading" className="mt-4 font-serif text-4xl leading-tight">Creative decisions stay with the director.</h2>
+              <h2 id="workflow-heading" className="mt-4 font-serif text-4xl leading-tight">How the workflow runs</h2>
               <p className="mt-5 text-sm leading-relaxed text-ink-soft">The main agent supports planning and review. Flash workers execute precise tasks rather than inventing the story. Checkpoints preserve verified work when a worker or connection stops.</p>
             </div>
             <ol>

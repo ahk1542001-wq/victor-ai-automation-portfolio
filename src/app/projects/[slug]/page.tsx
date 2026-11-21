@@ -53,9 +53,8 @@ export default async function ProjectPage({ params }: Props) {
   const workArea = project.workOutcome === 'product-prototypes' ? workAreas.products : workAreas.automation;
 
   const sections = [
-    { heading: 'The Problem', body: project.problem },
-    { heading: 'What I did', body: project.directed },
-    { heading: 'The Solution', body: project.solution },
+    { heading: 'The Problem', paragraphs: [project.problem] },
+    { heading: 'The Solution', paragraphs: [project.solution, project.implementation] },
   ];
 
   return (
@@ -212,7 +211,9 @@ export default async function ProjectPage({ params }: Props) {
                   <h2 className="hair-b pb-2.5 font-serif text-[22px] font-normal tracking-[-0.01em] text-ink">
                     {section.heading}
                   </h2>
-                  <p className="mt-4 text-pretty text-[16px] leading-relaxed text-ink-soft">{section.body}</p>
+                  {section.paragraphs.map((paragraph) => (
+                    <p key={paragraph} className="mt-4 text-pretty text-[16px] leading-relaxed text-ink-soft">{paragraph}</p>
+                  ))}
                 </section>
               ))}
             </div>

@@ -123,7 +123,6 @@ console.log(`Verifying ${projectSlugs.length} project case studies...`);
 // 4. Verify Each Project Route & Mandatory Sections
 const mandatorySections = [
   'The Problem',
-  'What I did',
   'The Solution',
   'What it shows'
 ];
@@ -142,7 +141,7 @@ for (const slug of projectSlugs) {
   }
 
   const projectHtml = fs.readFileSync(projectHtmlPath, 'utf-8');
-  if (/My Role|My verified role|Want the same result\?|Start a conversation/.test(projectHtml)) {
+  if (/My Role|My verified role|What I did|Want the same result\?|Start a conversation/.test(projectHtml)) {
     throw new Error(`Case study must stay focused on the work and its evidence: ${slug}`);
   }
   for (const section of mandatorySections) {
