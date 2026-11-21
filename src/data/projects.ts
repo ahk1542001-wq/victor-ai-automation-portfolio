@@ -147,7 +147,8 @@ export const projects: Project[] = [
     capabilities: ['Live web research orchestration', 'Source-checked LLM guardrails', 'Clarify-first conversational intake', 'Structured meeting context (5W)', 'Deterministic fallback design'],
     outcome: 'This hackathon demo turns web research into a meeting brief with linked sources. The citation check discards a model draft that references a URL the search did not return. The public repository includes company and person example briefs.',
     github: 'https://github.com/ahk1542001-wq/meeting-prep-research-agent',
-    demoUrl: 'https://github.com/ahk1542001-wq/meeting-prep-research-agent/blob/main/meeting-prep-ui-demo-v2.mp4',
+    youtubeUrl: 'https://youtu.be/cgYgdm-ERbM',
+    youtubeId: 'cgYgdm-ERbM',
     exampleUrl: 'https://github.com/ahk1542001-wq/meeting-prep-research-agent/blob/main/brief-example.md'
   },
   {
