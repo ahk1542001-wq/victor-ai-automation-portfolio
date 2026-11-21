@@ -28,6 +28,12 @@ export default function Films() {
         <Link href="/work/afterlight" className="block rounded-[10px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-pine" aria-label="Open the AFTERLIGHT perfume film case study"><Image src="/afterlight/poster.jpg" alt="AFTERLIGHT amber perfume bottle beside a rain-streaked window, with A presence that stays closing line" width={1280} height={720} sizes="(min-width: 768px) 600px, 100vw" className="aspect-video h-auto w-full rounded-[10px]" /></Link>
       </div>
     </section>
+    <section className="mx-auto max-w-[1120px] px-5 pb-14 sm:px-6" aria-labelledby="rwj-heading">
+      <div className="grid gap-7 border-t border-hair pt-9 md:grid-cols-[1fr_1.3fr] md:items-center">
+        <div><h2 id="rwj-heading" className="font-serif text-4xl">Run With John</h2><p className="mt-4 leading-relaxed text-ink-soft">A running-sock film in an 82-second landscape cut and a 45-second portrait cut.</p><Link href="/work/run-with-john" className="btn-hard btn-hard-ghost mt-5">Watch both cuts</Link></div>
+        <Link href="/work/run-with-john" aria-label="Open the Run With John case study"><Image src="/run-with-john/first-stride.jpg" alt="A frame from the Run With John landscape film" width={1280} height={720} sizes="(min-width: 768px) 600px, 100vw" className="aspect-video h-auto w-full" /></Link>
+      </div>
+    </section>
     <VicShowcase />
     <ProductionApproach />
  </main>
