@@ -31,6 +31,7 @@ export default function VvicCaseStudy() {
         <section aria-labelledby="vvic-films-heading">
           <h2 id="vvic-films-heading" className="mb-6 font-serif text-3xl">Watch the three treatments</h2>
           <VvicGallery />
+          <Link href="/work/run-with-john" className="mt-5 inline-flex min-h-[44px] items-center text-sm text-pine underline underline-offset-4">Watch Run With John in landscape and portrait</Link>
           <p className="mt-8 text-sm leading-relaxed text-muted">These are fictional-product AI concept films. The UGC-style presenter is synthetic, not a real customer. Visible product benefits are creative demonstrations, not independently tested product claims or client campaign results.</p>
         </section>
         <section aria-labelledby="vvic-workflow-heading" className="mt-16 border-t-2 border-ink pt-10">
