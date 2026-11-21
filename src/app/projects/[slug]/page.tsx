@@ -2,6 +2,7 @@ import { projects } from '@/data/projects';
 import { YouTubeThumbnail } from '@/components/YouTubeThumbnail';
 import { TopologyDiagram } from '@/components/TopologyDiagram';
 import { Header } from '@/components/Header';
+import { workAreas } from '@/data/portfolio-navigation';
 import { ArrowLeft, ArrowRight, ArrowUpRight, ExternalLink, Check } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
@@ -49,6 +50,8 @@ export default async function ProjectPage({ params }: Props) {
   const prevProject = projects[(projectIndex - 1 + projects.length) % projects.length];
   const nextProject = projects[(projectIndex + 1) % projects.length];
 
+  const workArea = project.workOutcome === 'product-prototypes' ? workAreas.products : workAreas.automation;
+
   const sections = [
     { heading: 'The Problem', body: project.problem },
     { heading: 'My Role', body: project.role },
@@ -69,10 +72,10 @@ export default async function ProjectPage({ params }: Props) {
         {/* Breadcrumb */}
         <div className="mb-10 flex flex-wrap items-center justify-between gap-3 border-b-2 border-hair pb-6">
           <Link
-            href="/#work"
+            href={workArea.href}
             className="inline-flex min-h-[44px] items-center gap-2 text-[13.5px] font-medium text-ink-soft transition-colors hover:text-pine"
           >
-            <ArrowLeft className="h-4 w-4" /> All case studies
+            <ArrowLeft className="h-4 w-4" /> Back to {workArea.title}
           </Link>
 
           <span className="pill">

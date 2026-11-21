@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Header } from '@/components/Header';
+import { workAreas } from '@/data/portfolio-navigation';
 import { VvicGallery } from '@/components/VvicGallery';
 
 export const metadata: Metadata = {
@@ -21,7 +22,7 @@ export default function VvicCaseStudy() {
     <div className="min-h-screen bg-paper text-ink">
       <Header />
       <main id="main-content" tabIndex={-1} className="mx-auto max-w-[1120px] px-5 py-12 focus:outline-none sm:px-6 md:py-16">
-        <Link href="/films#product-ads" className="inline-flex min-h-[44px] items-center text-sm text-pine underline underline-offset-4">Back to product-ad concepts</Link>
+        <Link href={`${workAreas.video.href}#product-ads`} className="inline-flex min-h-[44px] items-center text-sm text-pine underline underline-offset-4">Back to {workAreas.video.title}</Link>
         <header className="mb-12 mt-6 max-w-[800px]">
           <p className="eyebrow">Personal concept work · Creative direction + agent workflows</p>
           <h1 className="mt-4 font-serif text-[clamp(38px,6vw,72px)] leading-[1.02] tracking-[-0.03em]">v-vic: from product idea<br />to a finished film.</h1>

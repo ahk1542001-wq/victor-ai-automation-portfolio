@@ -5,23 +5,7 @@ import { Header } from '@/components/Header';
 import { portfolioContent } from '@/data/content';
 import { credentials } from '@/data/credentials';
 import { TechStackRail } from '@/components/TechStackRail';
-const workAreas = [
-  {
-    href: '/work',
-    title: 'AI Agents & Automation',
-    description: 'Agent workflows, customer follow-up and research automation.',
-  },
-  {
-    href: '/work#product-prototypes',
-    title: 'AI-Assisted Products',
-    description: 'Software demos and product prototypes built with AI assistance.',
-  },
-  {
-    href: '/films',
-    title: 'Content & Video',
-    description: 'Commercial films, Burmese explainers and the Hermes workflows behind them.',
-  },
-];
+import { about, credentialsPage, selectedWork, workAreas } from '@/data/portfolio-navigation';
 
 export default function Home() {
     const featuredCredentials = ['google-ai-professional', 'agentic-prompt-engineering', 'generative-ai-assistants', 'intro-to-mcp'];
@@ -50,9 +34,9 @@ export default function Home() {
     <TechStackRail />
     <section id="work" aria-labelledby="work-heading" className="border-t-2 border-ink py-12 md:py-16">
       <div className="mx-auto max-w-[1120px] px-5 sm:px-6">
-        <h2 id="work-heading" className="font-serif text-[clamp(32px,5vw,52px)] leading-tight">Selected work</h2>
+        <h2 id="work-heading" className="font-serif text-[clamp(32px,5vw,52px)] leading-tight">{selectedWork.title}</h2>
         <nav aria-label="Explore work by focus area" className="mt-6 border-b border-hair">
-          {workAreas.map(({ href, title, description }) => (
+          {Object.values(workAreas).map(({ href, title, description }) => (
             <Link
               key={href}
               href={href}
@@ -79,13 +63,13 @@ export default function Home() {
     <div className="order-1">
     <p className="text-[16px] leading-relaxed text-ink-soft">I moved from client services and project coordination into AI automation. At Technity, I was the client-facing lead for sponsored content from brands including Samsung and Huawei. Today, I combine that background with agent workflows and AI-assisted content creation.</p>
     <div className="mt-5 flex flex-wrap gap-x-6">
-    <Link href="/about" className="inline-flex min-h-[44px] items-center text-pine underline underline-offset-4">Background &amp; experience</Link>
+    <Link href={about.href} className="inline-flex min-h-[44px] items-center text-pine underline underline-offset-4">{about.title}</Link>
     <a href={portfolioContent.contact.resume} className="inline-flex min-h-[44px] items-center text-pine underline underline-offset-4">Download résumé</a>
     </div>
     <div id="credentials" className="mt-6 border-t border-hair pt-5">
     <p className="eyebrow">Selected credentials</p>
     <ul className="mt-3 space-y-2">{highlights.map(c => <li key={c.id} className="text-sm leading-relaxed text-muted">{c.title} · {c.issuer}</li>)}</ul>
-    <Link href="/credentials" className="mt-3 inline-flex min-h-[44px] items-center text-pine underline underline-offset-4">All verified credentials →</Link>
+    <Link href={credentialsPage.href} className="mt-3 inline-flex min-h-[44px] items-center text-pine underline underline-offset-4">{credentialsPage.title} →</Link>
     </div>
     </div>
     </div>

@@ -42,12 +42,10 @@ A recruiter-focused portfolio for **Victor**, an AI Automation & Agent Workflow 
 
 ## Experience Design
 
-- Concise identity and three selected works before the complete collections
-- Separate n8n Automation and AI-Assisted Software tracks
-- Streamlined recruiter homepage with featured project previews
-- `/work` collection separating software products from n8n Automation
-- `/about` page preserving background, professional experience, languages and education
-- Three selected homepage works, with complete Products & Automation and Films & Content collections
+- Three matching focus areas on the homepage and in the menu
+- AI Agents & Automation at `/work`, with AI-Assisted Products at `/work#product-prototypes`
+- Content & Video at `/films`, with commercial films, Burmese explainers and the Hermes production approach
+- About Victor at `/about`, with background, professional experience, languages and education
 - Dedicated credentials route retaining the complete verified inventory
 - Responsive navigation and layouts for desktop, tablet, and small mobile screens
 - Real approved tool and repository brand assets instead of generic placeholder marks

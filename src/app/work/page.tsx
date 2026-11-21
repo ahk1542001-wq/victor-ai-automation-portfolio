@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Header } from '@/components/Header';
+import { selectedWork, workAreas } from '@/data/portfolio-navigation';
 import { ProjectWorkCard } from '@/components/ProjectWorkCard';
 import { projects, type Project } from '@/data/projects';
 
 export const metadata: Metadata = {
-  title: 'Products & Automation | Victor',
+  title: `${workAreas.automation.title} | Victor`,
   description: 'Explore projects by outcome, from lead follow-up and meeting research to content production and product prototypes.',
   alternates: { canonical: '/work' },
 };
@@ -14,7 +15,7 @@ const outcomes = {
   'customer-workflows': 'Respond to customers and follow up',
   'meeting-research': 'Prepare for meetings',
   'content-production': 'Research and produce content',
-  'product-prototypes': 'Build products and prototype agents',
+  'product-prototypes': workAreas.products.title,
 } satisfies Record<Project['workOutcome'], string>;
 
 export default function Work() {
@@ -22,9 +23,9 @@ export default function Work() {
     <div className="min-h-screen bg-paper text-ink">
       <Header />
       <main id="main-content" tabIndex={-1} className="mx-auto max-w-[1120px] px-5 py-12 sm:px-6 md:py-16">
-        <Link href="/#work" className="inline-flex min-h-[44px] items-center text-pine underline underline-offset-4">Back to selected work</Link>
+        <Link href={selectedWork.href} className="inline-flex min-h-[44px] items-center text-pine underline underline-offset-4">Back to {selectedWork.title.toLowerCase()}</Link>
         <header className="mb-8 mt-5 max-w-[760px]">
-          <h1 className="font-serif text-[clamp(38px,6vw,72px)] leading-[1.04]">Products &amp; Automation</h1>
+          <h1 className="font-serif text-[clamp(38px,6vw,72px)] leading-[1.04]">{workAreas.automation.title}</h1>
           <p className="mt-5 text-lg leading-relaxed text-ink-soft">Explore what each project helps people do. The case studies cover my role, design decisions and how the work was verified.</p>
         </header>
         <nav aria-label="Browse by outcome" className="mb-10 flex flex-wrap gap-x-7 gap-y-1">
@@ -42,7 +43,7 @@ export default function Work() {
             </div>
           </section>
         ))}
-        <Link href="/films" className="inline-flex min-h-[44px] items-center text-pine underline underline-offset-4">Explore Films &amp; Content →</Link>
+        <Link href={workAreas.video.href} className="inline-flex min-h-[44px] items-center text-pine underline underline-offset-4">Explore {workAreas.video.title} →</Link>
       </main>
     </div>
   );

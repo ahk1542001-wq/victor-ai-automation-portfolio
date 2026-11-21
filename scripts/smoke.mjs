@@ -189,10 +189,6 @@ if (!fs.existsSync(credentialsHtmlPath)) {
 }
 
 const credentialsHtml = fs.readFileSync(credentialsHtmlPath, 'utf-8');
-if (!credentialsHtml.includes('Verified AI Credentials')) {
-  console.error('FAIL: Credentials page missing heading "Verified AI Credentials"');
-  process.exit(1);
-}
 if (!fs.existsSync(credentialsDataPath)) {
   console.error(`FAIL: Credentials data source not found at ${credentialsDataPath}`);
   process.exit(1);
@@ -291,7 +287,32 @@ if (workAreaLinks.length !== expectedWorkAreas.length || !expectedWorkAreas.ever
   workAreaLinks[i][1] === href && workAreaLinks[i][2].includes(title)
 ))) throw new Error('Selected Work must link to the three portfolio focus areas');
 if (/<video\b|data-featured-work=/.test(selectedWorkHtml)) throw new Error('Selected Work should link out to project and video collections');
-if (!workHtml.includes('id="product-prototypes"')) throw new Error('AI-Assisted Products link must land on the product prototypes');
+const expectedMenu = [
+  ['/#work', 'Selected work'],
+  ...expectedWorkAreas,
+  ['/about', 'About Victor'],
+  ['/credentials', 'Credentials'],
+];
+for (const pageHtml of [homeHtml, workHtml, filmsHtml, aboutHtml, credentialsHtml]) {
+  const headerHtml = pageHtml.match(/<header[^>]*>[\s\S]*?<\/header>/)?.[0] ?? '';
+  const menu = [...headerHtml.matchAll(/<a[^>]*class="navlink[^"]*"[^>]*href="([^"]+)"[^>]*>([^<]+)<\/a>/g)];
+  if (menu.length !== expectedMenu.length || !expectedMenu.every(([href, title], i) => (
+    menu[i][1] === href && menu[i][2] === title
+  ))) throw new Error('Main navigation must use the same labels and destinations across the portfolio');
+}
+for (const [pageHtml, heading] of [
+  [workHtml, expectedWorkAreas[0][1]],
+  [filmsHtml, expectedWorkAreas[2][1]],
+  [aboutHtml, 'About Victor'],
+  [credentialsHtml, 'Credentials'],
+]) {
+  if (pageHtml.match(/<h1[^>]*>([^<]+)<\/h1>/)?.[1] !== heading) {
+    throw new Error(`Menu label does not match page heading: ${heading}`);
+  }
+}
+if (workHtml.match(/<h2[^>]*id="product-prototypes-heading"[^>]*>([^<]+)<\/h2>/)?.[1] !== expectedWorkAreas[1][1]) {
+  throw new Error('AI-Assisted Products link must land on the matching heading');
+}
 if (homeHtml.includes('Choose a VIC video style') || homeHtml.includes('Choose a v-vic concept film')) throw new Error('Full galleries belong on the films collection');
 for (const route of ['/work', '/films', '/about', '/credentials']) {
   if (!homeHtml.includes(`href="${route}"`)) throw new Error(`Missing collection/detail route ${route}`);

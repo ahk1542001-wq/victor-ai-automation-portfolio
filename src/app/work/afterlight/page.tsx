@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Header } from '@/components/Header';
+import { workAreas } from '@/data/portfolio-navigation';
 
 export const metadata: Metadata = {
   title: 'AFTERLIGHT — What stays | Victor',
@@ -29,7 +30,7 @@ export default function AfterlightCaseStudy() {
   return <div className="min-h-screen bg-paper text-ink">
     <Header />
     <main id="main-content" tabIndex={-1} className="mx-auto max-w-[1120px] px-5 py-12 focus:outline-none sm:px-6 md:py-16">
-      <Link href="/films#product-ads" className="inline-flex min-h-[44px] items-center text-sm text-pine underline underline-offset-4">Back to commercial concepts</Link>
+      <Link href={`${workAreas.video.href}#product-ads`} className="inline-flex min-h-[44px] items-center text-sm text-pine underline underline-offset-4">Back to {workAreas.video.title}</Link>
       <header className="mb-8 mt-6 grid gap-6 md:grid-cols-[1.2fr_1fr] md:items-end">
         <div><p className="eyebrow">Independent concept film</p><h1 className="mt-4 font-serif text-[clamp(38px,7vw,80px)] leading-[1.02] tracking-[-0.03em]">AFTERLIGHT<br />What stays.</h1></div>
         <div><p className="max-w-[35ch] text-xl leading-relaxed text-ink-soft">A fragrance, remembered through a considerate gesture.</p><p className="mt-4 text-sm text-muted">49 seconds · 1280 × 720 · 24 fps</p></div>
