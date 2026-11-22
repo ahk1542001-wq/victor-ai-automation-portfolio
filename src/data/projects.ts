@@ -152,6 +152,22 @@ export const projects: Project[] = [
     exampleUrl: 'https://github.com/ahk1542001-wq/meeting-prep-research-agent/blob/main/brief-example.md'
   },
   {
+    id: 'lead-finder',
+    workOutcome: 'customer-workflows',
+    title: 'AI Lead Finder — Dynamic Prospect Research & Scoring',
+    category: 'Feature',
+    projectType: 'n8n Automation',
+    status: 'MVP demo',
+    problem: 'Lead research for a small business is slow and inconsistent, and who counts as a good lead depends entirely on the business doing the selling, so fixed templates and hardcoded ideal-customer profiles break the moment a second business uses them.',
+    implementation: 'A 25-workflow n8n chain on Postgres: a planning stage turns a plain-language business description into a versioned search profile (scoring rubric, sources, search queries), an owner approval gate, then discovery, dedupe-before-spend, evidence-cited research, deterministic scoring with a bounded AI judge, decision-maker finding and outreach drafting.',
+    solution: 'Describe your business in your own words and the system derives who to look for, where to look and how to score fit. Every researched field carries its evidence (source URL, quote, date seen, confidence) or stays empty, every paid call is written to a cost ledger first, and outreach is drafts only, waiting in a Google Sheet for a human decision.',
+    tools: ['n8n', 'PostgreSQL (Supabase)', 'Google Sheets', 'Tavily', 'Google Maps', 'Meta Model API'],
+    capabilities: ['Dynamic search-profile planning', 'Evidence-cited AI scoring with a capped judge', 'Dedupe-before-spend cost control', 'Human approval gates', 'Adversarially tested AI planner'],
+    outcome: 'Runs live against my own business, FYF AI, with a pool of over 450 researched companies. The planner passed a frozen 50-case evaluation set (30 realistic contexts, 20 adversarial) scoring 28/30 with zero unsafe drafts saved, with a second model acting as final reviewer at every promotion gate.',
+    github: 'https://github.com/ahk1542001-wq/n8n-automation-portfolio/tree/main/AI%20Lead%20Finder%20-%20Dynamic%20Prospect%20Research%20%26%20Scoring',
+    demoUrl: 'https://raw.githubusercontent.com/ahk1542001-wq/n8n-automation-portfolio/main/AI%20Lead%20Finder%20-%20Dynamic%20Prospect%20Research%20%26%20Scoring/demo/lead-finder-demo-v10.mp4'
+  },
+  {
     id: 'lead-qualification',
     workOutcome: 'customer-workflows',
     agentic: true,
