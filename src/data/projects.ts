@@ -165,7 +165,8 @@ export const projects: Project[] = [
     capabilities: ['Dynamic search-profile planning', 'Evidence-cited AI scoring with a capped judge', 'Dedupe-before-spend cost control', 'Human approval gates', 'Adversarially tested AI planner'],
     outcome: 'Runs live against my own business, FYF AI, with a pool of over 450 researched companies. The planner passed a frozen 50-case evaluation set (30 realistic contexts, 20 adversarial) scoring 28/30 with zero unsafe drafts saved, with a second model acting as final reviewer at every promotion gate.',
     github: 'https://github.com/ahk1542001-wq/n8n-automation-portfolio/tree/main/AI%20Lead%20Finder%20-%20Dynamic%20Prospect%20Research%20%26%20Scoring',
-    demoUrl: 'https://raw.githubusercontent.com/ahk1542001-wq/n8n-automation-portfolio/main/AI%20Lead%20Finder%20-%20Dynamic%20Prospect%20Research%20%26%20Scoring/demo/lead-finder-demo-v10.mp4'
+    youtubeUrl: 'https://youtu.be/zEDtmOfOQs0',
+    youtubeId: 'zEDtmOfOQs0'
   },
   {
     id: 'lead-qualification',
