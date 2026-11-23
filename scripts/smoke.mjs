@@ -22,7 +22,6 @@ if (!fs.existsSync(homeHtmlPath)) {
 const homeHtml = fs.readFileSync(homeHtmlPath, 'utf-8');
 const workHtml = fs.readFileSync(path.join(outDir, 'work.html'), 'utf-8');
 const filmsHtml = fs.readFileSync(path.join(outDir, 'films.html'), 'utf-8');
-const aboutHtml = fs.readFileSync(path.join(outDir, 'about.html'), 'utf-8');
 
 if (!homeHtml.includes('VICTOR')) {
   console.error('FAIL: Hero text VICTOR not found on homepage');
@@ -65,7 +64,7 @@ if (agentsSource.includes('BEGIN:nextjs-agent-rules')) {
   process.exit(1);
 }
 
-if (contentSource.includes('Bachelor of Applied Science, Industrial Chemistry') || !aboutHtml.includes('degree not completed')) {
+if (contentSource.includes('Bachelor of Applied Science, Industrial Chemistry') || !homeHtml.includes('degree not completed')) {
   throw new Error('The portfolio must describe Industrial Chemistry as unfinished coursework');
 }
 
@@ -271,7 +270,8 @@ console.log('PASS: v-vic discovery, honest role boundaries, three exact media/po
 
 // Selected Work routes visitors to the three portfolio focus areas.
 const selectedWorkHtml = homeHtml.match(/<section[^>]*id="work"[\s\S]*?<\/section>/)?.[0] ?? '';
-const workAreaLinks = [...selectedWorkHtml.matchAll(/<a[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)];
+const focusNavHtml = selectedWorkHtml.match(/<nav[^>]*>[\s\S]*?<\/nav>/)?.[0] ?? '';
+const workAreaLinks = [...focusNavHtml.matchAll(/<a[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)];
 const expectedWorkAreas = [
   ['/work', 'AI Agents &amp; Automation'],
   ['/work#product-prototypes', 'AI-Assisted Products'],
@@ -280,14 +280,17 @@ const expectedWorkAreas = [
 if (workAreaLinks.length !== expectedWorkAreas.length || !expectedWorkAreas.every(([href, title], i) => (
   workAreaLinks[i][1] === href && workAreaLinks[i][2].includes(title)
 ))) throw new Error('Selected Work must link to the three portfolio focus areas');
-if (/<video\b|data-featured-work=/.test(selectedWorkHtml)) throw new Error('Selected Work should link out to project and video collections');
+for (const slug of ['lead-finder', 'voice-receptionist', 'meeting-prep-research-agent']) {
+  if (!selectedWorkHtml.includes(`href="/projects/${slug}"`)) throw new Error(`Missing featured homepage workflow: ${slug}`);
+}
+if (/<video\b/.test(selectedWorkHtml)) throw new Error('Selected Work should link out to project and video collections');
 const expectedMenu = [
   ['/#work', 'Selected work'],
   ...expectedWorkAreas,
-  ['/about', 'About Victor'],
+  ['/#background', 'About &amp; Journey'],
   ['/credentials', 'Credentials'],
 ];
-for (const pageHtml of [homeHtml, workHtml, filmsHtml, aboutHtml, credentialsHtml]) {
+for (const pageHtml of [homeHtml, workHtml, filmsHtml, credentialsHtml]) {
   const headerHtml = pageHtml.match(/<header[^>]*>[\s\S]*?<\/header>/)?.[0] ?? '';
   const menu = [...headerHtml.matchAll(/<a[^>]*class="navlink[^"]*"[^>]*href="([^"]+)"[^>]*>([^<]+)<\/a>/g)];
   if (menu.length !== expectedMenu.length || !expectedMenu.every(([href, title], i) => (
@@ -297,7 +300,6 @@ for (const pageHtml of [homeHtml, workHtml, filmsHtml, aboutHtml, credentialsHtm
 for (const [pageHtml, heading] of [
   [workHtml, expectedWorkAreas[0][1]],
   [filmsHtml, expectedWorkAreas[2][1]],
-  [aboutHtml, 'About Victor'],
   [credentialsHtml, 'Credentials'],
 ]) {
   if (pageHtml.match(/<h1[^>]*>([^<]+)<\/h1>/)?.[1] !== heading) {
@@ -308,7 +310,7 @@ if (workHtml.match(/<h2[^>]*id="product-prototypes-heading"[^>]*>([^<]+)<\/h2>/)
   throw new Error('AI-Assisted Products link must land on the matching heading');
 }
 if (homeHtml.includes('Choose a VIC video style') || homeHtml.includes('Choose a v-vic concept film')) throw new Error('Full galleries belong on the films collection');
-for (const route of ['/work', '/films', '/about', '/credentials']) {
+for (const route of ['/work', '/films', '/#background', '/credentials']) {
   if (!homeHtml.includes(`href="${route}"`)) throw new Error(`Missing collection/detail route ${route}`);
 }
 for (const id of ['product-ads', 'content']) {
@@ -317,15 +319,25 @@ for (const id of ['product-ads', 'content']) {
 for (const phrase of ['Choose a VIC video style', 'Choose a v-vic concept film']) {
   if (!filmsHtml.includes(phrase)) throw new Error(`Missing film inventory ${phrase}`);
 }
+const backgroundSectionHtml = homeHtml.match(/<section[^>]*id="background"[\s\S]*?<\/section>/)?.[0] ?? '';
+if (!backgroundSectionHtml.includes('About &amp; Journey') || !backgroundSectionHtml.includes('id="journey"')) {
+  throw new Error('About and the career timeline must share one homepage section');
+}
+if (sitemapXml.includes('<loc>https://portfolioweb-three-sigma.vercel.app/about</loc>')) {
+  throw new Error('The redirected About URL must stay out of the sitemap');
+}
+const routesManifest = JSON.parse(fs.readFileSync(path.join(outDir, '../../routes-manifest.json'), 'utf8'));
+if (!routesManifest.redirects.some(route => route.source === '/about' && route.destination === '/#background' && route.statusCode === 308)) {
+  throw new Error('The old About URL must redirect to the homepage section');
+}
 for (const company of ['Technity', 'Gala Bangkok', 'Mercure Yangon']) {
-  if (!aboutHtml.includes(company)) throw new Error(`Detailed background missing ${company}`);
+  if (!backgroundSectionHtml.includes(company)) throw new Error(`Detailed background missing ${company}`);
 }
 if (!vicHtml.includes('/films#content') || !vvicHtml.includes('/films#product-ads')) throw new Error('Case return links must point to the full film collections');
 console.log('PASS: three homepage focus areas, products/films collections, detailed background and collection return links.');
 
 // Preserve owner identity and the requested production-approach explanation.
 const heroSectionHtml = homeHtml.match(/<section[^>]*aria-labelledby="hero-heading"[\s\S]*?<\/section>/)?.[0] ?? '';
-const backgroundSectionHtml = homeHtml.match(/<section[^>]*id="background"[\s\S]*?<\/section>/)?.[0] ?? '';
 if (!heroSectionHtml || heroSectionHtml.includes('victor-portrait-retouched.webp') || !backgroundSectionHtml.includes('victor-portrait-retouched.webp')) throw new Error('Portrait belongs in Background, not the hero');
 if ((homeHtml.match(/href="https:\/\/github\.com\/ahk1542001-wq"/g) || []).length < 2) throw new Error('GitHub account must remain explicit in hero and footer');
 if (!filmsHtml.includes('href="#production-approach"') || !filmsHtml.includes('id="production-approach"')) throw new Error('Production approach must be discoverable');
