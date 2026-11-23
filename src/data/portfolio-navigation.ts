@@ -7,7 +7,7 @@ export const workAreas = {
     description: 'Agent workflows, customer follow-up and research automation.',
   },
   products: {
-    href: '/work#product-prototypes',
+    href: '/products',
     title: 'AI-Assisted Products',
     description: 'Software demos and product prototypes built with AI assistance.',
   },

@@ -1,11 +1,17 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowUpRight, ArrowRight, Mail } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, ChevronDown, Mail } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { FeaturedWorkflows } from '@/components/FeaturedWorkflows';
 import { portfolioContent } from '@/data/content';
 import { TechStackRail } from '@/components/TechStackRail';
 import { about, credentialsPage, selectedWork, workAreas } from '@/data/portfolio-navigation';
+
+const focusColors = [
+  'bg-pine/10 border-pine/30',
+  'bg-clay/10 border-clay/30',
+  'bg-sand border-hair',
+];
 
 export default function Home() {
     return <div className="min-h-screen bg-paper font-sans text-ink">
@@ -19,7 +25,10 @@ export default function Home() {
       </h1>
       <p className="hero-support mx-auto mt-8 max-w-[57ch] text-[16px] leading-relaxed text-ink-soft sm:text-lg">I connect APIs, databases, and AI models to automate research, lead operations, and approvals.</p>
       <div className="hero-actions mt-8 flex flex-col items-center gap-3">
-        <a href="#work" className="btn-hard">See my work <ArrowRight className="h-4 w-4" aria-hidden="true" /></a>
+        <div className="flex flex-wrap justify-center gap-3">
+          <a href="#work" className="btn-hard">See my work <ArrowRight className="h-4 w-4" aria-hidden="true" /></a>
+          <a href="#contact" className="btn-hard-ghost">Work with me <Mail className="h-4 w-4" aria-hidden="true" /></a>
+        </div>
         <div className="flex items-center justify-center gap-3">
           <a href={`mailto:${portfolioContent.contact.email}`} aria-label="Email Victor" title="Email Victor" className="hero-social-link"><Mail className="h-5 w-5" aria-hidden="true" /></a>
           <a href={portfolioContent.contact.github} aria-label="Victor on GitHub" title="GitHub" className="hero-social-link" target="_blank" rel="noopener noreferrer"><Image src="/brands/github.svg" alt="" width={20} height={20} className="icon-invert-dark" /></a>
@@ -30,15 +39,15 @@ export default function Home() {
     <section id="work" aria-labelledby="work-heading" className="border-t-2 border-ink py-12 md:py-16">
       <div className="mx-auto max-w-[1120px] px-5 sm:px-6">
         <h2 id="work-heading" className="font-serif text-[clamp(32px,5vw,52px)] leading-tight">{selectedWork.title}</h2>
-        <nav aria-label="Explore work by focus area" className="mt-6 border-b border-hair">
-          {Object.values(workAreas).map(({ href, title, description }) => (
+        <nav aria-label="Explore work by focus area" className="mt-6 grid gap-3">
+          {Object.values(workAreas).map(({ href, title, description }, index) => (
             <Link
               key={href}
               href={href}
-              className="group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-2 border-t border-hair px-2 py-5 transition-colors hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] md:gap-x-8"
+              className={`group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-2 rounded-[12px] border px-4 py-5 transition-colors hover:border-pine focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] md:gap-x-8 ${focusColors[index]}`}
             >
               <span className="font-serif text-3xl leading-tight group-hover:text-pine">{title}</span>
-              <span className="col-start-1 row-start-2 text-sm leading-relaxed text-muted md:col-start-2 md:row-start-1">{description}</span>
+              <span className="col-start-1 row-start-2 text-sm leading-relaxed text-ink-soft md:col-start-2 md:row-start-1">{description}</span>
               <ArrowUpRight className="col-start-2 row-start-1 h-5 w-5 text-pine md:col-start-3" aria-hidden="true" />
             </Link>
           ))}
@@ -78,8 +87,10 @@ export default function Home() {
           ))}
         </ol>
 
-        <details className="mt-6">
-          <summary className="cursor-pointer py-3 text-sm font-medium text-pine">Education and languages</summary>
+        <details className="group mt-6">
+          <summary className="btn-hard-ghost cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+            Education and languages <ChevronDown className="h-4 w-4 group-open:rotate-180" aria-hidden="true" />
+          </summary>
           <div className="grid gap-5 pb-4 pt-2 text-sm leading-relaxed sm:grid-cols-2">
             <ul aria-label="Education" className="space-y-3">
               {portfolioContent.education.map((item) => (
@@ -99,8 +110,8 @@ export default function Home() {
             </dl>
           </div>
         </details>
-        <Link id="credentials" href={credentialsPage.href} className="inline-flex min-h-[44px] scroll-mt-24 items-center text-sm text-pine underline underline-offset-4">
-          {credentialsPage.title} →
+        <Link id="credentials" href={credentialsPage.href} className="btn-hard-ghost mt-3 scroll-mt-24">
+          {credentialsPage.title} <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </Link>
       </div>
     </section>

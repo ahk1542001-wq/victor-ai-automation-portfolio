@@ -7,10 +7,9 @@ const roles = [
 ];
 
 export function ProductionApproach() {
-  return <section id="production-approach" aria-labelledby="production-approach-heading" className="border-t-2 border-ink py-14 md:py-20">
+  return <section id="production-approach" aria-labelledby="production-approach-heading" className="scroll-mt-24 border-t border-hair py-10 md:py-14">
     <div className="mx-auto max-w-[1120px] px-5 sm:px-6">
-      <p className="eyebrow">My setup &amp; approach · Hermes multi-agent workflows</p>
-      <h2 id="production-approach-heading" className="mt-4 max-w-[22ch] font-serif text-[clamp(32px,5vw,52px)] leading-tight">From the brief to a reviewed video.</h2>
+      <h2 id="production-approach-heading" className="font-serif text-[clamp(30px,4vw,46px)] leading-tight">How I make the videos</h2>
       <p className="mt-5 max-w-[78ch] text-[16px] leading-relaxed text-ink-soft">I built separate production workflows for personal branding and commercial video. I define the creative direction; a main agent coordinates scoped execution workers. The end-to-end approach connects planning, assets, voice, editing and review, with human approval at key stages.</p>
       <div className="mt-9 grid gap-10 md:grid-cols-2">
         <div><h3 className="font-serif text-3xl">Production stages</h3><ol aria-label="Production workflow" className="mt-5 border-l-2 border-pine pl-5">{roles.map(([title, description]) => <li key={title} className="border-b border-hair py-4 first:pt-0 last:border-0"><h4 className="text-[16px] font-medium">{title}</h4><p className="mt-2 text-sm leading-relaxed text-muted">{description}</p></li>)}</ol><p className="mt-4 text-sm leading-relaxed text-muted">Independent tasks can overlap when inputs and ownership are clear. One integrator assembles the film; commercial Flow generation has one exclusive CLI/CDP browser worker.</p></div>
