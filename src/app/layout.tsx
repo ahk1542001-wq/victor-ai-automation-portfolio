@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Victor | AI Agents, Automation & Video",
-    description: "AI agents for content creation and business automation, including Burmese video production, voice cloning and reusable workflows.",
+    description: "AI agents and n8n workflows for lead research, voice booking, and meeting preparation.",
     type: "website",
     locale: "en_US",
     siteName: "Victor — AI Automation Portfolio",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Victor | AI Agents, Automation & Video",
-    description: "AI workflows, software and videos by Victor in Bangkok, Thailand.",
+    description: "AI agents and n8n workflows for lead research, voice booking, and meeting preparation.",
   },
   icons: {
     icon: "/favicon.ico",

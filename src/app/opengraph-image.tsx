@@ -88,7 +88,7 @@ export default async function OpengraphImage() {
               display: 'flex',
             }}
           >
-            I build agentic systems
+            I build AI agents
           </div>
           <div
             style={{
@@ -100,7 +100,7 @@ export default async function OpengraphImage() {
               display: 'flex',
             }}
           >
-            verified beyond the demo.
+            and automate workflows.
           </div>
         </div>
 

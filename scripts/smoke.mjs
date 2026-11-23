@@ -29,8 +29,8 @@ if (!homeHtml.includes('VICTOR')) {
   process.exit(1);
 }
 
-if (!homeHtml.includes('href="/projects/meeting-prep-research-agent"')) {
-  throw new Error('Homepage must link directly to the research agent example');
+if (!homeHtml.includes('href="/projects/lead-finder"') || !homeHtml.includes('See automation workflows')) {
+  throw new Error('Homepage must link to the automation collection and the featured Lead Finder case study');
 }
 
 if (homeHtml.includes('Bachelor of Applied Science, Industrial Chemistry')) {
