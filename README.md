@@ -45,7 +45,7 @@ A recruiter-focused portfolio for **Victor**, based in Bangkok. The site present
 - Three matching focus areas on the homepage and in the menu
 - AI Agents & Automation at `/work`, with AI-Assisted Products at `/work#product-prototypes`
 - Content & Video at `/films`, with commercial films, Burmese explainers and the Hermes production approach
-- About Victor at `/about`, with background, professional experience, languages and education
+- About & Journey on the homepage at `/#background`, with background, career timeline, education and languages
 - Dedicated credentials route retaining the complete verified inventory
 - Responsive navigation and layouts for desktop, tablet, and small mobile screens
 - Real approved tool and repository brand assets instead of generic placeholder marks

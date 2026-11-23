@@ -2,14 +2,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight, ArrowRight, Mail } from 'lucide-react';
 import { Header } from '@/components/Header';
+import { FeaturedWorkflows } from '@/components/FeaturedWorkflows';
 import { portfolioContent } from '@/data/content';
-import { credentials } from '@/data/credentials';
 import { TechStackRail } from '@/components/TechStackRail';
 import { about, credentialsPage, selectedWork, workAreas } from '@/data/portfolio-navigation';
 
 export default function Home() {
-    const featuredCredentials = ['google-ai-professional', 'agentic-prompt-engineering', 'generative-ai-assistants', 'intro-to-mcp'];
-    const highlights = credentials.filter(c => featuredCredentials.includes(c.id)).slice(0, 4);
     return <div className="min-h-screen bg-paper font-sans text-ink">
     <Header />
     <main id="main-content" tabIndex={-1} className="focus:outline-none">
@@ -45,44 +43,65 @@ export default function Home() {
             </Link>
           ))}
         </nav>
+        <div className="mt-8">
+          <h3 className="font-serif text-3xl">Featured workflows</h3>
+          <FeaturedWorkflows />
+        </div>
       </div>
     </section>
-    <section id="background" aria-labelledby="background-heading" className="border-t-2 border-ink py-12 md:py-16">
-    <div className="mx-auto grid max-w-[1120px] gap-8 px-5 sm:px-6 md:grid-cols-[1.4fr_0.65fr]">
-    <div className="order-2 justify-self-end">
-    <p className="eyebrow">The person behind the work</p>
-    <h2 id="background-heading" className="sr-only">About Victor</h2>
-<figure className="mt-7 w-[220px] max-w-full">
-<div className="portrait-frame"><Image src="/victor-portrait-retouched.webp" alt="Victor, photographed in Bangkok" fill sizes="220px" /></div>
-<figcaption className="mt-4 font-mono text-xs text-muted">Victor · Bangkok, Thailand</figcaption>
-</figure>
-    </div>
-    <div className="order-1">
-    <p className="text-[16px] leading-relaxed text-ink-soft">I moved from client services and project coordination into AI automation. At Technity, I was the client-facing lead for sponsored content from brands including Samsung and Huawei. Today, I combine that background with agent workflows and AI-assisted content creation.</p>
-    <div className="mt-5 flex flex-wrap gap-x-6">
-    <Link href={about.href} className="inline-flex min-h-[44px] items-center text-pine underline underline-offset-4">{about.title}</Link>
-    </div>
-    <div id="credentials" className="mt-6 border-t border-hair pt-5">
-    <p className="eyebrow">Selected credentials</p>
-    <ul className="mt-3 space-y-2">{highlights.map(c => <li key={c.id} className="text-sm leading-relaxed text-muted">{c.title} · {c.issuer}</li>)}</ul>
-    <Link href={credentialsPage.href} className="mt-3 inline-flex min-h-[44px] items-center text-pine underline underline-offset-4">{credentialsPage.title} →</Link>
-    </div>
-    </div>
-    </div>
-    </section>
-    <section id="journey" aria-labelledby="journey-heading" className="border-t-2 border-ink py-12 md:py-16">
+    <section id="background" aria-labelledby="background-heading" className="scroll-mt-24 border-t-2 border-ink py-12 md:py-16">
       <div className="mx-auto max-w-[1120px] px-5 sm:px-6">
-        <p className="eyebrow">Experience</p>
-        <h2 id="journey-heading" className="mt-2 font-serif text-[clamp(32px,5vw,52px)] leading-tight">Journey</h2>
-        <div className="rule-t mt-8">
+        <h2 id="background-heading" className="font-serif text-[clamp(32px,5vw,52px)] leading-tight">{about.title}</h2>
+        <div className="mt-6 grid items-start gap-6 md:grid-cols-[minmax(0,1fr)_220px] md:gap-12">
+          <div className="max-w-[65ch] space-y-4 text-[16px] leading-relaxed text-ink-soft">
+            <p>I moved from client services and project coordination into AI automation. At Technity, I was the client-facing lead for sponsored content from brands including Samsung and Huawei.</p>
+            <p>
+              Project coordination taught me to define what needs to happen and where someone needs to review it. I apply that in{' '}
+              <Link href="/projects/lead-finder#workflow-heading" className="text-pine underline underline-offset-4">Lead Finder</Link>,
+              where a person approves the search plan and decides which leads get outreach drafts.
+            </p>
+          </div>
+          <figure className="w-[220px] max-w-full">
+            <div className="portrait-frame"><Image src="/victor-portrait-retouched.webp" alt="Victor, photographed in Bangkok" fill sizes="220px" /></div>
+            <figcaption className="mt-4 font-mono text-xs text-muted">Victor · Bangkok, Thailand</figcaption>
+          </figure>
+        </div>
+
+        <h3 id="journey" className="mt-10 scroll-mt-24 font-serif text-3xl">Career timeline</h3>
+        <ol aria-labelledby="journey" className="rule-t mt-4">
           {[...portfolioContent.professionalExperience].reverse().map((exp) => (
-            <div key={`${exp.company}-${exp.period}`} className="hair-b grid gap-1.5 py-5 md:grid-cols-[200px_1fr_230px] md:items-baseline md:gap-6">
+            <li key={`${exp.company}-${exp.period}`} className="hair-b grid gap-1.5 py-4 md:grid-cols-[200px_1fr_230px] md:items-baseline md:gap-6">
               <span className="font-mono text-[12.5px] text-muted">{exp.period}</span>
               <span className="font-serif text-xl leading-snug text-ink">{exp.role}</span>
               <span className="text-[13.5px] text-muted md:text-right">{exp.company}</span>
-            </div>
+            </li>
           ))}
-        </div>
+        </ol>
+
+        <details className="mt-6">
+          <summary className="cursor-pointer py-3 text-sm font-medium text-pine">Education and languages</summary>
+          <div className="grid gap-5 pb-4 pt-2 text-sm leading-relaxed sm:grid-cols-2">
+            <ul aria-label="Education" className="space-y-3">
+              {portfolioContent.education.map((item) => (
+                <li key={item.institution}>
+                  <p>{item.degree}</p>
+                  <p className="text-muted">{item.institution} · {item.period}</p>
+                </li>
+              ))}
+            </ul>
+            <dl aria-label="Languages" className="space-y-2">
+              {portfolioContent.languages.map(({ name, proficiency }) => (
+                <div key={name} className="flex flex-wrap gap-x-2">
+                  <dt>{name}</dt>
+                  <dd className="text-muted">{proficiency}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </details>
+        <Link id="credentials" href={credentialsPage.href} className="inline-flex min-h-[44px] scroll-mt-24 items-center text-sm text-pine underline underline-offset-4">
+          {credentialsPage.title} →
+        </Link>
       </div>
     </section>
   </main>

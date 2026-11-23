@@ -18,5 +18,5 @@ export const workAreas = {
   },
 };
 
-export const about = { href: '/about', title: 'About Victor' };
+export const about = { href: '/#background', title: 'About & Journey' };
 export const credentialsPage = { href: '/credentials', title: 'Credentials' };

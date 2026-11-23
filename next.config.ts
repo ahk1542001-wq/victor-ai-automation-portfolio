@@ -15,6 +15,9 @@ const nextConfig: NextConfig = {
       }
     ],
   },
+  async redirects() {
+    return [{ source: '/about', destination: '/#background', permanent: true }];
+  },
   async headers() {
     return [
       {
