@@ -29,8 +29,8 @@ if (!homeHtml.includes('VICTOR')) {
   process.exit(1);
 }
 
-if (!homeHtml.includes('href="/projects/lead-finder"') || !homeHtml.includes('See automation workflows')) {
-  throw new Error('Homepage must link to the automation collection and the featured Lead Finder case study');
+if (!/<a\b[^>]*href="#work"[^>]*>See my work/.test(homeHtml) || !homeHtml.includes('id="work"')) {
+  throw new Error('Homepage hero must link to the Selected work section');
 }
 
 if (homeHtml.includes('Bachelor of Applied Science, Industrial Chemistry')) {
