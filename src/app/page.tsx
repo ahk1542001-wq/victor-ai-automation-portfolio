@@ -70,6 +70,21 @@ export default function Home() {
     </div>
     </div>
     </section>
+    <section id="journey" aria-labelledby="journey-heading" className="border-t-2 border-ink py-12 md:py-16">
+      <div className="mx-auto max-w-[1120px] px-5 sm:px-6">
+        <p className="eyebrow">Experience</p>
+        <h2 id="journey-heading" className="mt-2 font-serif text-[clamp(32px,5vw,52px)] leading-tight">Journey</h2>
+        <div className="rule-t mt-8">
+          {[...portfolioContent.professionalExperience].reverse().map((exp) => (
+            <div key={`${exp.company}-${exp.period}`} className="hair-b grid gap-1.5 py-5 md:grid-cols-[200px_1fr_230px] md:items-baseline md:gap-6">
+              <span className="font-mono text-[12.5px] text-muted">{exp.period}</span>
+              <span className="font-serif text-xl leading-snug text-ink">{exp.role}</span>
+              <span className="text-[13.5px] text-muted md:text-right">{exp.company}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   </main>
     <footer id="contact" className="border-t-2 border-ink bg-paper-2 py-12">
     <div className="mx-auto flex max-w-[1120px] flex-wrap items-center justify-between gap-7 px-5 sm:px-6">
