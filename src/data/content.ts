@@ -30,6 +30,12 @@ export const portfolioContent = {
   ],
   professionalExperience: [
     {
+      role: 'Content Creator & AI Automation Specialist (Freelance)',
+      company: 'Bangkok / Remote',
+      period: 'May 2026 to Present',
+      description: ''
+    },
+    {
       role: 'Waiter',
       company: 'Gala Bangkok',
       period: 'June 2025 to December 2025',
