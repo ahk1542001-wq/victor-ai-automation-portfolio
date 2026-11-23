@@ -22,8 +22,10 @@ export default function About() {
                   <div className="max-w-[65ch] space-y-5 text-[16px] leading-[1.8] text-ink-soft">
                     <p className="text-pretty">{aboutParts[0]}.</p>
                     <p className="text-pretty">
-                      My coordination background shapes how I build: define the scope, direct the
-                      work and check the result against clear acceptance criteria.
+                      Project coordination taught me to define what needs to happen and where someone
+                      needs to review it. I apply that in{' '}
+                      <Link href="/projects/lead-finder#workflow-heading" className="text-pine underline underline-offset-4">Lead Finder</Link>,
+                      where a person approves the search plan and decides which leads get outreach drafts.
                     </p>
                     {aboutParts.slice(1).length > 0 && (<p className="text-pretty">{aboutParts.slice(1).join('. ')}</p>)}
                   </div>
