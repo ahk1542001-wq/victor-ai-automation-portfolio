@@ -163,7 +163,7 @@ export const projects: Project[] = [
     solution: 'Describe your business in your own words and the system derives who to look for, where to look and how to score fit. Every researched field carries its evidence (source URL, quote, date seen, confidence) or stays empty, every paid call is written to a cost ledger first, and outreach is drafts only, waiting in a Google Sheet for a human decision.',
     tools: ['n8n', 'PostgreSQL (Supabase)', 'Google Sheets', 'Tavily', 'Google Maps', 'Meta Model API'],
     capabilities: ['Dynamic search-profile planning', 'Evidence-cited AI scoring with a capped judge', 'Dedupe-before-spend cost control', 'Human approval gates', 'Adversarially tested AI planner'],
-    outcome: 'Runs live against my own business, FYF AI, with a pool of over 450 researched companies. The planner passed a frozen 50-case evaluation set (30 realistic contexts, 20 adversarial) scoring 28/30 with zero unsafe drafts saved, with a second model acting as final reviewer at every promotion gate.',
+    outcome: 'Turns a plain-language business brief into ranked leads backed by source evidence. A person approves the search plan and chooses which leads get outreach drafts.',
     github: 'https://github.com/ahk1542001-wq/n8n-automation-portfolio/tree/main/AI%20Lead%20Finder%20-%20Dynamic%20Prospect%20Research%20%26%20Scoring',
     youtubeUrl: 'https://youtu.be/zEDtmOfOQs0',
     youtubeId: 'zEDtmOfOQs0'

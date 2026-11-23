@@ -2,6 +2,7 @@ import { projects } from '@/data/projects';
 import { YouTubeThumbnail } from '@/components/YouTubeThumbnail';
 import { TopologyDiagram } from '@/components/TopologyDiagram';
 import { Header } from '@/components/Header';
+import { LeadFinderWorkflow } from '@/components/LeadFinderWorkflow';
 import { workAreas } from '@/data/portfolio-navigation';
 import { ArrowLeft, ArrowRight, ExternalLink, Check } from 'lucide-react';
 import { notFound } from 'next/navigation';
@@ -105,8 +106,10 @@ export default async function ProjectPage({ params }: Props) {
             )}
           </header>
 
+          {project.id === 'lead-finder' && <LeadFinderWorkflow sourceUrl={project.github} />}
+
           {/* Media plate */}
-          <div className="card-hard mt-10 overflow-hidden p-6 sm:p-8">
+          <div id="project-demo" className="card-hard mt-10 scroll-mt-28 overflow-hidden p-6 sm:p-8">
             <div className="relative flex min-h-[200px] items-center justify-center overflow-hidden rounded-[10px] border-2 border-dashed border-paper/55 bg-ink sm:min-h-[320px]">
               {project.youtubeId ? (
                 <div className="w-full">

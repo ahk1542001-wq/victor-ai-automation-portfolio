@@ -16,15 +16,17 @@ export default function Home() {
     <section aria-labelledby="hero-heading" className="hero-identity mx-auto max-w-[1120px] px-5 sm:px-6">
       <p className="hero-intro text-sm leading-relaxed text-muted">Bangkok, Thailand</p>
       <h1 id="hero-heading" className="hero-statement">
-        <span className="hero-statement-line">I build <span className="hero-word hero-word-pine">AI agents.</span></span>{' '}
-        <span className="hero-statement-line">I create <span className="hero-word hero-word-clay">content.</span></span>
+        <span className="hero-statement-line">I build <span className="hero-word hero-word-pine">AI agents</span></span>{' '}
+        <span className="hero-statement-line">and automate business workflows.</span>
       </h1>
-      <p className="hero-support mx-auto mt-8 max-w-[57ch] text-[16px] leading-relaxed text-ink-soft sm:text-lg">I use AI agents to build workflows and software, and to make commercial films and Burmese explainers.</p>
-      <Link href="/projects/meeting-prep-research-agent" className="mt-3 inline-flex min-h-[44px] items-center gap-2 text-sm text-pine underline underline-offset-4">
-        See the Meeting Prep Research Agent <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-      </Link>
+      <p className="hero-support mx-auto mt-8 max-w-[57ch] text-[16px] leading-relaxed text-ink-soft sm:text-lg">I connect APIs, databases, and AI models to automate research, lead operations, and approvals.</p>
       <div className="hero-actions mt-8 flex flex-col items-center gap-3">
-        <a href="#work" className="btn-hard">See my work <ArrowRight className="h-4 w-4" aria-hidden="true" /></a>
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+          <Link href={workAreas.automation.href} className="btn-hard">See automation workflows <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+          <Link href="/projects/lead-finder" className="inline-flex min-h-[44px] items-center gap-2 text-sm text-pine underline underline-offset-4">
+            View Lead Finder case study <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+          </Link>
+        </div>
         <div className="flex items-center justify-center gap-3">
           <a href={`mailto:${portfolioContent.contact.email}`} aria-label="Email Victor" title="Email Victor" className="hero-social-link"><Mail className="h-5 w-5" aria-hidden="true" /></a>
           <a href={portfolioContent.contact.github} aria-label="Victor on GitHub" title="GitHub" className="hero-social-link" target="_blank" rel="noopener noreferrer"><Image src="/brands/github.svg" alt="" width={20} height={20} className="icon-invert-dark" /></a>
