@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: `${products.title} | Victor`,
   description: products.description,
   alternates: { canonical: products.href },
+  openGraph: { title: products.title, description: products.description, url: products.href },
 };
 
 export default function Products() {
@@ -24,9 +25,9 @@ export default function Products() {
           <h1 className="font-serif text-[clamp(38px,6vw,72px)] leading-[1.04]">{products.title}</h1>
           <p className="mt-5 text-lg leading-relaxed text-ink-soft">{products.description}</p>
         </header>
-        <div className="grid gap-x-10 gap-y-12 border-t border-hair pt-8 md:grid-cols-2">
+        <div className="grid gap-x-10 gap-y-10 md:grid-cols-2">
           {productProjects.map((project) => (
-            <ProjectWorkCard key={project.id} project={project} summary={project.outcome} eager={false} browse />
+            <ProjectWorkCard key={project.id} project={project} heading="h2" />
           ))}
         </div>
       </main>

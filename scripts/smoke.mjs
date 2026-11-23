@@ -115,6 +115,16 @@ for (const slug of projectSlugs) {
   }
 
   const projectHtml = fs.readFileSync(projectHtmlPath, 'utf-8');
+  const belongsToProducts = productsHtml.includes(link);
+  const collectionHtml = belongsToProducts ? productsHtml : workHtml;
+  const collectionPath = belongsToProducts ? '/products' : '/work';
+  const caseContent = projectHtml.match(/<main[^>]*>[\s\S]*?<\/main>/)?.[0] ?? '';
+  const relatedNav = caseContent.match(/<nav[^>]*aria-label="Related case studies"[\s\S]*?<\/nav>/)?.[0] ?? '';
+  const related = [...relatedNav.matchAll(/href="(\/projects\/[^"]+)"/g)].map((match) => match[1]);
+  if (!caseContent.includes(`href="${collectionPath}"`) || !related.length ||
+      related.some((href) => href === `/projects/${slug}` || !collectionHtml.includes(`href="${href}"`))) {
+    throw new Error(`Case study links must stay in their collection: ${slug}`);
+  }
   if (/My Role|My verified role|What I did|Want the same result\?|Start a conversation/.test(projectHtml)) {
     throw new Error(`Case study must stay focused on the work and its evidence: ${slug}`);
   }

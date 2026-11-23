@@ -9,7 +9,8 @@ import { projects } from '@/data/projects';
 export const metadata: Metadata = {
   title: `${workAreas.automation.title} | Victor`,
   description: 'AI agent and automation projects for lead follow-up, meeting research, and content production.',
-  alternates: { canonical: '/work' },
+  alternates: { canonical: workAreas.automation.href },
+  openGraph: { title: workAreas.automation.title, description: workAreas.automation.description, url: workAreas.automation.href },
 };
 
 const outcomes = {
@@ -34,10 +35,10 @@ export default function Work() {
         </section>
         {Object.entries(outcomes).map(([id, title]) => (
           <section key={id} id={id} aria-labelledby={`${id}-heading`} className="mb-16 scroll-mt-28">
-            <h2 id={`${id}-heading`} className="mb-8 border-t border-hair pt-6 font-serif text-3xl">{title}</h2>
+            <h2 id={`${id}-heading`} className="mb-4 font-serif text-3xl">{title}</h2>
             <div className="grid gap-x-10 gap-y-12 md:grid-cols-2">
               {projects.filter(project => project.workOutcome === id).map(project => (
-                <ProjectWorkCard key={project.id} project={project} summary={project.outcome} eager={false} browse />
+                <ProjectWorkCard key={project.id} project={project} />
               ))}
             </div>
           </section>

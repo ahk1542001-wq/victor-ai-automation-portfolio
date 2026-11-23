@@ -6,7 +6,7 @@ import { workAreas } from '@/data/portfolio-navigation';
 import { ProductionApproach } from '@/components/ProductionApproach';
 import { VicShowcase } from '@/components/VicShowcase';
 import { VvicShowcase } from '@/components/VvicShowcase';
-export const metadata: Metadata = { title: `${workAreas.video.title} | Victor`, description: 'AI-assisted commercial concepts and personal-brand Burmese explainers, with creative direction and the Hermes workflows behind them.', alternates: { canonical: '/films' } };
+export const metadata: Metadata = { title: `${workAreas.video.title} | Victor`, description: 'AI-assisted commercial concepts and personal-brand Burmese explainers, with creative direction and the Hermes workflows behind them.', alternates: { canonical: workAreas.video.href }, openGraph: { title: workAreas.video.title, description: workAreas.video.description, url: workAreas.video.href } };
 export default function Films() {
     return <div className="min-h-screen bg-paper text-ink">
     <Header />

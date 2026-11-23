@@ -13,7 +13,7 @@ const steps = [
 export function LeadFinderWorkflow({ sourceUrl }: { sourceUrl: string }) {
   return (
     <section aria-labelledby="workflow-heading" className="mt-10 border-y border-hair py-7">
-      <h2 id="workflow-heading" className="font-serif text-3xl">How the workflow runs</h2>
+      <h2 id="workflow-heading" className="scroll-mt-24 font-serif text-3xl">How the workflow runs</h2>
       <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-1 text-sm">
         <a href="#project-demo" className="inline-flex min-h-[44px] items-center gap-2 text-pine underline underline-offset-4">
           See the demo <ArrowDown className="h-4 w-4" aria-hidden="true" />
