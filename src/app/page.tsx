@@ -69,7 +69,7 @@ export default function Home() {
             </p>
           </div>
           <figure className="w-full max-w-[220px] justify-self-end">
-            <div className="portrait-frame"><Image src="/victor-portrait-retouched.webp" alt="Victor, photographed in Bangkok" fill sizes="220px" /></div>
+            <div className="portrait-frame"><Image src="/victor-portrait-cutout.webp" alt="Victor, photographed in Bangkok" fill sizes="220px" /></div>
             <figcaption className="mt-3 text-right font-mono text-xs text-muted">Victor · Bangkok, Thailand</figcaption>
           </figure>
         </div>
