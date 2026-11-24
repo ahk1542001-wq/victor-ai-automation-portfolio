@@ -21,6 +21,7 @@ if (!fs.existsSync(homeHtmlPath)) {
 
 const homeHtml = fs.readFileSync(homeHtmlPath, 'utf-8');
 const workHtml = fs.readFileSync(path.join(outDir, 'work.html'), 'utf-8');
+const productsHtml = fs.readFileSync(path.join(outDir, 'products.html'), 'utf-8');
 const filmsHtml = fs.readFileSync(path.join(outDir, 'films.html'), 'utf-8');
 
 if (!homeHtml.includes('VICTOR')) {
@@ -101,9 +102,9 @@ const mandatorySections = [
 ];
 
 for (const slug of projectSlugs) {
-  // Check every project remains discoverable from the products collection
-  if (!workHtml.includes(`/projects/${slug}`)) {
-    console.error(`FAIL: Products collection missing link to project ${slug}`);
+  const link = `href="/projects/${slug}"`;
+  if (workHtml.includes(link) === productsHtml.includes(link)) {
+    console.error(`FAIL: Project ${slug} must appear in exactly one collection`);
     process.exit(1);
   }
 
@@ -114,6 +115,16 @@ for (const slug of projectSlugs) {
   }
 
   const projectHtml = fs.readFileSync(projectHtmlPath, 'utf-8');
+  const belongsToProducts = productsHtml.includes(link);
+  const collectionHtml = belongsToProducts ? productsHtml : workHtml;
+  const collectionPath = belongsToProducts ? '/products' : '/work';
+  const caseContent = projectHtml.match(/<main[^>]*>[\s\S]*?<\/main>/)?.[0] ?? '';
+  const relatedNav = caseContent.match(/<nav[^>]*aria-label="Related case studies"[\s\S]*?<\/nav>/)?.[0] ?? '';
+  const related = [...relatedNav.matchAll(/href="(\/projects\/[^"]+)"/g)].map((match) => match[1]);
+  if (!caseContent.includes(`href="${collectionPath}"`) || !related.length ||
+      related.some((href) => href === `/projects/${slug}` || !collectionHtml.includes(`href="${href}"`))) {
+    throw new Error(`Case study links must stay in their collection: ${slug}`);
+  }
   if (/My Role|My verified role|What I did|Want the same result\?|Start a conversation/.test(projectHtml)) {
     throw new Error(`Case study must stay focused on the work and its evidence: ${slug}`);
   }
@@ -274,7 +285,7 @@ const focusNavHtml = selectedWorkHtml.match(/<nav[^>]*>[\s\S]*?<\/nav>/)?.[0] ??
 const workAreaLinks = [...focusNavHtml.matchAll(/<a[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)];
 const expectedWorkAreas = [
   ['/work', 'AI Agents &amp; Automation'],
-  ['/work#product-prototypes', 'AI-Assisted Products'],
+  ['/products', 'AI-Assisted Products'],
   ['/films', 'Content &amp; Video'],
 ];
 if (workAreaLinks.length !== expectedWorkAreas.length || !expectedWorkAreas.every(([href, title], i) => (
@@ -290,7 +301,7 @@ const expectedMenu = [
   ['/#background', 'About &amp; Journey'],
   ['/credentials', 'Credentials'],
 ];
-for (const pageHtml of [homeHtml, workHtml, filmsHtml, credentialsHtml]) {
+for (const pageHtml of [homeHtml, workHtml, productsHtml, filmsHtml, credentialsHtml]) {
   const headerHtml = pageHtml.match(/<header[^>]*>[\s\S]*?<\/header>/)?.[0] ?? '';
   const menu = [...headerHtml.matchAll(/<a[^>]*class="navlink[^"]*"[^>]*href="([^"]+)"[^>]*>([^<]+)<\/a>/g)];
   if (menu.length !== expectedMenu.length || !expectedMenu.every(([href, title], i) => (
@@ -299,6 +310,7 @@ for (const pageHtml of [homeHtml, workHtml, filmsHtml, credentialsHtml]) {
 }
 for (const [pageHtml, heading] of [
   [workHtml, expectedWorkAreas[0][1]],
+  [productsHtml, expectedWorkAreas[1][1]],
   [filmsHtml, expectedWorkAreas[2][1]],
   [credentialsHtml, 'Credentials'],
 ]) {
@@ -306,11 +318,13 @@ for (const [pageHtml, heading] of [
     throw new Error(`Menu label does not match page heading: ${heading}`);
   }
 }
-if (workHtml.match(/<h2[^>]*id="product-prototypes-heading"[^>]*>([^<]+)<\/h2>/)?.[1] !== expectedWorkAreas[1][1]) {
-  throw new Error('AI-Assisted Products link must land on the matching heading');
+if (workHtml.includes('aria-label="Browse by outcome"') ||
+    !workHtml.includes('id="product-prototypes"') ||
+    !sitemapXml.includes('<loc>https://portfolioweb-three-sigma.vercel.app/products</loc>')) {
+  throw new Error('Work must omit the outcome shortcuts and keep the legacy Products link discoverable');
 }
 if (homeHtml.includes('Choose a VIC video style') || homeHtml.includes('Choose a v-vic concept film')) throw new Error('Full galleries belong on the films collection');
-for (const route of ['/work', '/films', '/#background', '/credentials']) {
+for (const route of ['/work', '/products', '/films', '/#background', '/credentials']) {
   if (!homeHtml.includes(`href="${route}"`)) throw new Error(`Missing collection/detail route ${route}`);
 }
 for (const id of ['product-ads', 'content']) {

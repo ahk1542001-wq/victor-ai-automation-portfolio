@@ -22,7 +22,7 @@ export default function VvicCaseStudy() {
     <div className="min-h-screen bg-paper text-ink">
       <Header />
       <main id="main-content" tabIndex={-1} className="mx-auto max-w-[1120px] px-5 py-12 focus:outline-none sm:px-6 md:py-16">
-        <Link href={`${workAreas.video.href}#product-ads`} className="inline-flex min-h-[44px] items-center text-sm text-pine underline underline-offset-4">Back to {workAreas.video.title}</Link>
+        <Link href={`${workAreas.video.href}#product-ads`} className="btn-hard-ghost px-4 py-2">Back to {workAreas.video.title}</Link>
         <header className="mb-12 mt-6 max-w-[800px]">
           <p className="eyebrow">Personal concept work · Creative direction + agent workflows</p>
           <h1 className="mt-4 font-serif text-[clamp(38px,6vw,72px)] leading-[1.02] tracking-[-0.03em]">v-vic: from product idea<br />to a finished film.</h1>
@@ -32,7 +32,7 @@ export default function VvicCaseStudy() {
         <section aria-labelledby="vvic-films-heading">
           <h2 id="vvic-films-heading" className="mb-6 font-serif text-3xl">Watch the three treatments</h2>
           <VvicGallery />
-          <Link href="/work/run-with-john" className="mt-5 inline-flex min-h-[44px] items-center text-sm text-pine underline underline-offset-4">Watch Run With John in landscape and portrait</Link>
+          <Link href="/work/run-with-john" className="btn-hard-ghost mt-5 px-4 py-2">Watch Run With John in landscape and portrait</Link>
           <p className="mt-8 text-sm leading-relaxed text-muted">These are fictional-product AI concept films. The UGC-style presenter is synthetic, not a real customer. Visible product benefits are creative demonstrations, not independently tested product claims or client campaign results.</p>
         </section>
         <section aria-labelledby="vvic-workflow-heading" className="mt-16 border-t-2 border-ink pt-10">
@@ -53,7 +53,7 @@ export default function VvicCaseStudy() {
         <aside aria-label="Credits and verification limits" className="mt-12 border-t border-hair pt-6 text-sm leading-relaxed text-muted">
           <p>Music: “Gimme that Groove!” by Michael Ramir C., track 872 from Mixkit, embedded under the <a href="https://mixkit.co/license/modal/musicFree/" className="underline underline-offset-4">Mixkit Stock Music Free License</a>. No standalone music file or ownership claim is supplied.</p>
           <p className="mt-3">AI imagery can retain lighting, perspective and detail inconsistencies. Full decode and sampled visual checks do not certify creative quality or continuous listening. The existing Hermes environment-sync warning remains unresolved; no unattended reliability or campaign-performance claim is made.</p>
-          <Link href="/work/vic" className="mt-4 inline-flex min-h-[44px] items-center text-pine underline underline-offset-4">Explore VIC’s separate Burmese explainer workflow</Link>
+          <Link href="/work/vic" className="mt-4 btn-hard-ghost px-4 py-2">Explore VIC’s separate Burmese explainer workflow</Link>
         </aside>
       </main>
     </div>

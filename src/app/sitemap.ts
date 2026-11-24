@@ -22,7 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/work/v-vic`, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/work/afterlight`, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/work/run-with-john`, changeFrequency: 'monthly', priority: 0.8 },
-    ...['/work', '/films', '/credentials'].map(route => ({ url: `${baseUrl}${route}`, changeFrequency: 'monthly' as const, priority: 0.8 })),
+    ...['/work', '/products', '/films', '/credentials'].map(route => ({ url: `${baseUrl}${route}`, changeFrequency: 'monthly' as const, priority: 0.8 })),
     ...projectEntries,
   ];
 }

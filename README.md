@@ -43,7 +43,7 @@ A recruiter-focused portfolio for **Victor**, based in Bangkok. The site present
 ## Experience Design
 
 - Three matching focus areas on the homepage and in the menu
-- AI Agents & Automation at `/work`, with AI-Assisted Products at `/work#product-prototypes`
+- AI Agents & Automation at `/work`, and AI-Assisted Products at `/products`
 - Content & Video at `/films`, with commercial films, Burmese explainers and the Hermes production approach
 - About & Journey on the homepage at `/#background`, with background, career timeline, education and languages
 - Dedicated credentials route retaining the complete verified inventory

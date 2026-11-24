@@ -1,6 +1,5 @@
 import { projects } from '@/data/projects';
 import { YouTubeThumbnail } from '@/components/YouTubeThumbnail';
-import { TopologyDiagram } from '@/components/TopologyDiagram';
 import { Header } from '@/components/Header';
 import { LeadFinderWorkflow } from '@/components/LeadFinderWorkflow';
 import { workAreas } from '@/data/portfolio-navigation';
@@ -32,7 +31,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: `/projects/${project.id}`,
     },
     openGraph: {
-      title: `${project.title} — AI Automation Case Study`,
+      title: `${project.title} — Case Study`,
+      url: `/projects/${project.id}`,
       description: project.problem,
       type: 'article',
     },
@@ -41,17 +41,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
-  const projectIndex = projects.findIndex((p) => p.id === slug);
+  const project = projects.find((p) => p.id === slug);
 
-  if (projectIndex === -1) {
+  if (!project) {
     notFound();
   }
 
-  const project = projects[projectIndex];
-  const prevProject = projects[(projectIndex - 1 + projects.length) % projects.length];
-  const nextProject = projects[(projectIndex + 1) % projects.length];
-
-  const workArea = project.workOutcome === 'product-prototypes' ? workAreas.products : workAreas.automation;
+  const isProduct = project.workOutcome === 'product-prototypes';
+  const workArea = isProduct ? workAreas.products : workAreas.automation;
+  const collection = projects.filter((p) => (p.workOutcome === 'product-prototypes') === isProduct);
+  const position = collection.indexOf(project);
+  const adjacentProjects = [
+    { label: 'Previous', project: collection[position - 1], Icon: ArrowLeft },
+    { label: 'Next', project: collection[position + 1], Icon: ArrowRight },
+  ];
+  const isLeadFinder = project.id === 'lead-finder';
+  const demoUrl = project.youtubeUrl ?? project.demoUrl;
 
   const sections = [
     { heading: 'The Problem', paragraphs: [project.problem] },
@@ -68,25 +73,20 @@ export default async function ProjectPage({ params }: Props) {
         tabIndex={-1}
       >
         {/* Breadcrumb */}
-        <div className="mb-10 flex flex-wrap items-center justify-between gap-3 border-b-2 border-hair pb-6">
+        <div className="mb-6 border-b border-hair pb-3">
           <Link
             href={workArea.href}
-            className="inline-flex min-h-[44px] items-center gap-2 text-[13.5px] font-medium text-ink-soft transition-colors hover:text-pine"
+            className="btn-hard-ghost px-4 py-2"
           >
-            <ArrowLeft className="h-4 w-4" /> Back to {workArea.title}
+            <ArrowLeft className="h-4 w-4" aria-hidden="true" /> Back to {workArea.title}
           </Link>
 
-          <span className="pill">
-            <span className="h-1.5 w-1.5 rounded-full bg-pine" />
-            Case study /{project.id}
-          </span>
         </div>
 
         <article>
           {/* Title block */}
           <header className="max-w-[46rem]">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="pill pill-solid">{project.category}</span>
               <span className="pill">{project.agentic ? 'n8n AI Agent' : project.projectType}</span>
               <span className="pill">{project.status}</span>
             </div>
@@ -99,115 +99,40 @@ export default async function ProjectPage({ params }: Props) {
               <span className="font-medium text-ink">What it shows — </span>
               {project.outcome}
             </p>
-            {project.exampleUrl && (
-              <a href={project.exampleUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex min-h-[44px] items-center gap-2 text-sm text-pine underline underline-offset-4">
-                Read a sample brief <ExternalLink className="h-4 w-4" aria-hidden="true" />
-              </a>
+            {!isLeadFinder && (
+              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
+                {demoUrl && (
+                  <a href={demoUrl} target="_blank" rel="noopener noreferrer" className="btn-hard">
+                    Watch demo <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                  </a>
+                )}
+                <a href={project.github} target="_blank" rel="noopener noreferrer" className="btn-hard-ghost">
+                  <Image src="/brands/github.svg" alt="" width={16} height={16} className="icon-invert-dark" />
+                  GitHub source
+                </a>
+                {project.exampleUrl && (
+                  <a href={project.exampleUrl} target="_blank" rel="noopener noreferrer" className="btn-hard-ghost px-4 py-2">
+                    Read a sample brief <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                  </a>
+                )}
+              </div>
             )}
           </header>
 
-          {project.id === 'lead-finder' && <LeadFinderWorkflow sourceUrl={project.github} />}
+          {isLeadFinder && <LeadFinderWorkflow sourceUrl={project.github} />}
 
-          {/* Media plate */}
-          <div id="project-demo" className="card-hard mt-10 scroll-mt-28 overflow-hidden p-6 sm:p-8">
-            <div className="relative flex min-h-[200px] items-center justify-center overflow-hidden rounded-[10px] border-2 border-dashed border-paper/55 bg-ink sm:min-h-[320px]">
-              {project.youtubeId ? (
-                <div className="w-full">
-                  <YouTubeThumbnail
-                    youtubeId={project.youtubeId}
-                    alt={`${project.title} walkthrough thumbnail`}
-                    eager
-                  />
-                </div>
-              ) : project.imageUrl ? (
-                <div className="relative aspect-video w-full">
-                  <Image
-                    src={project.imageUrl}
-                    alt={`${project.title} screenshot`}
-                    fill
-                    priority
-                    sizes="(max-width: 1120px) 100vw, 1120px"
-                    className="object-cover object-top"
-                  />
-                </div>
-              ) : (
-                <div className="w-full">
-                  <TopologyDiagram />
-                </div>
-              )}
+          {project.youtubeId && demoUrl ? (
+            <a id="project-demo" href={demoUrl} target="_blank" rel="noopener noreferrer" aria-label={`Watch the ${project.title} demo on YouTube`} className="project-visual mt-8 block max-w-[760px] scroll-mt-24 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-pine">
+              <YouTubeThumbnail youtubeId={project.youtubeId} alt={`${project.title} walkthrough thumbnail`} eager />
+            </a>
+          ) : project.imageUrl && (
+            <div className="project-visual relative mt-8 aspect-video max-w-[760px]">
+              <Image src={project.imageUrl} alt={`${project.title} screenshot`} fill priority sizes="(max-width: 800px) 100vw, 760px" className="object-cover object-top" />
             </div>
-
-            {project.youtubeUrl && (
-              <a
-                href={project.youtubeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-hard mt-6 rounded-xl"
-              >
-                Watch the full walkthrough <ExternalLink className="h-4 w-4" />
-              </a>
-            )}
-
-            {project.demoUrl && (
-              <a
-                href={project.demoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-hard mt-6 rounded-xl"
-              >
-                Watch the demo video <ExternalLink className="h-4 w-4" />
-              </a>
-            )}
-          </div>
-
-          {/* Quick facts */}
-          <dl className="mt-4 grid grid-cols-1 gap-3.5 sm:grid-cols-2">
-            <FactCard label="Primary tools" value={project.tools.slice(0, 3).join(', ')} />
-            <div className="rounded-[14px] border-2 border-ink bg-surface px-5 py-4 shadow-[4px_4px_0_var(--offset)]">
-              <dt className="eyebrow mb-2">Public evidence</dt>
-              <dd className="flex flex-col gap-1">
-                {project.youtubeUrl && (
-                  <a
-                    href={project.youtubeUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-[36px] items-center gap-1.5 text-[13.5px] font-medium text-pine hover:underline"
-                  >
-                    <ExternalLink className="h-3.5 w-3.5" /> Demo video
-                  </a>
-                )}
-                {project.demoUrl && (
-                  <a
-                    href={project.demoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-[36px] items-center gap-1.5 text-[13.5px] font-medium text-pine hover:underline"
-                  >
-                    <ExternalLink className="h-3.5 w-3.5" /> Demo video (MP4 on GitHub)
-                  </a>
-                )}
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-[36px] items-center gap-1.5 text-[13.5px] font-medium text-pine hover:underline"
-                >
-                  <Image
-                    src="/brands/github.svg"
-                    alt=""
-                    width={14}
-                    height={14}
-                    className="opacity-80"
-                    aria-hidden="true"
-                  />
-                  Source code
-                </a>
-              </dd>
-            </div>
-          </dl>
+          )}
 
           {/* Body + sidebar */}
-          <div className="mt-14 grid gap-12 lg:grid-cols-3 lg:gap-14">
+          <div className="mt-10 grid gap-9 lg:grid-cols-3 lg:gap-14">
             <div className="space-y-10 lg:col-span-2">
               {sections.map((section) => (
                 <section key={section.heading}>
@@ -248,47 +173,22 @@ export default async function ProjectPage({ params }: Props) {
           </div>
         </article>
 
-        {/* Prev / Next */}
-        <nav
-          aria-label="Case study pagination"
-          className="mt-20 grid gap-3 border-t-2 border-ink pt-8 sm:grid-cols-2"
-        >
-          <Link
-            href={`/projects/${prevProject.id}`}
-            className="group flex min-h-[44px] items-center gap-3 rounded-[14px] border-2 border-ink bg-surface px-5 py-4 transition-colors hover:bg-paper-2"
-          >
-            <ArrowLeft className="h-4 w-4 shrink-0 text-clay" />
-            <span className="min-w-0">
-              <span className="eyebrow block">Previous</span>
-              <span className="mt-0.5 block truncate font-serif text-[17px] text-ink">
-                {prevProject.title}
+        <nav aria-label="Related case studies" className="mt-12 grid gap-3 border-t border-hair pt-6 sm:grid-cols-2">
+          {adjacentProjects.map(({ label, project: adjacent, Icon }) => adjacent && (
+            <Link
+              key={adjacent.id}
+              href={`/projects/${adjacent.id}`}
+              className={`flex min-h-[44px] items-center gap-3 rounded-[12px] border border-hair px-4 py-3 hover:bg-surface ${label === 'Next' ? 'sm:col-start-2' : ''}`}
+            >
+              <Icon className="h-4 w-4 shrink-0 text-clay" aria-hidden="true" />
+              <span>
+                <span className="block text-xs text-muted">{label} case study</span>
+                <span className="mt-1 block text-sm leading-snug">{adjacent.title}</span>
               </span>
-            </span>
-          </Link>
-
-          <Link
-            href={`/projects/${nextProject.id}`}
-            className="group flex min-h-[44px] items-center justify-end gap-3 rounded-[14px] border-2 border-ink bg-surface px-5 py-4 text-right transition-colors hover:bg-paper-2"
-          >
-            <span className="min-w-0">
-              <span className="eyebrow block">Next</span>
-              <span className="mt-0.5 block truncate font-serif text-[17px] text-ink">
-                {nextProject.title}
-              </span>
-            </span>
-            <ArrowRight className="h-4 w-4 shrink-0 text-clay" />
-          </Link>
+            </Link>
+          ))}
         </nav>
       </main>
-    </div>
-  );
-}
-
-function FactCard({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-[14px] border-2 border-ink bg-surface px-5 py-4 shadow-[4px_4px_0_var(--offset)]">
-      <dt className="eyebrow mb-1.5">{label}</dt>
-      <dd className="text-[14px] font-medium leading-snug text-ink">{value}</dd>
     </div>
   );
 }

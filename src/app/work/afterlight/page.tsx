@@ -30,7 +30,7 @@ export default function AfterlightCaseStudy() {
   return <div className="min-h-screen bg-paper text-ink">
     <Header />
     <main id="main-content" tabIndex={-1} className="mx-auto max-w-[1120px] px-5 py-12 focus:outline-none sm:px-6 md:py-16">
-      <Link href={`${workAreas.video.href}#product-ads`} className="inline-flex min-h-[44px] items-center text-sm text-pine underline underline-offset-4">Back to {workAreas.video.title}</Link>
+      <Link href={`${workAreas.video.href}#product-ads`} className="btn-hard-ghost px-4 py-2">Back to {workAreas.video.title}</Link>
       <header className="mb-8 mt-6 grid gap-6 md:grid-cols-[1.2fr_1fr] md:items-end">
         <div><p className="eyebrow">Independent concept film</p><h1 className="mt-4 font-serif text-[clamp(38px,7vw,80px)] leading-[1.02] tracking-[-0.03em]">AFTERLIGHT<br />What stays.</h1></div>
         <div><p className="max-w-[35ch] text-xl leading-relaxed text-ink-soft">A fragrance, remembered through a considerate gesture.</p><p className="mt-4 text-sm text-muted">49 seconds · 1280 × 720 · 24 fps</p></div>
@@ -39,7 +39,7 @@ export default function AfterlightCaseStudy() {
         <video controls playsInline preload="metadata" poster="/afterlight/poster.jpg" aria-label="AFTERLIGHT What stays, a 49-second cinematic perfume concept" aria-describedby="afterlight-summary" className="aspect-video w-full rounded-[10px] bg-black">
           <source src="/afterlight/what-stays.mp4" type="video/mp4" />Your browser cannot play this video. <a href="/afterlight/what-stays.mp4">Download the film</a>.
         </video>
-        <div className="mt-3 flex flex-wrap gap-x-6"><a href="/afterlight/what-stays.mp4" download className="inline-flex min-h-[44px] items-center text-sm text-pine underline underline-offset-4">Download the film</a><a href="#storyboard" className="inline-flex min-h-[44px] items-center text-sm text-pine underline underline-offset-4">Explore the storyboard</a></div>
+        <div className="mt-3 flex flex-wrap gap-3"><a href="/afterlight/what-stays.mp4" download className="btn-hard-ghost px-4 py-2">Download the film</a><a href="#storyboard" className="btn-hard-ghost px-4 py-2">Explore the storyboard</a></div>
       </section>
       <section className="mt-14 grid gap-6 border-t border-hair pt-9 md:grid-cols-[1fr_1.6fr]" aria-labelledby="concept-heading">
         <h2 id="concept-heading" className="font-serif text-4xl">A presence that stays.</h2>
@@ -53,7 +53,7 @@ export default function AfterlightCaseStudy() {
         </figure>)}</div>
       </section>
       <section className="mt-14 grid gap-7 border-t border-hair pt-9 md:grid-cols-[1fr_1.6fr]" aria-labelledby="process-heading">
-        <h2 id="process-heading" className="font-serif text-4xl">How it was made</h2><div><ol>{process.map(([title, description]) => <li key={title} className="mb-6"><h3 className="font-medium">{title}</h3><p className="mt-2 text-sm leading-relaxed text-ink-soft">{description}</p></li>)}</ol><p className="text-sm leading-relaxed text-muted">The wider v-vic project integrates Hermes with reusable commercial-production skills. This film used hands-on creative direction and final review; it does not establish unattended end-to-end production.</p><Link href="/work/v-vic" className="mt-3 inline-flex min-h-[44px] items-center text-sm text-pine underline underline-offset-4">Explore the v-vic workflow</Link></div>
+        <h2 id="process-heading" className="font-serif text-4xl">How it was made</h2><div><ol>{process.map(([title, description]) => <li key={title} className="mb-6"><h3 className="font-medium">{title}</h3><p className="mt-2 text-sm leading-relaxed text-ink-soft">{description}</p></li>)}</ol><p className="text-sm leading-relaxed text-muted">The wider v-vic project integrates Hermes with reusable commercial-production skills. This film used hands-on creative direction and final review; it does not establish unattended end-to-end production.</p><Link href="/work/v-vic" className="mt-3 btn-hard-ghost px-4 py-2">Explore the v-vic workflow</Link></div>
       </section>
       <aside className="mt-12 border-t border-hair pt-6 text-sm leading-relaxed text-muted" aria-label="Credits and verification limits">
         <p>Fictional product and AI-generated cast/visuals. No client commission or campaign-performance claim. Full decode, all 1,176 encoded-frame thumbnails and native critical frames were reviewed. Audio measured −14.63 LUFS / −1.92 dBTP; continuous listening was not certified.</p>
