@@ -11,14 +11,13 @@ export function FeaturedWorkflows() {
   return (
     <ul className="mt-3 divide-y divide-hair">
       {featuredWorkflows.map(({ id, title, summary }) => (
-        <li key={id}>
-          <Link
-            href={`/projects/${id}`}
-            className="group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-1 px-2 py-3 hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine sm:grid-cols-[minmax(0,1fr)_minmax(0,1.65fr)_auto]"
-          >
-            <span className="font-medium text-pine underline underline-offset-4">{title}</span>
-            <span className="col-start-1 row-start-2 text-sm leading-relaxed text-ink-soft sm:col-start-2 sm:row-start-1">{summary}</span>
-            <ArrowUpRight className="col-start-2 row-start-1 h-4 w-4 text-pine sm:col-start-3" aria-hidden="true" />
+        <li key={id} className="grid items-center gap-x-5 gap-y-3 py-4 sm:grid-cols-[minmax(0,1fr)_auto]">
+          <div>
+            <p className="font-medium">{title}</p>
+            <p className="mt-1 text-sm leading-relaxed text-ink-soft">{summary}</p>
+          </div>
+          <Link href={`/projects/${id}`} aria-label={`Read the ${title} case study`} className="btn-hard-ghost justify-self-start px-4 py-2">
+            Case study <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
           </Link>
         </li>
       ))}

@@ -60,19 +60,17 @@ export default function Home() {
     </section>
     <section id="background" aria-labelledby="background-heading" className="scroll-mt-24 border-t-2 border-ink py-12 md:py-16">
       <div className="mx-auto max-w-[1120px] px-5 sm:px-6">
-        <h2 id="background-heading" className="font-serif text-[clamp(32px,5vw,52px)] leading-tight">{about.title}</h2>
-        <div className="mt-6 grid items-start gap-6 md:grid-cols-[minmax(0,1fr)_220px] md:gap-12">
+        <div className="grid items-start gap-6 rounded-[12px] border border-hair bg-surface p-5 sm:grid-cols-[minmax(0,1fr)_minmax(156px,30%)] sm:p-7 md:gap-10">
           <div className="max-w-[65ch] space-y-4 text-[16px] leading-relaxed text-ink-soft">
+            <h2 id="background-heading" className="font-serif text-[clamp(32px,5vw,52px)] leading-tight text-ink">{about.title}</h2>
             <p>I moved from client services and project coordination into AI automation. At Technity, I was the client-facing lead for sponsored content from brands including Samsung and Huawei.</p>
             <p>
-              Project coordination taught me to define what needs to happen and where someone needs to review it. I apply that in{' '}
-              <Link href="/projects/lead-finder#workflow-heading" className="text-pine underline underline-offset-4">Lead Finder</Link>,
-              where a person approves the search plan and decides which leads get outreach drafts.
+              Project coordination taught me to define what needs to happen and where someone needs to review it. I apply that in Lead Finder, where a person approves the search plan and decides which leads get outreach drafts.
             </p>
           </div>
-          <figure className="w-[220px] max-w-full">
+          <figure className="w-full max-w-[220px] justify-self-end">
             <div className="portrait-frame"><Image src="/victor-portrait-retouched.webp" alt="Victor, photographed in Bangkok" fill sizes="220px" /></div>
-            <figcaption className="mt-4 font-mono text-xs text-muted">Victor · Bangkok, Thailand</figcaption>
+            <figcaption className="mt-3 text-right font-mono text-xs text-muted">Victor · Bangkok, Thailand</figcaption>
           </figure>
         </div>
 
@@ -87,32 +85,34 @@ export default function Home() {
           ))}
         </ol>
 
-        <details className="group mt-6">
-          <summary className="btn-hard-ghost cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-            Education and languages <ChevronDown className="h-4 w-4 group-open:rotate-180" aria-hidden="true" />
-          </summary>
-          <div className="grid gap-5 pb-4 pt-2 text-sm leading-relaxed sm:grid-cols-2">
-            <ul aria-label="Education" className="space-y-3">
-              {portfolioContent.education.map((item) => (
-                <li key={item.institution}>
-                  <p>{item.degree}</p>
-                  <p className="text-muted">{item.institution} · {item.period}</p>
-                </li>
-              ))}
-            </ul>
-            <dl aria-label="Languages" className="space-y-2">
-              {portfolioContent.languages.map(({ name, proficiency }) => (
-                <div key={name} className="flex flex-wrap gap-x-2">
-                  <dt>{name}</dt>
-                  <dd className="text-muted">{proficiency}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </details>
-        <Link id="credentials" href={credentialsPage.href} className="btn-hard-ghost mt-3 scroll-mt-24">
-          {credentialsPage.title} <ArrowRight className="h-4 w-4" aria-hidden="true" />
-        </Link>
+        <div className="mt-6 grid grid-cols-[minmax(0,1fr)_auto] items-start gap-x-3">
+          <details className="group col-span-full col-start-1 row-start-1">
+            <summary className="btn-hard-ghost min-h-12 max-w-[calc(100%-8rem)] cursor-pointer list-none px-3 py-2 text-left sm:px-4 [&::-webkit-details-marker]:hidden">
+              Education and languages <ChevronDown className="h-4 w-4 shrink-0 group-open:rotate-180" aria-hidden="true" />
+            </summary>
+            <div className="grid gap-5 pb-4 pt-5 text-sm leading-relaxed sm:grid-cols-2">
+              <ul aria-label="Education" className="space-y-3">
+                {portfolioContent.education.map((item) => (
+                  <li key={item.institution}>
+                    <p>{item.degree}</p>
+                    <p className="text-muted">{item.institution} · {item.period}</p>
+                  </li>
+                ))}
+              </ul>
+              <dl aria-label="Languages" className="space-y-2">
+                {portfolioContent.languages.map(({ name, proficiency }) => (
+                  <div key={name} className="flex flex-wrap gap-x-2">
+                    <dt>{name}</dt>
+                    <dd className="text-muted">{proficiency}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </details>
+          <Link id="credentials" href={credentialsPage.href} className="btn-hard-ghost col-start-2 row-start-1 z-10 min-h-12 justify-self-end self-start scroll-mt-24 px-3 py-2 sm:px-4">
+            {credentialsPage.title} <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </Link>
+        </div>
       </div>
     </section>
   </main>

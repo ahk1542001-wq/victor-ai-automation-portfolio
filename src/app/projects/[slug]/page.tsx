@@ -76,7 +76,7 @@ export default async function ProjectPage({ params }: Props) {
         <div className="mb-6 border-b border-hair pb-3">
           <Link
             href={workArea.href}
-            className="inline-flex min-h-[44px] items-center gap-2 text-[13.5px] font-medium text-ink-soft transition-colors hover:text-pine"
+            className="btn-hard-ghost px-4 py-2"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" /> Back to {workArea.title}
           </Link>
@@ -111,7 +111,7 @@ export default async function ProjectPage({ params }: Props) {
                   GitHub source
                 </a>
                 {project.exampleUrl && (
-                  <a href={project.exampleUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center gap-2 text-sm text-pine underline underline-offset-4">
+                  <a href={project.exampleUrl} target="_blank" rel="noopener noreferrer" className="btn-hard-ghost px-4 py-2">
                     Read a sample brief <ExternalLink className="h-4 w-4" aria-hidden="true" />
                   </a>
                 )}

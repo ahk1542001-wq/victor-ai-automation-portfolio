@@ -14,7 +14,7 @@ export default function Films() {
     <header className="mx-auto max-w-[1120px] px-5 pb-10 pt-12 sm:px-6 md:pt-16">
       <h1 className="font-serif text-[clamp(38px,6vw,72px)] leading-[1.04]">{workAreas.video.title}</h1>
       <p className="mt-4 max-w-[65ch] text-lg leading-relaxed text-ink-soft">Commercial films and Burmese explainers I directed with AI-assisted workflows.</p>
-      <a href="#production-approach" className="mt-2 inline-flex min-h-[44px] items-center text-sm text-pine underline underline-offset-4">How I make the videos</a>
+      <a href="#production-approach" className="btn-hard-ghost mt-4 px-4 py-2">How I make the videos</a>
     </header>
     <VvicShowcase>
       <article className="grid gap-7 border-t border-hair pt-7 md:grid-cols-[1fr_1.3fr] md:items-center" aria-labelledby="afterlight-heading">

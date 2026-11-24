@@ -1,10 +1,11 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { Mail, Menu, X, ArrowLeft } from 'lucide-react';
+import { Mail, Menu, X, ArrowLeft, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from './ThemeToggle';
+import { portfolioContent } from '@/data/content';
 import { about, credentialsPage, selectedWork, workAreas } from '@/data/portfolio-navigation';
 
 const navLinks = [selectedWork, ...Object.values(workAreas), about, credentialsPage];
@@ -47,8 +48,17 @@ export function Header() {
       }
     };
 
+    const desktop = window.matchMedia('(min-width: 1024px)');
+    const closeOnDesktop = (event: MediaQueryListEvent) => {
+      if (event.matches) setIsOpen(false);
+    };
+
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    desktop.addEventListener('change', closeOnDesktop);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      desktop.removeEventListener('change', closeOnDesktop);
+    };
   }, [isOpen]);
 
   return (
@@ -66,12 +76,12 @@ export function Header() {
             VICTOR<span className="text-clay">.</span>
           </Link>
 
-          {isSecondaryPage && (
+          {isSecondaryPage && !isOpen && (
             <Link
               href="/"
-              className="hidden min-h-[44px] items-center gap-2 border-l-2 border-hair pl-4 text-xs font-medium uppercase tracking-[0.08em] text-muted transition-colors hover:text-ink sm:flex lg:hidden"
+              className="btn-hard-ghost hidden px-3 py-2 text-xs sm:inline-flex lg:hidden"
             >
-              <ArrowLeft className="h-3.5 w-3.5" /> Back to home
+              <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" /> Back to home
             </Link>
           )}
         </div>
@@ -82,7 +92,8 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="navlink flex min-h-[44px] whitespace-nowrap items-center text-[13px] font-medium"
+              aria-current={pathname === link.href ? 'page' : undefined}
+              className="navlink flex min-h-[44px] whitespace-nowrap items-center text-[13px] font-medium aria-[current=page]:text-pine"
             >
               {link.title}
             </Link>
@@ -109,45 +120,37 @@ export function Header() {
 
       {/* Accessible Non-Modal Mobile Menu Disclosure */}
       {isOpen && (
-        <div
+        <nav
           id="mobile-menu"
-          className="animate-fade-in max-h-[calc(100dvh-68px)] max-w-full overflow-x-hidden overflow-y-auto border-t-2 border-hair bg-paper px-5 pb-6 pt-3 lg:hidden"
+          aria-label="Mobile navigation"
+          className="animate-fade-in max-h-[calc(100dvh-68px)] overflow-y-auto border-t border-hair bg-paper px-5 pb-6 pt-4 lg:hidden"
         >
-          <div className="flex flex-col">
-            {isSecondaryPage && (
-              <Link
-                ref={firstLinkRef}
-                href="/"
-                onClick={closeMenu}
-                className="mb-2 flex min-h-[44px] items-center border-b-2 border-hair px-1 py-3 text-[13px] font-medium uppercase tracking-[0.07em] text-pine"
-              >
-                <ArrowLeft className="mr-2 h-4 w-4" /> Back to home
-              </Link>
-            )}
+          {isSecondaryPage && (
+            <Link ref={firstLinkRef} href="/" onClick={closeMenu} className="btn-hard-ghost mb-4 px-4 py-2">
+              <ArrowLeft className="h-4 w-4" aria-hidden="true" /> Back to home
+            </Link>
+          )}
 
+          <ul className="grid gap-2 sm:grid-cols-2">
             {navLinks.map((link, idx) => (
-              <Link
-                key={link.href}
-                ref={idx === 0 && !isSecondaryPage ? firstLinkRef : undefined}
-                href={link.href}
-                onClick={closeMenu}
-                className="hair-b flex min-h-[44px] items-center px-1 py-3 text-[13px] font-medium text-ink-soft transition-colors last:border-b-0 hover:text-ink"
-              >
-                {link.title}
-              </Link>
+              <li key={link.href}>
+                <Link
+                  ref={idx === 0 && !isSecondaryPage ? firstLinkRef : undefined}
+                  href={link.href}
+                  aria-current={pathname === link.href ? 'page' : undefined}
+                  onClick={closeMenu}
+                  className="flex min-h-[48px] items-center justify-between gap-3 rounded-[10px] border border-hair bg-surface px-4 py-2 text-sm font-medium transition-colors hover:border-pine aria-[current=page]:border-pine aria-[current=page]:bg-pine/10 aria-[current=page]:text-pine"
+                >
+                  {link.title} <ArrowRight className="h-4 w-4 shrink-0 text-pine" aria-hidden="true" />
+                </Link>
+              </li>
             ))}
-          </div>
+          </ul>
 
-          <div className="mt-4 flex flex-col gap-2">
-            <a
-              href="mailto:victor.job154@gmail.com"
-              onClick={closeMenu}
-              className="btn-hard-ghost inline-flex min-h-[44px] w-full items-center justify-center rounded-[10px] border-2 border-ink px-4 text-[13px] font-medium"
-            >
-              Email me <Mail className="ml-1.5 h-4 w-4" />
-            </a>
-          </div>
-        </div>
+          <a href={`mailto:${portfolioContent.contact.email}`} onClick={closeMenu} className="btn-hard-ghost mt-4 w-full px-4 py-2 sm:w-auto">
+            Email me <Mail className="h-4 w-4" aria-hidden="true" />
+          </a>
+        </nav>
       )}
     </header>
   );

@@ -61,7 +61,7 @@ export default function CredentialsPage() {
         <div className="mb-12 flex flex-wrap items-center justify-between gap-3 border-b-2 border-hair pb-6">
           <Link
             href="/#credentials"
-            className="inline-flex min-h-[44px] items-center gap-2 text-[13.5px] font-medium text-ink-soft transition-colors hover:text-pine"
+            className="btn-hard-ghost px-4 py-2"
           >
             <ArrowLeft className="h-4 w-4" /> Back to homepage credentials
           </Link>
@@ -218,7 +218,7 @@ export default function CredentialsPage() {
           })}
         </div>
 
-        <Link href={workAreas.automation.href} className="mt-12 inline-flex min-h-[44px] items-center text-pine underline underline-offset-4">
+        <Link href={workAreas.automation.href} className="btn-hard-ghost mt-10">
           Explore {workAreas.automation.title}
         </Link>
       </main>

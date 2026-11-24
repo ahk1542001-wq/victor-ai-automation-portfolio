@@ -18,7 +18,7 @@ export default function RunWithJohn() {
   return <div className="min-h-screen bg-paper text-ink">
     <Header />
     <main id="main-content" tabIndex={-1} className="mx-auto max-w-[1120px] px-5 py-12 focus:outline-none sm:px-6 md:py-16">
-      <Link href={workAreas.video.href} className="inline-flex min-h-[44px] items-center text-sm text-pine underline underline-offset-4">Back to {workAreas.video.title}</Link>
+      <Link href={workAreas.video.href} className="btn-hard-ghost px-4 py-2">Back to {workAreas.video.title}</Link>
       <header className="mb-10 mt-6 max-w-3xl">
         <p className="eyebrow mb-3">AI-assisted product film</p>
         <h1 className="font-serif text-[clamp(38px,7vw,80px)] leading-none">Run With John</h1>
@@ -40,7 +40,7 @@ export default function RunWithJohn() {
           <p>I directed the brief, selected the takes and reviewed the cuts. The landscape film gives the track and material details room. The portrait cut brings the pre-run actions and product closer to the viewer.</p>
           <p>Shot reviews caught stride and framing issues. In the portrait cut, I replaced distorted lettering in three shots with artwork from the product reference, tracked to the moving fabric. The delivery also included clean source-audio clips for reuse.</p>
           <p>The films use AI-generated imagery and hands-on finishing. The commercial production workflow covers the shot plan, supervised generation, local editing and review.</p>
-          <Link href="/work/v-vic" className="inline-flex min-h-[44px] items-center text-sm text-pine underline underline-offset-4">Explore the Hermes production workflow</Link>
+          <Link href="/work/v-vic" className="btn-hard-ghost px-4 py-2">Explore the Hermes production workflow</Link>
         </div>
       </section>
     </main>
