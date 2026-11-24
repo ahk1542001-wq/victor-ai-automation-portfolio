@@ -489,7 +489,7 @@
   overflow: hidden;
   border: 2px solid var(--ink);
   border-radius: var(--radius-frame);
-  background: transparent;
+  background: var(--paper-2);
   box-shadow: 6px 6px 0 var(--offset);
   aspect-ratio: 4 / 5;
 }

@@ -352,7 +352,8 @@ console.log('PASS: three homepage focus areas, products/films collections, detai
 
 // Preserve owner identity and the requested production-approach explanation.
 const heroSectionHtml = homeHtml.match(/<section[^>]*aria-labelledby="hero-heading"[\s\S]*?<\/section>/)?.[0] ?? '';
-if (!heroSectionHtml || heroSectionHtml.includes('victor-portrait-retouched.webp') || !backgroundSectionHtml.includes('victor-portrait-retouched.webp')) throw new Error('Portrait belongs in Background, not the hero');
+const portraitAlt = 'alt="Victor, photographed in Bangkok"';
+if (!heroSectionHtml || heroSectionHtml.includes(portraitAlt) || !backgroundSectionHtml.includes(portraitAlt)) throw new Error('Portrait belongs in Background, not the hero');
 if ((homeHtml.match(/href="https:\/\/github\.com\/ahk1542001-wq"/g) || []).length < 2) throw new Error('GitHub account must remain explicit in hero and footer');
 if (!filmsHtml.includes('href="#production-approach"') || !filmsHtml.includes('id="production-approach"')) throw new Error('Production approach must be discoverable');
 for (const phrase of ['GPT-6.1 Sol', 'Gemini Flash', 'VIC Voice', 'do not establish fully unattended Hermes production']) {
